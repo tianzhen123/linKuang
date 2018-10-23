@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="../../css/base.css" />
+		<link rel="stylesheet" href="lvZhiLvZeXQ.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iuapmobile.um.listview.css">
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="../../js/knockout.js"></script>
+		<script src="lvZhiLvZeXQ.js"></script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			
+			<div class="um-header um-box-hc" >
+            	<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            	<h3>履职履责详情</h3>
+            </div>
+			
+			<div class="um-content">
+				<div class="um-list">
+				        <label class="um-label um-box-justify">
+			                	<div>党员编号</div>
+			                	<div data-bind = "text:code">123123123</div>
+		                </label>
+		                
+		                <label class="um-label um-box-justify">
+			                	<div>党员姓名</div>
+			                	<div  data-bind="text:name">张友金</div>
+		                </label>
+		                
+		                <label class="um-label um-box-justify">
+			                	<div>岗位</div>
+			                	<div  data-bind="text:post">实验科科长</div>
+		                </label>
+		                
+		                <label class="um-label um-box-justify">
+			                	<div>职责</div>
+			                	<div data-bind="text:duty">管理人员</div>
+		                </label>
+		                
+		                <label class="um-label um-box-justify">
+			                	<div>自身建设情况</div>
+			                	<div data-bind="text:selfconstruction" >良好</div>
+		                </label>
+		                
+		                <label class="um-label um-box-justify">
+			                	<div>岗位目标完成情况</div>
+			                	<div data-bind="text:positiontarget">良好</div>
+		                
+		                </label>
+		                
+		                <div class="um-listview-wrap" id="listview">
+							<ul class="um-list um-no-active list" data-bind="foreach:data" >
+								<li class="um-listview-row">
+									<div class="um-list-item um-swipe-action um-no-icon">
+										<label class="um-label um-box-justify" style="width: 100%">
+						                	<div data-bind="text:app_project_name"></div>
+						                	<div>
+						                		<div id="partyscore" type="number" class="getValue form-control tr" data-bind="text:score"></div>
+						                	</div>
+						                </label>
+									</div>
+								</li>
+							</ul>
+						</div>
+		                
+		                <label class="um-label um-box-justify">
+			                	<div>合计</div>
+			                	<div data-bind="text:totalscore">800</div>
+		                </label>
+		                
+		                <label class="um-label um-box-justify">
+			                	<div>奖惩情况</div>
+			                	<div data-bind="text:rewardspunish">无</div>
+		                </label>
+		                
+		                <label class="um-label um-box-justify">
+			                	<div>党员评价</div>
+			                	<div data-bind="text:evaluate">无</div>
+		                </label>
+		                
+                </div>
+			</div>
+
+		</div>
+		<script src="../../js/mui.min.js"></script>
+	</body>
+</html>

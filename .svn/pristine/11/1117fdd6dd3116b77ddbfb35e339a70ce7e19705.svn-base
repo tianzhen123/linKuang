@@ -1,0 +1,59 @@
+        	div.Artical>div {
+        		display:none;
+        		color:#555;
+        	}
+        	div.Artical>div.active {
+        		display:block;
+        	}
+        	div.Artical>div.news {
+        		background:lightblue;
+        	}
+        	div.Artical>div.product {
+        		background:lightgreen;
+        	}
+        	div.Artical>div.game {
+        		background:lightyellow;
+        	}
+        	div.Artical>div.download {
+        		background:lightpink;
+        	}   
+
+.btn-primary{
+height: 100%
+}
+
+.um-rounded{
+
+width:100px;
+height:100px;
+
+}
+.um-list-item-body{
+margin-left: 16px;
+}
+
+.um-text-overflow{
+float: left;
+margin-top: 0px;
+}
+
+.um-box-vc{
+margin-top: 6px;
+}
+
+.um-listview-row{
+margin-top: 5px;
+margin-bottom: 10px;
+margin-left: 10px;
+}
+
+.um-list-item-inner:after{
+margin-bottom: 5px;
+}
+
+.um-list .um-list-item-inner:after{
+width:110%;
+left:-10px;
+bottom:-10px;
+}
+

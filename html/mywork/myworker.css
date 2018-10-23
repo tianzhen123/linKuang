@@ -1,0 +1,128 @@
+#slider {
+   margin-left:-15px;
+   margin-right:-15px;
+}
+
+.contentsyl{
+
+	background-color: #FFFFFF;
+
+}
+.topsyl{
+	background-color: #d72424;
+	text-align: center;
+	color: #FFFFFF;
+	font-size: 13px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.namesyl{
+	font-size: 15px;
+	font-weight: bold;
+	text-align:center;
+}
+.worksyl{
+	font-size: 15px;
+	text-align:center;
+}
+.imgsyl {
+	width: 100%;
+	text-align: center;
+}
+.imgsyl img{
+	width: 100%;
+	height:100px;
+	
+}
+
+.ge-obj{
+	padding: 5px;
+}
+
+.GE_MODEL{}
+.GE_ADVANCED{}
+
+
+.um-row{
+	background-color: #FFFFFF;
+	padding-top:10px;
+	padding-bottom:10px;
+}
+.contsyl{
+	text-align: center;
+}
+.iconSyl{
+	text-align: center;
+	width: 100%;
+}
+.iconSyl img{
+	width:40px;
+	height:40px;
+}
+.textsyl{
+	font-size: 11px;
+}
+.middSyl1{
+	font-size: 15px;
+	text-align: left;
+	padding-top:5px;
+	padding-bottom:10px;
+}
+.middSyl1 p{
+	font-weight: bold;
+}
+.middSyl2{
+	font-size: 15px;
+	text-align: left;
+}
+.timesyl{
+	font-size: 11px;
+	text-align: right;
+	padding-top:10px;
+	padding-bottom:5px;
+}
+.rightsyl{
+	text-align: right;
+}
+.rightsyl img{
+	width: 30px;
+	height: 30px;
+}
+.ge_orgname{
+	font-size: 12px;
+	color: #999999;
+}
+.approval-item{
+	margin-bottom: 1px;
+}
+
+.filterContainer{
+	
+}
+
+.filterContainer li{
+	list-style: none;
+	padding: 15px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	float: left;
+}
+
+.filterContainer li div{
+	float: left;
+	display: inline;
+}
+
+.filterContainer li input{
+	border-style: none;
+	outline: none;
+}
+.scroller-container input{
+	width: 70%;
+	text-align: center;
+}
+.ge_orgname{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}

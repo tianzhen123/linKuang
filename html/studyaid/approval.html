@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="../../css/base.css" />
+		<link rel="stylesheet" href="./approval.css" />
+		<link rel="stylesheet" href="../../css/commons.css" />
+		<link rel="stylesheet" href="../../css/public.css" />
+		<script src="../../js/commons.js" ></script> 
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="./approval.js" ></script>	
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div id="header" class="um-header">
+               <div id="backContainer" style="width: 30%">
+					<a href="#"  class="headerText backup" onclick="backClick()">&nbsp;返回</a>
+				</div>
+				<div id="titleContainer" style="width:40%">
+					<h3 id="title"></h3>
+				</div>
+				<div id="appealContainer" style="width:30%">
+					<a id="fillReportBtn" href="#" class="headerText phone" data-target="actionsheet">选择</a>  
+				</div>
+            </div>
+            
+			<div class="um-content panel-info-container">
+				<div class="um-row panel-info" >
+					<div class="panel-info-title">
+						基本信息
+					</div>
+					<div class="um-row content-container">
+					    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+							工号
+						</div>
+						<div class="um-xs-6 um-sm-6 um-md-6 content-value" >
+							<span id="pcode"></span>
+						</div>
+					</div>
+					<div class="um-row content-container">
+					    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+							姓名
+						</div>
+						<div class="um-xs-6 um-sm-6 um-md-6 content-value" >
+							<span id="name"></span>
+						</div>
+					</div>
+					<div class="um-row content-container">
+					    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+							性别
+						</div>
+						<div class="um-xs-6 um-sm-6 um-md-6 content-value" >
+							<span id="sex"></span>
+						</div>
+					</div>
+					<div class="um-row content-container">
+					    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+							年龄
+						</div>
+						<div class="um-xs-6 um-sm-6 um-md-6 content-value" >
+							<span id="age"></span>
+						</div>
+					</div>
+					<div class="um-row content-container">
+					    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+							身份证号
+						</div>
+						<div class="um-xs-6 um-sm-6 um-md-6 content-value" >
+							<span id="idcode"></span>
+						</div>
+					
+					</div>
+					<div class="um-row content-container">
+					    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+							联系电话
+						</div>
+						<div class="um-xs-6 um-sm-6 um-md-6 content-value" >
+							<span id="phone"></span>
+						</div>
+					</div>
+					<div class="um-row content-container">
+					    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+							工作单位
+						</div>
+						<div class="um-xs-6 um-sm-6 um-md-6 content-value" >
+							<span id="organization_name"></span>
+						</div>
+					</div>
+					<div class="um-row content-container">
+					    <div class="um-xs-4 um-sm-4 um-md-4 content-key" >
+							家庭住址
+						</div>
+						<div class="um-xs-8 um-sm-8 um-md-8 content-value" >
+							<span id="homeaddress"></span>
+						</div>
+					</div>
+					<div class="um-row content-container">
+					    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+							银行卡
+						</div>
+						<div class="um-xs-6 um-sm-6 um-md-6 content-value" >
+							<span id="bankNo"></span>
+						</div>
+					</div>
+				</div>
+				<div class="um-row panel-info">
+					<div class="panel-info-title">
+						学生及院校信息
+					</div>
+					<div class="um-row content-container">
+					    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+							考生姓名
+						</div>
+						<div class="um-xs-6 um-sm-6 um-md-6 content-value" >
+							<span id="examineeName"></span>
+						</div>
+					</div>
+					<div class="um-row content-container">
+					    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+							与申请人关系
+						</div>
+						<div class="um-xs-6 um-sm-6 um-md-6 content-value" >
+							<span id="relation"></span>
+						</div>
+					</div>
+					<!-- <div class="um-row content-container">
+					    <div class="um-xs-12 um-sm-12 um-md-12 content-key" >
+							身份证明
+						</div>
+						<div class="um-xs-12 um-sm-12 um-md-12 panel-info-img" >
+							<img src="./img/idcard.png" />
+						</div>
+					</div>
+					-->
+					<div class="um-row content-container">
+					    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+							年龄
+						</div>
+						<div class="um-xs-6 um-sm-6 um-md-6 content-value" >
+							<span id="examineeAge"></span>
+						</div>
+					</div>
+					<div class="um-row content-container">
+					    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+							身份证号
+						</div>
+						<div class="um-xs-6 um-sm-6 um-md-6 content-value" >
+							<span id="idCard"></span>
+						</div>
+					</div>
+					<div class="um-row content-container">
+					    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+							性别
+						</div>
+						<div class="um-xs-6 um-sm-6 um-md-6 content-value" >
+							<span id="examineeSex"></span>
+						</div>
+					</div>
+					<div class="um-row content-container">
+					    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+							毕业院校
+						</div>
+						<div class="um-xs-6 um-sm-6 um-md-6 content-value" >
+							<span id="graduateSchool"></span>
+						</div>
+					</div>
+					<!-- 
+					<div class="um-row content-container">
+					    <div class="um-xs-12 um-sm-12 um-md-12 content-key" >
+							准考证照
+						</div>
+						<div class="um-xs-12 um-sm-12 um-md-12 panel-info-img" >
+							<img src="./img/idcard.png" />
+						</div>
+					</div>
+					-->
+					<div class="um-row content-container">
+					    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+							录取学校
+						</div>
+						<div class="um-xs-6 um-sm-6 um-md-6 content-value" >
+							<span id="admissionsSchool"></span>
+						</div>
+					</div>
+					<div class="um-row content-container">
+					    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+							专业
+						</div>
+						<div class="um-xs-6 um-sm-6 um-md-6 content-value" >
+							<span id="major"></span>
+						</div>
+					</div>
+					<!--
+					<div class="um-row content-container">
+					    <div class="um-xs-12 um-sm-12 um-md-12 content-key" >
+							录取通知书
+						</div>
+						<div class="um-xs-12 um-sm-12 um-md-12 panel-info-img" >
+							<img src="./img/idcard.png" />
+						</div>
+					</div>	
+					-->
+				</div>
+				
+				<div class="um-row panel-info" >	
+					<div class="panel-info-title">
+						家庭收入及困难情况
+					</div>
+					<div class="panel-info-text" style="padding-top: 15px;">
+						<p id="homeIncom"></p>
+					</div>
+				</div>	
+				<div class="um-row panel-info" >	
+					<div class="panel-info-title">
+						其他附件
+					</div>
+					<div class="panel-info-img" id="div_imgfile">
+					</div>
+				</div>
+				<!--
+				<div class="um-row panel-info" id="bfje" style="display: none">	
+					<div class="panel-info-title">
+						帮扶金额
+					</div>
+					<div class="panel-info-text" style="padding-top: 15px;">
+						<p id="helpAmounts"></p>
+					</div>
+				</div>	
+				-->
+				<div id="opinionList">
+					<!--
+						<div class="um-row panel-info" id="panel-info">
+                       			<div class="panel-info-title" style="display: Flex;padding: 0px">
+										<div style="width: 50%">
+									基层工会审批
+										</div>
+										<div style="text-align: right;width: 50%;font-size: 12px;padding-top: 3px;">
+											<span>2018-9-19 05:03</span>
+										</div>
+									</div>
+										<div class="panel-info-text" style="padding-top: 15px;padding-bottom: 15px;">
+											<div class="um-row content-container" style="padding-left: 0px;">
+												二级审批通过 2018年9月19日20点03分
+											</div>
+										</div>
+										<div class="panel-info-text">
+											<div class="um-row content-container" style="padding-left: 0px;">
+									确定帮扶额: 0元
+									</div>
+										</div></div>
+					-->
+				</div>
+			</div>
+		</div>
+		<script>
+			
+			$(function(){
+			
+				//var approvalId='SA1538012721411';
+				var approvalId=localStorage.approvalId;
+				var obj={};
+				//obj.userId='';
+				obj.busiType='BUSI_TYPE_SA';
+				obj.approvalId=approvalId;
+			
+				$.ajax({
+                    type: "POST",
+                    url: serviceUrl + "/studyAid/studyAidInfo",
+                    data:JSON.stringify(obj),
+                    contentType: 'application/json;charset=utf-8',
+                    dataType: 'json',
+                    success: function (res) {
+                    	console.log(res)
+                    	if(res.sCode==200){//职工信息
+                    		var node=res.rsMap.studyAidInfo;
+                    		//工号
+                    		$("#pcode").text(node.pcode);
+                    		//姓名
+                    		$("#name").text(node.name);
+                    		//性别
+                    		$("#sex").text(node.sex);
+                    		//年龄
+                    		$("#age").text(node.age);
+                    		//身份证号
+                    		$("#idcode").text(node.idcode);
+                    		//联系电话
+                    		$("#phone").text(node.phone);
+                    		//工作单位
+                    		$("#organization_name").text(node.organization_name);
+                    		//家庭住址
+                    		$("#homeaddress").text(node.homeaddress);
+                    		//考生姓名
+                    		$("#examineeName").text(node.examineeName);
+                    		//与申请人关系
+                    		$("#relation").text(node.relation);
+                    		//考生年龄
+                    		$("#examineeAge").text(node.examineeAge);
+                    		//考生身份证号
+                    		$("#idCard").text(node.idCard);
+                    		//考生性别
+                    		$("#examineeSex").text(node.examineeSex == 'M' ? '男' : '女');
+                    		//毕业学院
+                    		$("#graduateSchool").text(node.graduateSchool);
+                    		//专业
+                    		$("#major").text(node.major);
+                    		//录取学院
+                    		$("#admissionsSchool").text(node.admissionsSchool);
+                    		//银行卡号
+                    		$("#bankNo").text(node.bankNo);
+                    		//家庭收入及困难情况
+                    		$("#homeIncom").text(node.homeIncom);
+                    		//帮扶金额	
+                    		$("#helpAmounts").text(node.helpAmount);
+                    	}
+                    }
+                });
+				$.ajax({//附件信息
+	                type: "POST",
+	                url:serviceUrl + "/baseController/fileList",
+	                data:JSON.stringify(obj),
+	                contentType: 'application/json;charset=utf-8',
+	                dataType: 'json',
+	                success: function (res) {
+	                	if(res.sCode==200){
+	                		var fileList=res.rsMap.fileList;
+	                		if(fileList!=null&&fileList.length){
+	                			var html='';
+	                			for(var i=0;i<fileList.length;i++){
+	                				var url=fileList[i].url;
+	                				if(i == 0){
+	                    				html+='<div class="lookimg" num="0"><img src="'+url+'"></div>';
+                    				}else{
+	                    				html+='<div class="lookimg" num="0" style="margin-top:10px;"><img src="'+url+'"></div>';
+                    				}
+	                			}
+	                			
+	                			$("#div_imgfile").html(html)
+	                		}
+	                	}
+	                }
+	            });	
+	            
+	            
+	            
+	            var obj={};
+				obj.approvalId=approvalId;
+				$.ajax({//意见
+                    type: "POST",
+                    url:serviceUrl + "/studyAid/opinionList",
+                    data:JSON.stringify(obj),
+                    contentType: 'application/json;charset=utf-8',
+                    dataType: 'json',
+                    success: function (res) {
+                    	if(res.sCode==200){
+	                        var opinionList=res.rsMap.opinionList;
+	                        var html='';
+	                        if(opinionList!=null&&opinionList.length>0){
+	                        	for(var i=0;i<opinionList.length;i++){
+	                        		var opinion=opinionList[i];
+	                        		var opinionState=opinionList[i].opinionState;
+	                        		var auIDName=opinionList[i].auIDName;
+	                        		var opinionStateName=getOpinionStateName(opinionState);
+	                        		  html+='<div class="um-row panel-info" id="gqgl">';
+	                        		  html+='<div class="panel-info-title" style="display: Flex;padding:5px;"> <div style="width: 100%;">'+opinion.taskName+'</div>';                                    
+                                      html+='<div style="text-align: right;width: 100%;color:#b7b8b7;font-size:12px;">'+opinion.createTime+'</div></div>';
+								      html+='<div class="um-row content-container" style="padding-top:5px;padding-bottom:0px;"><div class="um-xs-6 um-sm-6 um-md-6 content-key">审批人:</div>';
+                               	 	  html+='<div class="um-xs-6 um-sm-6 um-md-6 content-value" >'+auIDName+'</div></div>';
+								      html+='<div class="um-row content-container" style="padding-top:5px;padding-bottom:0px;"><div class="um-xs-6 um-sm-6 um-md-6 content-key">审批状态:</div>';
+                               	 	  html+='<div class="um-xs-6 um-sm-6 um-md-6 content-value" >'+opinionStateName+'</div></div>';
+                           	 	  	 if(opinion.helpAmount!=null&&opinion.helpAmount!=''){
+									   	html+='<div class="um-row content-container" style="padding-top:5px;padding-bottom:0px;"><div class="um-xs-6 um-sm-6 um-md-6 content-key">帮扶金额:</div>';
+                                   	 	html+='<div class="um-xs-6 um-sm-6 um-md-6 content-value" >'+opinion.helpAmount+'元 </div></div>';
+                                     }
+                               	 	 
+	                        		  html+='<div class="um-row content-container" style="padding-top:5px;padding-bottom:0px;"><div class="um-xs-12 um-sm-12 um-md-12 content-key" >审批意见:</div> </div>';	
+									  html+='<div class="um-row content-container" style="padding-top:0px;padding-bottom:20px;"><div class="um-xs-12 um-sm-12 um-md-12 content-key" >'+opinion.opinion+'</div> </div>';	
+                                      html+='<div class="um-row" style="height:10px;"></div>';	
+                                      html+='</div>';
+	                        	}
+	                        }
+	                        $('#opinionList').html(html);
+                     	}
+                    }
+                });	
+			});
+		</script>
+	</body>
+</html>

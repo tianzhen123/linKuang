@@ -1,0 +1,39 @@
+.basesyl{
+	background-color: #DDDDDD;
+	padding-top:5px;
+	font-weight: bold;
+	padding-left:20px;
+}
+.contkey{
+	padding-top:10px;
+	padding-left:20px;
+	text-align: left;
+}
+.contvalue{
+	padding-top:10px;
+	padding-left:20px;
+	padding-right:20px;
+	text-align: right;
+}
+.um-row{
+	background-color: #FFFFFF;
+}
+.imagsyl{
+	width:100%;
+	padding-left:20px;
+	padding-right:20px;
+	padding-top:10px;
+	padding-bottom:10px;
+	text-align: center;
+}
+.imagsyl img{
+	width:100%;
+	height:260px;
+
+}
+.textsyl{
+	width:100%;
+	padding-left:20px;
+	padding-right:20px
+	padding-bottom:10px;
+}

@@ -1,0 +1,7 @@
+.header_img{
+	width: 30%;
+	margin:auto;
+}
+.um-footerbar-item.active {
+    color: #d72424;
+}

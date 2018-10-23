@@ -1,0 +1,34 @@
+summerready=function(){
+	//getUserInfo();
+}
+
+
+//信访案例
+function xinFangClick(){
+	summer.openWin({
+        "id" : "newsPropaganda",
+        "url" : "html/newsPropaganda/newsPropaganda.html",
+       "isKeep" : true,
+        "pageParam" : {
+            "count" : "01010501",
+            "pageTitle":"信访案例",
+        }
+    });
+}
+
+//工作动态
+function workActive(){
+	summer.openWin({
+        "id" : "newsPropaganda",
+        "url" : "html/newsPropaganda/newsPropaganda.html",
+       "isKeep" : true,
+        "pageParam" : {
+            "count" : "01010502",
+            "pageTitle":"工作动态",
+        }
+    });
+}
+
+function backClick(){
+	summer.closeWin({});
+}

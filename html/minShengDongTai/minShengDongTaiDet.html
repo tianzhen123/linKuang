@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="minShengDongTaiDet.css" />
+		<link rel="stylesheet" href="../../css/base.css" />
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="../../js/knockout.js"></script>
+		<script src="../../js/hp/hp_slide.js"></script>
+		<script src="minShengDongTaiDet.js"></script>
+	</head>
+	<body>
+		<div class="um-win" id="index" name="hp_slide">
+			<div class="um-header" >
+				<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            		<h3 id="pageTitle">民生动态</h3>
+			</div>
+
+			<div class="um-content">
+				<div id="title" class="f20 fb tc" data-bind="text:def1"></div>
+				<div id="time" class="f16 tr" data-bind="text:def3"></div>
+				<div style="width: 100%;">
+					<ul style="width: 100%;">
+						<li id="imgg">
+	
+						</li>
+						<li id="cont" style="width: 100%;text-indent: 35px;padding: 0 25px"></li>
+					</ul>
+				</div>
+				<div style="width: 100%;margin: 15px 0" >
+					<span class="fb" style="width: 100%; padding: 15px">审批批注详情：</span>
+					<div id="detail" style="padding-left: 25px">
+						<p id="content" ></p>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</body>
+</html>

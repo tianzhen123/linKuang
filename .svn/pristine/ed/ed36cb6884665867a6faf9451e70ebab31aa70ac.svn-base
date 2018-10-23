@@ -1,0 +1,54 @@
+<!DOCTYPE html><!--教师风采-->
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../../css/font-icons.css">
+		<link rel="stylesheet" href="../../../css/base.css" />
+		<link rel="stylesheet" href="../../../css/mescroll.min.css" />
+		<link rel="stylesheet" href="teachers.css" />	
+		<script src="../../../js/summer.js" ></script>
+		<script src="../../../js/knockout.js"></script>		
+		<script src="../../../js/jquery.min.js" ></script>
+		<script src="../../../js/mescroll.min.js"></script>
+		<script src="../../../js/base.js" ></script>
+		<script src="../../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-header" >
+				<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            	<h3 id="pageTitle">教师风采</h3>
+			</div>
+			<div class="um-input-group" >
+		           	<form style="width: 100%"  action="javascript:searchClick();">
+		           		<span class="ti-search" onclick="searchClick()"></span>
+		           		<input type="search" id="sear" class="form-control" placeholder="请输入教师姓名">
+		           	</form>
+	          </div>
+			<div id="um-content"  class="um-content">
+				<div id="mescroll" class="mescroll">
+					<ul id="dataList" data-bind="foreach:data">
+						<li data-bind="click:$root.openWin.bind($data)">
+							<div class="li-content">
+								<div class="li-left">
+									<img data-bind="attr:{src:image}" onerror="nofind(this,1)" />
+								</div>
+								<div class="li-right">
+									<span class="name" data-bind="text:name">张翠山</span>
+									<p><span>职称</span>:<span data-bind="text:ranks">高级教师</span></p>
+									<p><span>毕业于</span>:<span data-bind="text:school">山东大学</span></p>
+								</div>
+							</div>
+							<div class=" w  line"></div>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+		<script src="teachers.js"></script>
+	</body>
+</html>

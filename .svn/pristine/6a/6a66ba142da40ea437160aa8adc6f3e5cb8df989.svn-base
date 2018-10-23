@@ -1,0 +1,36 @@
+<!DOCTYPE html><!--人员详情信息-->
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../../css/font-icons.css">
+		<link rel="stylesheet" href="personDet.css" />	
+		<link rel="stylesheet" href="../../../css/base.css" />
+		<script src="../../../js/summer.js" ></script>
+		<script src="../../../js/knockout.js"></script>	
+		<script src="../../../js/jquery.min.js" ></script>
+		<script src="../../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-header" id="header">
+				<a class="um-back" onclick="backClick">返回</a>
+				<h3>人员详情</h3>
+			</div>
+
+			<div class="um-content">
+				<div data-bind="foreach:customerList" class="um-content">
+					<ul class="contract-detail">
+						<li>
+							<span class="val-text"><span data-bind="text:name"></span></span>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+		<script src="personDet.js"></script>
+	</body>
+</html>

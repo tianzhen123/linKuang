@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="../../css/base.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iuapmobile.um.listview.css">
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="../../js/knockout.js"></script>
+		<script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+		<script src="lianZheng.js"></script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-header">
+            	<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            	<h3>党风廉政建设</h3>
+            </div>
+
+			<div class="um-content">
+			
+				
+                <label class="um-label um-box-justify">
+                	<div>请选择测评标准:</div>
+                </label>
+				<div style="width: 100%;height: 0.5px;background: #000000"></div>
+				<div class="um-listview-wrap" id="listview">
+				            	<ul class="um-list um-no-active" data-bind="foreach:data">
+				            		<li class="um-listview-row" style="background-color: #FFFFFF">
+				            			<a href="#" class="um-list-item um-swipe-action um-no-icon">
+				            				<div class="um-list-item-inner" > 
+									            <div class="um-list-item-body" >
+									            		<div class="um-row" style="">
+									            				<p class="f18 um-row pl15" data-bind="text:examname"></p>
+									            		</div>
+									            </div> 
+									        </div> 
+				            			</a>
+				            		</li>
+				            	</ul>
+			    </div>
+			
+			</div>
+
+		</div>
+	</body>
+</html>

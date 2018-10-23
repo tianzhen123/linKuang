@@ -1,0 +1,31 @@
+
+summerready = function() {
+	data = summer.pageParam.count;
+    var ViewModel = function () {            
+            };	
+    var jsonArray = [
+    {                
+        name:ko.observable(data.name),
+        pk_org_name:ko.observable(data.pk_org_name),
+        sex:ko.observable(data.sex),
+        idcode:ko.observable(data.idcode),
+        department:ko.observable(data.department),
+        post:ko.observable(data.post),
+        difficultgrade:ko.observable(data.difficultgrade),
+        difficultinfo:ko.observable(data.difficultinfo),
+        difficulttime:ko.observable(data.difficulttime),
+        def1:ko.observable(data.def1),
+        remarks:ko.observable(data.remarks)
+     },                    
+                    ];
+                        
+	var viewModel = new ViewModel();
+	viewModel.data = ko.observableArray(jsonArray);
+	$('#frame1').html(data.difficultinfo);
+	$('#frame2').html(data.remarks);
+	ko.applyBindings(viewModel); 
+    }
+
+function backClick(){
+summer.closeWin({});
+}

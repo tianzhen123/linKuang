@@ -1,0 +1,94 @@
+body,button{
+	font-family: "Microsoft JhengHei";
+}
+.content{
+	width: 100%;
+	height: auto;
+}
+.bg{
+	width:100%;
+	height: auto;
+	position: relative;
+	display: block;
+}
+.logo{
+	position: absolute;
+	transform: translate(-50%,-180%);
+	margin-left: auto;
+	margin-right: auto;
+	width:auto;
+	left: 50%;
+}
+.logo_img{
+	width: 90px;
+	height:90px;
+	margin: 0px;
+	transform: translate(45%);
+}
+.logo_title{
+	color: #FFFFFF;
+	font-size:22px;
+}
+.login_text{
+	position: absolute;
+	transform: translate(-50%,-30%);
+	left: 50%;
+	width: 90%;
+	border-radius: 5px;
+}
+.login_text_content{
+	padding:20px;
+	background-color: #FFFFFF;
+}
+.user_name{
+	background: url(../../img/user.png) no-repeat;
+    background-size: auto 100%;
+}
+.lock{
+	background: url(../../img/pwd.png) no-repeat;
+    background-size: auto 100%;
+    
+}
+.user_name, .lock {
+    display: inline-block;
+    width: 6px;
+    height: 12px;
+    margin-top: 12px;
+    margin-left: 8px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 7px 10px;
+    z-index: 5;
+    font-weight: bold;
+}
+.user_message{
+	padding-left:35px;
+	
+}
+.um-input-group{
+	margin-top:10px;
+}
+.form-control{
+	background-color: #f6f3f3;
+}
+.um-icon-checkbox{
+    border-radius: 0;
+    color:#eb1111;
+}
+.check_text{
+	color:#959a9c;
+	font-size: 16px;
+}
+.um-check-inline{
+	margin-top: 10px;
+	margin-left: 10px;
+}
+.btn_login{
+	width: 100%;
+	background-color: #cc3535;
+	color:#FFFFFF;
+	height:50px;
+	border: none;
+	font-size:18px;
+}

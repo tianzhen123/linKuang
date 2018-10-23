@@ -1,0 +1,36 @@
+body {
+	background-color: #F2F2F2;
+}
+.basesyl{
+	background-color: #DDDDDD;
+	padding-top:5px;
+	padding-bottom:5px;
+	padding-left:20px;
+	font-size: 13px;
+}
+.familyStatus{
+	background-color: #FFFFFF;
+	width:100%;
+	font-size: 13px;
+	padding-bottom: 5px;
+}
+.um-content{
+	padding-bottom:5px;
+}
+.enclosure{
+	background-color: #FFFFFF;
+	width:100%;
+	text-align: center;
+}
+.enclosure img{
+	padding-top:30px;
+	padding-left:20px;
+	padding-right:20px;
+	padding-bottom:10px;
+	width:100%;
+}
+.base{
+	background-color: #DDDDDD;
+	padding-bottom:5px;
+	font-size: 13px;
+}

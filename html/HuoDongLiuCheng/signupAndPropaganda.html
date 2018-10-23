@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" type="text/css" href="../../css/iuapmobile.um.listview.css">
+		<link rel="stylesheet" href="../../css/base.css" />	
+		<link rel="stylesheet" href="signupAndPropaganda.css">
+        
+		
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="../../js/base.js"></script>
+		<script src="../../js/knockout.js"></script>
+		<script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+		<script src="../../js/base.js"></script>
+		<script src="../../js/hp/hp_scroll.js"></script>
+		<script src="../../js/hp/hp_slide.js"></script>
+		<script src="signupAndPropaganda.js" ></script>
+	</head>
+	<body>
+		<div class="um-win" id="index" name="hp_slide">
+			<!--标题 _头 -->
+            <div class="um-header" >
+            	<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            	<h3>活动报名</h3>
+            	<a class="um-header-right" href="#"></a>
+            </div>
+            <!--选项 活动通知 和活动宣传--> 
+            <ul class="um-tabbar um-tabbar-underline pt10 pb10 um-tabbar-switch">
+            	<li class="active" data-tar='.news'><a>活动通知</a></li>
+            	<li data-tar='.product'><a>活动宣传</a></li>
+            </ul>
+            <!--搜索 -->
+            <div class="um-input-group">
+            	<form style="width: 100%"  action="javascript:searchClick();">
+            		<span class="ti-search" onclick="searchClick();"></span>
+            		<input  type="search" class="form-control" id="sear"  placeholder="标题" >
+            	</form>
+            </div>    
+                
+			<div class="um-content" name = "hp_scroll_content">
+				
+               	<div id="pullDown" style="display: none">
+					<img src="../../img/loading.gif" />
+					<span>加载中...</span>
+				</div> 
+                <div class="Artical" name="hp_scroll">    
+                
+                	<!--选项 活动通知内容-->    
+                	<div class="news active ">
+                       
+			            <div id="listview" >
+				            	<ul   class="um-list um-no-active " data-bind="foreach:data">
+				            		<li  class="um-listview-row" style="background-color: #FFFFFF">
+				            			<a href="#" class="um-list-item um-swipe-action um-no-icon">
+				            				<div class="um-list-item-inner" > 
+									            <div class="um-list-item-body" >
+									            		<div class="um-row" style="">
+									            				<img id="img_signUp"  style="float:left;padding-right: 10px;max-width: 50%;"   data-bind="attr:{src: fimage}"/> 
+									            				<p class="f18 fb um-row" data-bind="text:title"></p>
+									            		</div>
+									            		<div class="um-row" style="">
+									            				<span class="f14"  style="float:left;" data-bind="text:def2"></span>
+									            				
+									            				<span class="f14"  style="float:right;"  data-bind="text:def4"></span>
+									            				<span class="f14"  style="float:right; padding-right: 10px;">已报名</span>
+									            		</div>
+									            </div> 
+									        </div> 
+				            			</a>
+				            		</li>
+				            	</ul>
+			            </div>
+                		
+                	</div>
+                	
+                	<!--选项 活动宣传内容-->
+                	<div class="product">
+ 			
+			            <div id="listview2" >
+				            	<ul class="um-list um-no-active " data-bind="foreach:data2">
+				            		<li  class="um-listview-row" style="background-color: #FFFFFF">
+				            			<a href="#" class="um-list-item um-swipe-action um-no-icon">
+				            				<div class="um-list-item-inner" > 
+									            <div class="um-list-item-body" >
+									            		<div class="um-row" style="">
+									            				<img   style="float:left;padding-right: 10px;max-width: 50%;"   data-bind="attr:{src: fimage}"/>
+									            				<p class="f18 fb um-row" data-bind="text:title"></p>
+									            		</div>
+									            		<div class="um-row" style="">
+									            				<span class="f14"  style="float:left;" data-bind="text:def2"></span>
+									            				
+									            				<span class="f14"  style="float:right;"  data-bind="text:def4"></span>
+									            				<span class="f14"  style="float:right; padding-right: 10px;">参与人</span>
+									            		</div>
+									            		
+									            </div> 
+									        </div> 
+				            			</a>
+				            		</li>
+				            	</ul>
+			            </div>
+
+                	</div>
+                					
+                </div>
+				<div id="pullUp" style="display: none">
+					<img src="../../img/loading.gif" />
+					<span>加载中...</span>
+				</div>
+			</div>
+
+			
+		</div>
+ 
+ 
+	</body>
+</html>

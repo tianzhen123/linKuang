@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<!--
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">		
+		<link rel="stylesheet" href="../../css/account2.css">	
+		<link rel="stylesheet" href="../../css/base.css" />
+		<link rel="stylesheet" href="./myworker.css" />
+		<link rel="stylesheet" href="../../css/commons.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iuapmobile.um.listview.css">
+		<link rel="stylesheet" href="../../css/iscroll.css"/>
+		<script src="../../js/commons.js" ></script> 
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/summer.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="../../js/swipe.js" ></script>
+		<script src="../../js/swipeTab.js" ></script>
+		<script type="text/javascript" src="../../js/knockout.js"></script>
+    	<script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+    	<script src="../../js/iscroll.js"></script>
+		-->
+	    <link rel="stylesheet" href="./listview.css">
+	    <link rel="stylesheet" href="../../js/ydui/ydui.px.css">
+		<link rel="stylesheet" href="https://unpkg.com/cube-ui/lib/cube.min.css">
+	
+		<script src="../../js/commons.js" ></script> 
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/summer.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+		
+		<style>
+		    .yd-navbar{
+		    	padding-top: 10px;
+		    }
+		    .yd-navbar-item{
+		    	padding-top: 15px;
+		    }
+		    .geList{
+		    	display:flex;
+		    	flex-wrap:wrap;
+		    	padding-top:42px;
+		    }
+		    .geObj{
+		    	width:33.33%;
+		    	padding-left:5px;
+		    	padding-right:5px;
+		    	padding-bottom: 5px;
+		    }
+		    .geObj-img{
+		    	width:100%;
+		    	height: 120px;
+		    }
+		    .geObj-img img{
+		    	width:100%;
+		    	height: 100%;
+		    }
+		    .geObj-type{
+		    	width: 100%;
+		    	padding: 10px;
+		    	background-color: #d72424;
+		    	text-align: center;
+		    	color: #ffffff;
+		    }
+		   .geObj-name {
+		    	text-overflow: ellipsis;
+		     	white-space: nowrap;
+		   	 	overflow: hidden;
+		   	 	font-weight: 800;
+		   	 	text-align: center;
+		   	 	background-color: #FFFFFF;
+		   	 	padding: 5px;
+		   	 	padding-bottom: 0px;
+		   	 	font-size:15px;
+		   }
+		   .geObj-companyName {
+		    	text-overflow: ellipsis;
+		     	white-space: nowrap;
+		   	 	overflow: hidden;
+		   	 	text-align: center;
+		   	 	background-color: #FFFFFF;
+		   	 	padding:5px;
+		   }
+		   .yd-tab-box{
+		   		position: fixed;
+		   		width: 100%;
+		   		z-index: 9999;
+		   }
+		   .headerBar{
+		   		position:fixed;
+		   		background-color: red;
+		   		height: 64px;
+		   		top: 0px;
+		   		z-index: 99999;
+		   		width: 100%;
+		   		padding-top: 20px;
+		   }
+		   .yd-back-icon{
+		   	    font-size: 10px;
+		   }
+    </style>
+		
+		
+	</head>
+	<body>
+	<div id="app" style="background: white;">
+		<!--
+		 <div style="border-top: 1px solid #E6E6E6;border-bottom: 1px solid #E6E6E6;margin-top: 17%;">
+			<ul class="filterContainer">
+				<li class="scroller-container" style="width: 30%;">
+					<select id='select1' class="um-scroller-select" style="float: left;width: 20px;">
+						<option selected="BUSI_TYPE_ALL" value="">全部</option>
+                        <option value="BUSI_TYPE_GE">先进劳模</option>
+                        <option value="BUSI_TYPE_SA">金秋助学</option>
+                        <option value="BUSI_TYPE_HW">职工帮扶</option>
+                        <option value="BUSI_TYPE_HS">大病帮困</option>
+                        <option value="BUSI_TYPE_MS">群众安全</option>
+                        <option value="BUSI_TYPE_WA">职工诉求</option>
+                        <option value="BUSI_TYPE_SP">青安岗工作</option>
+                    </select> 
+                    <img src="../../img/ico_xl.png" />
+				</li>
+				
+				<li style="text-align: right;width: 60%;">
+					<input id="name" type="text" placeholder="点击此处，按姓名模糊查询"/>
+				</li>
+				<li id="searchBtn" style="text-align: right;width: 10%;padding-left: 0px;padding-bottom: 0px;">
+					<img src="../../img/ico_search.png" style="width: 18px;"/>
+				</li>
+			</ul>
+		</div>
+		-->
+	<template>
+	    <yd-navbar title="我的工作" bgcolor="#d72424" height="64px" color="#FFFFFF" fixed="true">
+	        <router-link to="#" slot="left" @click="backFunc">
+	            <yd-navbar-back-icon color="#ffffff">&nbsp;返回</yd-navbar-back-icon>
+	        </router-link>
+	        <!--
+	        <router-link to="#" slot="right">
+	        	<div @click="showPicker">{{publicityYear}}</div>
+	        </router-link>
+	        -->
+	    </yd-navbar>
+	    <yd-pullrefresh :callback="pullLoadList" ref="pullrefresh">
+	    <yd-tab :callback="switchCallBack"  style="margin-top: 64px;">
+	        <yd-tab-panel label="待审批" tabkey="0">
+	        	<yd-infinitescroll :callback="loadList" ref="modelInfinitescroll">
+	        		<div slot="list" class="geList">
+	        			<!--
+        				<div v-for="item, key in list" :key="key" class="geObj" @click="toDetails(item)">
+        					<div class="geObj-type">{{item.geType}}</div>
+        					<div class="geObj-img">
+        						<img slot="img" :src="item.photoUrl">
+        					</div>
+        					<div class="geObj-name">{{item.name}}</div>
+        					<div class="geObj-companyName">{{item.companyName}}</div>
+        				</div>
+        				-->
+        				<ul class="um-list"  v-for="item, key in list" :key="key" class="geObj" @click="toDetails(item)">
+			                <li class="um-listview-row">
+								<div class="um-row approval-item ge-model um-list-items um-swipe-action um-no-icon">
+								    <div class="um-xs-3 um-sm-3 um-md-3 contsyl" >
+										<div class="iconSyl">
+											<img src="" :src="item.ico"/>
+										</div>
+										<div class="textsyl">
+											<p>{{item.busiType}}</p>
+										</div>
+									</div>
+									<div class="um-xs-4 um-sm-4 um-md-4" style="padding-left: 0px">
+										<div class="middSyl1">
+											<p>{{item.lastUserName}}</p>
+										</div>
+										<div class="middSyl2">
+											<p class="ge_orgname">{{item.orgName}}</p>
+										</div>
+									</div>
+									<div class="um-xs-5 um-sm-5 um-md-5" style="padding-left: 0px" >
+										<div class="timesyl">
+											<p>{{item.lastUpdateTime}}</p>
+										</div>
+										<div class="rightsyl">
+											<img src="../../img/right.png" />
+										</div>
+									</div>
+								</div>					      
+			                </li>
+			            </ul>
+	        		</div>
+			
+			        <span slot="doneTip">已加载全部数据</span>
+			        <img slot="loadingTip" src="http://static.ydcss.com/uploads/ydui/loading/loading10.svg"/>
+			
+			    </yd-infinitescroll>
+	        </yd-tab-panel>
+	        <yd-tab-panel label="已审批" tabkey="1">
+		        <yd-infinitescroll :callback="loadList1" ref="advancedInfinitescroll">
+				    <div slot="list" class="geList">
+				    	<!--
+        				<div v-for="item, key in list1" :key="key" class="geObj" @click="toDetails1(item)">
+        					<div class="geObj-type">{{item.geType}}</div>
+        					<div class="geObj-img">
+        						<img slot="img" :src="item.photoUrl">
+        					</div>
+        					<div class="geObj-name">{{item.name}}</div>
+        					<div class="geObj-companyName">{{item.companyName}}</div>
+        				</div>
+        				-->
+        				<ul class="um-list um-no-active" v-for="item, key in list1" :key="key" class="geObj" @click="toDetails1(item)">
+			                <li class="um-listview-row">
+								<div class="um-row approval-item ge-model um-list-items um-swipe-action um-no-icon">
+								    <div class="um-xs-3 um-sm-3 um-md-3 contsyl" >
+										<div class="iconSyl">
+											<img src="" :src="item.ico"/>
+										</div>
+										<div class="textsyl">
+											<p>{{item.busiType}}</p>
+										</div>
+									</div>
+									<div class="um-xs-4 um-sm-4 um-md-4" style="padding-left: 0px">
+										<div class="middSyl1" style="float: left">
+											<p>{{item.lastUserName}}</p>
+										</div>
+										<div class="middSyl1" style="padding-top: 10px;text-align: right;">
+											<p style="padding-left: 56%;font-size: 12px;">{{item.approvalStateName}}</p>
+										</div>
+										<div class="middSyl2">
+											<p class="ge_orgname">{{item.orgName}}</p>
+										</div>
+									</div>
+									<div class="um-xs-5 um-sm-5 um-md-5" style="padding-left: 0px" >
+										<div class="timesyl">
+											<p>{{item.lastUpdateTime}}</p>
+										</div>
+										<div class="rightsyl">
+											<img src="../../img/right.png" />
+										</div>
+									</div>
+								</div>					      
+			                </li>
+			            </ul>
+	        		</div>
+				
+			        <span slot="doneTip">已加载全部数据</span>
+			        <img slot="loadingTip" src="http://static.ydcss.com/uploads/ydui/loading/loading10.svg"/>
+				</yd-infinitescroll>
+	        </yd-tab-panel>
+	    </yd-tab>
+	</yd-pullrefresh>
+	</template>
+</div>
+<script src="../../js/ydui/vue.min.js"></script>
+<script src="../../js/ydui/ydui.px.js"></script>
+<script src="https://unpkg.com/cube-ui/lib/cube.min.js"></script>
+<script>
+	//const yearList = [{text:"全部年份",value:"全部年份"}];
+	        
+
+    new Vue({
+        el: '#app',
+        data:{
+        	page: 0, 
+            pageSize: 15, 
+            page1: 0, 
+            pageSize1: 15, 
+            list: [], 
+            list1: [], 
+            tabIndex:0, //tab页索引，0：待办；1：已办
+            publicityYear:"全部年份" 
+        },
+        created: function () {
+        	//localStorage.userid = '6e4026fc-d606-4198-96a0-5c1e8533e084';
+        
+			this.loadList();    
+			this.loadList1(); 		
+			
+			/**
+			var date = new Date();
+    		var yearInt = Number(date.getFullYear());
+    		
+    		yearList.push({text:yearInt,value:yearInt});
+    
+		    for(var i=1;i<5;i++){
+		    	var _yearInt = yearInt - i;
+		    	yearList.push({text:_yearInt,value:_yearInt});
+		    }
+		    */
+  		},
+        methods: {
+        	pullLoadList:function(){
+        		if(this.tabIndex == 0){
+		    		this.page = 0;
+		    		this.list = [];
+		    		this.loadList();
+		    	}else if(this.tabIndex == 1){
+		    		this.page1 = 0;
+		    		this.list1 = [];
+		    		this.loadList1();
+		    	}
+        		this.$refs.pullrefresh.$emit('ydui.pullrefresh.finishLoad');
+        	},
+        	/**
+        	 * 标题栏返回方法 
+        	 */
+            backFunc:function(){
+            	/**
+            	summer.openWin({
+				    "id" : "in",
+				    "url" : "html/tmp/in.html"
+				});
+				*/
+				summer.closeWin({});
+            },
+            /**
+             * 年份筛选Picker 
+             */
+            showPicker:function() {
+		      if (!this.picker) {
+		        this.picker = this.$createPicker({
+		          title: '',
+		          data: [yearList],
+		          onSelect: this.selectHandle,
+		          onCancel: this.cancelHandle
+		        })
+		      }
+		      this.picker.show()
+		    },
+		    toDetails:function(item){
+		    	console.log(item);
+		    	localStorage.approvalId = item.approvalId;
+        		localStorage.xuanze = 'myWork';
+		        localStorage.flowId = item.flowId;
+		        localStorage.taskMode = item.taskMode;
+		        localStorage.title = '审批';
+		        
+		        forwordApproval(item.busiTypeVlue,item.approvalId,item.taskId);
+		    },
+		    toDetails1:function(item){
+		    	console.log(item);
+		    	localStorage.xuanze = 'handle';
+		        localStorage.title = '审批';
+		        forwordApproval(item.busiTypeVlue,item.approvalId,item.taskId);
+		    },
+		    /**
+		     * TabBar切换回调 
+		     */
+		    switchCallBack:function(label,key){
+		    	this.tabIndex = key;
+		    	if(this.tabIndex == 0){
+		    		this.page = 0;
+		    		this.list = [];
+		    		this.loadList();
+		    	}else if(this.tabIndex == 1){
+		    		this.page1 = 0;
+		    		this.list1 = [];
+		    		this.loadList1();
+		    	}
+		    },
+		    /**
+		     * 选择年份筛选 
+		     */
+		    selectHandle:function(selectedVal, selectedIndex, selectedText){
+		    	this.publicityYear = selectedVal[0] + "";
+		    	
+		    	if(this.tabIndex == 0){
+		    		this.page = 0;
+		    		this.list = [];
+		    		this.loadList();
+		    	}else if(this.tabIndex == 1){
+		    		this.page1 = 0;
+		    		this.list1 = [];
+		    		this.loadList1();
+		    	}
+		    },
+		    /**
+		     * 获取劳动模范数据 
+		     */
+            loadList:function(){
+            	console.log("method >> loadList");
+  				var jsonData = {};
+				jsonData.userId = localStorage.userid;
+				//jsonData.publicityType = "SUB_BUSI_TYPE_GE_MODEL";
+				console.log("AAA THIS.PAGE:::" + this.page);
+				jsonData.pageIndex = this.page+"";
+				jsonData.pageSize = this.pageSize+"";
+				this.getDataList(jsonData,1);
+				
+            },
+            /**
+             * 获取先进工作者数据 
+             */
+            loadList1:function(){
+  				var jsonData = {};
+				//jsonData.userId = '606aca3d-22fb-47c8-98fd-4480b6344eae';
+				jsonData.userId = localStorage.userid;
+				//jsonData.publicityType = "SUB_BUSI_TYPE_GE_ADVANCED";
+				jsonData.pageIndex = this.page1+"";
+				jsonData.pageSize = this.pageSize1+"";
+				this.getDataList(jsonData,2);
+            },
+            /**
+             * 调用后台接口获取数据 
+             */
+            getDataList:function(jsonData,tabIndex){
+            	/**
+            	if(this.publicityYear != "全部年份"){
+            		jsonData.publicityYear = this.publicityYear;
+            	}
+            	*/
+            	var _this = this;
+            	var url = '';
+            	if(tabIndex == 1){
+            		url = serviceUrl+'/approval/pendingList';
+            	}else if(tabIndex == 2){
+					url = serviceUrl+'/approval/handleList';
+				}
+	            $.ajax({
+					type:'post',
+					url:url,
+					data:JSON.stringify(jsonData),
+				    contentType: 'application/json;charset=utf-8',
+				    dataType: 'json', 
+					success:function(res){
+						console.log(res);
+						console.log("_this.page::::" + _this.page);
+						if(res.sCode == 200){
+							var list = res.rsMap.approvalList;
+							for(var i = 0 ; i < list.length; i++){
+								var geObj = list[i];
+								geObj.approvalId = geObj.approvalId;
+								geObj.busiTypeVlue = geObj.busiTypeVlue;					
+								geObj.busiType = geObj.busiType;
+								geObj.orgName = geObj.orgName;					
+								geObj.ico = "../../img/busi_ico/"+geObj.busiTypeVlue+".png";
+								geObj.taskId = geObj.taskId;
+								if(geObj.lastUpdateTime == 'undefined' || undefined == geObj.lastUpdateTime||geObj.lastUpdateTime==''||geObj.lastUpdateTime==null){
+									geObj.lastUpdateTime = geObj.createTime;
+								}else{
+									geObj.lastUpdateTime = geObj.lastUpdateTime;
+								}
+								geObj.lastUserName = geObj.createUserName;
+								geObj.flowId = geObj.flowId;
+								geObj.taskMode = geObj.taskMode;							
+								
+								if(tabIndex == 1){
+									_this.list.push(geObj); 
+								}else if(tabIndex == 2){
+									geObj.approvalStateName = geObj.approvalStateName;	
+									_this.list1.push(geObj); 
+								}
+							}
+						}
+						
+						var rsMap = res.rsMap;
+						
+						if(tabIndex == 1){
+							console.log("_this.page::::" + _this.page);
+							if(rsMap.totalPage <= _this.page){
+								_this.$refs.modelInfinitescroll.$emit('ydui.infinitescroll.loadedDone');
+								return;
+							}
+						}else if(tabIndex == 2){
+							console.log("_this.page::::" + _this.page1);
+							if(rsMap.totalPage <= _this.page1){
+								_this.$refs.advancedInfinitescroll.$emit('ydui.infinitescroll.loadedDone');
+								return;
+							}
+						}
+						
+						if(tabIndex == 1){
+							_this.$refs.modelInfinitescroll.$emit('ydui.infinitescroll.finishLoad');
+							_this.page++;
+						}else if(tabIndex == 2){
+							_this.$refs.advancedInfinitescroll.$emit('ydui.infinitescroll.finishLoad');
+							_this.page1++;
+						}
+						
+						
+						
+					},
+					error:function(er){
+
+					}
+				});	
+            }
+       }    
+    })
+    
+</script>
+
+
+
+</body>
+</html>

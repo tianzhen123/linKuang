@@ -1,0 +1,6 @@
+履职履责评分保存，安卓和苹果ajax，PC端收到的数据不一致
+base641.js对中文加密一次
+ajax再加密一次
+pc端解密两次
+java后端base64解密（str即为中文乱码参数）：import org.apache.commons.codec.binary.Base64;//依赖包str = str.replace(" ", "+");//base64解密部分乱码问题（“+” 号，在urlecode编码中会被解码成空格）String 解密后 = new String(Base64.decodeBase64(str), "UTF-8")
+import org.apache.commons.codec.binary.Base64;

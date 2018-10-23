@@ -1,0 +1,6 @@
+
+summerready = function(){
+	summer.openWebView({
+         "url" : "move.mp4" 
+    })
+}

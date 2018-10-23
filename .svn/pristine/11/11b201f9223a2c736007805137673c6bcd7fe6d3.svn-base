@@ -1,0 +1,253 @@
+var ViewModel = function() {
+	};
+var viewModel = new ViewModel();
+var jsonArray = [];
+var searchType = "";//选项卡
+var pageIndex = 0;//访问页
+var title = "";//搜索条件
+/*
+ * 搜索功能兼容上拉下拉：（调用刷新，加了搜索参数）
+ * 刷新参数设置：搜索条件、请求页、请求数量、排序字段、排序顺序
+ * 其中搜索字段、请求页需要变动
+ * 上拉：获取搜索条件，请求页+1
+ * 下拉：获取搜索条件，请求页置为0
+ * 搜索：获取搜索条件，请求页置为0
+ * 
+ * 党的宣传可以分模块查看展示
+ * 模块分为：
+ * 书记领学十九大：0101010101（栏目查询编号，相当于新闻类的栏目id，访问服务器用的）
+ * 十九大精神进矿区：0101010102
+ * 十九大报告：0101010103
+ * 国家党建工作：0101010104
+ * 
+ * 
+ */
+summerready=function(){
+	/*上下拉刷新*/
+	hp_scroll();
+	hp_slide();//滑动事件，放在最前面
+	
+	getUserInfo();
+	
+	/*导航更换js*/
+	$('ul.um-tabbar-switch  Li').click(function() {
+		$(this).addClass('active').siblings('.active').removeClass('active');
+		var tar = $(this).attr('data-tar');
+		$(tar).addClass('active').siblings('.active').removeClass('active');
+		document.getElementById("sear").value = "";
+		searchType = tar;
+		title = "";
+		pageIndex = 0;
+		myRefresh(tar,title,0);
+	});
+
+	
+	/*渲染的数据*/
+	viewModel.data = ko.observableArray([]);/*书记领学十九大*/
+	viewModel.data1 = ko.observableArray([]);/*十九大精神进矿区*/
+	viewModel.data2 = ko.observableArray([]);/*十九大报告*/
+	viewModel.data3 = ko.observableArray([]);/*国家党建工作*/
+	
+	searchType = ".lingXue";
+	myRefresh(".lingXue",title,0);
+	
+	ko.applyBindings(viewModel);
+	
+	
+	/*书记领学十九大*/
+	var listview = UM.listview("#listview");
+	listview.on("itemClick", function(sender, args) {
+		//这里可以处理行点击事件，参数sender即为当前列表实例对象，args对象有2个属性，即rowIndex(行索引)和$target(目标行的jquery对象)
+		var item = viewModel.data()[args.rowIndex];
+		var data = JSON.stringify(item);
+		data = $summer.strToJson(data);
+		summer.openWin({
+			"id" : "dangDeXuanChuanDet",
+			"url" : "html/dangDeXuanChuan/dangDeXuanChuanDet.html",
+			"isKeep" : true,
+			"pageParam" : {
+				"count" : data
+			}
+		});
+	});
+	/*十九大精神进矿区*/
+	var listview1 = UM.listview("#listview1");
+	listview1.on("itemClick", function(sender, args) {
+		//这里可以处理行点击事件，参数sender即为当前列表实例对象，args对象有2个属性，即rowIndex(行索引)和$target(目标行的jquery对象)
+		var item = viewModel.data1()[args.rowIndex];
+		var data = JSON.stringify(item);
+		data = $summer.strToJson(data);
+		summer.openWin({
+			"id" : "dangDeXuanChuanDet",
+			"url" : "html/dangDeXuanChuan/dangDeXuanChuanDet.html",
+			"isKeep" : true,
+			"pageParam" : {
+				"count" : data
+			}
+		});
+	});
+	/*十九大报告*/
+	var listview2 = UM.listview("#listview2");
+	listview2.on("itemClick", function(sender, args) {
+		//这里可以处理行点击事件，参数sender即为当前列表实例对象，args对象有2个属性，即rowIndex(行索引)和$target(目标行的jquery对象)
+		var item = viewModel.data2()[args.rowIndex];
+		var data = JSON.stringify(item);
+		data = $summer.strToJson(data);
+		summer.openWin({
+			"id" : "dangDeXuanChuanDet",
+			"url" : "html/dangDeXuanChuan/dangDeXuanChuanDet.html",
+			"isKeep" : true,
+			"pageParam" : {
+				"count" : data
+			}
+		});
+	});
+	/*国家党建工作*/
+	var listview3 = UM.listview("#listview3");
+	listview3.on("itemClick", function(sender, args) {
+		//这里可以处理行点击事件，参数sender即为当前列表实例对象，args对象有2个属性，即rowIndex(行索引)和$target(目标行的jquery对象)
+		var item = viewModel.data3()[args.rowIndex];
+		var data = JSON.stringify(item);
+		data = $summer.strToJson(data);
+		summer.openWin({
+			"id" : "dangDeXuanChuanDet",
+			"url" : "html/dangDeXuanChuan/dangDeXuanChuanDet.html",
+			"isKeep" : true,
+			"pageParam" : {
+				"count" : data
+			}
+		});
+	});
+	
+}
+
+/**
+ * 右滑执行的方法
+ */
+function function_rightSlide(){
+	summer.closeWin();
+}
+/**
+ * 下拉执行的方法
+ */
+function function_pullDown(){
+	title = document.getElementById("sear").value;
+	pageIndex = 0;
+	myRefresh(searchType,title,0);
+}
+/**
+ * 上拉执行的方法
+ */
+function function_pullUp(){
+	title = document.getElementById("sear").value;
+	pageIndex = pageIndex+1;
+	myRefresh(searchType,title,1);
+}
+
+
+//搜索事件
+function searchClick(){
+	title = document.getElementById("sear").value;
+	pageIndex = 0;
+	myRefresh(searchType,title,0);
+}
+/**
+ * 点击选项卡之后的请求操作
+ * @author tianzhen
+ * @param {Object} button
+ * 
+ */
+function myRefresh(button,title,load) {
+	var requestid = ""+summer.getStorage("host")+"partyconstrutproject/Api/info/list";
+	
+	var viewmodel = "";
+	var infocolumn = "01010101";
+	switch (button) {
+			case ".lingXue":
+					infocolumn ="0101010101";
+					viewmodel = viewModel.data;
+				
+				break;
+			case ".jingShen":
+					infocolumn ="0101010102";
+					viewmodel = viewModel.data1;
+				break;
+			case ".baoGao":
+					infocolumn ="0101010103";
+					viewmodel = viewModel.data2;
+				break;
+			case ".dangJian":
+					infocolumn ="0101010104";
+					viewmodel = viewModel.data3;
+				break;
+	}
+	var json = {
+		"infocolumn":infocolumn,
+		"title" : title,
+		"pageIndex":pageIndex,
+		"pageSize":10,
+		"sortField":"ts",
+		"sortDirection":"desc",
+	}
+	summer.get(requestid, json , //可选参数，方便开发者设置请求的header
+	{
+		"Content-Type" : "application/x-www-form-urlencoded", //可选参数，post请求的要写入的条件数据，须为json对象
+	}, function(response) {//成功回调
+		var data = $summer.strToJson(response.data);
+		if(load == 0){
+			viewmodel.removeAll();
+		}
+		if (data.success == "success") {
+			jsonArray = data.detailMsg;
+			var count = jsonArray.data.content.length;
+			
+			for (var k = 0; k < count; k++) {
+				var ts = jsonArray.data.content[k].ts;//编辑时间
+				jsonArray.data.content[k].ts = formatDate(ts);
+				viewmodel.push(jsonArray.data.content[k]);
+				
+			}
+			//$summer.alert(jsonArray.data.content);
+		} else {
+			//$summer.alert("网络错误");
+		}
+	}, function(response) {//失败回调
+		//$summer.alert(response);
+	});
+
+}
+
+
+
+
+/**
+ *	格式化服务器传来的时间
+ */
+function formatDate(str) {
+	var date = new Date(str);
+    var seperator1 = "-";
+    var seperator2 = ":";
+    var month = date.getMonth() + 1;
+    var strDate = date.getDate();
+    var strHours = date.getHours();
+    var strMinutes = date.getMinutes();
+    var strSeconds = date.getSeconds();
+    
+   	//拼时间
+    var currentdate = date.getFullYear() + seperator1 + month + seperator1 + addZero(strDate);
+              //  + " " + addZero(strHours) + seperator2 + addZero(strMinutes) + seperator2 + addZero(strSeconds);
+    return currentdate;
+}
+/**
+ * 时间为单位数时,前面加0
+ */
+function addZero(time){
+	if(parseInt(time) < 10){  
+        time = '0'+time;  
+     }  
+     return time;
+}
+
+function backClick(){
+	summer.closeWin();
+}

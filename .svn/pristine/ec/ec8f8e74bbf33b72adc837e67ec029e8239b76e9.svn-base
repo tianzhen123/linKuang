@@ -1,0 +1,17 @@
+ul li{
+	padding:10px;
+	display:flex;
+	border-bottom: 1px solid #b2b2b2;
+}
+.li-left{
+	
+}
+.li-right{
+	flex:1;
+	text-align:right;
+}
+input{
+	border: none;
+	outline:none;
+}
+

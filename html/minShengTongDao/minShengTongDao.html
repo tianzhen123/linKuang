@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">
+		<link rel="stylesheet" type="text/css" href="../../css/iuapmobile.um.listview.css">
+		<link rel="stylesheet" href="../../css/base.css" />
+		<link rel="stylesheet" href="minShengTongDao.css" />
+		<link rel="stylesheet" href="../../css/iscroll.css" /> 
+
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script type="text/javascript" src="../../js/knockout.js"></script>
+        <script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+		
+		<script src="../../js/base.js"></script>
+		<script src="../../js/iscroll.js"></script>
+		<script src="../../js/hp/hp_slide.js"></script>
+		<script src="minShengTongDao.js"></script>
+		
+	</head>
+	<body>
+		<div class="um-win" id="index" name="hp_slide">
+			<div class="um-header">
+            	<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            	<h3>民生通道</h3>
+            	<!-- 加号 start -->
+				<div class="um-header-btns falg_time">
+	               <img id="newApplication" src="../../img/minShengTongDao_riLi.png" style="width: 30px;" />
+	            </div>
+                <!-- 加号 end -->  
+				<!--时间选择器 start-->
+				<div id="selector_time" class=" mb10 um-time" style="display:none; position: absolute;z-index: 2;right: 0;top: 40px">
+				    <ul class="um-time-view" style="float: right;width: 100%;">
+				        <li class="um-time-list clearfix">
+				            <p class="fl um-time-txt" style="margin-left: 5px;">开始时间：</p>
+				            <div class="fr">
+				                <input name="start" id="start_time" type="text" class="scroller-date" style="color: #7b7878;" readonly="" placeholder="">
+				            </div>
+				        </li>
+				        <li class="um-time-list clearfix">
+				            <p class="fl um-time-txt" style="margin-left: 5px;">结束时间：</p>
+				            <div class="fr">
+				                <input name="end" id="end_time" type="text" class="scroller-date" style="color: #7b7878;" readonly="" placeholder="">
+				            </div>
+				        </li>
+				        <li class="um-time-list clearfix">
+				        	 <button id="submit_time" class="btn " style="color: #758086;background-color: #eeeeef;border: 0px solid #bfc8cc;margin-left: 5px;margin-bottom:3px; padding: 6px 13px;width:94%;">确定</button>
+   
+				        </li>
+				    </ul>
+				</div>
+				<!--时间选择器 end-->
+            </div>
+            <!--选项卡 start-->
+			<ul class="um-tabbar um-tabbar-underline pt10 pb10 um-tabbar-switch">
+            	<li class="active" data-tar='.news'><a>民生诉求</a></li>
+            	<li data-tar='.product'><a>已批注</a></li>
+            </ul>
+            <!--选项卡 end-->
+			<div class="um-content" >
+				
+				
+				
+				<!--选项卡对应的内容 start-->
+                <div class="Artical" id="event_time" >  
+                	<!-- 民生诉求 叶签内容 start -->
+                	<div class="news active " >
+                		<!-- 民生诉求具体内容 start -->
+                		<div  id="listview">
+		                	<ul class="um-list um-no-active" data-bind="foreach:data">
+		                		<li class="um-listview-row">
+		                			<a href="#" class="um-list-item um-swipe-action um-no-icon">
+		                				<div class="um-swipe-btns">
+		                					<span class="um-swipe-btn um-delete ti-trash"></span>
+		                				</div>
+		                			
+		                				<div class="um-list-item-inner">
+		                					<div class="um-list-item-body" style="padding:10px 38px 10px 15px;">
+		                						<div>
+		                							<span data-bind="text:f20160802193042vmHFhPtpbc" class="f14  listview-detail" style="height:40px;"></span>
+		                						</div>
+		                
+		                						<div class="f12 pt10">
+		                							<span data-bind="text:startTime"></span>
+		                						</div>
+		                					</div>
+		                					<div class="um-list-item-media">
+			                					<img height=30 data-bind="attr:{src: state}">
+			                				</div>
+		                				</div>
+		                				
+		                			</a>
+		                		</li>
+		                	</ul>
+		                </div>
+		                <!-- 民生诉求具体内容 end -->
+                	</div>
+                	<!-- 民生诉求叶签内容 end -->
+                	
+                	
+                	<!--已批注叶签内容 start-->
+                	<div class="product">
+                		<!-- 已批注叶签具体内容 start -->
+                		<div  id="listview2">
+		                	<ul class="um-list um-no-active" data-bind="foreach:data2">
+		                		<li class="um-listview-row">
+		                			<a href="#" class="um-list-item um-swipe-action um-no-icon">
+		                				<div class="um-swipe-btns">
+		                					<span class="um-swipe-btn um-delete ti-trash"></span>
+		                				</div>
+		                			
+		                				<div class="um-list-item-inner">
+		                					<div class="um-list-item-body" style="padding:10px 38px 10px 15px;">
+		                						<div>
+		                							<span data-bind="text:f20160802193042vmHFhPtpbc" class="f14  listview-detail" style="height:40px;"></span>
+		                						</div>
+		                
+		                						<div class="f12 pt10">
+		                							<span data-bind="text:startTime"></span>
+		                						</div>
+		                					</div>
+		                					<div class="um-list-item-media">
+			                					<img alt="" height=30 data-bind="attr:{src: state}">
+			                				</div>
+		                				</div>
+		                				
+		                			</a>
+		                		</li>
+		                	</ul>
+		                </div>
+		                <!-- 已批注具体内容 end -->
+                	</div>		
+                	<!-- 已批注叶签内容 end -->
+                </div>
+				<!--选项卡对应的内容 end-->
+				
+				<!--加载页面 start-->
+				<div id="loading" class="um-css3-center" style="display: none">
+					<img src="../../img/loading_doubleRing.gif" />
+				</div>
+				<!--加载页面 end-->
+			</div>
+
+		</div>
+        
+	</body>
+	
+	
+</html>

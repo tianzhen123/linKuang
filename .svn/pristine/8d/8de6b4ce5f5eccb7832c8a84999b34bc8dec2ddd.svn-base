@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="jiJian.css" />
+		<link rel="stylesheet" href="../../css/base.css" />
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="jiJian.js"></script>
+		<script src="../../js/base.js"></script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-header">
+            	<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            	<h3>纪检监察</h3>
+            </div>
+
+			<div class="um-content">
+				<div class="um-grid um-row">
+                	<div class="um-grid-row tc um-border-bottom">
+                		<div  class="um-border-right um-bgc-white" onclick="lianZhengClick()">
+                			<a href="#" class="um-circle um-black">
+                				<img src="../../img/lianzhengJS.png" width=50 class="um-img-responsive" alt="">
+                				<div  class="f12 mt5">党风廉政建设</div>
+                			</a>
+                		</div>
+                		<div class="um-border-right um-bgc-white" onclick="jingShiClick()">
+                			<a href="#" class="um-circle um-black">
+                				<img src="../../img/jingshijiaoyu.png" width=50 class="um-img-responsive" alt="">
+                				<div  class="f12 mt5">警示教育</div>
+                			</a>
+                		</div>
+                		<div class="um-border-right um-bgc-white" onclick="baoGuangClick()">
+                			<a href="#" class="um-circle um-black">
+                				<img src="../../img/baoguangtai.png" width=50 class="um-img-responsive" alt="">
+                				<div  class="f12 mt5">曝光台</div>
+                			</a>
+                		</div>
+                		
+                	</div>
+                	
+                	<div class="um-grid-row tc">
+                		<div  class="um-border-right um-bgc-white " onclick="jiJianXinXiang()">
+                			<a href="#" class="um-circle um-black">
+                				<img src="../../img/jijianxinx.png" width=50 class="um-img-responsive" alt="">
+                				<div  class="f12 mt5">纪检信箱</div>
+                			</a>
+                		</div>
+                		<div class="um-border-right um-bgc-white" onclick="liuYanBan()">
+                			<a href="#" class="um-circle um-black">
+                				<img src="../../img/liuyanban.png" width=50 class="um-img-responsive" alt="">
+                				<div class="f12 mt5">留言板</div>
+                			</a>
+                		</div>
+                		<div class="um-border-right um-bgc-white">
+                			<a href="#" class="um-circle um-black">
+                			</a>
+                		</div>
+                		
+                	</div>
+                	
+                	
+                	
+                </div>
+			</div>
+			
+			
+		</div>
+	</body>
+</html>

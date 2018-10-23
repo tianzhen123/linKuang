@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="../../css/base.css" />
+        <style>
+        	div.Artical>div {
+        		display:none;
+        		color:#555;
+        	}
+        	div.Artical>div.active {
+        		display:block;
+        	}
+        	div.Artical>div.news {
+        		background:lightblue;
+        	}
+        	div.Artical>div.product {
+        		background:lightgreen;
+        	}
+        	div.Artical>div.game {
+        		background:lightyellow;
+        	}
+        	div.Artical>div.download {
+        		background:lightpink;
+        	}
+         
+         
+        </style>
+
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script type="text/javascript" src="../../js/knockout.js"></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="../../html/xianFengTeam/xianFengtTeam.js" ></script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-header" >
+			  	<a href="#"  class="um-back" onclick="backClick()">返回</a>
+				<h3>先锋队伍</h3>
+			</div>
+			<div class="um-content">
+      
+                <ul class="um-tabbar um-tabbar-underline pt10 pb10 um-tabbar-switch">
+                	<li class="active" data-tar='.news'><a>优秀党员</a></li>
+                	<li data-tar='.product'><a>优秀党组织</a></li>
+                	<li data-tar='.game'><a>先进个人</a></li>
+                	<li data-tar='.download'><a>先进团队</a></li>
+                </ul>
+                <div class="um-input-group">
+	            	<span class="ti-search"></span>
+	            	<input type="search" class="form-control" placeholder="search">
+      		  	</div>
+                <div class="Artical">        
+                	<div class="news active ">
+                	<div id="list1"> 
+                			<div class="um-listview" id="listview">
+								<ul class="um-list um-no-active" data-bind="foreach:data">
+									<li class="um-listview-row" style="margin-top: 10px;margin-bottom: 10px;">
+										<a href="#" class="um-list-item um-swipe-action um-no-icon">
+										<div class="um-swipe-btns">
+											<span class="um-swipe-btn um-delete ti-trash"></span>
+										</div>
+										<div class="um-list-item-inner">
+											<div class="um-list-item-inner um-rounded">
+												<img id="peoPho" alt="" class="um-rounded" data-bind="attr:{src: img}">
+
+												<div class="um-list-item-body">
+													<div id="itemLeft" class="um-bf1">
+														<div class="um-box-vc" style="">
+															<div data-bind="text: title" class="f14 um-text-overflow" style="float: left">
+																
+															</div>
+															
+														</div>
+														<div class="um-box-vc" style="height: 0.6rem">
+															<div data-bind="text: detail" class="f12 um-gray">
+																
+															</div>
+														</div>
+														<div class="listTime um-box-vc">
+															<span class="f12 um-gray" style="margin-left: 0.3rem">人员简历</span>
+														</div>
+													</div>
+													<div id="itemRight" class="um-box-center">
+														<div id="turnPng"></div>
+													</div>
+												</div>
+											</div>
+										</div> </a>
+									</li>
+								</ul>
+							</div>
+						</div>	
+                	</div>
+                	<div class="product">
+                	<div id="list1"> 
+                			<div class="um-listview" id="listview">
+								<ul class="um-list um-no-active" data-bind="foreach:data2">
+									<li class="um-listview-row" style="margin-top: 10px;margin-bottom: 10px;">
+										<a href="#" class="um-list-item um-swipe-action um-no-icon">
+										<div class="um-swipe-btns">
+											<span class="um-swipe-btn um-delete ti-trash"></span>
+										</div>
+										<div class="um-list-item-inner">
+											<div class="um-list-item-inner um-rounded">
+												<img id="peoPho" alt="" class="um-rounded" data-bind="attr:{src: img}">
+
+												<div class="um-list-item-body">
+													<div id="itemLeft" class="um-bf1">
+														<div class="um-box-vc" style="">
+															<div data-bind="text: title" class="f14 um-text-overflow" style="float: left">
+															</div>
+														</div>
+														<div class="um-box-vc" style="height: 0.6rem">
+															<div data-bind="text: detail" class="f12 um-gray">
+															</div>
+														</div>
+														<div class="listTime um-box-vc">
+															<span class="f12 um-gray" style="margin-left: 0.3rem">人员简历</span>
+														</div>
+													</div>
+													<div id="itemRight" class="um-box-center">
+														<div id="turnPng"></div>
+													</div>
+												</div>
+											</div>
+										</div> </a>
+									</li>
+								</ul>
+							</div>
+						</div>	
+                	</div>
+                	<div class="game">
+                	<div id="list1"> 
+                			<div class="um-listview" id="listview">
+								<ul class="um-list um-no-active" data-bind="foreach:data3">
+									<li class="um-listview-row" style="margin-top: 10px;margin-bottom: 10px;">
+										<a href="#" class="um-list-item um-swipe-action um-no-icon">
+										<div class="um-swipe-btns">
+											<span class="um-swipe-btn um-delete ti-trash"></span>
+										</div>
+										<div class="um-list-item-inner">
+											<div class="um-list-item-inner um-rounded">
+												<img id="peoPho" alt="" class="um-rounded" data-bind="attr:{src: img}">
+												<div class="um-list-item-body">
+													<div id="itemLeft" class="um-bf1">
+														<div class="um-box-vc" style="">
+															<div data-bind="text: title" class="f14 um-text-overflow" style="float: left">
+															</div>
+														</div>
+														<div class="um-box-vc" style="height: 0.6rem">
+															<div data-bind="text: detail" class="f12 um-gray">
+															</div>
+														</div>
+														<div class="listTime um-box-vc">
+															<span class="f12 um-gray" style="margin-left: 0.3rem">人员简历</span>
+														</div>
+													</div>
+													<div id="itemRight" class="um-box-center">
+														<div id="turnPng"></div>
+													</div>
+												</div>
+											</div>
+										</div> </a>
+									</li>
+								</ul>
+							</div>
+						</div>	
+                	</div>
+                	<div class="download">
+                	<div id="list1"> 
+                			<div class="um-listview" id="listview">
+								<ul class="um-list um-no-active" data-bind="foreach:data4">
+									<li class="um-listview-row" style="margin-top: 10px;margin-bottom: 10px;">
+										<a href="#" class="um-list-item um-swipe-action um-no-icon">
+										<div class="um-swipe-btns">
+											<span class="um-swipe-btn um-delete ti-trash"></span>
+										</div>
+										<div class="um-list-item-inner">
+											<div class="um-list-item-inner um-rounded">
+												<img id="peoPho" alt="" class="um-rounded" data-bind="attr:{src: img}">
+
+												<div class="um-list-item-body">
+													<div id="itemLeft" class="um-bf1">
+														<div class="um-box-vc" style="">
+															<div data-bind="text: title" class="f14 um-text-overflow" style="float: left">
+															</div>
+														</div>
+														<div class="um-box-vc" style="height: 0.6rem">
+															<div data-bind="text: detail" class="f12 um-gray">
+															</div>
+														</div>
+														<div class="listTime um-box-vc">
+															<span class="f12 um-gray" style="margin-left: 0.3rem">人员简历</span>
+														</div>
+													</div>
+													<div id="itemRight" class="um-box-center">
+														<div id="turnPng"></div>
+													</div>
+												</div>
+											</div>
+										</div> </a>
+									</li>
+								</ul>
+							</div>
+						</div>	
+                	</div>				
+                </div>
+
+			</div>
+
+			<div class="um-footer">
+				
+			</div>
+		</div>
+
+        <script>
+        	$(function () {			 
+        		 /*导航更换js*/
+        		 $('ul.um-tabbar-switch  Li').click(function(){
+        			$(this).addClass('active').siblings('.active').removeClass('active');
+        			var tar=$(this).attr('data-tar');
+        			$(tar).addClass('active').siblings('.active').removeClass('active');
+        		}); 
+        	});
+        </script>
+	</body>
+</html>

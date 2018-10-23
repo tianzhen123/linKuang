@@ -1,0 +1,114 @@
+var infocolumn = "06289a0f-2a7b-4735-aedc-fbb5da313bea";
+var ViewModel = function () {            
+                };	
+var viewModel = new ViewModel();
+summerready = function(){
+				infocolumn = summer.pageParam.count;
+                var jsonArray = [
+                        {
+                        	"img": "../../img/news1.png",
+                            "title": "谷歌开发移动智能聊天工具",
+                        }, {
+                            "img": "",
+                            "title": "微软在谷歌Play设店中店 陈列自家80款APP",
+                        },{
+                        	"img": "",
+                            "title": "Twitter获无人机专利 网民可发帖控制飞行",
+                        },{
+                            "img": "../../img/news2.png",
+                            "title": "中国优步与广汽集团开展战略合作",
+                        },
+                        {
+                            "img": "../../img/news3.png",
+                            "title": "中国优步与广汽集团开展战略合作",
+                        },{
+                            "img": "",
+                            "title": "中国优步与广汽集团开展战略合作",
+                        },{
+                            "img": "",
+                            "title": "中国优步与广汽集团开展战略合作",
+                        }
+                    ];
+                    
+        			viewModel.data = ko.observableArray([]);
+                ko.applyBindings(viewModel);		
+                
+                 var title="";
+				netService(infocolumn,title);
+                
+                var listview = UM.listview("#listview");
+
+				listview.on("itemClick", function(sender, args) {
+					//这里可以处理行点击事件，参数sender即为当前列表实例对象，args对象有2个属性，即rowIndex(行索引)和$target(目标行的jquery对象)
+					var item = viewModel.data()[args.rowIndex];
+					var data = JSON.stringify(item);
+					data = $summer.strToJson(data);
+					summer.openWin({
+						"id" : "labourUnionNewsDet",
+						"url" : "html/labourUnion/labourUnionNewsDet.html",
+						"isKeep" : true,
+						"pageParam" : {
+							"count" : data
+						}
+					});
+				});
+				
+}
+
+//搜索的方法
+function searchClick(){
+	var title = document.getElementById("sear").value;
+	netService(infocolumn,title);
+}
+//网络请求
+function netService(infocolumn,title){
+	var url = "http://10.176.2.140:9999/partyconstrutproject/Api/info/list";
+				summer.get(url, {
+							    "infocolumn":infocolumn,
+							    "title":title,
+							}, {
+							    "Content-Type" : "application/x-www-form-urlencoded", 
+							},//url地址 
+                function(response){//成功回调
+                    var data = $summer.strToJson(response.data);
+					viewModel.data.removeAll();
+					if (data.success == "success") {
+						jsonArray = data.detailMsg;
+						var count = jsonArray.data.content.length;
+						for (var k = 0; k < count; k++) {
+							var ts = jsonArray.data.content[k].ts;
+							jsonArray.data.content[k].ts = getMyDate(ts);
+							viewModel.data.push(jsonArray.data.content[k]);
+						}
+			
+					} else {
+						$summer.alert("网络错误");
+					}
+				}, function(response) {//失败回调
+					$summer.alert("失败");
+				});
+	
+}
+
+function backClick(){
+		summer.closeWin({});
+}
+
+function getMyDate(str){  
+            var oDate = new Date(str),  
+            oYear = oDate.getFullYear(),  
+            oMonth = oDate.getMonth()+1,  
+            oDay = oDate.getDate(),  
+            oHour = oDate.getHours(),  
+            oMin = oDate.getMinutes(),  
+            oSen = oDate.getSeconds(),  
+            oTime = oYear +'-'+ getzf(oMonth) +'-'+ getzf(oDay) +' '+ getzf(oHour) +':'+ getzf(oMin) +':'+getzf(oSen);//最后拼接时间  
+            return oTime;  
+        }; 
+        //补0操作
+  function getzf(num){  
+      if(parseInt(num) < 10){  
+          num = '0'+num;  
+      }  
+      return num;  
+  }

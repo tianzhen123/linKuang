@@ -1,0 +1,88 @@
+var viewModel={};
+var data = "";
+summerready = function(){
+	data = summer.pageParam.count;
+	//data = $summer.strToJson(data);
+	//$summer.alert(data);
+	
+		viewModel = {
+		code : ko.observable(data.code),
+		name : ko.observable(data.name),
+		post : ko.observable(data.post),
+		duty : ko.observable(data.duty),
+		submiter : ko.observable(data.submiter),
+		selfconstruction : ko.observable(data.selfconstruction),
+		positiontarget : ko.observable(data.positiontarget),
+		partyscore : ko.observable(data.partyscore),
+		descore : ko.observable(data.descore),
+		abilityscore : ko.observable(data.abilityscore),
+		qinscore : ko.observable(data.qinscore),
+		jiscore : ko.observable(data.jiscore),
+		lianscore : ko.observable(data.lianscore),
+		totalscore : ko.observable(data.totalscore),
+		rewardspunish : ko.observable(data.rewardspunish),
+		evaluate : ko.observable(data.evaluate),
+	}
+	
+    ko.applyBindings(viewModel);
+    
+
+}
+function backCilck(){
+	summer.closeWin({});
+}
+//输入框输入事件
+function changeFunction(){
+	
+	data.partyscore =  document.getElementById("partyscore").value;
+	data.descore = document.getElementById("descore").value ;
+	data.abilityscore =  document.getElementById("abilityscore").value;
+	data.qinscore =  document.getElementById("qinscore").value;
+	data.jiscore = document.getElementById("jiscore").value;
+	data.lianscore = document.getElementById("lianscore").value;
+	var total = Number(data.partyscore) + Number(data.descore) + Number(data.abilityscore) + Number(data.qinscore) + Number(data.jiscore) + Number(data.lianscore);
+	 data.totalscore = total;
+	 viewModel.totalscore(total);
+}
+//保存点击事件
+function saveClick(){
+	var requestid = ""+summer.getStorage("host")+"partyconstrutproject/performdutyMobile/save";
+	
+	data.selfconstruction = document.getElementById("selfconstruction").value;
+	data.positiontarget = document.getElementById("positiontarget").value;
+	data.rewardspunish = document.getElementById("rewardspunish").value;
+	data.evaluate = document.getElementById("evaluate").value;
+	if(isEmpty(data.partyscore)||isEmpty(data.descore)||isEmpty(data.qinscore)||isEmpty(data.jiscore)||isEmpty(lianscore)||isEmpty(data.selfconstruction)||isEmpty(data.positiontarget)||isEmpty(data.rewardspunish)||isEmpty(data.evaluate)){
+		$summer.alert("信息填写不完整");
+		return;
+	}
+	summer.post(requestid, data , //可选参数，方便开发者设置请求的header
+	{
+		"Content-Type" : "application/x-www-form-urlencoded", //可选参数，post请求的要写入的条件数据，须为json对象
+	}, function(response) {//成功回调
+		var data = $summer.strToJson(response.data);
+		if (data.success == "success") {
+			$summer.alert("保存成功");
+			
+			var jsfun = 'refush(".news,0");';
+			summer.execScript({
+							winId : 'lvZhiLvZe',
+							script : jsfun
+						});
+			backCilck();
+			
+		} else {
+			$summer.alert("保存失败");
+		}
+	}, function(response) {//失败回调
+		$summer.alert(response);
+	});
+	
+}
+//判断是否为空
+function isEmpty(data) {
+	if (data == undefined || data == null || data == "" || data=='NULL' || data==false || data=='false') {
+		return true;
+	}
+	return false;
+}

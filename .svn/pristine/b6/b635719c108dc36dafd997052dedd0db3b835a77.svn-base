@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="../../css/base.css" />	
+		<link rel="stylesheet" type="text/css" href="../../css/iuapmobile.um.listview.css">
+		<link rel="stylesheet" type="text/css" href="../../css/mescroll.min.css" />
+		<link rel="stylesheet" type="text/css" href="message.css" />
+		<script src="../../js/summer.js" ></script>
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="../../js/mescroll.min.js"></script>
+		<script src="../../js/knockout.js"></script>
+		<script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+		<script src="../../js/base.js"></script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div id="um-content" class="um-content">
+					<div id="mescroll" class="mescroll">
+							<ul  id="dataList" class="" data-bind="foreach: data">
+								<li data-bind="click:$root.openWin.bind($data)">
+										<div class="list-content">
+											<div class="title-content">
+												<div class="img-body">
+													<div class="left-img">
+														<img class="image" alt="" onerror="nofind(this,1)" src="../../img/msg.png" width="100%">
+													</div>
+												</div>
+												<p class="title" data-bind="text:title">应用通知</p>
+											</div>
+											<div class="body-content" data-bind="text:msg"></div>
+											<div class="f14 um-gray pubTime"><span data-bind="text:create_time"></span></div>
+										</div>
+								</li>
+							</ul>
+					</div>
+			            
+			</div>
+		</div>
+		<script src="../../js/jpushSet.js"></script>
+		<script src="message.js"></script>
+	</body>
+</html>

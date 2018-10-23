@@ -1,0 +1,148 @@
+var jsonArray_menu = [];
+var list = [];
+var ViewModel = function () {
+                };	
+var viewModel = new ViewModel();
+var data;
+summerready = function (){
+		var id = summer.pageParam.id;//二级的id
+		var mobile = summer.pageParam.mobile;//用户手机号
+		var pageTitle = summer.pageParam.pageTitle;//二级header显示文字
+		$("#pageTitle").text(pageTitle);
+		
+		/**请求menu信息**/
+		viewModel.data_menu = ko.observableArray(jsonArray_menu);
+		ko.applyBindings(viewModel);
+		
+		//判断不同二级的不同轮播图
+		if(id == 010 ){//"老干部"
+			list = [
+				{
+					//content:"https://dj.lykyjt.com:8898/image/lgb_banner1.png"
+					content:getHttp()+"image/lgb_banner1.png"
+				}
+			]
+		}else if(id == 003 ){//"党务工作"
+			list = [
+				{
+					content: getHttp()+"image/dw_banner1.png"
+				}, 
+				{
+					content: getHttp()+"image/dw_banner2.png"
+				}, 
+				{
+					content: getHttp()+"image/dw_banner3.png"
+				}
+			];
+		}else if(id == 005){//"工会工作"
+			list = [
+				{
+					content: getHttp()+"image/gH_banner1.png"
+				}, 
+				{
+					content: getHttp()+"image/gH_banner2.png"
+				}, 
+			];
+		}else if(id == 004){//"纪检监察"
+			list = [
+				{
+					content: getHttp()+"image/jiJian_banner1.png"
+				}, 
+			];
+		}else if(id == 006){//"共青团工作"
+			list = [
+				{
+					content: getHttp()+"image/gQT_banner1.png"
+				}, 
+			];
+		}else if(id == 007){//"和谐临矿"
+			list = [
+				{
+					content: getHttp()+"image/hX_banner1.png"
+				}, 
+			];
+		}else{
+			list = [
+				{
+					content: getHttp()+"image/hX_banner1.png"
+				}, 
+			];
+		}
+		
+		/* 判断list的长度，
+		 * list的长度为1时，用单个图片
+		 * list>=2时，用轮播图
+		 */
+		if(list.length==1){
+			$("#banner").find("img").attr("src",list[0].content);
+			$("#iSlider-wrapper").css("display","none");
+		}else{
+			//图片轮播
+			var islider = new iSlider({
+				type: 'pic',
+				data: list,
+				dom: document.getElementById("iSlider-wrapper"),
+				isLooping: true,
+				animateType: 'default',
+				isAutoplay: true,
+				animateTime: 800
+			});
+			islider.addDot();
+			$("#banner").css("display","none");
+		}
+		
+		/**请求获取二级应用图标**/
+		//var requestMain = "https://dj.lykyjt.com:8898/partyconstrutproject/resource/moblieUrl/"+id;  
+        var requestMain = getHttpPro()+"resource/moblieUrl/"+id;  
+        $.ajax({
+			url:requestMain,
+			type:"GET",
+			dataType:"json",
+			success:function(response){
+               jsonArray_menu = response.data;
+			   var count =jsonArray_menu.length;
+				for (var k = 0; k < count; k++) {
+					data = jsonArray_menu[k];
+					viewModel.data_menu.push(data);
+				}
+			},
+			error:function(err){
+                var data = err;
+			},
+		});  
+/*
+{"total":103,"status":"success",
+"data":[
+{"id":"01004","name":"健康之道","infocolumn":"","logoUrl":"http://dj.lykyjt.com:8899/5dbf4f42073b4cfe8b490c5960a1e289.png","urlType":"200","url":"html/newsPropaganda/newsPropaganda.html"},
+{"id":"01003","name":"工作动态","infocolumn":"","logoUrl":"http://dj.lykyjt.com:8899/6fdc1fe840964914b5256d99133f6f0d.png","urlType":"200","url":"html/newsPropaganda/newsPropaganda.html"},
+{"id":"01002","name":"政策之窗","infocolumn":"","logoUrl":"http://dj.lykyjt.com:8899/84fa80d141be4c608fba3cc8dab2fe20.png","urlType":"200","url":"html/newsPropaganda/newsPropaganda.html"},
+{"id":"01001","name":"阵地建设","infocolumn":"","logoUrl":"http://dj.lykyjt.com:8899/be26d89c136b48a884fe0cd72f4809f9.png","urlType":"200","url":"html/newsPropaganda/newsPropaganda.html"},
+{"id":"01005","name":"夕阳风采","infocolumn":"","logoUrl":"http://dj.lykyjt.com:8899/54cdc631d48f42ff8066fbac1f3c53dc.png","urlType":"200","url":"html/newsPropaganda/newsPropaganda.html"}
+]}		 
+ */
+	
+	
+		itemClick = function (data,e){
+			/*从url中截取winid（文件名），用于跨页面刷新*/	
+			var string = data.url;//html/newsPropaganda/newsPropaganda.html
+			var arry = string.split("/");//html newsPropaganda newsPropaganda.html
+			var arry2 = arry[2].split(".");//newsPropaganda html
+			var win_id = arry2[0];//newsPropaganda
+			 summer.openWin({
+	         	"id" : win_id,
+	        	"url" : data.url,
+	        	"isKeep" : true,
+	        	"pageParam" : {
+		            "infocolumn" :data.infocolumn,// 需求 传
+            		"pageTitle":data.name,// 需求 传
+            		"code":summer.pageParam.code,//code(从PC端获取用户需要传code，code来自于友空间)
+            		"mobile":mobile,
+    			},
+			});
+		}
+}
+
+function backClick(){
+	summer.closeWin({});
+}
+

@@ -1,0 +1,89 @@
+summerready = function(){
+	var queryUrl = "http://10.176.2.169:9999/partyconstrutproject/examination_result/list";
+	var queryJson = {
+		"pageIndex":0,
+		"pageSize":5,
+		"sortDirection":"desc",
+		"sortField":"r_score"
+	};
+	//Knockout数据绑定
+	var viewModel = {
+		projectdatas : ko.observableArray([]),
+		backClick : function() {
+			summer.closeWin({});
+		},
+		queryData : function(){
+			summer.get(queryUrl,queryJson, {
+				"Content-Type" : "application/json;charset=utf-8",
+			}, function(response) {
+				var argsResultjson = $summer.strToJson(response.data);
+				var projectjson = argsResultjson.detailMsg.data;
+				if(projectjson.content.length > 0){
+					queryJson.pageIndex = projectjson.number+1;
+				}
+				for (var k = 0; k < projectjson.content.length; k++) {
+					projectjson.content[k].class_rank = viewModel.projectdatas().length+1;
+					viewModel.projectdatas.push(projectjson.content[k]);
+				}
+				$("[name='class_rank']:lt(3)").addClass("my-circle");
+				$("[name='class_rank']:gt(3)").addClass("my-circle");
+				$("#listview").show();
+		
+			}, function(response) {
+				$summer.alert(response);
+			});
+		},
+		//-----------------------------------请求后台数据----------------------------------/
+	}
+
+	ko.applyBindings(viewModel);
+
+	viewModel.queryData();
+	
+	var listview = UM.listview("#listview");
+        		//添加控件方法
+        		listview.on("pullDown", function(sender) {
+        			//这是可以编写列表下拉加载逻辑，参数sender即为当前列表实例对象
+        			queryJson.pageIndex = 0;
+        			viewModel.projectdatas.removeAll();
+        			viewModel.queryData();
+        			sender.refresh();
+        		});
+        		listview.on("pullUp", function(sender) {
+        			//这是可以编写列表上拉刷新逻辑，参数sender即为当前列表实例对象
+        			viewModel.queryData();
+        			sender.refresh();
+        		});
+        		listview.on("itemClick", function(sender, args) {
+        			//这里可以处理行点击事件，参数sender即为当前列表实例对象，args对象有2个属性，即rowIndex(行索引)和$target(目标行的jquery对象)
+        			//alert("您点击了列表第" + (args.rowIndex + 1) + "行！");
+        			var item = viewModel.projectdatas()[args.rowIndex];
+					var data = JSON.stringify(item);
+					data = $summer.strToJson(data);
+					summer.openWin({
+        				"id" : "examinationResultDetails",
+        				"url" : "html/armedDefense/examinationResultDetails.html",
+        				"isKeep": true,
+        				"pageParam" : {
+            				"count" : data
+        				}
+    				});
+        		});
+        		//listview.on("itemDelete", function(sender, args) {
+        			//这是可以编写行删除逻辑，参数sender即为当前列表实例对象，args对象有2个属性，即rowIndex(行索引)和$target(目标行的jquery对象)
+        			//var item = viewModel.data()[args.rowIndex];
+        			//args.$target.slideUp(500, function() {
+        			// 	viewModel.data.remove(item);
+        			//});
+        		//});
+        		listview.on("itemSwipeLeft", function(sender, args) {
+        			//这里可以处理行左滑事件，参数sender即为当前列表实例对象，args对象有2个属性，即rowIndex(行索引)和$target(目标行的jquery对象)
+        			//sender.showItemMenu(args.$target);
+        
+        		});
+        		listview.on("tapHold", function() {
+        			//这里可以处理长按事件
+        			/*console.log("您长按了列表！");*/
+        		});
+
+}

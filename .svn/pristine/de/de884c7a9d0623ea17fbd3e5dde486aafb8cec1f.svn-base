@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="../../css/base.css" />
+		<link rel="stylesheet" href="../../css/iuapmobile.um.listview.css" />		
+		<link rel="stylesheet" href="tuanYuanTuiYou.css" />
+         <link rel="stylesheet" href="../../css/iscroll.css" /> 
+      	<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script type="text/javascript" src="../../js/knockout.js"></script>
+		<script type="text/javascript" src="iuapmobile.frameworks.listview.js"></script>
+		<script src="../../js/base.js"></script>
+		<script src="tuanYuanTuiYou.js" ></script> 
+		<script src="../../js/hp/hp_slide.js"></script>
+        <script src="../../js/iscroll.js"></script>
+	</head>
+	<body>
+		<div class="um-win" id="index" name="hp_slide">
+			<div class="um-header" >
+			  	<a href="#"  class="um-back" onclick="backClick()">返回</a>
+				<h3>团员推优</h3>
+				
+                <div class="um-input-group">
+					<form style="width: 100%"  action="javascript:searchClick();">
+                		<span class="ti-search" onclick="searchClick();"></span>
+                		<input  type="search" class="form-control" id="sear"  placeholder="姓名/党组织" >
+                	</form>
+                </div>
+			</div>
+			
+			<div class="um-content">  
+    			<div class="um-listview-wrap" id="listview">
+					<ul class="um-list um-no-active" data-bind="foreach:data" style="background: #fff;"> 
+						<li class="um-listview-row" >
+							<a href="#" class="um-list-item um-swipe-action um-no-icon">
+							<div class="um-swipe-btns">
+								<span class="um-swipe-btn um-delete ti-trash"></span>
+							</div>
+							
+							<div class="um-list-item-inner">	
+								<div class="um-list-item-media ">
+            					 <img id="peoPho" alt="" class="um-rounded" data-bind="attr:{src: photo}"> 
+            					</div>
+								<div class="um-list-item-body" style="padding-right: 5px;">
+										<p class="f16  um-text-overflow">姓名：<span class="um-gray" data-bind="text:name_name"></span></p>
+										<p class="f16  um-text-overflow">所在团组织：<span class="um-gray" data-bind="text:excellent_org_name"></span></p>
+										<p class="f16  um-text-overflow">所在单位：<span class="um-gray" data-bind="text:pk_org_name"></span></p>
+										<p class="f16  um-text-overflow">口号：<span class="um-gray" data-bind="text:watchword"></span></p>
+										<p class="f16  um-text-overflow">主要事迹：<span class="um-gray" data-bind="text:deed"></span></p>
+										
+								</div>
+							</div>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

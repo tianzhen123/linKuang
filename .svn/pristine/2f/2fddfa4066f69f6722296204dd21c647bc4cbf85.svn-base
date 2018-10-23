@@ -1,0 +1,42 @@
+<!DOCTYPE html><!--教师风采-->
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../../css/font-icons.css">
+		<link rel="stylesheet" href="../../../css/base.css" />
+		<link rel="stylesheet" href="teachers.css" />	
+		<script src="../../../js/summer.js" ></script>		
+		<script src="../../../js/jquery.min.js" ></script>
+		<script src="../../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-header" >
+				<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            	<h3 id="pageTitle">教师风采</h3>
+			</div>
+
+			<div class="um-content">
+				<ul>
+					<li>
+						<div class="li-content">
+							<div class="li-left">
+								<img src="../../../img/pic_init.png" onerror="nofind(this,1)" />
+							</div>
+							<div class="li-right">
+								<span class="name">张翠山</span>
+								<p><span>职称</span>:<span>高级教师</span></p>
+								<p><span>毕业于</span>:<span>山东大学</span></p>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+
+		</div>
+		<script src="teachers.js"></script>
+	</body>
+</html>

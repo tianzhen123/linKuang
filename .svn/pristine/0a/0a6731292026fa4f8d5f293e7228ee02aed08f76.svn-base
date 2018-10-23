@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="../../css/base.css" />
+		<link rel="stylesheet" href="xianFengTeamXiangQing.css" />
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script type="text/javascript" src="../../js/knockout.js"></script>
+		<script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+		<script src="xianFengTeamXiangQing.js" ></script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-header" >
+			<a href="#"  class="um-back" onclick="backClick()">返回</a>
+			<h3>先锋队伍</h3>
+			</div>
+			<div class="um-content" data-bind="foreach:data">
+		    <img id="peoPho" alt="" class="wdzp" data-bind="attr:{src:tupian}">
+            <div id="ziduan">
+            <div id="yincang">
+            <span class="f16 um-text-overflow xingming">姓名：</span>
+            <span data-bind="text:xingming" class="f16 um-text-overflow xingming" style="width: 190px;overflow:hidden;"></span><br />
+            <span class="f16 um-text-overflow xingbie">性别：</span>
+            <span data-bind="text:xingbie" class="f16 um-text-overflow xingbie" style="width: 190px;overflow:hidden;"></span><br />
+            <span class="f16 um-text-overflow nianling">年龄：</span>
+            <span data-bind="text:nianling" class="f16 um-text-overflow nianling" style="width: 190px;overflow:hidden;"></span><br /> 
+            </div> 
+            <div id="yincang2"></div>        
+            <span class="f16 um-text-overflow dangzuzhi">党组织：</span>
+            <span data-bind="text:suozaidangzuzhi" class="f16 um-text-overflow dangzuzhi" style="width: 190px;overflow:hidden;"></span><br />
+            <div id="yincang1"></div>
+            <span class="f16 um-text-overflow">获得时间：</span>
+            <span data-bind="text:huodeshijian" class="f16 um-text-overflow" style="width: 190px;overflow:hidden"></span><br />
+            </div>
+	        <div class="sj">
+	        <br />
+			<div class="f16">先进事迹</div>                                             
+			<div class="f14  um-gray" data-bind="text:guangrongshiji">11</div>									
+			</div>
+			</div>
+			</div>
+	</body>
+</html>

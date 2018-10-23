@@ -1,0 +1,60 @@
+var viewModel,role = 1;//1待宣传干事审核，2待宣传部副部长审核，3待宣传部部长审核
+summerready = function(){
+	viewModel = {
+		waitCount : ko.observable(),
+		waitClick:function (){//待审批
+			var data = {
+				
+			};
+			data.infocolumn_name = pageTitle;
+			openWin('newsList','html/xuanChuanFaBu/newsList.html',data);
+		},
+		myClick:function (){//我发起的
+			
+		},
+		alreadyClick:function (){//已完成
+			
+		},
+		
+	}
+	ko.applyBindings(viewModel);
+	pageLoad();
+	
+}
+//界面加载请求
+function pageLoad(){
+	var url = getHttpPro()+'infoMobile/waitapprove?role='+role+'';
+	summer.ajax({
+        "header":{Authorization: "OAuth2: token"},//可选参数，方便开发者设置请求的header
+        "type":"get",//请求方式
+        "url":url,//url地址
+    }, function(response){//成功回调
+    	var data = $summer.strToJson(response.data);
+        if(data.success == 'success'){
+        	viewModel.waitCount(parseInt(data.detailMsg.data.count));
+        }else{
+        	summer.toast({
+                 "msg" : "请求出错" 
+            })
+        }
+        
+    }, function(response){//失败回调
+        summer.toast({
+                 "msg" : "请求出错" 
+            })
+    });
+}
+function openWin(winID,url,data){
+    
+	summer.openWin({
+		"id" : winID,
+		"url" : url,
+		"isKeep" : true,
+		"pageParam" : {
+			"count" : data,
+		}
+	});
+}
+function backClick(){
+	summer.closeWin({});
+}

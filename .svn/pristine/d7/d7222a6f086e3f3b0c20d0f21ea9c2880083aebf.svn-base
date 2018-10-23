@@ -1,0 +1,261 @@
+function nofind(_this,type){
+    src = "../../../img/placeholder.jpg"
+    _this.src = src
+    _this.onerror=null;
+}
+var ViewModel = function () {
+                };	
+var  pageIndex=0;
+summerready = function () {
+	/*$(function() {
+		var list = [
+			{
+				content: "../../../img/g1.jpg"
+			}, 
+			{
+				content: "../../../img/g2.jpg"
+			}, 
+			{
+				content: "../../../img/g3.jpg"
+			}
+		];
+		var islider = new iSlider({
+			type: 'pic',
+			data: list,
+			dom: document.getElementById("iSlider-wrapper"),
+			isLooping: true,
+			animateType: 'default',
+			isAutoplay: true,
+			animateTime: 800
+		});
+		islider.addDot();
+	})*/
+	var b =  aa.detailMsg.data.content;
+	viewModel ={
+			data:ko.observableArray([]),
+			
+			openWin:function(data){
+				console.log(data);
+				summer.openWin({
+				"id" : "teachersDet",
+				"url" : "html/partySchool/teachers/teachersDet.html",
+				"isKeep" : true,
+				"pageParam" : {
+					"count" : data,
+				}
+			});
+			}
+		};
+		ko.applyBindings(viewModel);
+	netService(0);
+}
+
+//网络请求
+function netService(pageIndex){
+	
+	var url = ""+getHttpPro()+"fcteacher/mlist?&pageIndex="+pageIndex+"&pageSize=10&sortField=ts&sortDirection=desc";
+	summer.get(url, {
+			
+	}, {
+	    "Content-Type" : "application/x-www-form-urlencoded", 
+	},//url地址 
+    function(response){//成功回调
+        var data = $summer.strToJson(response.data);
+		if (data.success == "success") {
+			
+			jsonArray = data.detailMsg;
+			var count = jsonArray.data.content.length;
+			var content = jsonArray.data.content;
+			var array = jsonArray.data.content;
+			if(array.length<8){
+				for(var i = 0;i<=array.length;i++){
+					if(i == array.length){
+						var ul = document.querySelector("#ul");
+						ul.innerHTML=
+									"<li class='jsfcli' style='width: 25%;'  onClick=\"openjsfc();\">"+
+				             			"<img class='jsimg' src='../../../img/jsfcall.png' width='100' >"+
+				             			"<div style='font-size: 15px;'>查看全部</div>"+
+				             		"</li>"
+					}
+				}
+		        viewModel.data(array);
+			}else{
+				var array1= array.slice(0,7);
+				for(var j = 0;j<=array1.length;j++){
+					if(j == array1.length){
+						var ul = document.querySelector("#ul");
+						ul.innerHTML=
+									"<li class='jsfcli' style='width: 25%;'  onClick=\"openjsfc();\">"+
+				             			"<img class='jsimg' src='../../../img/jsfcall.png' width='100' >"+
+				             			"<div style='font-size: 15px;'>查看全部</div>"+
+				             		"</li>"
+					}
+				}
+					viewModel.data(array1);
+			} 
+		}
+	}, function(response) {//失败回调
+		
+	});
+}
+function openjsfc(){
+	summer.openWin({
+		"id" : "teachers",
+		"url" : "html/partySchool/teachers/teachers.html",
+		"isKeep" : true,
+	});	
+}
+
+function backClick(){
+  	summer.closeWin({});
+}
+function opendxgk(){//党校概况
+	summer.openWin({
+		id : "dxgkmessage",
+		url : "html/partySchool/dangxiaogaikuang/dxgkmessage.html",
+	});	
+}
+function openjxky(){//教学科研
+	summer.openWin({
+		id: "techResearch",
+		url : "html/partySchool/techResearch/techResearch.html",
+		
+	});		
+}
+function openAbstract(){//要论摘编
+	summer.openWin({
+		"id" : "Abstract",
+		"url" : "html/partySchool/Abstract/abstract.html",
+		"isKeep" : true,
+	});	
+}
+function opencgzs(){//学习成果
+	summer.openWin({
+		"id" : "learnOutcomes",
+		"url" : "html/partySchool/learnOutcomes/learnOutcomes.html",
+		"isKeep" : true,
+	});	
+}
+function openteachers(){//教师风采
+	summer.openWin({
+		"id" : "teachers",
+		"url" : "html/partySchool/teachers/teachers.html",
+		"isKeep" : true,
+	});	
+}
+function openorg(){//组织机构
+	summer.openWin({
+		"id" : "organization",
+		"url" : "html/partySchool/organization/organization.html",
+		"isKeep" : true,
+	});
+}
+function openzxxx(){
+	summer.toast({
+         "msg" : "待开发" 
+    })
+	/*summer.openWin({
+		"id" : "teachers",
+		"url" : "html/partySchool/teachers/teachers.html",
+		"isKeep" : true,
+	});	*/
+}
+
+var aa = {
+    "success":"success",
+    "message":null,
+    "detailMsg":{
+        "data":{
+            "content":[
+                {
+                    "metaDefinedName":"fcteacher",
+                    "namespace":"partyconstrutproject",
+                    "status":0,
+                    "changedPropertyNames":null,
+                    "id":"552c3e3b-e7c9-4d18-ba16-66e6a07cb447",
+                    "name":"张宝爱",
+                    "ranks":"高级教师",
+                    "school":"山东师范大学",
+                    "summary":"次骄傲的叫法U盾噢ifU爱哦毒攻IA的所我过我瓦多飞过伍尔特  对方的撒发付付付付付付付付付付付付付付付付付多所v润肺王夫人",
+                    "image":"https://dj.lykyjt.com:8898/partyconstrutproject/ueditor/xfimages/5560b7d8774c4af3b449cc01644ccc94.png",
+                    "creator":"fffcf331-40ed-4fd6-bd1e-1b3e2d961231",
+                    "create_time":null,
+                    "dr":0,
+                    "ts":1534473831000
+                },
+                {
+                    "metaDefinedName":"fcteacher",
+                    "namespace":"partyconstrutproject",
+                    "status":0,
+                    "changedPropertyNames":null,
+                    "id":"25b3128d-7d12-4769-a3d7-a31f647dc059",
+                    "name":"李孝利",
+                    "ranks":"高级",
+                    "school":"北京大学",
+                    "summary":"简介44",
+                    "image":"https://dj.lykyjt.com:8898/partyconstrutproject/ueditor/xfimages/4b63855f9e834895a270550f88aaeb37.png",
+                    "creator":"fffcf331-40ed-4fd6-bd1e-1b3e2d961231",
+                    "create_time":null,
+                    "dr":0,
+                    "ts":1534397338000
+                },
+                {
+                    "metaDefinedName":"fcteacher",
+                    "namespace":"partyconstrutproject",
+                    "status":0,
+                    "changedPropertyNames":null,
+                    "id":"25b3128d-7d12-4769-a3d7-a31f647dc059",
+                    "name":"李孝利",
+                    "ranks":"高级",
+                    "school":"北京大学",
+                    "summary":"简介44",
+                    "image":"https://dj.lykyjt.com:8898/partyconstrutproject/ueditor/xfimages/4b63855f9e834895a270550f88aaeb37.png",
+                    "creator":"fffcf331-40ed-4fd6-bd1e-1b3e2d961231",
+                    "create_time":null,
+                    "dr":0,
+                    "ts":1534397338000
+                },
+                {
+                    "metaDefinedName":"fcteacher",
+                    "namespace":"partyconstrutproject",
+                    "status":0,
+                    "changedPropertyNames":null,
+                    "id":"25b3128d-7d12-4769-a3d7-a31f647dc059",
+                    "name":"李孝利",
+                    "ranks":"高级",
+                    "school":"北京大学",
+                    "summary":"简介44",
+                    "image":"https://dj.lykyjt.com:8898/partyconstrutproject/ueditor/xfimages/4b63855f9e834895a270550f88aaeb37.png",
+                    "creator":"fffcf331-40ed-4fd6-bd1e-1b3e2d961231",
+                    "create_time":null,
+                    "dr":0,
+                    "ts":1534397338000
+                },
+                {
+                    "metaDefinedName":"fcteacher",
+                    "namespace":"partyconstrutproject",
+                    "status":0,
+                    "changedPropertyNames":null,
+                    "id":"25b3128d-7d12-4769-a3d7-a31f647dc059",
+                    "name":"李孝利",
+                    "ranks":"高级",
+                    "school":"北京大学",
+                    "summary":"简介44",
+                    "image":"https://dj.lykyjt.com:8898/partyconstrutproject/ueditor/xfimages/4b63855f9e834895a270550f88aaeb37.png",
+                    "creator":"fffcf331-40ed-4fd6-bd1e-1b3e2d961231",
+                    "create_time":null,
+                    "dr":0,
+                    "ts":1534397338000
+                },
+            ],
+            "last":true,
+            "totalElements":2,
+            "totalPages":1,
+            "sort":null,
+            "numberOfElements":2,
+            "first":true,
+            "size":10,
+            "number":0
+        }
+    }
+}

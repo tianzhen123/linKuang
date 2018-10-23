@@ -1,0 +1,92 @@
+/**
+ * 封装的共用的方法，可按需新增方法
+ * 用友能源   韩鹏
+ * 2018.01.05
+ */
+
+/**
+ * 提示框
+ * alertTitle：传入提示的内容
+ * event:点击确定后执行的事件名（名字，不加括号）
+ */
+function hp_alert(alertTitle,event){
+	
+    if(event==null){
+    	UM.alert({
+	        "text" : alertTitle,
+	        "btnText" : ["取消","确认"],
+	        "overlay" : true,
+	    });
+	    
+    }else{
+    	UM.alert({
+	        "text" : alertTitle,
+	        "btnText" : ["取消","确认"],
+	        "overlay" : true,
+	        "ok" :function(){
+	            event();
+	        }
+	    });
+    
+    }
+}
+
+/**
+ * 前端页面是否有空值
+ * 有空值 
+ * 使用说明：
+ * 给需要判断是否为空的input添加class名
+ * class名：flag_hasNull
+ */
+function hasNull(){
+	var length = $(".flag_hasNull").length;
+	var flag = false;
+	for(var i=0;i<length;i++){
+		var temp = $(".flag_hasNull").eq(i).val();
+		if(temp == null || temp.replace(/\s/g,'')==""){//去除空格  replace(/\s/g,'')
+			flag =  true;
+			return flag;
+		}else{
+			flag =  false;
+		}
+	}
+	return flag;
+}
+
+/**
+ * 格式化新闻类详情，图片居中
+ */
+function imgCenter(){
+/*思路：
+ 内容都在id=frame的p标签中 ，
+ 服务器传来的内容都被p标签包裹，
+获取 id=frame的中p标签的个数length_p，
+对里面的每个p标签进行遍历，如果含有img则将p标签的首行缩进设置为0
+ * */
+	var frameId = document.getElementById("frame");
+	var length_p =  $("#frame p").length;
+	for(var i=0;i<length_p;i++){
+		var p = frameId.getElementsByTagName("p")[i];//dom对象转换为jquery对象
+		if($(p).find('img').length != 0){
+			//$summer.alert(p.outerHTML );
+			p.setAttribute('style', 'text-indent: 0');
+		}
+	}
+}
+
+/**
+ * 无图片，显示默认图片（先锋队伍，先进劳模，团员推优）
+ */
+function pictureInit(pic_url){
+	if(pic_url == null || pic_url.replace(/\s/g,'')==""){//图片链接为空
+		pic_url = "../../img/pic_init.png";
+		return pic_url;
+	}else{//图片链接不为空，返回原链接
+		return pic_url;
+	}
+}
+
+
+
+
+

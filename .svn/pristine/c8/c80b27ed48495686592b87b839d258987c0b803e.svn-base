@@ -1,0 +1,53 @@
+/*图标 start*/
+            .swipe {
+                overflow: hidden;
+                /*visibility: hidden;*/
+                position: relative;
+                background: #fff;
+                padding-bottom: 10px;
+            }
+        
+            .swipe-wrap {
+                overflow: hidden;
+                position: relative;
+            }
+        
+            .swipe-wrap .swipe-box {
+                float: left;
+                width: 100%;
+                position: relative;
+            }
+        
+            .sliderow {
+                text-align: center;
+                width: 100%;
+                display: block;
+                overflow: hidden;
+            }
+        
+            .sliderow .slidecol {
+                float: left;
+                width: 25%;
+            }
+        
+            .sliderow .slidecol img {
+                width: 85%;
+                margin-top: 10px;
+            }
+        
+            .sliderow .slidecol div {
+                font-size: 13px;
+                margin-top: 5px;
+            }
+            /*图标 end*/
+           .banner{
+       		    width: 100%;
+			    height: 100%;
+			    overflow: hidden;
+			    position: relative;
+           }
+
+
+
+
+

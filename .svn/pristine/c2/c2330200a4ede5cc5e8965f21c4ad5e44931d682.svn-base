@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">
+		<link rel="stylesheet" href="../../css/lv_wait.css">
+		<script src="../../js/summer.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+    	<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/knockout.js"></script>
+	</head>
+	<body>
+		<div class="um-frame" id="index">
+			<div class="um-content">
+					<div class="um-listview" id="listview">
+	                		<ul class="um-list" data-bind="foreach:data"> 
+		                		<li class="um-listview-row">
+							    <a href="#" class="um-list-item"> 
+							        <div class="um-list-item-media"> 
+							            <div class="name f12 um-box-center"  data-bind="text:name">张金友</div>
+							        </div> 
+							        <div class="um-list-item-inner"> 
+							            <div class="um-list-item-body" > 
+							            			<div data-bind="text:name">张金友</div> 
+							            			<div data-bind="text:post">科长</div>
+							            </div> 
+							            <div class="um-list-item-right"> 
+							                <span class="um-gray mr15 f14" >全部 </span> 
+							            </div> 
+							        </div> 
+							    </a>
+							  </li>
+						</ul>
+					</div>
+			</div>
+		</div>
+	</body>
+	
+    <script src="../../js/lv_all.js" ></script>
+    <script src="../../js/font.js" ></script>
+
+</html>

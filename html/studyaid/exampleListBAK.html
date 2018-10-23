@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">		
+		<link rel="stylesheet" href="../../css/account2.css">	
+		<link rel="stylesheet" href="../../css/base.css" />
+		<link rel="stylesheet" href="./exampleList.css" />
+		<link rel="stylesheet" href="../../css/commons.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iuapmobile.um.listview.css">
+		<link rel="stylesheet" href="../../css/public.css" />
+		<link rel="stylesheet" href="../../css/new_page1.css">
+		<script src="../../js/commons.js" ></script> 
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/summer.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+		<script type="text/javascript" src="../../js/knockout.js"></script>
+		<script src="../../js/swipe.js" ></script>
+		<script src="../../js/swipeTab.js" ></script>
+		<script src="../../js/iscroll.js"></script>
+		<script src="../../js/new_page1.js" ></script>
+		<script>
+			$(function() {
+				$("#fillReportBtn").popover({
+					content : document.getElementById("temp").innerHTML,
+					width : 140,
+					animation : "pop",
+					delay : {
+						show : 100,
+						hide : 100
+					}
+				});
+			})
+		</script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div id="header" class="um-header">
+                <div id="backContainer" style="width: 30%">
+					<a href="#"  class="headerText backup" onclick="backClick()"></a>
+				</div>
+				<div id="titleContainer" style="width:40%">
+					 <h3>金秋助学</h3>
+				</div>
+				<div id="appealContainer" style="width:30%">
+					<a id="fillReportBtn" href="#" class="headerText phone" data-target="actionsheet">申请</a>  
+				</div>
+            </div>
+
+			<div class="um-content" style="background-color: #F4F2F5;">
+				<div class="pt10 tc f16 pb5" style="text-align: left;padding-left: 2%;font-size: 12px;">
+					信息公布
+				</div>
+				<div class="none" id="temp">
+					<ul class="um-list um-list-corner">
+						<li  onclick="apply();">
+							<a href="" class="btn um-no-icon">申请</a>
+						</li>
+						<li onclick="launched();">
+							<a href="" class="btn um-no-icon">我发起的</a>
+						</li>
+					</ul>
+				</div>
+				<div id="listview">
+					<ul class="um-list um-no-active" data-bind="foreach:data">
+		                <li class="um-listview-row" index="0">
+						    <div class="um-xs-4 um-sm-4 um-md-4 ge-obj" >
+						    	<div class="contentsyl GE_MODEL">
+									<div class="imgsyl">
+						    			<a>
+						    				<img data-bind="attr:{src:ico}" src="" />
+						    			</a>
+									</div>
+									<div class="namesyl" data-bind="text:name"></div>
+									<div class="namesyl" data-bind="text:sex"></div>
+									<div class="worksyl">
+										<p data-bind="text:graduateSchool"></p>
+									</div>
+								</div>
+							</div>
+		                </li>
+		            </ul>
+		        </div> 
+				
+				<!--
+				<div class="um-row">
+				    <div class="um-xs-4 um-sm-4 um-md-4 ge-obj" >
+				    	<div class="contentsyl">
+				    		<div class="imgsyl">
+				    			<a>
+				    				<img src="./img/people.png" />
+				    			</a>
+				    		</div>
+				    		<div class="topsyl">
+				    			周文涛
+				    		</div>
+				    		<div class="namesyl">男</div>
+				    		<div class="worksyl">北京理工大学</div>
+				    	</div>
+				    	
+				    </div>
+				    <div class="um-xs-4 um-sm-4 um-md-4 ge-obj" >
+				    	<div class="contentsyl">
+				    		<div class="imgsyl">
+				    			<a>
+				    				<img src="./img/people.png" />
+				    			</a>
+				    		</div>
+				    		<div class="topsyl">
+				    			周文涛
+				    		</div>
+				    		<div class="namesyl">男</div>
+				    		<div class="worksyl">北京理工大学</div>
+				    	</div>
+				    	
+				    	
+				    </div>
+				    <div class="um-xs-4 um-sm-4 um-md-4 ge-obj" >
+				    	<div class="contentsyl">
+				    		<div class="imgsyl">
+				    			<a>
+				    				<img src="./img/people.png" />
+				    			</a>
+				    		</div>
+				    		<div class="topsyl">
+				    			周文涛
+				    		</div>
+				    		<div class="namesyl">男</div>
+				    		<div class="worksyl">北京理工大学</div>
+				    	</div>
+				    	
+				    </div>
+				</div>
+				-->
+			</div>
+
+			<div class="um-footer">
+				
+			</div>
+		</div>
+		<script src="./exampleList.js"></script>
+	</body>
+</html>

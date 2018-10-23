@@ -1,0 +1,15 @@
+.um-list .um-list-item-body {
+    padding: 9px 9px;
+   }
+.um-input-group {
+	height:60px;
+    margin: 10px;
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+#time{
+	float: right;
+	
+}

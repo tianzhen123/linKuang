@@ -1,0 +1,40 @@
+.um-content{
+	background-color: #FFFFFF;
+}
+#title{
+	padding:10px;
+	font-size:22px;
+	color: #3e3a3a;
+	font-weight:bold;
+}
+
+#time{
+	margin-right:20px;
+}
+
+#img{
+	padding: 20px;
+	width: 100%;
+}
+
+#detail{
+	padding: 20px;
+	color:#3e3a3a;
+}
+div{
+	background-size: 100%  100%;
+	text-align: justify;
+}
+img {width: 100%;} 
+
+span{
+	font-size:20px !important;
+
+}
+.edit{
+	color: #FFFFFF;
+	position: absolute;
+	right:10px;
+	line-height: 44px;
+	font-size: 14px;
+}

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+				<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">		
+		<link rel="stylesheet" href="../../css/account2.css">	
+		<link rel="stylesheet" href="../../css/base.css" />
+		<!--<link rel="stylesheet" href="./exampleList.css" />-->
+		<link rel="stylesheet" href="../../css/commons.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iuapmobile.um.listview.css">
+		<link rel="stylesheet" href="../../css/public.css" />
+		<link rel="stylesheet" href="../../css/new_page1.css">
+		<script src="../../js/commons.js" ></script> 
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/summer.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+		<script type="text/javascript" src="../../js/knockout.js"></script>
+		<script src="../../js/swipe.js" ></script>
+		<script src="../../js/swipeTab.js" ></script>
+		<script src="../../js/iscroll.js"></script>
+		<script src="../../js/new_page1.js" ></script>
+		<script src="./handleDetail.js" ></script>	
+		<style>
+	
+		</style>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div id="header" class="um-header">
+				<div id="backContainer" style="width: 30%">
+					<a href="#"  class="headerText backup" onclick="backClick()">&nbsp;返回</a>
+				</div>
+				<div id="titleContainer" style="width:40%">
+					<h3><span id="titleId">职工诉求</span></h3>
+				</div>
+				<div id="appealContainer" style="width:30%">
+					<a id="fillReportBtn" style="display: none" href="#" class="headerText .phone" >评价</a>
+				</div>
+			</div>
+			<div class="um-content">
+				<div class="um-row pb5" style="border-bottom:1px solid #e1e1e1;"> 
+				    <div class="um-xs-3 tl">
+				    	<div class="um-row pt5">
+				    		<img style="width: 29%;margin-left:3px;" src="../../img/dl.png">
+				    	</div>
+				    	<div class="um-row" style="font-size:12px;">
+				    		<span id="name"></span>
+				    	</div>
+				    </div>
+				    <div class="um-xs-9 f14 pt25 um-text-overflow" style="text-align: right;font-size: 12px;color: #999999;position: relative;top: 5px;">
+				        	提交日期：<span id="approvalTime"></span>
+				    
+				    </div>
+				</div>
+				<!--
+				<div class="um-row f14 pl15 pb10">
+					诉求标题：
+				</div>
+				<div class="um-row f14 pl40 pb10">
+				    <span id="title"></span>
+				</div>
+				<div class="um-row f14 pl15 pb10" >
+				    诉求类型：
+				</div>
+				<div class="um-row f14 pl40 pb10">
+				    <span id="typeName"></span>
+				</div>
+				<div class="um-row f14 pl15 pb10" >
+				    诉求内容：
+				</div>
+				<div class="um-row f14 pl40 pb10">
+				    <span id="appealContent"></span>
+				</div>
+				<div class="um-row f14 pl15 pb10" >
+				   诉求结果期望：
+				</div>
+				<div class="um-row f14 pl40 pb10" style="border-bottom:1px solid #e1e1e1;">
+				    <span id="appealExpect"></span>
+				</div>
+				-->
+				<div class="um-row f14" style="padding: 15px;">
+				    	诉求标题：<span id="title"></span>
+			    </div>
+				<div class="um-row f14" style="padding: 15px;">
+			    	 诉求类型：<span id="typeName"></span>
+				  </div>
+				 <div class="um-row f14" style="padding: 15px;">
+			    	 诉求内容：<span id="appealContent"></span>
+				  </div>
+				 <div class="um-row f14" style="padding: 15px;">
+			    	 诉求结果期望：<span id="appealExpect"></span>
+				  </div>
+				
+				<div class="um-row" id="div_imgfile" style="padding: 15px;border-bottom:1px solid #e1e1e1;">
+				</div>
+				<div class="um-row mt15">
+					<div class="um-xs-2 ">
+						<img class="w30 tr" src="../../img/fk.png">
+					</div>
+					<div class="um-xs-10 f14 pt5" style="position:relative;left:-10px;">
+						回复
+					</div>
+				</div>
+				<div id="opinionList">
+									
+				</div>
+
+				<!--
+				<div class="um-row pt15 f14">
+		    		<div class="um-xs-5 f12" style="color:#d21d32; ">
+		    			诉求类别：交通
+		    		</div>
+		    		<div class="um-xs-7 f12 tr" style="color:#999999;">
+		    			<span>工会组织&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		    			<span>2018-10-24</span>
+		    		</div>
+		    	</div>
+		    	<div class="um-row pt15 f14" style="padding: 15px;">
+		    		田家庄到矿石山有班车，田家庄到九寨沟为什么没有班车？每天到矿石山的人很少，到九寨沟的人特别多
+					跟领导说嗯几次一直没有回复为什么？田家庄到矿石山有班车，田家庄到九寨沟为什么没有班车？每天到
+					矿石山的人很少，到九寨沟的人特别多跟领导说嗯几次一直没有回复为什么？
+		    	</div>
+				<!-- 111-->
+			</div>
+			<!--
+			<div class="um-footer">
+				
+			</div>
+			-->
+		</div>
+	</body>
+</html>

@@ -1,0 +1,11 @@
+var viewModel={};
+summerready = function(){
+	
+	viewModel = {
+		backClick : function() {
+			summer.closeWin({});
+		},
+	}
+
+	ko.applyBindings(viewModel);
+}

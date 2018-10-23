@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<style>
+			.um-list a.um-list-item:before {
+				border-left: 1px solid #000000;
+    			border-bottom: 1px solid #000000;
+			}
+			.um-btn-gray {
+			    color: #ffffff;
+			    background-color: #CC0000;
+			    border-color: #CC0000;
+			    border-radius: 12px;
+			}
+		</style>
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="myself.js" ></script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+
+			<div class="um-content" >
+                <div class=" um-header-personal" style="background: url(../../img/userbg.jpg) no-repeat;background-size: 100% 100%;">
+                    <p class="tc pt15">
+                		<img class="um-circle" height=60 width=60 src="../../img/user.png" alt="...">
+                    </p>
+                    <p class="tc  um-white" style="margin-top: 3px;">肖冰</p>
+                    <p class="tc um-white" style="font-size: 14px;">13888888888</p> 
+                </div>
+				<div style="margin-top: 10px;margin-left: 12px;">所属组织</div>
+                <div style="margin-top: 10px;">
+	                <div class="um-list">
+	                	<div class="um-list-item">
+	                		<div class="um-list-item-media">
+	                			<img src="../../img/gcd.png" width=24 class="um-round" alt="">
+	                		</div>
+	                		<div class="um-list-item-inner">
+	                			<div class="um-list-item-body">
+	                				中共临沂矿业集团机关委员会
+	                			</div>
+	                		</div>
+	                	</div>
+	                	<div class="um-list-item">
+	                		<div class="um-list-item-media">
+	                			<img src="../../img/gh.png" width=24 class="um-round" alt="">
+	                		</div>
+	                		<div class="um-list-item-inner">
+	                			<div class="um-list-item-body">
+	                				集团公司机关工会
+	                			</div>
+	                		</div>
+	                	</div>
+	                </div>
+	                <div class="um-list" style="margin-top: 20px;">
+	                	<a href="#" class="um-list-item" onclick="about();">
+	                		<div class="um-list-item-media">
+	                			<img src="../../img/gywm.png" width=24 class="um-round" alt="">
+	                		</div>
+	                		<div class="um-list-item-inner">
+	                			<div class="um-list-item-body">
+	                				关于我们
+	                			</div>
+	                		</div>
+	                	</a>
+	                	<a href="#" class="um-list-item" onclick="help();">
+	                		<div class="um-list-item-media">
+	                			<img src="../../img/xsbz.png" width=24 class="um-round" alt="">
+	                		</div>
+	                		<div class="um-list-item-inner">
+	                			<div class="um-list-item-body">
+	                				新手帮助
+	                			</div>
+	                		</div>
+	                	</a>
+	                </div>
+                </div>
+                <button onclick="signout();" style="width: 80%;margin: 10%;" class="btn um-btn-gray">退出登录</button>
+			</div>
+			
+		</div>
+	</body>
+</html>

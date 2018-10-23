@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<!-- 默认 start -->
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<!-- 默认 end -->
+		
+		<!-- 头部 start -->
+		<link rel="stylesheet" href="../../css/base.css" />
+		<!-- 头部 end -->
+		
+		<!-- 样式修改  start-->
+		<link rel="stylesheet" href="bangFuShenQing.css "/>
+		<!-- 样式修改  end-->
+
+		<!-- 默认 start -->
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<!-- 默认 end -->
+	
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<!-- 头部  start-->
+			<div class="um-header">
+            	<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            	<h3>帮扶申请</h3>
+            	<!-- 加号 start -->
+            	<div class="um-header-btns">
+                	<i class="ti-plus mr5" id="newApplication"></i>
+                </div>   
+                <!-- 加号 end -->              
+            </div>
+			<!-- 头部  end-->
+			
+			<!-- 内容体 start-->
+			<div class="um-content">
+				<!-- 导航 start -->
+                <ul class="um-tabbar um-tabbar-underline pt10 pb10 um-tabbar-switch">
+                	<li class="active" data-tar='.news'><a>我的填报</a></li>
+                	<li data-tar='.wait'><a>待我审批</a></li>
+                	<li data-tar='.done'><a>我已审批</a></li>
+                </ul>
+                <!-- 导航 end -->
+                <!-- 导航->内容 start-->
+                <div class="Artical">        
+                	<div class="news active ">
+                		<!-- 我的填报   start -->
+                        <div class="um-list">
+                        	<a  href="#" class="um-list-item">
+                        		<div class="um-list-item-inner pl15">
+                        			<div class="um-list-item-body">
+                        				<p class="">李四</p>
+                        			</div>
+                        			<div class="um-list-item-right f14 um-gray">
+                        				<p class="mr15">审批中</p>
+                        			</div>
+                        		</div>
+                        	</a>
+                        	<a  href="#" class="um-list-item">
+                        		<div class="um-list-item-inner pl15">
+                        			<div class="um-list-item-body">
+                        				<p class="">张三</p>
+                        			</div>
+                        			<div class="um-list-item-right f14 um-gray">
+                        				<p class="mr15">审批中</p>
+                        			</div>
+                        		</div>
+                        	</a>
+                        </div>
+						<!-- 我的填报   end -->
+                	</div>
+                	<div class="wait">
+	                	<!-- 待我审批  start-->
+	                	<div class="um-list">
+                        	<a  href="#" class="um-list-item">
+                        		<div class="um-list-item-inner pl15">
+                        			<div class="um-list-item-body">
+                        				<p class="">张三三</p>
+                        			</div>
+                        			<div class="um-list-item-right f14 um-gray">
+                        				<p class="mr15">待审批</p>
+                        			</div>
+                        		</div>
+                        	</a>
+                        	<a  href="#" class="um-list-item">
+                        		<div class="um-list-item-inner pl15">
+                        			<div class="um-list-item-body">
+                        				<p class="">李四四</p>
+                        			</div>
+                        			<div class="um-list-item-right f14 um-gray">
+                        				<p class="mr15">待审批</p>
+                        			</div>
+                        		</div>
+                        	</a>
+                        </div>
+	                	<!-- 待我审批  end-->
+                	</div>
+                	<div class="done">
+                		<!-- 我已审批 start -->
+                		<div class="um-list">
+                        	<a  href="#" >
+                        		<div class="um-list-item-inner pl15">
+                        			<div class="um-list-item-body">
+                        				<p class="">张二三</p>
+                        			</div>
+                        			<div class="um-list-item-right f14 um-gray">
+                        				<p class="mr15">同意</p>
+                        			</div>
+                        		</div>
+                        	</a>
+                        	<a  href="#" >
+                        		<div class="um-list-item-inner pl15">
+                        			<div class="um-list-item-body">
+                        				<p class="">李二四</p>
+                        			</div>
+                        			<div class="um-list-item-right f14 um-gray">
+                        				<p class="mr15">驳回</p>
+                        			</div>
+                        		</div>
+                        	</a>
+                        </div>
+                		<!-- 我已审批 end -->
+                	</div>	
+                </div>
+				<!-- 导航->内容 end-->
+			</div>
+			<!-- 内容体 end-->
+			
+			<!-- 底部 start-->
+			<!-- <div class="um-footer">
+				
+			</div> -->
+			<!-- 底部 end-->
+		</div>
+
+        <script>
+        	$(function () {			 
+        		 /*导航更换js*/
+        		 $('ul.um-tabbar-switch  Li').click(function(){
+        			$(this).addClass('active').siblings('.active').removeClass('active');
+        			var tar=$(this).attr('data-tar');
+        			$(tar).addClass('active').siblings('.active').removeClass('active');
+        		}); 
+        		
+        		
+        		newApplication
+        		
+        		
+        		
+        	});
+        </script>
+	</body>
+</html>

@@ -1,0 +1,61 @@
+.um-content{
+	background-color: #EFEFEF;
+	
+}
+.um-row{
+	background-color: #FFFFFF;
+	padding-top:10px;
+	padding-bottom:10px;
+}
+.contsyl{
+	text-align: center;
+}
+.iconSyl{
+	text-align: center;
+	width: 100%;
+}
+.iconSyl img{
+	width: 50px;
+    height: 50px;
+}
+.textsyl{
+	font-size: 11px;
+}
+.middSyl1{
+	font-size: 15px;
+	text-align: left;
+	padding-top:5px;
+	padding-bottom:10px;
+}
+.middSyl1 p{
+	font-weight: bold;
+}
+.middSyl2{
+	font-size: 15px;
+	text-align: left;
+}
+.middSyl2 p{
+	text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.timesyl{
+	font-size: 11px;
+	text-align: right;
+	padding-top:10px;
+	padding-bottom:5px;
+}
+.rightsyl{
+	text-align: right;
+}
+.rightsyl img{
+	width: 30px;
+	height: 30px;
+}
+.ge_orgname{
+	font-size: 12px;
+	color: #999999;
+}
+.approval-item{
+	margin-bottom: 1px;
+}

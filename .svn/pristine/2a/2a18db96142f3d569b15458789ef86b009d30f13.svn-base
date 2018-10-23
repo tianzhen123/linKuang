@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="../../css/base.css" />	
+		<link rel="stylesheet" href="armedDefense.css" />
+        <link rel="stylesheet" type="text/css" href="../../css/iuapmobile.um.listview.css">
+
+		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/summer.js" ></script>
+		<script src="examinationResult.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script type="text/javascript" src="../../js/knockout-2.2.0.js"></script>
+		<script>
+			$(function() {
+
+			});
+		</script>
+        <script type="text/javascript" src="../../js/knockout.js"></script>
+        <script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+	</head>
+	<body>
+		
+		<div class="um-page" id="index">
+			<div class="um-header" >
+				<a href="#" class="um-back"  data-bind="click:backClick"> 返回</a>
+				<h3>考核结果公示</h3>
+				<a href="#" class="um-header-right ti-home"></a>
+			</div>
+
+			<div class="um-content">
+                  <div class="um-listview-wrap" id="listview" style="display: none">
+                  	<ul class="um-list um-no-active" data-bind="foreach: projectdatas">
+                  		<li class="um-listview-row">
+                  			<div class="um-list-item um-swipe-action um-no-icon">
+                  				<div class="um-swipe-btns">
+                  					<span class="um-swipe-btn um-delete um-bgc-green">点赞</span>
+                  				</div>
+                  				<div class="um-list-item-media msg-info">
+                  					<div name="class_rank" class="w40 h40 um-box-center um-white" data-bind="text:class_rank"></div>
+                  					<!--<span class="um-badge" data-bind="text:msgNum,visible:msgNum>0"></span>-->
+                  				</div>
+                  				<div class="um-list-item-inner">
+                  					<div class="um-list-item-body">
+                  						<h4 class="um-media-heading fb f16 um-text-overflow" data-bind="text:pk_org_name"></h4>
+                  						<p class="um-gray f14 um-text-overflow" data-bind="text:pk_appraise_project_name"></p>
+                  					</div>
+                  					<div class="pr10 um-gray">
+                  						<span data-bind="text:r_score"></span>分
+                  					</div>
+                  				</div> 
+                  			</div>
+                  		</li>
+                  	</ul>
+                  </div>
+
+			</div>
+			<div class="um-footer"></div>
+		</div>
+	</body>
+</html>

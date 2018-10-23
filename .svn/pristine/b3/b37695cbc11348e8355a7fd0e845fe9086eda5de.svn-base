@@ -1,0 +1,11 @@
+var viewModel;
+var arr = [{name:'123'},{name:'345'}];
+summerready = function(){
+	viewModel = {
+		customerList : ko.observableArray(arr),
+	}
+	ko.applyBindings(viewModel);
+}
+function backClick(){
+	summer.closeWin({});
+}

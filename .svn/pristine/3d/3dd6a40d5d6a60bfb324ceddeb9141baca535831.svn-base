@@ -1,0 +1,55 @@
+/**
+ * 封装的共用的方法，可按需新增方法
+ * 用友能源   韩鹏
+ * 2018.01.05
+ */
+
+/**
+ * 提示框
+ * alertTitle：传入提示的内容
+ * event:点击确定后执行的事件名（名字，不加括号）
+ */
+function hp_alert(alertTitle,event){
+	
+    if(event==null){
+    	UM.alert({
+	        "text" : alertTitle,
+	        "btnText" : ["取消","确认"],
+	        "overlay" : true,
+	    });
+	    
+    }else{
+    	UM.alert({
+	        "text" : alertTitle,
+	        "btnText" : ["取消","确认"],
+	        "overlay" : true,
+	        "ok" :function(){
+	            event();
+	        }
+	    });
+    
+    }
+}
+
+/**
+ * 前端页面是否有空值
+ * 有空值 
+ * 使用说明：
+ * 给需要判断是否为空的input添加class名
+ * class名：flag_hasNull
+ */
+function hasNull(){
+	var length = $(".flag_hasNull").length;
+	var flag = false;
+	for(var i=0;i<length;i++){
+		var temp = $(".flag_hasNull").eq(i).val();
+		if(temp == null || temp.replace(/\s/g,'')==""){//去除空格  replace(/\s/g,'')
+			flag =  true;
+			return flag;
+		}else{
+			flag =  false;
+		}
+	}
+	return flag;
+}
+

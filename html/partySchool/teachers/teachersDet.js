@@ -1,0 +1,52 @@
+
+var data = "";
+var flag = false;// false非编辑状态
+function nofind(_this,type){
+    src = "../../../img/pic_init.png"
+    _this.src = src
+    _this.onerror=null;
+}
+summerready = function(){
+	data = summer.pageParam.count;
+	var name = data.name;
+	var ranks = data.ranks;
+	var school = data.school;
+	var summary = data.summary;
+	var image = data.image;
+	/*create_time = Number(create_time);
+    //重写时间格式
+    Date.prototype.toLocaleString = function() {
+      return this.getFullYear() + "-" + (this.getMonth() + 1) + "-" + this.getDate() + " " + this.getHours() + ":" + this.getMinutes() + ":" + this.getSeconds();
+    };
+	var newTime = new Date(create_time) ;
+	create_time = newTime.toLocaleString();*/
+	$("#name").text(name);
+	$("#ranks").text(ranks);
+	$("#school").text(school);
+	$("#frame").text(summary);
+	//var frame = document.querySelector("#frame");
+   // frame.innerHTML = summary;
+	
+	$("#img").attr("src", image);;
+	//imgCenter();
+	
+	
+   
+    
+    /*if(data.content.indexOf('<')!=-1){
+    	$("#img").attr("src", data.fimage);
+    	$('#frame').html($('#frame').html(data.content).text());
+    	
+    }else{
+    	$("#img").attr("src", data.fimage);
+    	$('#frame').html(data.content);
+    }*/
+	
+    
+}
+//返回
+function backClick(){
+		
+		summer.closeWin({});
+}
+

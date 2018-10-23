@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<!-- 默认 start -->
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<!-- 默认 end -->
+		
+		<!-- 头部 start -->
+		<link rel="stylesheet" href="../../css/base.css" />
+		<!-- 头部 end -->
+		
+		<!-- 样式修改  start-->
+		<link rel="stylesheet" href="bangFuJiLuXiangQing.css"/>
+		<!-- 样式修改  end-->
+
+		<!-- 默认 start -->
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="../../js/knockout.js"></script>
+		<script src="../../js/hp/hp_slide.js"></script>
+		<script src="../../html/bangFuJiLu/bangFuJiLuXiangQing.js" ></script>
+		<!-- 默认 end -->
+		
+	</head>
+	<body>
+		<div class="um-win" id="index" name="hp_slide">
+			<!-- 头部  start-->
+			<div class="um-header">
+            	<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            	<h3>帮扶记录详情</h3>  
+            </div>
+			<!-- 头部  end-->
+			<!-- data-bind="foreach:data" -->
+			<!-- 内容体 start-->
+			<div class="um-content" >
+				<!-- 帮扶申请表 start-->
+                <ul class="um-list">
+                    <li class="um-list-item">
+                		<div class="um-list-item-inner">
+                			<div class="um-list-item-left pl15">
+                				姓名:
+                			</div>
+                			<div class="um-list-item-right" data-bind="text:name">
+                				张金友
+                			</div>
+                		</div>
+                	</li>
+                	<li class="um-list-item">
+                		<div class="um-list-item-inner">
+                			<div class="um-list-item-left pl15">
+                				所属党组织:
+                			</div>
+                			<div class="um-list-item">
+                				<div data-bind="text:pk_partyorg_name" style="padding: 0 10px;" class="form-control tl" >
+                					山东能源集团临沂矿业集团有限公司菏泽煤电公司彭庄煤矿机电工区二支部
+                				</div>
+                			</div>
+                		</div>
+                	</li>
+<!--                 	<li class="um-list-item">
+                		<div class="um-list-item-inner">
+                			<div class="um-list-item-left pl15">
+                				党员编号
+                			</div>
+                			<div class="um-list-item-right">
+                				<input type="text" class="form-control tr"  placeholder="1120921">
+                			</div>
+                		</div>
+                	</li> -->                	
+                	<li class="um-list-item">
+                		<div class="um-list-item-inner">
+                			<div class="um-list-item-left pl15">
+                				性别:
+                			</div>
+                			<div class="um-list-item-right">
+                				<div data-bind="text:sex" class="form-control tr">男</div>
+                			</div>
+                		</div>
+                	</li>
+                	<li class="um-list-item">
+                		<div class="um-list-item-inner">
+                			<div class="um-list-item-left pl15">
+                				身份证号:
+                			</div>
+                			<div class="um-list-item-right">
+                				<div data-bind="text:idcode" class="form-control tr">123456789012345678</div>
+                			</div>
+                		</div>
+                	</li>
+                	<li class="um-list-item">
+                		<div class="um-list-item-inner">
+                			<div class="um-list-item-left pl15">
+                				部门:
+                			</div>
+                			<div class="um-list-item-right">
+                				<div data-bind="text:department" class="form-control tr">机电工区</div>
+                			</div>
+                		</div>
+                	</li>
+                	
+                	<li class="um-list-item">
+                		<div class="um-list-item-inner">
+                			<div class="um-list-item-left pl15">
+                				岗位:
+                			</div>
+                			<div class="um-list-item-right">
+                				<div data-bind="text:post" class="form-control tr">班长</div>
+                			</div>
+                		</div>
+                	</li>
+<!--                 	<li class="um-list-item">
+                		<div class="um-list-item-inner">
+                			<div class="um-list-item-left pl15">
+                				入党时间
+                			</div>
+                			<div class="um-list-item-right">
+                				<input type="text" class="form-control tr" placeholder="请输入入党时间">
+                			</div>
+                		</div>
+                	</li> -->
+                	
+                	<li class="um-list-item">
+                		<div class="um-list-item-inner">
+                			<div class="um-list-item-left pl15">
+                				困难等级:
+                			</div>
+                			<div class="um-list-item-right">
+                				<div data-bind="text:difficultgrade" class="form-control tr">等级一</div>
+                			</div>
+                		</div>
+                	</li>
+
+                	<li class="um-list-item">
+                		<div class="um-list-item-inner">
+                			<div class="um-list-item-left pl15">
+                				申请时间:
+                			</div>
+                			<div class="um-list-item-right">
+                				<div data-bind="text:difficulttime" class="form-control tr">2017.11.01</div>
+                			</div>
+                		</div>
+                	</li>
+                	
+                	<li class="um-list-item">
+                	    <div class="um-list-item-inner">
+                			<div class="um-list-item-left pl15">
+                				状态:
+                			</div>
+                			<div class="um-list-item-right">
+                				<div data-bind="text:def1" class="form-control tr">状态1</div>
+                			</div>
+                		</div>
+					</li>
+                	
+                   <li class="um-list-item">
+                		<div>
+                		                  		
+                			<div style="margin-top: 8px">&nbsp;&nbsp;困难情况描述:</div>
+                			
+                			<div class="um-list-item">
+                				<div style="padding: 0 3%;text-indent:30px;min-height: 100px">
+                					<div data-bind="text:difficultinfo">
+                						情况描述第一部分 。第四部分，基本情况，下步干点什么事，下步打算，建议加大投入。结了多少对，帮扶了哪些工作，画龙点睛。点点不足。第二部分。结对帮扶工作中的特点，主要做法，一年来如何如何。
+                					</div>
+                				</div>
+                			</div>
+                			<p style="padding: 0 3%;" id="frame1" ></p>
+                			
+                			<hr style="border-color: #ececec; border-width: 1px; border-style: solid;" /> 
+                		</div>
+                	</li>
+              	
+                	<li class="um-list-item" >
+                		<div>
+                		    <div>&nbsp;&nbsp;备注:</div>
+                			
+                			<div class="um-list-item">
+                				<div style="padding: 0 3%;text-indent:30px;min-height: 100px">
+                					<div data-bind="text:remarks" >
+                						分析形势任务，宏观效果，几点建议(如果上报就需要)，取得了那些成绩、亮点。第一部分。第四部分，基本情况，下步干点什么事，下步打算，建议加大投入。结了多少对，帮扶了哪些工作，画龙点睛。点点不足。第二部分。结对帮扶工作中的特点，主要做法，一年来如何如何。如，加强宣传等dengdengdengdeng1234567890987654321开场白。第三部分
+                					</div>
+                				</div>
+                			</div>
+                			<p style="padding: 0 3%;" id="frame2" ></p>
+                			
+                		</div>
+                	</li>
+                </ul>
+				<!-- 帮扶申请表 end-->
+			</div>
+			<!-- 内容体 end-->
+			
+			
+			
+		</div>
+	</body>
+</html>

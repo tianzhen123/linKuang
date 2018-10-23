@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="../../css/base.css" />
+		<link rel="stylesheet" href="minShengTongDaoXiangQing.css" />
+		
+		
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script type="text/javascript" src="../../js/knockout.js"></script>
+		<script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+		<script src="../../js/hp/hp_function.js" ></script>
+		<script src="../../js/hp/hp_slide.js"></script>
+		<script src="minShengTongDaoXiangQing.js" ></script>
+	</head>
+	<body>
+		<div class="um-win" id="index" name="hp_slide">
+			<!-- 导航 start -->
+			<div class="um-header" >
+				<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            	<h3>民声通道</h3>
+            	<div id="submit" class="um-header-btns">
+                	<h3 >提交</h3> 
+                </div> 
+			</div>
+			<!-- 导航 end -->
+			
+			<!-- 内容 start -->
+			<div class="um-content">
+				<!-- 发布人体 start -->
+                <div class="um-label um-box-justify">
+                	<div>
+                		<img class="img-rounded" src="../../img/minShengTongDao_applicant.png" width=35 height=35>
+                		<span id="title"></span>
+                		
+                	</div>
+                </div>
+				
+                <div style="width: 100%;text-indent: 35px;padding: 10px 15px">
+                		
+	                	<span style="word-wrap:break-word; min-height: 112px;" id="content">
+	                	
+	                	</span>
+                </div>
+                <div id="img" style="width: 100%">
+					<img style="padding: 5px 28px;max-width: 100%;width: 100%;" src="" />
+				</div>
+				<div class=" um-box-justify">
+                	<div  style="width: 100%;text-align: right;">
+                		<span class="mr2 ">发表于</span>
+                		<span class="mr15" id="startTime">2017-12-12</span>
+                	</div>
+                </div>
+                <!-- 头start -->
+				<div class="um-label um-box-justify" id="look_shenPi" style=" border-top: 1px solid #d7d7d7; padding-top: 5px; margin: 10px 0;">
+                	<div>
+                		<img class="img-rounded" src="../../img/minShengTongDao_shenPi.png" width=35 height=35 >
+                		<span>查看审批流程</span>
+                	</div>
+                </div>
+                <!-- 头 end -->
+                <div  id="shenPi" style=" display: none; width: 100%;text-indent: 35px;padding: 10px 15px">
+	                	<span style="word-wrap:break-word; min-height: 112px;" id="task">
+	                	
+	                	</span>
+                </div>
+				<!-- 发布人 end -->
+				<!-- 处理人 start -->
+				<!-- 头start -->
+				<div class="um-label um-box-justify" style="border-top: 1px solid #d7d7d7; padding-top: 5px; margin: 10px 0;">
+                	<div>
+                		<img class="img-rounded" src="../../img/minShengTongDao_fanKuiChuLi.png" width=35 height=35 >
+                		<span>批注信息</span>
+                	</div>
+                </div>
+                <!-- 头 end -->
+                <!-- 批注内容 start -->
+                <div style="display: block;">
+	                <div style="width: 100%;text-indent: 35px;padding: 0 15px; margin: 10px 0;">
+	                	
+                        <textarea name="" id="comment_leader" cols="30" rows="10" class="form-control" style="height:200px" ></textarea>
+
+	                </div>
+	                <div class="um-label um-box-justify">
+	                	<div>
+	                		<img class="img-rounded" src="../../img/minShengTongDao_huiFuRen.png" width=35 height=35 alt="">
+	                		<span >处理人：</span>
+	                		<span id="name_leader" >XXX</span>
+	                	</div>
+	                	<div >
+	                		<span class="mr2 ">发表于</span>
+	                		<span class="mr5 " id="time_leader" >2017-12-12</span>
+	                	</div>
+	                	
+	                </div>
+	             </div>
+	             <!-- 批注内容 end -->
+	             <!-- 暂无数据 start -->
+	             <!-- <div style="width: 100%;height: 170px;padding: 45px 100px;">
+		             	<img  width=35; height=35; src="../../img/minShengTongDao_dengDaiChuLi.png" />
+		             	<span >等待处理...</span>
+		             </div> -->
+	             <!-- 批注内容 start -->
+	             
+	             
+	             
+                <!-- 处理人 end -->
+			</div>
+			<!-- 内容体 start -->
+		</div>
+	</body>
+	
+</html>

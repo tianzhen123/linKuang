@@ -1,0 +1,56 @@
+function test1(){
+			summer.openWin({
+				id : "dxgkmessage",
+				url : "html/partySchool/dangxiaogaikuang/dxgkmessage.html",
+				
+			});	
+			
+		}
+		function test2(){
+			summer.openWin({
+				id: "techResearch",
+				url : "html/partySchool/techResearch/techResearch.html",
+				
+			});		
+		}
+		function test3(){
+			
+			summer.openWin({
+				"id" : "Abstract",
+				"url" : "html/partySchool/Abstract/abstract.html",
+				"isKeep" : true,
+			});	
+		}
+		function test4(){
+			summer.openWin({
+				"id" : "learnOutcomes",
+				"url" : "html/partySchool/learnOutcomes/learnOutcomes.html",
+				"isKeep" : true,
+			});	
+				
+		}
+		function test5(){
+			summer.openWin({
+				"id" : "teachers",
+				"url" : "html/partySchool/teachers/teachers.html",
+				"isKeep" : true,
+			});	
+		}
+		function test6(){
+			summer.openWin({
+				"id" : "organization",
+				"url" : "html/partySchool/organization/organization.html",
+				"isKeep" : true,
+			});
+		}
+		function test7(){
+			summer.toast({
+                 "msg" : "待开发" 
+            })
+	
+			/*summer.openWin({
+				"id" : "teachers",
+				"url" : "html/partySchool/teachers/teachers.html",
+				"isKeep" : true,
+			});	*/
+		}

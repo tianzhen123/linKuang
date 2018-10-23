@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">
+		<link rel="stylesheet" type="text/css" href="../../css/iuapmobile.um.listview.css">
+		<link rel="stylesheet" href="../../css/base.css">
+		<link rel="stylesheet" href="../../html/bangFuJiLu/bangFuList.css">
+		
+		<script src="../../js/summer.js" ></script>
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="../../html/bangFuJiLu/bangFuList.js" ></script>
+		<script src="../../js/knockout.js"></script>
+		<script src="../../js/hp/hp_slide.js"></script>
+		<script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+		
+	</head>
+	<body>
+		<div class="um-win" id="index" name="hp_slide">
+			<div class="um-header" id="header" data-index = "0">
+			    <a href="#"  class="um-back" onclick="backClick()">返回</a>
+			    <h3>帮扶记录</h3>
+			     <div class="um-input-group">
+			     	<form style="width: 100%"  action="javascript:searchClick();">
+		                <span class="ti-search" onclick="searchClick()"></span>
+		            	<input type="search" class="form-control" id="sear" placeholder="姓名" >  
+		            </form>            	              	
+	            </div>
+			</div>
+		   
+			<div class="um-content">
+				<div class="um-listview-wrap " id="listview">
+	            	<ul class="um-list um-no-active" data-bind="foreach:data">
+	            		<li class="um-listview-row" style="background-color: #FFFFFF">
+	            			<a href="#" class="um-list-item um-swipe-action um-no-icon">
+	            				<div class="um-list-item-inner" > 
+						            <div class="um-list-item-body" >
+						            
+						                <div style="float: left;margin-left: 20px">
+			                                <div>姓名：</div>
+			                                <div>所属党组织：</div>
+			                                <div>困难等级：</div>
+			                                <div>申请时间：</div>
+			                                <div>状态：</div>
+			                                <div>帮扶金额：</div>
+			                                <div>帮扶次数：</div>
+			                            </div>
+			                        <div style="float: right;margin-right: 30px">						                
+			                            <div class="pl15 myheight"  data-bind="text:name"></div>
+			                
+			                            <div class="pl15 myheight"  data-bind="text:pk_partyorg_name" style="display: block; text-decoration: none; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; word-wrap: normal;width:200px;"></div>
+			                					                
+			                            <div class="pl15 myheight" data-bind="text:difficultgrade"></div>
+			                
+			                            <div class="pl15 myheight" data-bind="text:difficulttime"></div>
+			                
+			                            <div class="pl15 myheight" data-bind="text:def1"></div>
+			                            
+			                            <div class="pl15 myheight" data-bind="text:def2"></div>
+			                            
+			                            <div class="pl15 myheight" data-bind="text:def3"></div>
+			                        </div>
+			                        
+						            </div> 
+						        </div> 
+	            			</a>
+	            		</li>
+	            	</ul>
+	            </div>
+			</div>
+		</div>
+	</body>
+</html>

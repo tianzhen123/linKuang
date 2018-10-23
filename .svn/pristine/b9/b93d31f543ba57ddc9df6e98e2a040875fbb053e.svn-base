@@ -1,0 +1,16 @@
+var viewModel={};
+var data = "";
+summerready = function(){
+	//获取前一个页面传来的数据
+	data = summer.pageParam.count;
+	//绑定数据
+	viewModel = {
+		title : ko.observable(data.title),
+		name : ko.observable(data.name),
+		content : ko.observable(data.content),
+		time : ko.observable(data.time),
+	}
+	//执行绑定
+    ko.applyBindings(viewModel);
+    
+}

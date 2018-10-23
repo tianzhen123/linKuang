@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project><application id="LinKuang" name="临矿党建" version="3" versionBuild="3.2" versionName="3.2" icon="css/themes/default/app/android/app.png" moduleName="module" defaultPackage="com.yonyou.linkuang" reinforcement="false" sandbox="false"/><layout><appBase>www</appBase><main>www/Index.html</main><jslib>www/jslib</jslib><jsapp>www/jsapp</jsapp><css>www/css</css><nativeBase>native</nativeBase></layout></project>

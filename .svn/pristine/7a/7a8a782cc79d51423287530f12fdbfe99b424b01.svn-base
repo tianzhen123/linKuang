@@ -1,0 +1,42 @@
+summerready=function(){
+	getUserInfo();
+}
+
+function backClick(){
+	summer.closeWin({});
+}
+
+//基层动态
+function jiCengActive(){
+	summer.openWin({
+        "id" : "newsPropaganda",
+        "url" : "html/newsPropaganda/newsPropaganda.html",
+       "isKeep" : true,
+        "pageParam" : {
+            "count" : "01010301",
+            "pageTitle":"基层动态",
+        }
+    });
+}
+
+// 普惠服务
+function puHuiFuWu(){
+	summer.openWin({
+        "id" : "newsPropaganda",
+        "url" : "html/newsPropaganda/newsPropaganda.html",
+       "isKeep" : true,
+        "pageParam" : {
+            "count" : "01010302",
+            "pageTitle":"普惠服务",
+        }
+    });
+}
+
+//主席信箱
+function zhuXiMail(){
+	summer.openWin({
+        "id" : "zxMailbox",
+        "url" : "html/mailbox/zxMailbox.html",
+       "isKeep" : true,
+    });
+}

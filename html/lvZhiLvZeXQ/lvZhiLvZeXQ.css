@@ -1,0 +1,11 @@
+.um-list .um-list {
+    margin: 0;
+    border-width: 0;
+    padding-left: 0px;
+}
+.um-listview-row {
+    border-top: 1px solid #d7d7d7;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: rgb(215, 215, 215);
+}

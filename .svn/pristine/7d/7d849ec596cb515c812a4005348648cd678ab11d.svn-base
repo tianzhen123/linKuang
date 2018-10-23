@@ -1,0 +1,146 @@
+.header{
+	z-index: 9990;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	line-height: 16px;
+	text-align: center;
+	background-color: white;
+	padding-top:3px;
+}
+#pageTitle{
+    font-weight: normal;
+    font-size: 1em;
+    text-align: center;
+    display: block;
+    margin: 0;
+    padding: 9px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    pointer-events: none;
+}
+* {
+	margin: 0;
+	padding: 0;
+	-webkit-touch-callout:none;
+	-webkit-user-select:none;
+	-webkit-tap-highlight-color:transparent;
+}
+body{background-color: white}
+ul{list-style-type: none}
+a {text-decoration: none;color: #18B4FE;}
+/*菜单*/
+.nav{
+	margin-top: 8px;
+	border-bottom: 1px solid #ddd;
+	overflow:hidden;/*主要*/
+}
+.nav ul li{
+	display: inline-block;
+	width: 33.33%;
+	padding: 5px 0;
+	display:inline-block;
+	text-align: center;
+}
+.header-list{
+	width: auto;
+	height:100%;
+	overflow:auto;
+	white-space:nowrap;
+	overflow-x:scroll;/*主要*/
+  	overflow-y:hidden;/*主要*/
+}
+.nav .active{
+	border-bottom: 1px solid #FF6990;
+	color: #FF6990;
+}
+/*列表*/
+.swiper-container{
+	position: fixed;
+	top: 105px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+/*展示上拉加载的数据列表*/
+.data-list li{
+	position: relative;
+	padding: 10px 8px 10px 120px;
+	border-bottom: 1px solid #eee;
+}
+.data-list .pd-img{
+	position: absolute;
+	left: 18px;
+	top: 18px;
+	width: 80px;
+	height: 80px;
+}
+.data-list .pd-name{
+	font-size: 16px;
+	line-height: 20px;
+	height: 40px;
+	overflow: hidden;
+}
+.data-list .pd-price{
+	margin-top: 8px;
+	color: red;
+}
+.data-list .pd-sold{
+	font-size: 12px;
+	margin-top: 8px;
+	color: gray;
+}
+/*隐藏*/
+.hide{display: none;}
+.line{
+	background-color: #c2c2c2;
+	height:1px;
+}
+.image{
+	float:left;
+	padding-right: 10px;
+    max-height: 95px;
+    max-width: 120px;
+}
+
+.list-content{
+	display: flex;
+	flex-direction:row;
+	padding: 10px 10px 10px 10px;
+	max-height: 120px;
+	width: 100%;
+}
+.content-left{
+}
+.content-right{
+	flex:6;
+	max-height:120px;
+	display:flex;
+	flex-direction:column;
+}
+.desc{
+	flex:1;
+}
+.desc-p{
+	overflow:hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	word-wrap: break-word;
+    white-space: normal !important;
+	height:auto;
+	color: #3e3a3a;
+}
+.msg-info{
+	max-width:40%;
+	margin: 0;
+}
+.image{
+	float:left;
+	padding-right: 10px;
+	max-height:95px;
+}

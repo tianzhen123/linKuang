@@ -1,0 +1,102 @@
+<!DOCTYPE html><!--审批界面-->
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="../../css/swiper-3.3.1.min.css" />
+		<link rel="stylesheet" href="../../css/base.css" />
+		<link rel="stylesheet" href="../../css/mescroll.min.css">
+		<link rel="stylesheet" href="examine.css" />
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/knockout.js"></script>
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div id="header" class="um-header">
+				<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            	<h3 id="pageTitle">审批</h3>
+			</div>
+			<div id="nav" class="nav">
+					<ul id="header-list" class="header-list">
+						
+					</ul>
+				</div>
+			<!--轮播-->
+		<div id="swiper" class="swiper-container">
+		    <div class="swiper-wrapper">
+		    	
+	        	<!--待审批-->
+		        <div id="mescroll0" class="swiper-slide mescroll">
+					<ul id="contentList0" data-bind="foreach: data0">
+						<li data-bind="click:$root.openWaitWin.bind($data)">
+							<div class="list-content">
+								<div class="content-left">
+									<img class="image" alt=""  data-bind="attr:{'src': fimage}" width="100%">
+								</div>
+								<div class="content-right">
+									<div class="desc f16">
+										<span class="desc-p" data-bind="text:title"></span>
+									</div>
+						        	<div id="time" class="f12 tl um-gray"  ><span data-bind="text:ts2"></span></div>
+								</div>
+							</div>
+							<div class=" w  line"></div>
+						</li>
+					</ul>
+		        </div>
+		    	
+	        	<!--已完成-->
+		        <div id="mescroll1" class="swiper-slide mescroll">
+					<ul id="contentList1" data-bind="foreach: data1">
+						<li data-bind="click:$root.openAlreadyWin.bind($data)">
+							<div class="list-content">
+								<div class="content-left">
+									<img class="image" alt="" data-bind="attr:{'src': fimage}" width="100%">
+								</div>
+								<div class="content-right">
+									<div class="desc f16">
+										<span class="desc-p" data-bind="text:title"></span>
+									</div>
+						        	<div id="time" class="f12 tl um-gray"  ><span data-bind="text:ts2"></span>&nbsp;&nbsp;<span data-bind="text:infostatus"></span></div>
+								</div>
+							</div>
+							<div class=" w  line"></div>
+						</li>
+					</ul>
+		        </div>
+		        
+		        <!--我发起的-->
+		        <div id="mescroll2" class="swiper-slide mescroll">
+					<ul id="contentList2" data-bind="foreach: data2">
+						<li data-bind="click:$root.openMyMin.bind($data)">
+							<div class="list-content">
+								<div class="content-left">
+									<img class="image" alt=""  data-bind="attr:{'src': fimage}" width="100%">
+								</div>
+								<div class="content-right">
+									<div class="desc f16">
+										<span class="desc-p" data-bind="text:title"></span>
+									</div>
+						        	<div id="time" class="f12 tl um-gray"  ><span data-bind="text:ts2"></span>&nbsp;&nbsp;<span data-bind="text:infostatus"></span></div>
+								</div>
+							</div>
+							<div class=" w  line"></div>
+						</li>
+					</ul>
+		        </div>
+		    	
+		    </div>
+		</div>
+
+		</div>
+		<script src="../../js/swiper.min.js"></script>
+		<script src="../../js/mescroll.min.js"></script>
+		<script src="../../js/base.js"></script>
+		<script src="examine.js"></script>
+	</body>
+</html>

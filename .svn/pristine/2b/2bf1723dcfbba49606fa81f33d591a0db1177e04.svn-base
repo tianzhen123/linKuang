@@ -1,0 +1,97 @@
+h3 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 120px;
+	color: #ffffff;
+}
+
+/* 调整返回箭头颜色 */
+/*border-left: 2px solid #000000;
+border-bottom: 2px solid #000000;*/
+.um-back:before {
+    content: "";
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border-left: 2px solid #000000;
+    border-bottom: 2px solid #000000;
+    /* -webkit-transform: rotate(45deg); */
+    transform: rotate(45deg);
+    margin: 0px -3px 0px 0px;
+}
+.um-back,  .um-header-right, .um-header-left {
+    position: absolute;
+    top: 0;
+    left: 10px;
+    font-weight: 500;
+    color: #000000;
+    line-height: 44px;
+    text-decoration: none;
+} 
+
+/* 活动通知和活动宣传 */
+
+div.Artical>div {
+	display:none;
+	color:#555;
+}
+div.Artical>div.active {
+	display:block;
+}
+div.Artical>div.news {
+	background:lightblue;
+}
+div.Artical>div.product {
+	background:lightgreen;
+}
+
+.um-tabbar-underline > li.active > a {
+    background-color: transparent;
+    color: #f32222;
+}
+.um-tabbar-underline > li.active {
+    color: #00a1ea;
+    background-color: transparent;
+    border-bottom: 2px solid #ff0404;
+}
+.um-tabbar-underline > li > a {
+    border-right: 0;
+    background-color: transparent;
+    color: #191919;
+    font-weight: bolder;
+}
+/* #FF0404 */
+/* div.Artical>div.game {
+	background:lightyellow;
+}
+div.Artical>div.download {
+	background:lightpink;
+} */
+
+/* 选项卡内容 */
+/* 活动通知 */
+.tr {
+    text-align: left;
+    left: 38px;
+}        
+
+/* 活动宣传 */
+.listview-detail {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+
+.um-list .um-list-item-body {
+    padding: 9px 9px;
+   }
+
+#time{
+	float: right;
+}
+
+      
+
+

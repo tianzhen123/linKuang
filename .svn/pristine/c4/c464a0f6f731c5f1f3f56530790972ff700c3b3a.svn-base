@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="../../css/base.css" />
+		<link rel="stylesheet" href="ex-msg.css" />
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/knockout.js"></script>
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-header" >
+				<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            	<h3 id="pageTitle">审批</h3>
+            	<a href="#" class="addBtn" >提交</a>
+			</div>
+
+			<div class="um-content">
+				<div class="textarea-title">审批意见</div>
+				<textarea class="textarea" placeholder="请输入审批意见"></textarea>
+			</div>
+
+		</div>
+		<script src="../../js/base.js"></script>
+		<script src="ex-msg.js"></script>
+	</body>
+</html>

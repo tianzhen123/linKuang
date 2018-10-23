@@ -1,0 +1,50 @@
+summerready = function(){
+	
+	//Knockout数据绑定
+	var viewModel = {
+		datainfo : ko.observableArray([]),
+		projectdatas : ko.observableArray([]),
+		onPro : function(idx, data) {
+//			document.getElementById("xuanze").style.display = "block";
+			//跨页面执行函数
+//			var jsfun = 'setRefValue(' + $summer.jsonToStr(data) + ');';
+//			summer.execScript({
+//				winId : 'index',
+//				frameId : 'home',
+//				script : jsfun
+//			});
+	//		summer.closeWin();
+		},
+		backClick : function() {
+			summer.closeWin({});
+		}
+		//-----------------------------------请求后台数据----------------------------------/
+	}
+
+	ko.applyBindings(viewModel);
+
+	summer.get("http://10.176.2.169:9999/partyconstrutproject/appraise_content/list", {
+		"pageIndex":0,
+		"pageSize":5,
+		"search_fk_id_appraise_content":"bc1803d5-5f0b-405b-a878-6cb629cd9557",
+		"sortDirection":"asc",
+		"sortField":"ts"
+	}, {
+		"Content-Type" : "application/json;charset=utf-8",
+	}, function(response) {
+		//$summer.alert(response);
+		//UM.alert(response.data);
+		var argsResultjson = $summer.strToJson(response.data);
+		//alert(JSON.stringify(argsResultjson));
+
+		var projectjson = argsResultjson.detailMsg.data;
+
+		for (var k = 0; k < projectjson.content.length; k++) {
+			viewModel.projectdatas.push(projectjson.content[k]);
+		}
+
+
+	}, function(response) {
+		$summer.alert(response);
+	});
+}

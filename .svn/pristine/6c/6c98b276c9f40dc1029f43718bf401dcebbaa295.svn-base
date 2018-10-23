@@ -1,0 +1,62 @@
+<!DOCTYPE html><!---宣传发布界面--->
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../../css/font-icons.css">	
+		<link rel="stylesheet" href="../../../css/base.css" />	
+		<link rel="stylesheet" href="techResearch.css" />
+		<link rel="stylesheet" href="../../../css/iuapmobile.um.listview.css">
+        <link rel="stylesheet" href="../../../css/mescroll.min.css" />
+		<script src="../../../js/summer.js" ></script>		
+		<script src="../../../js/jquery.min.js" ></script>
+		<script src="../../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="../../../js/knockout.js"></script>
+		<script src="../../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+		<script src="../../../js/base.js"></script>
+		<script src="../../../js/mescroll.min.js"></script>
+		<script src="techResearch.js"></script><!---->
+	</head>
+	<body>
+		<div class="um-win" id="index" name="hp_slide">
+			<div class="um-header" id="header">
+				<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            	<h3 id="pageTitle">教学科研</h3>
+            	<a href="#" class="addBtn" onclick="filterClick()"><i class="ti-filter"></i></a>
+			</div>
+
+			<div class="um-content">
+				<div id="classify">
+					<ul class="um-list um-list-static">
+						<li class="um-border-bottom">全部</li>
+						<li class="um-border-bottom">分类1</li>
+						<li class="um-border-bottom">分类2</li>
+					</ul>
+				</div>
+				
+				<div id="mescroll" class="mescroll">
+					<ul id="dataList" class="" data-bind="foreach: data">
+						<li data-bind="click:$root.openWin.bind($data)">
+							<div class="list-content">
+								<div class="content-left">
+									<img class="image" alt="" onerror="nofind(this,1)" data-bind="attr:{'src': fimage}" width="100%">
+								</div>
+								<div class="content-right">
+									<div class="desc f16 fb">
+										<span class="desc-p" data-bind="text:title"></span>
+										<span id="frame" class="desc-m" data-bind="text:def2"></span>
+									</div>
+									<div class="line"></div>
+						        	<div class="time" class="f12 tl um-gray"><span data-bind="text:create_time"></span><span>发布时间：</span></div>
+								</div>
+							</div>
+							<div class=" w  line"></div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,71 @@
+var viewModel;
+var param;
+summerready=function(){
+	param = summer.pageParam.param;
+	viewModel = {
+		p_name:param.p_name,
+		phone:param.phone,
+		idcode:param.idcode,
+		home_address:param.home_address,
+		data:ko.observableArray([]),
+	}
+	ko.applyBindings(viewModel);
+	loadList();
+	
+}
+function loadList(){
+	var url = ""+getHttpPro()+"petition/mlist?id="+param.pk_p_personnel+"";
+	summer.get(url, {}, 
+				{
+					"Content-Type" : "application/x-www-form-urlencoded", 
+				},//url地址 
+                function(response){//成功回调
+                    var data = $summer.strToJson(response.data);
+					if (data.success == "success") {
+						
+						jsonArray = data.detailMsg;
+						var count = jsonArray.data.content.length;
+						
+						for(var i=0;i<count;i++){
+							
+							var create_time = jsonArray.data.content[i].present_time;
+							create_time = Number(create_time);
+					        //重写时间格式
+					        Date.prototype.toLocaleString = function() {
+						      return this.getFullYear() + "-" + (this.getMonth() + 1) + "-" + this.getDate() + " " + this.getHours() + ":" + this.getMinutes() + ":" + this.getSeconds();
+						    };
+							var newTime = new Date(create_time) ;
+							create_time = newTime.toLocaleString();
+							jsonArray.data.content[i].present_time = create_time;
+							
+							/*var ts = jsonArray.data.content[i].present_time;
+							jsonArray.data.content[i].present_time = getMyDate(ts);*/
+						}
+						var array = jsonArray.data.content;
+						viewModel.data(array);
+					} else {
+						alert("请求错误");
+					}
+				}, function(response) {//失败回调
+					console.log(response);
+				});
+}
+function getMyDate(str){
+			
+            var oDate = new Date(parseInt(str)),
+            oYear = oDate.getFullYear(),  
+            oMonth = oDate.getMonth()+1,  
+            oDay = oDate.getDate(),  
+            oTime = oYear +'-'+ getzf(oMonth) +'-'+ getzf(oDay);//最后拼接时间  
+            return oTime;  
+}; 
+//补0操作
+function getzf(num){
+      if(parseInt(num) < 10){
+          num = '0'+num;  
+      }  
+      return num;  
+}
+function backClick(){
+	summer.closeWin();
+}

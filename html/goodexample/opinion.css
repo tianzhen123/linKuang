@@ -1,0 +1,20 @@
+body {
+	background-color: #F2F2F2;
+}
+.basesyl{
+	padding-top:10px;
+	padding-left:20px;
+	font-size: 13px;
+	padding-bottom:10px;
+}
+.basesyl span{
+	color: red;
+}
+.consyl{
+	width:100%;
+	height:230px;
+}
+.consyl span{
+	padding-left:20px;
+	font-size:13px;
+}

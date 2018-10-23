@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="../../css/base.css" />
+		<link rel="stylesheet" href="xianFengTeamXiangQing.css" />
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script type="text/javascript" src="../../js/knockout.js"></script>
+		<script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+		<script src="../../js/hp/hp_slide.js"></script>
+		<script src="xianFengTeamXiangQing.js" ></script>
+	</head>
+	<body>
+		<div class="um-win" id="index" name="hp_slide">
+			<div id="header" class="um-header" >
+				<a href="#"  class="um-back" onclick="backClick()">返回</a>
+				<h3>先锋队伍</h3>
+			</div>
+			<div class="um-content" data-bind="foreach:data">
+				<div id="ziduan" class="ziduan">
+					<div class="showImg">
+						<img id="peoPho" alt="" class="wdzp" data-bind="attr:{src:tupian}">
+					</div>
+					<div id="yincang">
+						<div class="person">
+							<div class="um-box-vc">
+								<span class="f16">姓名:</span>
+								<div data-bind="text:xingming" class="f16 um-gray xingming" style="width: 160px;"></div>
+							</div>
+							<div class="um-box-vc">
+								<span class="f16">性别:</span>
+								<div data-bind="text:xingbie" class="f16 um-gray xingbie" style="width: 160px;"></div>
+							</div>
+							<div class="um-box-vc">
+								<span class="f16">年龄:</span>
+								<div data-bind="text:nianling" class="f16 um-gray nianling" style="width: 160px;"></div>
+							</div>
+						</div>
+						<div class="org">
+							<div class="um-box-vc">
+								<span class="f16" style="height: 20px;">获得时间:</span>
+								<span data-bind="text:huodeshijian" class="f16 um-gray"></span>
+							</div>
+							<div class="um-box-vc">
+								<p class="f16">党组织:
+								<span data-bind="text:suozaidangzuzhi" class="f16 um-gray dangzuzhi" style="width: 160px;"></span></p>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div id="ziduan2" class="ziduan2">
+					<div class="showImg2">
+						<img id="peoPho2" alt="" class="wdzp" data-bind="attr:{src:tupian}">
+					</div>
+					<div id="yincang2">
+						<div class="org2">
+							<div class="um-box-vc">
+								<p class="f16">获得时间:
+								<span data-bind="text:huodeshijian" class="f16 um-gray"></span></p>
+							</div>
+							<div class="um-box-vc">
+								<p class="f16">党组织:
+								<span data-bind="text:suozaidangzuzhi" class="f16 um-gray dangzuzhi" style="width: 160px;"></span></p>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="sj">
+					<div class="f16" style="height: 20px">
+						先进事迹：
+					</div>
+					<br />
+					<div class="f16" id="guangrongshiji"></div>
+				</div>
+			</div>
+			</div>
+	</body>
+</html>

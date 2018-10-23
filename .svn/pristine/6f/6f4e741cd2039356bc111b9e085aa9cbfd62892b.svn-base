@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" href="../../css/iuapmobile.um.css">
+        <link rel="stylesheet" href="../../css/base.css" />
+        <link rel="stylesheet" href="doc.css" />
+        <link rel="stylesheet" href="../../css/font-awesome-4.7.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="../../css/iscroll.css">
+
+        <script src="../../js/summer.js" ></script>
+        <script src="../../js/jquery.min.js" ></script>
+        <script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+        <script src="../../js/knockout.js"></script>
+        <script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+        <script type="text/javascript" src="doc.js"></script>
+
+        <script type="text/javascript" src="../../js/knockout.js"></script>
+        <script src="../../js/iscroll.js"></script>
+        <script src="../../js/iscrollconfig.js"></script>
+    </head>
+    <body>
+        <div class="um-win" id="index">
+            <div class="um-header" >
+                <a href="#"  class="um-back" onclick="backClick()">返回</a>
+                <h3 style="padding-left:35px">临矿文库</h3>
+                
+            </div>
+            <div class="um-content">
+                <div class="um-input-search">
+                    <i data-bind="click: event.onSortMenuClick" class="fa fa-sort-amount-desc" style="position: absolute;left:15px;color:gray;"></i>
+                    <input data-bind="event:{keydown:event.onSearchInput}" type="search" class="form-control" style="background:white"  placeholder="搜索文档/贡献者">
+                    <span id="searchBackButton" class="input-cancel" data-bind="click: event.onSearchCancel">取消</span>
+                </div>
+                
+                <div id="wrapper" style="margin-top:45px;overflow: auto;" data-bind="event:{scroll:event.onScroll}">
+                    <div class="uScrollList">
+                        <ul class="um-list um-no-active" data-bind="foreach: data">
+                            <li class="um-listview-row" data-bind="click: $parent.event.listClick">
+                                <a href="#" class="um-list-item um-swipe-action um-no-icon">
+                                    <div class="um-list-item-media msg-info">
+                                        <i style="width:30px;" data-bind="style:{color:color},attr:{class:icon}"></i>
+                                    </div>
+                                    <div class="um-list-item-inner">
+                                        <div class="um-list-item-body">
+                                            <h4 class="um-media-heading fb f16 um-text-overflow" data-bind="text:filename"></h4>
+                                            <span class="um-gray f14 um-text-overflow" data-bind="text:time"> </span>
+                                            <span class="um-gray f14 pl15" data-bind="text:creator"></span>
+                                            <span class="um-gray f14 pl15" data-bind="text:size"></span>
+                                        </div>
+                                        <!-- <div class="pl10">
+                                            <i style="width:30px;color:gray;" class="fa fa-chevron-circle-down "></i>
+                                        </div> -->
+                                    </div> 
+                                </a>
+                            </li>
+                        </ul>
+                        <div id="more" data-bind="html:moreText">正在加载更多...</div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="um-footer">
+                <div class="um-footerbar">
+                    <a href="#" class="um-footerbar-item active fa fa-file-o">
+                    <div class="f12 lh1">
+                        文档库
+                    </div> </a>
+                    <a href="#" class="um-footerbar-item fa fa-user-o">
+                    <div class="f12 lh1">
+                        我的文档
+                    </div> </a>
+
+                </div>
+            </div>
+
+        </div>
+    </body>
+</html>

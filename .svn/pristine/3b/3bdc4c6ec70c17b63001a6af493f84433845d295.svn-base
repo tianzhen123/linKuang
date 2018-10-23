@@ -1,0 +1,140 @@
+    var ViewModel = function() {            
+                               };	
+    var viewModel = new ViewModel();
+    var jsonArray;    		 
+summerready = function() {
+    var requestid = "http://"+summer.getStorage("host")+"partyconstrutproject/proposalinfo/list"
+   		
+	var json = {}
+	summer.get(requestid, {"json":json} , //可选参数，方便开发者设置请求的header
+	{
+		"Content-Type" : "application/x-www-form-urlencoded", //可选参数，post请求的要写入的条件数据，须为json对象
+	}, function(response) {//成功回调
+		var data = $summer.strToJson(response.data);
+		    viewmodel.removeAll();
+		if (data.success == "success") {
+			jsonArray = data.detailMsg.data.content;
+			viewModel.data = ko.observableArray(jsonArray);
+        	ko.applyBindings(viewModel);
+			
+		} else {
+			$summer.alert("网络错误");
+		}
+	}, function(response) {//失败回调
+		$summer.alert(response);
+	});
+        		
+        		//构造控件实例
+        		var listview = UM.listview("#listview");
+        		
+        		
+        		//添加控件方法
+        		listview.on("itemClick", function(sender, args) {
+        			var item = viewModel.data()[args.rowIndex];
+		            var data = JSON.stringify(item);
+		            data = $summer.strToJson(data);
+        			summer.openWin({
+                        "id" : "zhiDaiHuiYiAn",
+                        "url" : "html/wangShangZhiDaiHui/zhiDaiHuiYiAn.html",
+                        "pageParam" : {
+                            "count" : data
+                        }
+                    });
+        		});
+        		
+        	};
+        	
+function backClick(){
+//返回按钮
+  	     summer.closeWin({});  	
+         } ;
+                       
+function searchClick(){
+	var requestid = "http://"+summer.getStorage("host")+"partyconstrutproject/proposalinfo/list";
+	var viewmodel = viewModel.data;	
+	var type = 0;
+	var title = document.getElementById("sear").value;
+	var json = {
+		"param" : type,
+		"search_searchParam":title,
+	};
+	
+	summer.get(requestid, json, //可选参数，方便开发者设置请求的header
+	{
+		"Content-Type" : "application/x-www-form-urlencoded", //可选参数，post请求的要写入的条件数据，须为json对象
+	}, function(response) {//成功回调
+		var data = $summer.strToJson(response.data);
+		viewmodel.removeAll();
+		if (data.success == "success") {
+			jsonArray = data.detailMsg;
+			var count = jsonArray.data.content.length;
+			for (var k = 0; k < count; k++) {
+				viewmodel.push(jsonArray.data.content[k]);
+			}
+
+		} else {
+			$summer.alert("网络错误");
+		}
+	}, function(response) {//失败回调
+		$summer.alert(response);
+	});
+	
+}                       
+                       
+                       
+                       
+                       
+                       
+                       
+/**        	
+              function addClick(){
+        	  //阻止冒泡        	
+              window.event.cancelBubble = true;
+                         
+        	  //点赞+1                                   
+       	      var x=document.getElementById("span1").innerHTML; 
+              x=parseInt(x)+1; 
+              document.getElementById("span1").innerHTML=x;
+                  
+              //灰化
+              document.getElementById("btn1").disabled = true;
+              var y=document.getElementById("btn1").disabled;
+              alert("点赞成功");
+              };  
+**/
+/**
+function refush() {
+
+	var requestid = "http://192.168.1.110:9999/partyconstrutproject/proposalinfo/list";
+
+	var viewmodel = "";
+	
+	var type = 0;
+    viewmodel = viewModel.data;
+    		
+	var json = {
+		//"param" : type,
+		//"lpf":"kkk",
+	}
+	summer.get(requestid, {"json":json} , //可选参数，方便开发者设置请求的header
+	{
+		"Content-Type" : "application/x-www-form-urlencoded", //可选参数，post请求的要写入的条件数据，须为json对象
+	}, function(response) {//成功回调
+		var data = $summer.strToJson(response.data);
+		
+		//viewmodel.removeAll();
+		if (data.success == "success") {
+			jsonArray = data.detailMsg;
+			//var count = jsonArray.data.content.length;
+			//for (var k = 0; k < count; k++) {
+				//viewmodel.push(jsonArray.data.content[k]);
+			//}
+		} else {
+			$summer.alert("网络错误");
+		}
+	}, function(response) {//失败回调
+		$summer.alert(response);
+	});
+
+}
+**/                                

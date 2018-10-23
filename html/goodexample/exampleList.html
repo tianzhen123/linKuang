@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>先进劳模</title>
+	<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">   
+    <link rel="stylesheet" href="../../js/ydui/ydui.px.css">
+	<link rel="stylesheet" href="https://unpkg.com/cube-ui/lib/cube.min.css">
+
+	<script src="../../js/commons.js" ></script> 
+	<script src="../../js/jquery.min.js" ></script>
+	<script src="../../js/summer.js" ></script>
+	<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+	<script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+	  
+    
+    <style>
+    .yd-navbar{
+    	padding-top: 10px;
+    }
+    .yd-navbar-item{
+    	padding-top: 15px;
+    }
+    .geList{
+    	padding: 5px;
+    	display:flex;
+    	flex-wrap:wrap;
+    	padding-left: 10px;
+    	padding-right:10px;
+    	padding-top:50px;
+    }
+    .geObj{
+    	width:33.33%;
+    	padding-left:5px;
+    	padding-right:5px;
+    	padding-bottom: 5px;
+    }
+    .geObj-img{
+    	width:100%;
+    	height: 120px;
+    }
+    .geObj-img img{
+    	width:100%;
+    	height: 100%;
+    }
+    .geObj-type{
+    	width: 100%;
+    	padding: 10px;
+    	background-color: #d72424;
+    	text-align: center;
+    	color: #ffffff;
+    }
+   .geObj-name {
+    	text-overflow: ellipsis;
+     	white-space: nowrap;
+   	 	overflow: hidden;
+   	 	font-weight: 800;
+   	 	text-align: center;
+   	 	background-color: #FFFFFF;
+   	 	padding: 5px;
+   	 	padding-bottom: 0px;
+   	 	font-size:15px;
+   }
+   .geObj-companyName {
+    	text-overflow: ellipsis;
+     	white-space: nowrap;
+   	 	overflow: hidden;
+   	 	text-align: center;
+   	 	background-color: #FFFFFF;
+   	 	padding:5px;
+   }
+   .yd-tab-box{
+   		position: fixed;
+   		width: 100%;
+   		z-index: 9999;
+   }
+   .headerBar{
+   		position:fixed;
+   		background-color: red;
+   		height: 64px;
+   		top: 0px;
+   		z-index: 99999;
+   		width: 100%;
+   		padding-top: 20px;
+   }
+   .yd-back-icon{
+   	    font-size: 10px;
+   }
+    </style>
+</head>
+<body>
+<div id="app">
+	<template>
+	    <yd-navbar title="先进劳模" bgcolor="#d72424" height="64px" color="#FFFFFF" fixed="true">
+	        <router-link to="#" slot="left" @click="backFunc">
+	            <yd-navbar-back-icon color="#ffffff">&nbsp;返回</yd-navbar-back-icon>
+	        </router-link>
+	        <router-link to="#" slot="right">
+	        	<div @click="showPicker">{{publicityYear}}</div>
+	        </router-link>
+	    </yd-navbar>
+	    <yd-pullrefresh :callback="pullLoadList" ref="pullrefresh">
+	    <yd-tab style="margin-top: 64px;" :callback="switchCallBack">
+	        <yd-tab-panel label="劳动模范" tabkey="0">
+	        	
+	        	<yd-infinitescroll :callback="loadList" ref="modelInfinitescroll">
+	        	
+	        		<div slot="list" class="geList">
+        				<div v-for="item, key in list" :key="key" class="geObj" @click="toDetails(item)">
+        					<div class="geObj-type">{{item.geType}}</div>
+        					<div class="geObj-img">
+        						<img slot="img" :src="item.photoUrl">
+        					</div>
+        					<div class="geObj-name">{{item.name}}</div>
+        					<div class="geObj-companyName">{{item.companyName}}</div>
+        				</div>
+	        		</div>
+			
+			        <span slot="doneTip">已加载全部数据</span>
+			        <img slot="loadingTip" src="http://static.ydcss.com/uploads/ydui/loading/loading10.svg"/>
+				
+			    </yd-infinitescroll>
+			  
+			    
+			    
+	        </yd-tab-panel>
+	        <yd-tab-panel label="先进工作者" tabkey="1">
+		        <yd-infinitescroll :callback="loadList1" ref="advancedInfinitescroll">
+				    <div slot="list" class="geList">
+        				<div v-for="item, key in list1" :key="key" class="geObj" @click="toDetails(item)">
+        					<div class="geObj-type">{{item.geType}}</div>
+        					<div class="geObj-img">
+        						<img slot="img" :src="item.photoUrl">
+        					</div>
+        					<div class="geObj-name">{{item.name}}</div>
+        					<div class="geObj-companyName">{{item.companyName}}</div>
+        				</div>
+	        		</div>
+				
+			        <span slot="doneTip">已加载全部数据</span>
+			        <img slot="loadingTip" src="http://static.ydcss.com/uploads/ydui/loading/loading10.svg"/>
+				</yd-infinitescroll>
+	        </yd-tab-panel>
+	    </yd-tab>
+	    </yd-pullrefresh>
+	</template>
+</div>
+<script src="../../js/ydui/vue.min.js"></script>
+<script src="../../js/ydui/ydui.px.js"></script>
+<script src="https://unpkg.com/cube-ui/lib/cube.min.js"></script>
+<script>
+	const yearList = [{text:"全部年份",value:"全部年份"}];
+	        
+
+    new Vue({
+        el: '#app',
+        data:{
+        	page: 1, //劳动模范当前页码
+            pageSize: 15, //劳动模范页大小
+            page1: 1, //先进工作者当前页码
+            pageSize1: 15, //先进工作者页大小
+            list: [], //劳动模范数据列表
+            list1: [], //先进劳模数据列表
+            tabIndex:0, //tab页索引，0：劳动模范tab；1：先进工作者tab
+            publicityYear:"全部年份" 
+        },
+        created: function () {
+			this.loadList();    
+			this.loadList1(); 		
+			
+			var date = new Date();
+    		var yearInt = Number(date.getFullYear());
+    		
+    		yearList.push({text:yearInt,value:yearInt});
+    
+		    for(var i=1;i<5;i++){
+		    	var _yearInt = yearInt - i;
+		    	yearList.push({text:_yearInt,value:_yearInt});
+		    }
+  		},
+        methods: {
+        	pullLoadList:function(){
+		    	if(this.tabIndex == 0){
+		    		this.page = 1;
+		    		this.list = [];
+		    		this.loadList();
+		    	}else if(this.tabIndex == 1){
+		    		this.page1 = 1;
+		    		this.list1 = [];
+		    		this.loadList1();
+		    	}
+        		this.$refs.pullrefresh.$emit('ydui.pullrefresh.finishLoad');
+        	},
+        	/**
+        	 * 标题栏返回方法 
+        	 */
+            backFunc:function(){
+            	summer.closeWin({});
+            },
+            /**
+             * 年份筛选Picker 
+             */
+            showPicker:function() {
+		      if (!this.picker) {
+		        this.picker = this.$createPicker({
+		          title: '',
+		          data: [yearList],
+		          onSelect: this.selectHandle,
+		          onCancel: this.cancelHandle
+		        })
+		      }
+		      this.picker.show()
+		    },
+		    toDetails:function(item){
+		    	console.log(item);
+		    	localStorage.approvalId = item.approvalId;
+        		forword("details","html/goodexample/details.html");
+		    },
+		    /**
+		     * TabBar切换回调 
+		     */
+		    switchCallBack:function(label,key){
+		    	this.tabIndex = key;
+		    	if(this.tabIndex == 0){
+		    		this.page = 1;
+		    		this.list = [];
+		    		this.loadList();
+		    	}else if(this.tabIndex == 1){
+		    		this.page1 = 1;
+		    		this.list1 = [];
+		    		this.loadList1();
+		    	}
+		    },
+		    /**
+		     * 选择年份筛选 
+		     */
+		    selectHandle:function(selectedVal, selectedIndex, selectedText){
+		    	this.publicityYear = selectedVal[0] + "";
+		    	if(this.tabIndex == 0){
+		    		this.page = 1;
+		    		this.list = [];
+		    		this.loadList();
+		    	}else if(this.tabIndex == 1){
+		    		this.page1 = 1;
+		    		this.list1 = [];
+		    		this.loadList1();
+		    	}
+		    },
+		    /**
+		     * 获取劳动模范数据 
+		     */
+            loadList:function(){
+            	console.log("method >> loadList");
+  				var jsonData = {};
+				jsonData.userId = localStorage.userid;
+				jsonData.publicityType = "SUB_BUSI_TYPE_GE_MODEL";
+				console.log("AAA THIS.PAGE:::" + this.page);
+				jsonData.currentPage = this.page+"";
+				jsonData.pageSize = this.pageSize+"";
+				this.getDataList(jsonData,1);
+				
+            },
+            /**
+             * 获取先进工作者数据 
+             */
+            loadList1:function(){
+  				var jsonData = {};
+				jsonData.userId = localStorage.userid;
+				jsonData.publicityType = "SUB_BUSI_TYPE_GE_ADVANCED";
+				jsonData.currentPage = this.page1+"";
+				jsonData.pageSize = this.pageSize1+"";
+				this.getDataList(jsonData,2);
+            },
+            /**
+             * 调用后台接口获取数据 
+             */
+            getDataList:function(jsonData,tabIndex){
+            	if(this.publicityYear != "全部年份"){
+            		jsonData.publicityYear = this.publicityYear;
+            	}
+            
+            	var _this = this;
+	            $.ajax({
+					type:"POST",
+					url:serviceUrl + "/goodExample/goodExampleList",
+					datatype:'json',
+					data:JSON.stringify(jsonData),
+					contentType: 'application/json;charset=utf-8',  
+					success:function(res){
+						console.log(res);
+						console.log("_this.page::::" + _this.page);
+						var goodExampleList = res.rsMap.goodExampleList;
+						for(var i=0; i<goodExampleList.length;i++){
+							var geObj = goodExampleList[i];
+							if(null == geObj.photoUrl || '' == geObj.photoUrl || undefined == geObj.photoUrl){
+								geObj.photoUrl = "../../img/pic_init.png";
+							}else{
+								geObj.photoUrl = webserver + "/" + geObj.photoUrl
+							}							
+							
+							if(tabIndex == 1){
+								_this.list.push(geObj); 
+							}else if(tabIndex == 2){
+								_this.list1.push(geObj); 
+							}
+							
+						}
+						
+						var pageModel = res.rsMap.pageModel;
+						
+						if(tabIndex == 1){
+							console.log("_this.page::::" + _this.page);
+							if(pageModel.totalPage <= _this.page){
+								_this.$refs.modelInfinitescroll.$emit('ydui.infinitescroll.loadedDone');
+								return;
+							}
+						}else if(tabIndex == 2){
+							console.log("_this.page::::" + _this.page1);
+							if(pageModel.totalPage <= _this.page1){
+								_this.$refs.advancedInfinitescroll.$emit('ydui.infinitescroll.loadedDone');
+								return;
+							}
+						}
+						
+						if(tabIndex == 1){
+							_this.$refs.modelInfinitescroll.$emit('ydui.infinitescroll.finishLoad');
+							_this.page++;
+						}else if(tabIndex == 2){
+							_this.$refs.advancedInfinitescroll.$emit('ydui.infinitescroll.finishLoad');
+							_this.page1++;
+						}
+						
+						
+						
+					},
+					error:function(er){
+
+					}
+				});	
+            }
+       }    
+    })
+    
+</script>
+
+
+
+</body>
+</html>

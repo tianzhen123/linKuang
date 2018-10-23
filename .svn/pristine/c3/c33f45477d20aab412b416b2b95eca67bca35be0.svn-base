@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="../../css/base.css" />
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="../../js/knockout.js"></script>
+		<script src="checkMailbox.js" ></script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-header" >
+				<a href="#"  class="um-back"  data-bind="click:backClick">返回</a>
+				<h3>纪检信箱</h3>
+			</div>
+
+			<div class="um-content">
+				<div class="um-list"> 
+				    <div class="um-list-item"> 
+				        <div class="um-list-item-inner"> 
+				            <div class="um-list-item-body">纪检信箱1</div> 
+				            <div class="um-list-item-right"> 
+				                <span class="um-gray mr15">jijian1@jijian.com
+				                 </span> 
+				            </div> 
+				        </div> 
+				    </div>
+				    <div class="um-list-item"> 
+				        <div class="um-list-item-inner"> 
+				            <div class="um-list-item-body">纪检信箱2</div> 
+				            <div class="um-list-item-right"> 
+				                <span class="um-gray mr15">jijian2@jijian.com
+				                 </span> 
+				            </div> 
+				        </div> 
+				    </div>
+				    <div class="um-list-item"> 
+				        <div class="um-list-item-inner"> 
+				            <div class="um-list-item-body">纪检信箱3</div> 
+				            <div class="um-list-item-right"> 
+				                <span class="um-gray mr15">jijian3@jijian.com
+				                 </span> 
+				            </div> 
+				        </div> 
+				    </div>
+				</div>
+			</div>
+
+		</div>
+	</body>
+</html>

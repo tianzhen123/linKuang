@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">		
+		<link rel="stylesheet" href="../../css/account2.css">	
+		<link rel="stylesheet" href="../../css/base.css" />
+		<link rel="stylesheet" href="./helpWorkersList.css" />
+		<link rel="stylesheet" href="../../css/commons.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iuapmobile.um.listview.css">
+		<link rel="stylesheet" href="../../css/iscroll.css"/>
+		<link rel="stylesheet" href="../../css/public.css">
+		<link rel="stylesheet" href="../../css/commons.css"/>
+		<script src="../../js/commons.js" ></script> 
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/summer.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="../../js/swipe.js" ></script>
+		<script src="../../js/swipeTab.js" ></script>
+		<script type="text/javascript" src="../../js/knockout.js"></script>
+    	<script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+    	<script src="../../js/iscroll.js"></script>
+		
+		<script src="./helpWorkersList.js" ></script>
+		
+		<script>
+			$isWeb = true;
+			function $pageReady() {
+				alert("webview ready");
+			}
+
+			$(function() {
+
+			});
+		</script>
+		
+	</head>
+	<body>
+		<div class="um-page active" id="index">
+            <div id="header" class="um-header">
+                <a  onclick="backClick()"  class="um-back"></a>
+                <h3>职工帮困</h3>
+            </div>
+
+			<div class="um-content" style="background-color: #F4F2F5;">
+				<ul class="um-tabbar um-tabbar-underline" id="scroll_position" data-action="swipeTab" data-target="slider" style="background-color: #fff;">
+					<li id="GETYPE_MODEL" name="GETYPE_MODEL" class="active" index="0">
+						<a href="javascript:;">困难帮扶</a>
+					</li>
+					<li id="GETYPE_ADVANCED" name="GETYPE_ADVANCED" index="1">
+						<a href="javascript:;">大病帮扶</a>
+					</li>
+				</ul>
+				<div id="slider" class="swipe">
+					<div class="swipe-wrap"> 
+						<div  style="padding-top: 5px;">
+						<div id="listview0">
+							<ul class="um-list um-no-active" data-bind="foreach:data0">
+				                <li class="um-listview-row" index="0">
+								    <div class="um-xs-4 um-sm-4 um-md-4 ge-obj" >
+								    	<div class="contentsyl GE_MODEL">
+								    		<div class="topsyl" data-bind="text:geType">
+								    		</div>
+											<div class="imgsyl" style="padding:15px;padding-bottom: 5px;padding-top: 8px;">
+								    			<a>
+								    				<img data-bind="attr:{src:photoUrl}" src="" />
+								    			</a>
+											</div>
+											<div class="namesyl" data-bind="text:name"></div>
+											<div class="worksyl">
+												<p data-bind="text:companyName"></p>
+											</div>
+										</div>
+									</div>
+				                </li>
+				            </ul>
+				        </div>    
+						</div>
+						<div style="padding-top: 5px;">
+						<div id="listview1">
+							<ul class="um-list um-no-active" data-bind="foreach:data1">
+				                <li class="um-listview-row" index="1">
+								    <div class="um-xs-4 um-sm-4 um-md-4 ge-obj" >
+								    	<div class="contentsyl GE_MODEL">
+								    		<div class="topsyl" data-bind="text:geType">
+								    		</div>
+											<div class="imgsyl" style="padding:15px;padding-bottom: 5px;padding-top: 8px;">
+								    			<a>
+								    				<img data-bind="attr:{src:photoUrl}" src="" />
+								    			</a>
+											</div>
+											<div class="namesyl" data-bind="text:name"></div>
+											<div class="worksyl" data-bind="text:companyName"></div>
+										</div>
+									</div>
+				                </li>
+				            </ul>
+				        </div>    
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

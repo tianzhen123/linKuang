@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		
+	</head>
+	<body>
+	</body>
+	<script>
+		summerready=function(){	
+			summer.openWin({
+				"id" : "signupAndPropaganda",
+                "url" : "html/HuoDongLiuCheng/signupAndPropaganda.html",
+                "isKeep":false,
+			});
+		}	
+		
+		</script>
+</html>

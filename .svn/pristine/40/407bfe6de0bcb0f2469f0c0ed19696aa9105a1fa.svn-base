@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../../css/font-icons.css">
+		<link rel="stylesheet" href="../../../css/base.css" />
+		<link rel="stylesheet" href="orgDet.css" />		
+		<script src="../../../js/summer.js" ></script>		
+		<script src="../../../js/jquery.min.js" ></script>
+		<script src="../../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-header" >
+				<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            	<h3 id="pageTitle">组织机构详情</h3>
+			</div>
+
+			<div class="um-content">
+				<ul>
+					<li>
+						<div class="li-content">
+							<div class="title"><span>组织名称</span></div>
+							<div class="name"><span>校务委员会</span></div>
+						</div>
+					</li>
+					<li class="person">
+						<div class="li-content">
+							<div class="title"><span>组织成员</span></div>
+							<div class="name"><span>5人</span></div>
+						</div>
+					</li>
+					<li>
+						<div class="li-content">
+							<div class="title"><span>组织联系人</span></div>
+							<div class="name"><span>刘昊然</span></div>
+						</div>
+					</li>
+					<li>
+						<div class="li-content">
+							<div class="title"><span>组织联系人电话</span></div>
+							<div class="name"><span>18888888</span></div>
+						</div>
+					</li>
+					<li>
+						<div class="li-content">
+							<div class="title"><span>地址</span></div>
+							<div class="name"><span>校务委员会中区东路1号楼2单元</span></div>
+						</div>
+					</li>
+					
+				</ul>
+			</div>
+
+			<div class="um-footer">
+				
+			</div>
+		</div>
+	</body>
+</html>

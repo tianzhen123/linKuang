@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="../../css/base.css" />
+		<link rel="stylesheet" href="./drafes.css" />
+		<link rel="stylesheet" href="../../css/commons.css" />
+		<link rel="stylesheet" href="../../css/public.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iuapmobile.um.listview.css">
+		<link rel="stylesheet" href="../../css/iscroll.css"/>
+		<script src="../../js/commons.js" ></script> 
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="../../js/iscroll.js"></script>
+		
+		<style>
+		   .content-value #select1_dummy {
+			    width: 80%;
+			    border-style: none;
+			    outline: none;
+			}
+			body {
+			    background: #F2F2F2;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div id="header" class="um-header">
+				<div id="backContainer" style="width: 30%">
+					<a href="#"  class="headerText backup" onclick="backClick()">&nbsp;返回</a>
+				</div>
+				<div id="titleContainer" style="width:40%">
+					<h3>我要提报</h3>
+				</div>
+				<div id="appealContainer" style="width:30%">
+					<a id="fillReportBtn" href="#" class="headerText">提交</a>
+				</div>
+			</div>
+			<div class="um-content panel-info-container">
+				<div class="um-row panel-info">
+					<div class="panel-info-title">
+						基本信息
+					</div>
+					<div class="um-row content-container">
+					    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+							标题<span style="color: red">*</span>
+						</div>
+						<div class="um-xs-6 um-sm-6 um-md-6 content-value" >
+							<input type="text" id="title" placeholder="请输入标题"/>
+						</div>
+					</div>
+					<div class="um-row content-container">
+					    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+							诉求类别<span style="color: red">*</span>
+						</div>
+						<div class="um-xs-6 um-sm-6 um-md-6 content-value" >
+							<select id='select1' class="um-scroller-select" style="float: left;width: 20px;">
+								<!--
+								<option value="traffic" selected>交通</option>
+								<option value="safe" >安全生产</option>
+								<option value="life" >群众生活</option>
+								-->
+		                    </select> 
+		                	<img src="../../img/ico_xl.png" />
+						</div>
+					</div>
+				</div>
+				
+				<div class="um-row panel-info">
+					<div class="panel-info-title">
+						诉求内容<span style="color: red">*</span>
+					</div>
+					<div class="consyl">
+						<textarea id="appealContent" style="width: 100%;" rows="15" ></textarea>
+					</div>
+				</div>
+				
+				<div class="um-row panel-info">
+					<div class="panel-info-title">
+						诉求结果期望<span style="color: red">*</span>
+					</div>
+					<div class="consyl">
+						<textarea id="appealExpect" style="width: 100%;" rows="15" ></textarea>
+					</div>
+				</div>
+				
+				<div class="um-row panel-info" >
+					<div class="panel-info-title">
+						附件
+					</div>
+					<ul id="uploadFileList" class="um-list f14" style="width: 100%;height: 300px;padding: 8px;">
+                  	</ul>
+				</div>	
+				
+			</div>
+		</div>
+		<script src="./drafes.js" ></script>
+	</body>
+</html>

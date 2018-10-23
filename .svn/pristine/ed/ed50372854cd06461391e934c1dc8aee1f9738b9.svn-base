@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">
+		<link rel="stylesheet" href="login.css" />
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/font.js"></script>
+		<script src="../../js/base.js"></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="login.js"></script>
+		<script type="text/javascript" src="../../js/knockout.js"></script>
+        <script>
+        	$(function(){
+        		$(".um-input-clear").click(function() {
+        		    $(this).prev("input").val("");
+        		})
+        	})
+        </script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-content">
+				<div class="content">
+					<img class="bg" src="../../img/login_bg.png"/>
+					<div class="logo">
+						<img class="logo_img" src="../../img/logo.png" />
+						<div class="logo_title"><b>临沂矿业党建平台</b></div>
+					</div>
+					<div class="login_text">
+						<div class="login_text_content">
+	                        <div class="um-input-group">
+	                        	<span class="user_name"></span>
+	                        	<input  type="text" class="form-control user_message username" onpropertychange="confirmInputChange()" oninput="confirmInputChange()" placeholder="请输入用户名">
+	                        	<span class="clear um-input-clear ti-close"></span>
+	                        </div>
+							
+	                        <div class="um-input-group">
+	                        	<span class="lock"></span>
+	                        	<input  type="password" class="form-control user_message pwd" onpropertychange="confirmInputChange()" oninput="confirmInputChange()" placeholder="请输入密码">
+	                        	<span style="right:38px;" class="clear um-input-clear ti-close"></span>
+								<a  class="pass-type pass" id="changePassType"></a>
+	                        </div>
+	                        
+	                        
+	                        <label class="um-check-inline">
+	                            <input name="um-checkbox-inline" type="checkbox" value="是否记住密码" checked>
+	                            <span class="um-icon-checkbox um-css3-vc"></span>
+	                            <span class="check_text ml5">是否记住密码</span>
+	                        </label>
+						</div>
+						<button class="btn_login">登录</button>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</body>
+</html>

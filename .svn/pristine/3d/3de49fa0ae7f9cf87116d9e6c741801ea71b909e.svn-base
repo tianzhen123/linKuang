@@ -1,0 +1,20 @@
+
+/* 链接 默认设置 */
+a {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

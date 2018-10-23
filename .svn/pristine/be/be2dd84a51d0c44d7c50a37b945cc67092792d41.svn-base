@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="../../css/base.css" />
+		<link rel="stylesheet" href="dangJianGuanLi.css" />
+		
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="dangJianGuanLi.js"></script>
+		
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-header" >
+				<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            		<h3 id="pageTitle">党建管理</h3>
+			</div>
+
+			<div class="um-content">
+				<div class="um-grid um-row">
+                	<div class="um-grid-row tc um-border-bottom">
+                		<div class="um-border-right um-bgc-white" onclick="xuanChuan()">
+                			<a href="#" class="um-circle um-black" >
+                				<img src="../../img/dangdexuanchuan.png" width=50 class="um-img-responsive" alt="">
+                				<div class="f12 mt5">党的宣传</div>
+                			</a>
+                		</div>
+                		<div class="um-border-right um-bgc-white" onclick="zhuanTiGuanLi()">
+                			<a href="#" class="um-circle um-black">
+                				<img src="../../img/zhuantiguanli.png" width=50 class="um-img-responsive" alt="">
+                				<div  class="f12 mt5">专题管理</div>
+                			</a>
+                		</div>
+                		<div class="um-border-right um-bgc-white" onclick="tongYiZhanXian()">
+                			<a href="#" class="um-circle um-black">
+                				<img src="../../img/tongyizhanxian.png" width=50 class="um-img-responsive" alt="">
+                				<div  class="f12 mt5">统一战线</div>
+                			</a>
+                		</div>
+                	</div>
+               
+                	<div class="um-grid-row tc">
+                		<div  class="um-border-right um-bgc-white ">
+                			<a href="#" class="um-circle um-black">
+                				<img src="../../img/kunNanDangYuan.png" width=50 class="um-img-responsive" alt="">
+                				<div  class="f12 mt5">困难党员申请</div>
+                			</a>
+                		</div>
+                		<div class="um-border-right um-bgc-white" onclick="lvZhiLvZeClick()">
+                			<a href="#" class="um-circle um-black">
+                				<img src="../../img/lvZhiLvZe.png" width=50 class="um-img-responsive" alt="">
+                				<div  class="f12 mt5">履职履责评分</div>
+                			</a>
+                		</div>
+                		<div class="um-border-right um-bgc-white">
+                			<a href="#" class="um-circle um-black">
+                				<img src="../../img/xianFengTeam.png" width=50 class="um-img-responsive" alt="">
+                				<div  class="f12 mt5">先锋队伍</div>
+                			</a>
+                		</div>
+                		
+                	</div>
+                	
+                	
+                </div>
+			</div>
+			
+			
+		</div>
+	</body>
+</html>

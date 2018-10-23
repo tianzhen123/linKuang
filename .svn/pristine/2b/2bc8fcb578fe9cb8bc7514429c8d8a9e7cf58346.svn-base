@@ -1,0 +1,18 @@
+#more{
+    padding:10px;
+    height:70px;
+    text-align:center;
+    color:gray;
+}
+/*.input-cancel{
+display:none;
+color: #007aff;
+transition: width ease-in .3s;
+min-width: 50px;
+padding-left: 10px;
+cursor: pointer;
+}*/
+#wrapper{
+/*top:90px;*/
+overflow: auto;
+}

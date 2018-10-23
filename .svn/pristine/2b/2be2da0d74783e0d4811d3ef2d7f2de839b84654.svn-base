@@ -1,0 +1,7 @@
+.um-list .um-list-item-body {
+    padding: 9px 9px;
+   }
+
+.um-input-group{
+	margin:5px;
+}

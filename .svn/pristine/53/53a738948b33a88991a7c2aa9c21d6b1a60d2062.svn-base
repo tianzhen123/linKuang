@@ -1,0 +1,5 @@
+.um-content{
+margin-top: 1px;
+margin-left: 20px;
+margin-right: 20px
+}

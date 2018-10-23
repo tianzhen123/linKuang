@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="../../css/base.css" />	
+		<link rel="stylesheet" href="../../css/layout/base.css">
+		<link rel="stylesheet" href="waitExamine.css" />
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-header" >
+				<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            	<h3 id="pageTitle">待审批</h3>
+            	<a href="#" class="addBtn" >选择</a>
+			</div>
+
+			<div class="um-content">
+				<div class="content-head">
+					<ul class="content-head-list">
+						<li>
+							<div class="li-left f14 li-title">
+								标题
+							</div>
+							<input class="li-center title" type="text" class="f14" />
+						</li>
+						<li>
+							<div class="li-left f14">
+								摘要
+							</div>
+							<input class="li-center summary" type="text" class="f14" />
+						</li>
+						<li>
+							<div class="li-left f14">
+								标签
+							</div>
+							<input class="li-center tag" type="text" class="f14" />
+						</li>
+						<li>
+							<div class="li-left f14">
+								创建时间
+							</div>
+							<input class="li-center create-time" type="date" class="f14" />
+						</li>
+						<li data-bind = "click:selColumn" >
+							<div class="li-left f14" class="li-column">
+								栏目
+							</div>
+							<div class="li-center f14" data-bind="text:column"></div>
+						</li>
+					</ul>
+				</div>
+				<div class="content-body">
+					<p class="f14 body-title">内容</p>
+					<div class="con-body-con">
+						<div id="frame" class="editor" contenteditable="true" style="-webkit-user-select: auto" placeholder="请输入内容">
+						</div>
+					</div>
+				</div>
+				<ul id="choose" data-bind="foreach:chooseArr">
+					<li data-bind="text:name,click:$root.chooseClick.bind($data)">通过</li>
+				</ul>
+			</div>
+
+		</div>
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="../../js/base.js"></script>
+		<script src="../../js/knockout.js"></script>
+		<script src="../../js/font.js"></script>
+		<script src="waitExamine.js"></script>
+	</body>
+</html>

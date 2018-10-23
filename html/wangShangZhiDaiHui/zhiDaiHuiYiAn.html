@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="../../css/base.css" />
+		<link rel="stylesheet" href="../../html/wangShangZhiDaiHui/zhiDaiHuiYiAn.css" />
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script type="text/javascript" src="../../js/knockout.js"></script>
+		<script src="../../js/hp/hp_function.js"></script>
+		<script src="../../js/hp/hp_slide.js"></script>
+		<script src="../../html/wangShangZhiDaiHui/zhiDaiHuiYiAn.js" ></script>
+	</head>
+	<body>
+		<div class="um-win" id="index" name="hp_slide">
+			<div class="um-header" >
+            	<a href="#"  class="um-back " onclick="backClick()">返回</a>
+            	<h3>提案内容</h3>
+			</div>
+			<div class="um-listview-wrap" id="list">
+            <ul class="um-no-active" data-bind="foreach: data">
+            <!-- 提案主题-->
+					<li  class="um-list-item m10"> 
+				        <div class="um-list-item-inner"> 
+				            <div class="f18 um-list-item-body tc" data-bind="text:proposalsub">主题</div> 
+				        </div> 
+				    </li>
+			<div class="um-content">	    
+            <!-- 工作单位-->
+			<div>
+            <span class="f16">单位：</span>
+            <span class="f16 um-black" data-bind="text:workunit"></span>
+			</div>
+            <!-- 提议人-->
+            <div>
+            <span class="f16">提议人：</span>
+            <span class="f16 um-black" data-bind="text:proposer"></span>
+            </div>
+            <!-- 职务-->
+            <div>
+            <span class="f16">职 务：</span>
+            <span class="f16 um-black" data-bind="text:post"></span>
+            </div>
+            <!-- 附议人-->
+            <div>
+            <span class="f16">附议人：</span>
+            <span class="f16 um-black" data-bind="text:seconder"></span>
+            </div>
+            <!-- 时间-->
+            <div>
+            <span class="f16">时间：</span>
+            <span class="f16 um-black" data-bind="text:proposaldate"></span>
+            </div>
+            </div>
+            <!-- data-bind="text:content" -->
+            <!-- 详细内容-->
+            <div class="f16 um-black"  style="background-color: white;  padding: 0 10px"></div>
+          		<span class="f16" style="padding: 0 20px">提案内容：</span>
+          		<p id="frame"></p>
+            </ul>
+            </div>
+            <!-- 点赞按钮 -->
+<!--             <button class="btn btn-sm um-btn-danger um-css3-hc" id="btn1" style="width: 40px;width: 50px" onclick="addClick()">
+                                   赞 </button>
+            <span class="um-gray um-box-hc f14" id="span2">12</span>                       
+            			<div class="um-footer"> -->
+				
+			</div>
+		</div>
+	</body>
+</html>

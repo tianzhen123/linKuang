@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="opinion.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">
+		<link rel="stylesheet" href="../../css/base.css" />
+		<link rel="stylesheet" href="../../css/public.css">
+		<link rel="stylesheet" href="../../css/commons.css"/>
+		<script src="../../js/commons.js" ></script> 
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="../../js/summer.js" ></script>
+		<script src="./report.js" ></script>
+        <script>
+        $(function(){
+		   var oHeight = $(document).height(); //屏幕当前的高度
+		   $(window).resize(function(){
+		       if($(document).height() < oHeight){
+			       $(".submitBtnContainer").css("display","none");
+			   }else{
+			       $(".submitBtnContainer").css("display","block");  
+			   } 
+	   		});
+        })
+        </script>
+    </head>
+    <body>
+         <div class="um-win" id="index">
+            <div id="header" class="um-header">
+				<div id="backContainer" style="width: 30%">
+					<a href="#"  class="headerText backup" onclick="backClick()">&nbsp;返回</a>
+				</div>
+				<div id="titleContainer" style="width:40%">
+					<h3 id="title"></h3>
+				</div>
+				<div id="appealContainer" style="width:30%">
+					<a id="fillReportBtn" href="#" class="headerText">提交</a>
+				</div>
+			</div>
+            <div class="um-content panel-info-container">
+            	<div class="um-row panel-info">
+					<div class="panel-info-title">
+						审批意见
+					</div>
+					<div class="consyl">
+						<textarea id="opinion" style="width: 100%;" rows="15"></textarea>
+					</div>
+				</div>
+            </div>
+        </div>
+    </body>
+</html>

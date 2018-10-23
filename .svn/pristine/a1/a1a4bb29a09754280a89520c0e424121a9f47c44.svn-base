@@ -1,0 +1,118 @@
+.um-input-group{
+	margin:5px;
+}
+.um-content {
+    position: relative;
+}
+.mescroll{
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		height: auto;/*如设置bottom:51px,则需height:auto才能生效*/
+}
+.desc{
+	flex:1;
+	padding:0 0 10px 0;
+	
+}
+.desc-p{
+	overflow:hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	word-wrap: break-word;
+    white-space: normal !important;
+	height:auto;
+}
+.msg-info{
+	max-width:40%;
+	margin: 0;
+}
+.image{
+	float:left;
+	padding-right: 10px;
+	max-height:95px;
+	max-width:120px;
+}
+
+.list-content{
+	display: flex;
+	flex-direction:row;
+	max-height: 120px;
+	overflow:hidden;
+	padding:10px;
+}
+.content-left{
+	
+}
+.content-right{
+	flex:6;
+	/* max-height:120px; */
+	display:flex;
+	flex-direction:column;
+}
+.more {
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+}
+
+.noshow {
+    opacity: 0;
+}
+
+.pull_icon {
+    width: 25px;
+    height: 25px;
+    background-image: url('../../img/pull.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 25px;
+    transition: all .5s;
+}
+
+.more span {
+    padding-left: .5rem;
+}
+
+.more .flip {
+    transform: rotate(180deg);
+}
+
+.loading {
+    background-image: url('../../img/loading.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 25px;
+}
+
+.more .loading {
+    -webkit-transform: rotate(0deg) translateZ(0);
+    -webkit-transition-duration: 0;
+    -webkit-animation-name: loading;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+}
+
+@-webkit-keyframes loading {
+    from {
+        -webkit-transform: rotate(0deg) translateZ(0);
+    }
+    to {
+        -webkit-transform: rotate(360deg) translateZ(0);
+    }
+}
+#swrapper {
+    position: fixed;
+    top: 100px;
+    width: 100%;
+    bottom: 0;
+}
+.line{
+	background-color: #c2c2c2;
+	height:1px;
+}

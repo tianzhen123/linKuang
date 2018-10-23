@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="../../css/base.css" />
+		<link rel="stylesheet" href="labourManager.css" />
+		
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="../../js/knockout.js"></script>
+		<script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+		<script type="text/javascript" src="labourManager.js"></script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-header">
+            	<a href="#"  class="um-back" onclick="backClick()"></a>
+            	<h3>工会管理</h3>
+            </div>
+
+			<div class="um-content">
+				<div class="um-grid um-row">
+                	<div class="um-grid-row tc um-border-bottom">
+                		<div class="um-border-right um-bgc-white" onclick="jiCengActive()">
+                			<a href="#" class="um-circle um-black" >
+                				<img src="../../img/tuanwei/huodong.png" width=50 class="um-img-responsive" alt="">
+                				<div class="f12 mt5">基层动态</div>
+                			</a>
+                		</div>
+                		<div class="um-border-right um-bgc-white">
+                			<a href="#" class="um-circle um-black">
+                				<img src="../../img/tuanwei/tuiyou.png" width=50 class="um-img-responsive" alt="">
+                				<div  class="f12 mt5">专项工作</div>
+                			</a>
+                		</div>
+                		<div class="um-border-right um-bgc-white">
+                			<a href="#" class="um-circle um-black">
+                				<img src="../../img/tuanwei/pinpai.png" width=50 class="um-img-responsive" alt="">
+                				<div  class="f12 mt5">网上职代会</div>
+                			</a>
+                		</div>
+                		
+                	</div>
+                	<div class="um-grid-row tc">
+                		<div  class="um-border-right um-bgc-white ">
+                			<a href="#" class="um-circle um-black">
+                				<img src="../../img/tuanwei/xuexi.png" width=50 class="um-img-responsive" alt="">
+                				<div  class="f12 mt5">温暖临矿</div>
+                			</a>
+                		</div>
+                		<div class="um-border-right um-bgc-white">
+                			<a href="#" class="um-circle um-black">
+                				<img src="../../img/tuanwei/ziliao.png" width=50 class="um-img-responsive" alt="">
+                				<div class="f12 mt5">普惠服务</div>
+                			</a>
+                		</div>
+                		<div class="um-border-right um-bgc-white">
+                			<a href="#" class="um-circle um-black">
+                				<img src="../../img/tuanwei/ziliao.png" width=50 class="um-img-responsive" alt="">
+                				<div class="f12 mt5">主席信箱</div>
+                			</a>
+                		</div>
+                		
+                	</div>
+                </div>
+			</div>
+
+		</div>
+	</body>
+</html>

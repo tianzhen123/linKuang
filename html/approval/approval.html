@@ -1,0 +1,161 @@
+<!-- 审批 -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" href="../../css/iuapmobile.um.css">
+        <link rel="stylesheet" href="approval.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">
+		<link rel="stylesheet" href="../../css/base.css" />
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="../../js/summer.js" ></script>
+		<script src="approval.js" ></script>
+		<script src="../../js/base.js" ></script>
+        <style>
+        </style>
+
+    </head>
+    <body>
+        <div class="um-page active" id="index">
+            <div class="um-header header" um-water>
+                <a onclick="backClick()"  class="um-back"></a>
+                <h3>审批</h3>
+            </div>
+            <div class="um-content">
+                <form action="" >
+                	<ul class="um-list f14 approvalProcess">
+                		<div class="wait2">
+                			<div class="verticalCenter approval">
+	                			<div class="imgsyl"  style="width:100%;">
+	                				<img src="../../img/ico_approvaling.png"/>
+	                				<span class="um-badge" style="position: absolute;" data-bind="text:msgNum,visible:msgNum>0">4</span>
+	                			</div>
+	                			<div class="imgDescribe"  style="width:100%;">
+	                				待审批
+	                			</div>
+                			</div>
+                		</div>
+                		<div class="wait2">
+                			<div class="verticalCenter">
+	                			<div class="imgsyl" style="width:100%;">
+	                				<img src="../../img/ico_approvaled.png"/>
+	                				<span class="um-badge" style="position: absolute;" data-bind="text:msgNum,visible:msgNum>0"></span>
+	                			</div>
+	                			<div class="imgDescribe" style="width:100%;">
+	                				已审批
+	                			</div>
+                			</div>
+                		</div>
+                	</ul>
+                
+                    <div class="f14 describe">
+		            	问题描述
+		            </div>
+		            <ul class="um-list f14" style="width: 100%;height: 130px">
+		            	<div class="wait2">
+                			<div class="verticalCenter" style="border-right: 1px solid #cccc;">
+	                			<div class="imgsyl" style="width:100%;">
+	                				<img src="../../img/ico_tyty.png"/>
+	                				<span class="um-badge" style="position: absolute;" data-bind="text:msgNum,visible:msgNum>0"></span>
+	                			</div>
+	                			<div class="imgDescribe" style="width:100%;">
+	                				团员推优
+	                			</div>
+                			</div>
+                		</div>
+                		<div class="wait2" id="securityProblem">
+                			<div class="verticalCenter" style="border-right: 1px solid #cccc;">
+	                			<div class="imgsyl" style="width:100%;">
+	                				<img src="../../img/ico_sp.png"/>
+	                				<span class="um-badge" style="position: absolute;" data-bind="text:msgNum,visible:msgNum>0">1</span>
+	                			</div>
+	                			<div class="imgDescribe" style="width:100%;">
+	                				青安岗工作
+	                			</div>
+                			</div>
+                		</div>
+                    </ul>
+                    <div class="f14 describe">
+		            	工会工作
+		            </div>
+		            <ul class="um-list f14" style="width: 100%;height: 260px">
+		            	<div class="wait">
+                			<div class="verticalCenter" style="border-right: 1px solid #cccc;border-bottom: 1px solid #cccc;">
+	                			<div class="imgsyl" style="width:100%;">
+	                				<img src="../../img/ico_bmff.png"/>
+	                				<span class="um-badge" style="position: absolute;" data-bind="text:msgNum,visible:msgNum>0"></span>
+	                			</div>
+	                			<div class="imgDescribe" style="width:100%;">
+	                				便民服务
+	                			</div>
+                			</div>
+                		</div>
+                		<div class="wait">
+                			<div class="verticalCenter" style="border-right: 1px solid #cccc;border-bottom: 1px solid #cccc;">
+	                			<div class="imgsyl" style="width:100%;">
+	                				<img src="../../img/ico_email.png"/>
+	                				<span class="um-badge" style="position: absolute;" data-bind="text:msgNum,visible:msgNum>0"></span>
+	                			</div>
+	                			<div class="imgDescribe" style="width:100%;">
+	                				主席信箱
+	                			</div>
+                			</div>
+                		</div>
+                		<div class="wait" id="massesSecurity">
+                			<div class="verticalCenter" style="border-bottom: 1px solid #cccc;">
+	                			<div class="imgsyl" style="width:100%;">
+	                				<img src="../../img/ico_ms.png"/>
+	                				<span class="um-badge" style="position: absolute;" data-bind="text:msgNum,visible:msgNum>0">4</span>
+	                			</div>
+	                			<div class="imgDescribe" style="width:100%;">
+	                				群众安全工作
+	                			</div>
+                			</div>
+                		</div>
+                		<div class="wait" id="goodExample">
+                			<div class="verticalCenter" style="border-right: 1px solid #cccc;border-bottom: 1px solid #cccc;">
+	                			<div class="imgsyl" style="width:100%;">
+	                				<img src="../../img/ico_ge.png"/>  
+	                				<span class="um-badge" style="position: absolute;" data-bind="text:msgNum,visible:msgNum>0"></span>
+	                			</div>
+	                			<div class="imgDescribe" style="width:100%;">
+	                				先进劳模
+	                			</div>
+                			</div>
+                		</div>
+                		<div class="wait" id="studyAid">  
+                			<div class="verticalCenter" style="border-right: 1px solid #cccc;border-bottom: 1px solid #cccc;">
+	                			<div class="imgsyl" style="width:100%;">
+	                				<img src="../../img/ico_sa.png"/>
+	                				<span class="um-badge" style="position: absolute;" data-bind="text:msgNum,visible:msgNum>0"></span>
+	                			</div>
+	                			<div class="imgDescribe" style="width:100%;">
+	                				金秋助学
+	                			</div>
+                			</div>
+                		</div>
+                		<div class="wait" id="helpworkers">
+                			<div class="verticalCenter" style="border-bottom: 1px solid #cccc;">
+	                			<div class="imgsyl" style="width:100%;">
+	                				<img src="../../img/ico_hw.png"/>
+	                				<span class="um-badge" style="position: absolute;" data-bind="text:msgNum,visible:msgNum>0"></span>
+	                			</div>
+	                			<div class="imgDescribe" style="width:100%;">
+	                				职工帮困
+	                			</div>
+                			</div>
+                		</div>
+                    </ul>
+                </form>
+            </div>
+        </div>
+
+        <script>
+           
+        </script>
+    </body>
+
+</html>

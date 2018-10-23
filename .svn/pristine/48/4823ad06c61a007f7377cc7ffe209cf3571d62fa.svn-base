@@ -1,0 +1,313 @@
+/**
+ * 韩鹏
+ * 用友能源
+ * 2017.11.24
+ */
+var ViewModel = function() {
+};
+var viewModel = new ViewModel();
+
+var jsonArray ;
+var currentRowIndex;
+var length_viewModel;
+//var data = "";
+var timeOfSelected;//传过来的，选中时间
+var flag_complete;//最后完成的标志
+summerready = function(){
+	/*获取前一个页面传来的数据*/	
+	currentRowIndex = summer.pageParam.currentRowIndex;
+	timeOfSelected = summer.pageParam.timeOfSelected;
+	//$summer.alert("进入详情" );
+	
+	//$summer.alert("currentRowIndex = " + currentRowIndex );
+	//$summer.alert("timeOfSelected = " + timeOfSelected );
+	
+	/*刷新数据*/
+	refresh(currentRowIndex,timeOfSelected);
+    
+    /*打开新页面 */
+	$("#next").on("click", function(sender, args) {
+		//这里可以处理行点击事件，参数sender即为当前列表实例对象，args对象有2个属性，即rowIndex(行索引)和$target(目标行的jquery对象)
+		
+		//$summer.alert("下一个");
+		
+		/*进行判断是否为最后一条数据，倒数第二条往最后一条跳转前，把前端页面右角文字改掉*/
+		if(currentRowIndex<(length_viewModel-1-1)){//前几条
+			save_viewModel(currentRowIndex);//保存改动后的数据到viewModel中
+			saveClick(currentRowIndex);//提交给服务器
+			next(currentRowIndex);
+		}else if(currentRowIndex==(length_viewModel-1-1)){//倒数第二条
+			changeText(1);
+			save_viewModel(currentRowIndex);//保存改动后的数据到viewModel中
+			saveClick(currentRowIndex);//提交给服务器
+			next(currentRowIndex);
+		}else if(currentRowIndex>=(length_viewModel-1)){//最后一条
+			save_viewModel(currentRowIndex);//保存改动后的数据到viewModel中
+			saveClick(currentRowIndex);//提交给服务器
+			backClick(currentRowIndex);
+		}
+	});   
+	
+	/*限制金额输入框只能输入数字*/
+	var text = document.getElementById("amount");
+	text.onkeyup = function(){
+		/*关键代码*/
+		this.value=this.value.replace(/\D/g,'');
+	}
+ 
+}
+
+/**
+ * 下一条数据 
+ */
+function next(index){
+	currentRowIndex = ++index;
+	init(currentRowIndex);
+}
+
+/**
+ *
+ * 改变团费管理中右角的文字,
+ * 
+ * 改变完成标志的状态，1：完成  0：下一项
+ * 
+ * 输入输出:
+ * 0 右角文字 ：下一项
+ * 1 右角文字 ：完成
+ * 
+ * 适应情况：
+ * 1.判断点击的是否为最后一条数据
+ * 如果是最后一条改变页面右角的文字
+ * 2.如果从倒数第二个跳到最后一个，改变页面右角的文字
+ * 
+ * 要求：使用前需要按需求加判断
+ */
+function changeText(num){
+	if(num==0){
+		$("#next").children().text("下一项");		
+	}else if(num==1){
+		$("#next").children().text("完成");
+	}
+}
+
+/**
+ * 刷新 获取json数据
+ * currentRowIndex : 前一个页面的选中行，用于刷新完数据，进行初始化init(currentRowIndex);
+ * timeOfSelected : 前一个页面的选中时间，用于按时间获取数据
+ */
+function refresh(currentRowIndex,timeOfSelected) {
+	//$summer.alert("进入刷新");
+	
+	
+	/*Knockout绑定*/
+	viewModel.data = ko.observableArray([]);
+	
+	/*网络请求*/
+	var url = "http://dj.lykyjt.com:8899/partyconstrutproject/tuanorgfee/selectbydate?yearmonth="+timeOfSelected;
+	//$summer.alert("获取列表");
+	summer.get(url, {
+		
+	}, {
+		"Content-Type" : "application/x-www-form-urlencoded",
+	}, //url地址
+	function(response) {//成功回调
+		var data = $summer.strToJson(response.data);
+		viewModel.data.removeAll();
+		//$summer.alert("成功回调 数据");
+		//$summer.alert(data);
+		if (data.success == "success") {
+			jsonArray = data.detailMsg;
+			var count = jsonArray.data.length;
+			/*获取viewModel长度*/
+			length_viewModel = count;
+			/*初始化viewModel json*/
+			for (var k = 0; k < count; k++) {
+				viewModel.data.push(jsonArray.data[k]);
+				//$summer.alert(jsonArray.data[k]);
+			}
+			/*页面初始化*/
+			init(currentRowIndex);
+		} else {
+			$summer.alert("网络错误");
+		}
+	}, function(response) {//失败回调
+		$summer.alert("请求失败");
+	});
+}
+
+/**
+ * 页面初始化 
+ * index：传入当前行
+ */
+function init(index){
+	/*初始化前端右角文字*/
+	if(currentRowIndex==(length_viewModel-1)){
+		changeText(1);
+	}
+	
+	/*初始化  支部、姓名、缴费月份、金额*/
+	//获取指定位置的数据
+	var item = viewModel.data()[index];
+	var data = JSON.stringify(item);
+	data = $summer.strToJson(data);
+	//绑定数据
+	var temp_viewModel = {
+		parent_id : ko.observable(data.parent_id),//支部
+		name_name : ko.observable(data.name_name),//姓名
+		yearmonth : ko.observable(time_substr(data.yearmonth)),//缴费年月
+		amount : ko.observable(data.amount),//金额
+		def1 : ko.observable(data.def1),//备注
+	}
+	//执行绑定
+    ko.applyBindings(temp_viewModel);
+}
+
+/**
+ * 将获取的json中年月的格式进行更改
+ * 201711 转换成 2017年11月
+ */
+function time_substr(time){
+	var year = time.toString().substr(0,4);
+	var month = time.toString().substring(4);
+	var year_month = year + "年" + month + "月";
+	return year_month;
+}
+
+/**
+ * 保存改动后的数据到viewModel中 （暂时不用此方法）
+ */
+function save_viewModel1(index){
+	/*获取viewModel中指定位置的数据*/
+	var item = viewModel.data()[index];
+	var data = JSON.stringify(item);
+	data = $summer.strToJson(data);
+	
+	/*改变数据，金额，备注*/
+	data.amount = $("#amount").val();
+	data.def1 = $("#content").val();
+	
+	/*替换掉viewModel中的旧数据*/
+	viewModel.data.splice(index,1,data);
+	
+	/*
+	$summer.alert(data.amount);
+	$summer.alert(data.def1);
+	
+	$summer.alert(viewModel.data());
+	*/
+}
+
+/**
+ * 保存改动后的数据到jsonArray中 
+ */
+function save_viewModel(index){
+	/*获取viewModel中指定位置的数据*/
+	var item = jsonArray.data[index];
+	var data = JSON.stringify(item);
+	data = $summer.strToJson(data);
+	
+	/*改变数据，金额，备注*/
+	data.amount = $("#amount").val();
+	data.def1 = $("#content").val();
+	
+	/*替换掉viewModel中的旧数据*/
+	jsonArray.data.splice(index,1,data);
+	/*
+	$summer.alert(data.amount);
+	$summer.alert(data.def1);
+	
+	$summer.alert(jsonArray);
+	*/
+}
+
+
+
+
+
+/**
+ * 刷新团费管理的列表 
+ */
+function tuanFeiGuanLi_refresh(time){
+	var jsfun = 'refresh(0,'+ time +');';
+	summer.execScript({
+		winId : 'tuanFeiGuanLi',
+		script : jsfun
+	});
+}
+
+/**
+ * 前端页面是否有空值
+ * 有空值 
+ */
+function hasNull(){
+	var title = $("#title").val();
+	var content = $("#content").val();
+	if(title == null || content == null || title.replace(/\s/g,'')=="" || content.replace(/\s/g,'')==""){//去除空格  replace(/\s/g,'')
+		return true;
+	}else{
+		return false;
+	}
+}
+
+/**
+ * 网络添加事件
+ */
+function saveClick(index){
+/**
+ * 点击提交 触发提交事件
+ * 获取前端页面的数据
+ * 将数据写入json中
+ * 提交给服务器
+ * 关闭页面
+ */
+
+
+	//alert("进入saveClick()");
+	var requestid = "http://dj.lykyjt.com:8899/partyconstrutproject/tuanorgfee/save1";
+	//$summer.alert(jsonArray.data[index]);
+	
+	//把json传给服务器
+	summer.post(requestid,jsonArray.data[index],//可选参数，方便开发者设置请求的header
+	{
+		"Content-Type" : "application/x-www-form-urlencoded", //可选参数，post请求的要写入的条件数据，须为json对象
+	}, function(response) {//成功回调
+		var data_response = $summer.strToJson(response.data);
+		//alert("成功回调");
+		if (data_response.success == "success") {
+			//如果是完成的按钮状态，则提示完成
+			
+			//alert("提交成功");
+		
+		
+			//myAlert("提交成功");
+			/*
+			var jsfun = 'refresh('+time+');';
+			summer.execScript({
+				winId : 'liuYanBan',
+				script : jsfun
+			});
+			backClick();
+			*/
+		} else {
+			alert("保存失败");
+		}
+	}, function(response) {//失败回调
+		alert("网络错误");
+	});
+	
+}
+
+
+
+/**
+ * 初始化右角的文字
+ * 提交数据
+ * 关闭窗口
+ */
+function backClick() {
+	changeText(0);//关闭前把右角的数据初始化
+	//save_viewModel(currentRowIndex);//保存改动后的数据到viewModel中
+	//saveClick(currentRowIndex);//把改动后的数据提交给服务器
+	tuanFeiGuanLi_refresh(timeOfSelected);//刷新团费管理的列表
+	summer.closeWin({});//关闭页面
+}

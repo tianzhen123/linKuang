@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="shuZhiShuZePingFen.css" />
+		<link rel="stylesheet" href="../../css/base.css" />
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/base.js"></script>
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="../../js/knockout.js"></script>
+		<script src="shuZhiShuZePingFen.js"></script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			
+            <div class="um-header um-box-hc" >
+            	<a href="#"  class="um-back" onclick="backCilck()">返回</a>
+            	<h3>述职述责评分</h3>
+            	<a class="um-header-right" href="#" onclick="saveClick()">保存</a>
+            </div>
+
+
+			<div class="um-content">
+				<div class="um-list">
+                <label class="um-label um-box-justify">
+	                	<div>党员编号</div>
+	                	<div data-bind = "text:code">123123123</div>
+                </label>
+                
+                <label class="um-label um-box-justify">
+	                	<div>党员姓名</div>
+	                	<div  data-bind="text:name">张友金</div>
+                </label>
+                
+                <label class="um-label um-box-justify">
+	                	<div>岗位</div>
+	                	<div  data-bind="text:post">实验科科长</div>
+                </label>
+                
+                <label class="um-label um-box-justify">
+	                	<div>职责</div>
+	                	<div data-bind="text:duty">管理人员</div>
+                </label>
+                
+                  
+                  <label class="um-label um-box-justify">
+                	<div>自身建设情况</div>
+                	<div>
+                		<input id="selfconstruction" type="text" class="form-control tr" placeholder="请输入"  data-bind="text:selfconstruction">
+                	</div>
+                </label>
+                
+                
+                <label class="um-label um-box-justify">
+                	<div>岗位目标完成情况</div>
+                	<div>
+                		<input id="positiontarget" type="text" class="form-control tr" placeholder="请输入"  data-bind="text:positiontarget">
+                	</div>
+                </label>
+                	
+                <a class="um-list-item" style="" onclick="selResult()">
+                        <div class="um-list-item-inner">
+                            <div class="um-list-item-left pl15" style="width: 50%">
+                                	评审结果
+                            </div>
+                            <div class="um-list-item-right">
+                                <div class="um-box-vc" style="float: right">
+                                	<label id="reviewstatus" style="float:left" class="module mr20" data-bind="text:reviewstatus">无</label>
+                                </div>
+                            </div>
+                        </div>
+                  </a>
+                
+                </div>
+
+			</div>
+
+		</div>
+	</body>
+</html>

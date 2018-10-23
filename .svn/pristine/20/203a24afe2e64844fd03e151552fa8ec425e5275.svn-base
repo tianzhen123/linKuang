@@ -1,0 +1,10 @@
+var viewModel;
+summerready = function(){
+	$('.username').val(summer.getStorage("lk_username"));
+    $('.password').val(summer.getStorage("lk_pwd"));
+    
+    $('.btn_login').on('click',function(){
+    	alert(1);
+    })
+    
+}

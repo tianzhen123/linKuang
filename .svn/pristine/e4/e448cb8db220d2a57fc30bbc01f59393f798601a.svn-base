@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<!-- 默认 start -->
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<!-- 默认 end -->
+		<link rel="stylesheet" type="text/css" href="../../css/iuapmobile.um.listview.css">
+		
+		<!-- 头部 start -->
+		<link rel="stylesheet" href="../../css/base.css" />
+		<!-- 头部 end -->
+		
+		<!-- 样式修改  start-->
+		<link rel="stylesheet" href="tuanFeiGuanLi.css "/>
+        <!-- 样式修改  end-->
+        
+      	<!-- 必须放在这里   时间插件 必须引入的 start -->
+		<link href="timer/mobiscroll.css" rel="stylesheet" /> 
+		<link href="timer/mobiscroll_date.css" rel="stylesheet" /> 
+		<script src="../../js/jquery.min.js"></script> 
+		<script src="timer/mobiscroll_date.js"></script> 
+		<script src="timer/mobiscroll.js"></script> 
+		<!--  时间插件 必须引入的 end -->
+        
+		<!-- 自定义 start -->
+		 <script src="tuanFeiGuanLi.js" ></script>
+		 <script src="../../js/hp/hp_slide.js"></script>
+		<!-- 自定义 end -->
+
+		<!-- 默认 start -->
+		<script src="../../js/summer.js" ></script>		
+		<!-- <script src="../../js/jquery.min.js"></script>  -->
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<!-- 默认 end -->
+		
+		<!-- 引用 start -->
+        <!-- 列表 -->
+        <script src="../../js/knockout.js"></script>
+		<script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+        <!-- 引用  end -->
+        
+        
+        <script type="text/javascript">
+		$(function () {
+			var currYear = (new Date()).getFullYear();	
+			var opt={};
+			opt.date = {preset : 'date'};
+			opt.datetime = {preset : 'datetime'};
+			opt.time = {preset : 'time'};
+			opt.default = {
+				theme: 'android-ics light', 
+				display: 'bubble', 
+				mode: 'scroller', 
+				dateFormat: 'yyyy年mm月',
+				lang: 'zh',
+				showNow: true,
+				nowText: "本月",
+				startYear: currYear - 5,
+				endYear: currYear 
+			};
+		
+			$("#time").mobiscroll($.extend(opt['date'], opt['default']));
+		
+		});
+		</script>
+        
+	</head>
+	<body>
+		<div class="um-win" id="index" name="hp_slide">
+			<!-- 头部  start-->
+			<div class="um-header">
+            	<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            	<h3>团费收缴</h3>      
+            </div>
+			<!-- 头部  end-->
+			<!-- 时间管理器  start -->
+			<section id="form" style="position:relative;background: #e7e7e7;">
+				<form action="">
+					<div style="float: right;width: 150px;height: 50px;text-align: center;">
+						<input type="text" style="float:right;text-align: center; padding: 0;margin-right: 16px;" name="USER_AGE" id="time" onPropertyChange="showValue(this.value)" readonly="true" class=" my-form-control um-box-justify"  />
+					</div>
+					<div style="float: right;width: 150px;height: 50px;text-align: center;">
+						<input readonly="true" style="padding: 0;float: right;width: 150px;height: 50px;text-align: center;background: #e7e7e7;border: none;font-family: inherit;font-size: 20px;" value="缴费月份："/>
+					</div>
+				</form>
+			</section>
+			<!-- 时间管理器  end -->
+			
+			<!-- 内容体 start-->
+			<div class="um-content" style="background:#fff">
+        		<!-- 列表  start -->
+        		<div class="um-listview" id="listview" >
+            		<ul class="um-list" data-bind="foreach:data" style="background:#fff"> 
+                		<li class="um-listview-row" >
+						    <a href="#" class="um-list-item"> 
+							    <div class="um-list-item-media">
+									<div class="name f12 um-box-center"  data-bind="text:def3">姓名</div>
+								</div>
+						        <div class="um-list-item-inner"> 
+						            <div class="um-list-item-body" > 
+						            	<div  style="margin: 10px auto" data-bind="text:def3">姓名</div> 
+						            </div> 
+						            <div class="um-list-item-right"> 
+						                <span class=" mr15 f14" data-bind="text:feeamount">金额 </span> 
+						            </div> 
+						            
+						        </div> 
+						    </a>
+					  	</li>
+					</ul>
+				</div>
+				<!-- 列表   end -->
+			</div>
+			<!-- 内容体 end-->
+		</div>
+
+
+	</body>
+</html>

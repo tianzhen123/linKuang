@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>金秋助学</title>
+	<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">   
+    <link rel="stylesheet" href="../../js/ydui/ydui.px.css">
+	<link rel="stylesheet" href="https://unpkg.com/cube-ui/lib/cube.min.css">
+
+	<script src="../../js/commons.js" ></script> 
+	<script src="../../js/jquery.min.js" ></script>
+	<script src="../../js/summer.js" ></script>
+	<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+	<script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+	  
+    
+    <style>
+    .yd-navbar{
+    	padding-top: 10px;
+    }
+    .yd-navbar-item{
+    	padding-top: 15px;
+    }
+    .geList{
+    	padding: 5px;
+    	display:flex;
+    	flex-wrap:wrap;
+    	padding-left: 10px;
+    	padding-right:10px;
+    	padding-top:70px;
+    }
+    .geObj{
+    	width:33.33%;
+    	padding-left:5px;
+    	padding-right:5px;
+    	padding-bottom: 5px;
+    }
+    .geObj-img{
+    	width:100%;
+    	height: 120px;
+    }
+    .geObj-img img{
+    	width:100%;
+    	height: 100%;
+    }
+    .geObj-type{
+    	width: 100%;
+    	padding: 10px;
+    	background-color: #d72424;
+    	text-align: center;
+    	color: #ffffff;
+    }
+   .geObj-name {
+    	text-overflow: ellipsis;
+     	white-space: nowrap;
+   	 	overflow: hidden;
+   	 	font-weight: 800;
+   	 	text-align: center;
+   	 	background-color: #FFFFFF;
+   	 	padding: 5px;
+   	 	padding-bottom: 0px;
+   	 	font-size:15px;
+   }
+   .geObj-companyName {
+    	text-overflow: ellipsis;
+     	white-space: nowrap;
+   	 	overflow: hidden;
+   	 	text-align: center;
+   	 	background-color: #FFFFFF;
+   	 	padding:5px;
+   }
+   .yd-tab-box{
+   		position: fixed;
+   		width: 100%;
+   		z-index: 9999;
+   }
+   .headerBar{
+   		position:fixed;
+   		background-color: red;
+   		height: 64px;
+   		top: 0px;
+   		z-index: 99999;
+   		width: 100%;
+   		padding-top: 20px;
+   }
+   .scrollView{
+   		position: relative;
+   }
+   .yd-back-icon{
+   	    font-size: 10px;
+   }
+    </style>
+</head>
+<body>
+<div id="app">
+	<template>
+	    <yd-navbar title="金秋助学" bgcolor="#d72424" height="64px" color="#FFFFFF" fixed="true">
+	        <router-link to="#" slot="left" @click="backFunc">
+	            <yd-navbar-back-icon color="#ffffff">&nbsp;返回</yd-navbar-back-icon>
+	        </router-link>
+	        <router-link to="#" slot="right">
+	        	<div @click="showActive">申请</div>
+	        </router-link>
+	    </yd-navbar>
+	    <yd-pullrefresh :callback="pullLoadList" ref="pullrefresh">
+	    <yd-infinitescroll :callback="loadList" ref="infinitescroll" >
+    		<div slot="list" class="geList">
+				<div v-for="item, key in list" :key="key" class="geObj">
+					<div class="geObj-img">
+						<img slot="img" :src="item.ico">
+					</div>
+					<div class="geObj-name">{{item.name}}</div>
+					<div class="geObj-companyName">{{item.sex}}</div>
+				</div>
+    		</div>
+	
+	        <span slot="doneTip">已加载全部数据</span>
+	        <img slot="loadingTip" src="http://static.ydcss.com/uploads/ydui/loading/loading10.svg"/>
+	    </yd-infinitescroll>
+	</yd-pullrefresh>
+	</template>
+</div>
+<script src="../../js/ydui/vue.min.js"></script>
+<script src="../../js/ydui/ydui.px.js"></script>
+<script src="https://unpkg.com/cube-ui/lib/cube.min.js"></script>
+<script>
+	const actionList = [{text:"申请",value:"approval"},{text:"我发起的",value:"launched"}];
+
+    new Vue({
+        el: '#app',
+        data:{
+        	page: 0, 
+            pageSize: 15, 
+            list: [] 
+        },
+        created: function () {
+			this.loadList();    
+  		},
+        methods: {
+        	pullLoadList:function(){
+        		this.page = 0;
+	    		this.list = [];
+	    		this.loadList();
+        		this.$refs.pullrefresh.$emit('ydui.pullrefresh.finishLoad');
+        	},
+        	/**
+        	 * 标题栏返回方法 
+        	 */
+            backFunc:function(){
+            	summer.closeWin({});
+            },
+		    showActive() {
+		      this.$createActionSheet({
+		        //title: '',
+		        active: 0,
+		        data: [
+		          {
+		            content: '申请'
+		          },
+		          {
+		            content: '我发起的'
+		          }
+		        ],
+		        onSelect: (item, index) => {
+		      		if(index == 0){
+		      			this.apply();
+		      		}else if(index == 1){
+		      			this.launched();
+		      		}
+		        },
+		        onCancel: () => {
+		          this.$createToast({
+		            txt: ``,
+		            type: 'warn',
+		            time: 1000
+		          })
+		        }
+		      }).show()
+		    },
+		    apply:function(){
+		    	localStorage.title = '申请金秋助学';
+				localStorage.addOrUpdate = 'add';
+				summer.openWin({
+				    "id" : "drafes",
+				    "url" : "html/studyaid/drafes.html",
+				    "create" : false
+				});
+		    },
+		    launched:function(){
+		    	summer.openWin({
+				    "id" : "launched",
+				    "url" : "html/studyaid/launched.html",
+				    "create" : false
+				});
+		    },
+		    /**
+		     * 获取数据 
+		     */
+            loadList:function(){
+            	console.log("method >> loadList");
+  				var jsonData = {};
+				jsonData.userId = localStorage.userid;
+				jsonData.pageIndex = this.page+"";
+				jsonData.pageSize = this.pageSize+"";
+				
+				this.getDataList(jsonData,1);
+				
+            },
+            /**
+             * 调用后台接口获取数据 
+             */
+            getDataList:function(jsonData,tabIndex){
+            	var _this = this;
+	            $.ajax({
+					type:"POST",
+					url:serviceUrl+'/studyAid/studyAidList',
+					datatype:'json',
+					data:JSON.stringify(jsonData),
+					contentType: 'application/json;charset=utf-8',  
+					success:function(res){
+						console.log(res);
+						
+						if(res.sCode != 200){
+							return;
+						}
+						
+						var goodStudyAidList = res.rsMap.goodStudyAidList;
+						for(var i=0; i<goodStudyAidList.length;i++){
+							var geObj = goodStudyAidList[i];
+							geObj.photoUrl = webserver + "/" + geObj.photoUrl
+							
+							var examplejsondata = {};
+							examplejsondata.approvalId = goodStudyAidList[i].approvalId;
+							if(goodStudyAidList[i].examineeSex == 'M'){
+								examplejsondata.ico = "./img/man.png";
+								examplejsondata.sex = "男";
+							}else{
+								examplejsondata.ico = "./img/woman.png";
+								examplejsondata.sex = "女";
+							}
+							examplejsondata.name = goodStudyAidList[i].examineeName;					
+							examplejsondata.graduateSchool = goodStudyAidList[i].graduateSchool;
+							
+							_this.list.push(examplejsondata);
+							
+						}
+						
+						var pageModel = res.rsMap.pageModel;
+						
+						if(pageModel.totalPage <= _this.page1){
+							_this.$refs.infinitescroll.$emit('ydui.infinitescroll.loadedDone');
+							return;
+						}
+						
+						_this.$refs.infinitescroll.$emit('ydui.infinitescroll.finishLoad');
+						_this.page++;
+					},
+					error:function(er){
+
+					}
+				});	
+            }
+       }    
+    })
+    
+</script>
+
+
+
+</body>
+</html>

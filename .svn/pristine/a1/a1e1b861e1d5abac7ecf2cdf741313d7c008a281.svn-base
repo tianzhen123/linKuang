@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="../../css/base.css" />
+        <link rel="stylesheet" type="text/css" href="../../css/iuapmobile.um.listview.css">
+
+        <style>
+        	div.Artical>div {
+        		display:none;
+        		color:#555;
+        	}
+        	div.Artical>div.active {
+        		display:block;
+        	}
+        	div.Artical>div.news {
+        		background:lightblue;
+        	}
+        	div.Artical>div.product {
+        		background:lightgreen;
+        	}
+        	div.Artical>div.game {
+        		background:lightyellow;
+        	}
+        	div.Artical>div.download {
+        		background:lightpink;
+        	}
+         
+         
+        </style>
+
+        <style>
+        	div.Artical>div {
+        		display:none;
+        		color:#555;
+        	}
+        	div.Artical>div.active {
+        		display:block;
+        	}
+        	div.Artical>div.news {
+        		background:lightblue;
+        	}
+        	div.Artical>div.product {
+        		background:lightgreen;
+        	}
+        	div.Artical>div.game {
+        		background:lightyellow;
+        	}
+        	div.Artical>div.download {
+        		background:lightpink;
+        	}
+         
+         
+        </style>
+
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+        <script type="text/javascript" src="../../js/knockout.js"></script>
+        <script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-header">
+            	<a href="#"  class="um-back" onclick="backClick()"></a>
+            	<h3>我的申请单</h3>
+            </div>
+			
+
+			<div class="um-content">
+				 
+                
+                <ul class="um-tabbar um-tabbar-underline pt10 pb10 um-tabbar-switch">
+                	<li class="active" data-tar='.news'><a>全部</a></li>
+                	<li data-tar='.product'><a>待审批</a></li>
+                	<li data-tar='.game'><a>待收货</a></li>
+                	<li data-tar='.download'><a>被驳回</a></li>
+                </ul>
+                <div class="Artical">        
+                	<div class="news active ">
+                		
+                        <div class="um-listview-wrap" id="listview">
+                            <ul class="um-list um-no-active" data-bind="foreach:data">
+                                <li class="um-listview-row">
+                        			<a class="um-list-item um-swipe-action um-no-icon">
+                        				<div class="um-swipe-btns">
+                        					<span class="um-swipe-btn um-delete">删除</span>
+                        				</div>
+                        				<div class="um-list-item-media">
+                        					<label class="um-check-inline um-list-left-icon">
+                        					<input name="um-checkbox-inline" type="checkbox">
+                        					<span class="um-icon-checkbox um-css3-vc"></span> </label>
+                        				</div>
+                        				<div class="um-list-item-inner">
+                        					<div class="um-list-item-body" style="padding-right:0">
+                        						<div class="clearfix f16">
+                        							<div class="um-xs-5 tl um-text-overflow">
+                        								<span class="fb" data-bind="text:company"></span>
+                        							</div>
+                        							<div class="um-xs-4 tl um-text-overflow">
+                        								<span class="fb" data-bind="text:order_date"></span>
+                        							</div>
+                        							<div class="um-xs-3 tr um-text-overflow um-red">
+                        								<span  data-bind="text:order_money"></span>
+                        							</div>
+                        						</div>
+                        					</div>
+                        				</div> 
+                        			</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                	</div>
+                	<div class="product">待审批</div>
+                	<div class="game">待收货</div>
+                	<div class="download">被驳回</div>				
+                </div>
+
+			</div>
+
+		</div>
+
+        <script>
+        	$(function () {			 
+        		 /*导航更换js*/
+        		 $('ul.um-tabbar-switch  Li').click(function(){
+        			$(this).addClass('active').siblings('.active').removeClass('active');
+        			var tar=$(this).attr('data-tar');
+        			$(tar).addClass('active').siblings('.active').removeClass('active');
+        		}); 
+        	});
+        </script>
+
+        <script>
+        	$(function () {			 
+        		 /*导航更换js*/
+        		 $('ul.um-tabbar-switch  Li').click(function(){
+        			$(this).addClass('active').siblings('.active').removeClass('active');
+        			var tar=$(this).attr('data-tar');
+        			$(tar).addClass('active').siblings('.active').removeClass('active');
+        		}); 
+        	});
+        </script>
+
+        <script>
+        	$(function() {          
+        		//Knockout绑定
+        		var ViewModel = function() {                
+        		};                   
+        		var jsonArray = [
+        			{'company':'国家电网公司','order_id':'000000000001','order_status':'待审核','order_money':'待审核','currency':'$','order_date':'2015-01-01','delivery_date':'2015-01-02','contact_name':'小明','contact_tel':'130********','if_store':false, 'memo':'记得及时发货'},
+        			{'company':'中国移动通信集团公司','order_id':'000000000002','order_status':'待确认','order_money':'已审核','currency':'$','order_date':'2015-01-01','delivery_date':'2015-01-02','contact_name':'小明','contact_tel':'130********','if_store':false, 'memo':'记得及时发货'},
+        			{'company':'中国人寿保险(集团)公司','order_id':'000000000003','order_status':'已关闭','order_money':'待审核','currency':'$','order_date':'2015-01-01','delivery_date':'2015-01-02','contact_name':'小明','contact_tel':'130********','if_store':false, 'memo':'记得及时发货'}         	
+        		]               
+        		var viewModel = new ViewModel();           
+        		viewModel.data = ko.observableArray(jsonArray);
+        		ko.applyBindings(viewModel);
+        		//构造控件实例
+        		var listview = UM.listview('#listview');			
+        		//添加控件方法
+        		/*listview.on('pullDown', function(sender) {
+        			//这是可以编写列表下拉加载逻辑，参数sender即为当前列表实例对象
+        			 var row = {'company':'中国兵器装备集团公司','order_id':'000000000000','order_status':'待审核','order_money':'1,500','currency':'$','order_date':'2015-01-01','delivery_date':'2015-01-02','contact_name':'小明','contact_tel':'130********','if_store':false, 'memo':'记得及时发货'};
+        			viewModel.data.unshift(row);
+        			sender.refresh(); 
+        		});*/
+        		/*listview.on('pullUp', function(sender) {
+        			//这是可以编写列表上拉刷新逻辑，参数sender即为当前列表实例对象
+        			 var row = {'company':'宝钢集团有限公司','order_id':'000000000006','order_status':'待审核','order_money':'2,500','currency':'$','order_date':'2015-01-01','delivery_date':'2015-01-02','contact_name':'小明','contact_tel':'130********','if_store':false, 'memo':'记得及时发货'};
+        			viewModel.data.push(row); 
+        			sender.refresh(); 
+        		});*/
+        		listview.on('itemDelete', function(sender, args) {
+        			//这是可以编写行删除逻辑，参数sender即为当前列表实例对象，args对象有2个属性，即rowIndex(行索引)和$target(目标行的jquery对象)
+        			/* args.$target.slideUp(500, function() {
+        				var item = viewModel.data()[args.rowIndex];
+        				viewModel.data.remove(item);
+        			}); */
+        		});
+        		listview.on('itemClick', function(sender, args) {
+        			//这里可以处理行点击事件，参数sender即为当前列表实例对象，args对象有2个属性，即rowIndex(行索引)和$target(目标行的jquery对象)
+        			//alert('您点击了列表第' + (args.rowIndex + 1) + "行！");
+        		});
+        		listview.on('itemSwipeLeft', function(sender, args) {
+        			//这里可以处理行左滑事件，参数sender即为当前列表实例对象，args对象有2个属性，即rowIndex(行索引)和$target(目标行的jquery对象)
+        			//sender.showItemMenu(args.$target);             
+        		});
+        		listview.on('tapHold', function() {
+        			//这里可以处理长按事件
+        			//console.log('您长按了列表！');
+        		});
+        	});
+        </script>
+	</body>
+</html>

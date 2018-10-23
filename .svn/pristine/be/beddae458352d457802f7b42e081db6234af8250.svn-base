@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<!-- 默认 start -->
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<!-- 默认 end -->
+		
+		<!-- 头部 start -->
+		<link rel="stylesheet" href="../../css/base.css" />
+		<!-- 头部 end -->
+		
+		
+		
+		<!-- 列表样式 start-->
+		<link rel="stylesheet" type="text/css" href="../../css/iuapmobile.um.listview.css">
+		<!-- 列表样式 end-->
+		
+		<!-- 样式修改  start-->
+		<link rel="stylesheet" href="kunNanLeiXing.css"/>
+		<!-- 样式修改  end-->
+		
+		<!-- 默认 start -->
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<!-- 默认 end -->
+		
+		<!-- 列表样式 start-->
+        <script type="text/javascript" src="../../js/knockout.js"></script>
+        <script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+		<!-- 列表样式 end-->
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<!-- 头部  start-->
+			<div class="um-header">
+            	<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            	<h3>困难类型</h3>
+            </div>
+			<!-- 头部  end-->
+			<!-- 内容体 start-->
+			<div class="um-content">
+				
+                <div class="um-listview-wrap" id="listview">
+                    <ul class="um-list um-no-active" data-bind="foreach:data">
+                        <li class="um-listview-row">
+                			<a class="um-list-item um-swipe-action um-no-icon">
+                				
+                				<!-- <div class="um-list-item-media">
+                					<label class="um-check-inline um-list-left-icon">
+                					<input name="um-checkbox-inline" type="checkbox">
+                					<span class="um-icon-checkbox um-css3-vc"></span> </label>
+                				</div> -->
+                				<div class="um-list-item-inner">
+                					<div class="um-list-item-body" style="padding-right:0">
+                						<div class="clearfix f16">
+                							<div class="um-xs-6 tl um-text-overflow ">
+                								<span class="fb" data-bind="text:num"></span>
+                							</div>
+                							
+                							<div class="um-xs-6 tr um-text-overflow">
+                								<span data-bind="text:num_context" ></span>
+                							</div>
+                						</div>
+                						
+                					</div>
+                				</div> 
+                			</a>
+                        </li>
+                    </ul>
+                </div>
+
+			</div>
+			<!-- 内容体 end-->
+			
+		</div>
+
+        <script>
+        	$(function() {          
+        		//Knockout绑定
+        		var ViewModel = function() {                
+        		};                   
+        		var jsonArray = [
+        			{'num':'01','num_context':'离职农村干部党员'},
+        			{'num':'02','num_context':'下岗失业职工党员'},
+        			{'num':'03','num_context':'在职职工党员'},
+        			{'num':'04','num_context':'流动党员'},
+        			{'num':'05','num_context':'农民党员'},
+        		]               
+        		var viewModel = new ViewModel();           
+        		viewModel.data = ko.observableArray(jsonArray);
+        		ko.applyBindings(viewModel);
+        		//构造控件实例
+        		var listview = UM.listview('#listview');			
+        		//添加控件方法
+        		/*listview.on('pullDown', function(sender) {
+        			//这是可以编写列表下拉加载逻辑，参数sender即为当前列表实例对象
+        			 var row = {'company':'中国兵器装备集团公司','order_id':'000000000000','order_status':'待审核','order_money':'1,500','currency':'$','order_date':'2015-01-01','delivery_date':'2015-01-02','contact_name':'小明','contact_tel':'130********','if_store':false, 'memo':'记得及时发货'};
+        			viewModel.data.unshift(row);
+        			sender.refresh(); 
+        		});*/
+        		/*listview.on('pullUp', function(sender) {
+        			//这是可以编写列表上拉刷新逻辑，参数sender即为当前列表实例对象
+        			 var row = {'company':'宝钢集团有限公司','order_id':'000000000006','order_status':'待审核','order_money':'2,500','currency':'$','order_date':'2015-01-01','delivery_date':'2015-01-02','contact_name':'小明','contact_tel':'130********','if_store':false, 'memo':'记得及时发货'};
+        			viewModel.data.push(row); 
+        			sender.refresh(); 
+        		});*/
+        		listview.on('itemDelete', function(sender, args) {
+        			//这是可以编写行删除逻辑，参数sender即为当前列表实例对象，args对象有2个属性，即rowIndex(行索引)和$target(目标行的jquery对象)
+        			/* args.$target.slideUp(500, function() {
+        				var item = viewModel.data()[args.rowIndex];
+        				viewModel.data.remove(item);
+        			}); */
+        		});
+        		listview.on('itemClick', function(sender, args) {
+        			//这里可以处理行点击事件，参数sender即为当前列表实例对象，args对象有2个属性，即rowIndex(行索引)和$target(目标行的jquery对象)
+        			//alert('您点击了列表第' + (args.rowIndex + 1) + "行！");
+        		});
+        		listview.on('itemSwipeLeft', function(sender, args) {
+        			//这里可以处理行左滑事件，参数sender即为当前列表实例对象，args对象有2个属性，即rowIndex(行索引)和$target(目标行的jquery对象)
+        			//sender.showItemMenu(args.$target);             
+        		});
+        		listview.on('tapHold', function() {
+        			//这里可以处理长按事件
+        			//console.log('您长按了列表！');
+        		});
+        	});
+        </script>
+	</body>
+</html>

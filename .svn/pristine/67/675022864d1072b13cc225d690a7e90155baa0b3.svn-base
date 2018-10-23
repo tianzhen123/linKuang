@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			
+			<div class="um-content">
+				
+			</div>
+
+		</div>
+	</body>
+	<script>
+		summerready=function(){
+			var pageTitle= summer.pageParam.pageTitle;
+			summer.openFrame({
+			    id: 'newsP_frame',
+			    url: 'html/newsPropaganda/newsP_frame.html',
+			    bounces: true,
+		        position: {
+		            left: 0,
+		            right: 0
+		        },
+		        pageParam : {
+		            "count" : "01010101",
+		            "pageTitle":"党的宣传",
+        		},
+			});
+		}
+	</script>
+</html>

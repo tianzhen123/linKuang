@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="../../css/base.css" />
+		<link rel="stylesheet" href="xianFengTeamXiangQing.css" />
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script type="text/javascript" src="../../js/knockout.js"></script>
+		<script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+		<script src="xianFengTeamXiangQing.js" ></script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-header" >
+			<a href="#"  class="um-back" onclick="backClick()">返回</a>
+			<h3>先锋队伍</h3>
+			</div>
+			<div class="um-content" data-bind="foreach:data">
+		<!-- 	<img id="peoPho" alt="" class="wdzp" data-bind="attr:{src: img}"> -->
+            <div>
+            <div data-bind="text:name" class="f16 um-text-overflow" id="title"></div>
+			<div data-bind="text:zuzhi" class="f16 um-text-overflow"></div>
+			<div data-bind="text:neirong" class="f16 um-text-overflow"></div>
+	        </div>
+	        <div class="sj">
+			<div class="f16">先进事迹</div>                                             
+			<div class="f14  um-gray" data-bind="text:neirong"></div>									
+			</div>
+			</div>
+			</div>
+		</div>
+	</body>
+</html>

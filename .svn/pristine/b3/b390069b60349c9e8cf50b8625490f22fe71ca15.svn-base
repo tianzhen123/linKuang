@@ -1,0 +1,28 @@
+
+function getUserInfo(){
+
+	summer.setStorage("host", "https://dj.lykyjt.com:8898/");
+	
+	
+	/**
+	var requestip = "http://+"summer.getStorage("host")"+yyisv/getuserinfo";
+	summer.post(requestip,{"code":code},//可选参数，方便开发者设置请求的header
+        {
+        "Content-Type" : "application/x-www-form-urlencoded", //可选参数，post请求的要写入的条件数据，须为json对象
+        }, 
+    	function(response){//成功回调
+        	var data = $summer.strToJson(response.data);
+        	data = data.data;
+        	$summer.alert(data);
+				var userinfo = {
+					userid : data.user_id,
+					username : data.name,
+				}
+			summer.setStorage("userinfo", userinfo);
+        },
+    	function(response){ //失败回调
+        	$summer.alert("网络错误");
+    	});
+    
+    	**/
+}

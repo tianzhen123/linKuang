@@ -1,0 +1,24 @@
+var viewModel={};
+var data = "";
+summerready = function(){
+	$summer.fixStatusBar($summer.byId('header'));
+	data = summer.pageParam.param;
+	var pageTitle = data.pageTitle;
+	document.getElementById("pageTitle").innerHTML = pageTitle;
+	
+		viewModel = {
+		title : ko.observable(data.title),
+		ts : ko.observable(data.ts),
+	}
+	
+	
+    ko.applyBindings(viewModel);
+    
+    $('#frame').html($('#frame').html(data.content).text());
+	imgCenter();
+    
+}
+
+function backClick(){
+		summer.closeWin({});
+}

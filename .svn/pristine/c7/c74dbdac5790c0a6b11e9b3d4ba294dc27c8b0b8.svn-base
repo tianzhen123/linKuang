@@ -1,0 +1,249 @@
+var reg = registID();
+var app = {
+    // Application Constructor
+    initialize: function() {
+        this.bindEvents();
+    },
+    bindEvents: function() {
+        document.addEventListener('deviceready', this.onDeviceReady, false);
+    },
+    onDeviceReady: function() {
+        app.receivedEvent('deviceready');
+    },
+    receivedEvent: function(id) {
+        // 监听加载完成事件
+        document.addEventListener("deviceready", onDeviceReady, false);
+        // 设置标签和别名
+        document.addEventListener("jpush.setTagsWithAlias", onTagsWithAlias, false);
+        // 打开通知
+        document.addEventListener("jpush.openNotification", onOpenNotification, false);
+        // 获取通知内容
+        document.addEventListener("jpush.receiveNotification", onReceiveNotification, false);
+        // 获取自定义消息推送内容
+        document.addEventListener("jpush.receiveMessage", onReceiveMessage, false);
+    }
+};
+// 开始
+var onDeviceReady = function() {
+    //alert("JPushPlugin:Device ready!");
+    initiateUI();
+};
+var initiateUI = function() {
+    try {
+        //初始化
+        window.plugins.jPushPlugin.init();
+        getRegistrationID();
+        if (device.platform != "Android") {
+            window.plugins.jPushPlugin.setDebugModeFromIos();
+            window.plugins.jPushPlugin.setApplicationIconBadgeNumber(0);
+        } else {
+            window.plugins.jPushPlugin.setDebugMode(true);
+            window.plugins.jPushPlugin.setStatisticsOpen(true);
+        }
+    } catch (exception) {
+        console.log(exception);
+    }
+    $("#setTagWithAliasButton").click(function(ev) {
+        alert("点击了按钮");
+        try {
+            var tag1 = $("#tagText1").val();
+            var tag2 = $("#tagText2").val();
+            var tag3 = $("#tagText3").val();
+            var alias = $("#aliasText").val();
+            var tags = [];
+            if (tag1 != "") {
+                tags.push(tag1);
+            }
+            if (tag2 != "") {
+                tags.push(tag2);
+            }
+            if (tag3 != "") {
+                tags.push(tag3);
+            }
+            alert(tags[0]+'...'+tags[1]+"....");
+            alert(alias);
+            window.plugins.jPushPlugin.setTagsWithAlias(tags, alias);
+        } catch (exception) {
+            alert(exception);
+        }
+    })
+};
+//获取注册ID
+var getRegistrationID = function() {
+    window.plugins.jPushPlugin.getRegistrationID(onGetRegistrationID);
+};
+// 赋值ID给Dom
+var onGetRegistrationID = function(data) {
+    try {
+        if (data.length == 0) {
+            var t1 = window.setTimeout(getRegistrationID, 1000);
+        }
+        //将注册ID赋值给DOM上
+        console.log("即将给最上边的label赋值ID");
+        $("#registrationId").html(data);
+        reg.set(data);
+    } catch (exception) {
+        alert(exception);
+    }
+};
+// 设置标签和别名
+var onTagsWithAlias = function(event) {
+    try {
+        var result = "result code:" + event.resultCode + " ";
+        result += "tags:" + event.tags + " ";
+        result += "alias:" + event.alias + " ";
+        alert("即将把tags和alias显示在页面上");
+        $("#tagAliasResult").html(result);
+    } catch (exception) {
+        alert(exception)
+    }
+};
+// 打开通知
+var onOpenNotification = function(event) {
+    try {
+        alert(JSON.stringify(event));
+        var alertContent;
+        if (device.platform == "Android") {
+            alertContent = event.alert;
+        } else {
+            alertContent = event.aps.alert;
+        }
+        alert("open Notification:" + alertContent);
+        summer.openWin({
+            "id" : "newsPropaganda.html",
+            "url" : "html/newsPropaganda/newsPropaganda.html",
+        });
+    } catch (exception) {
+        alert("JPushPlugin:onOpenNotification" + exception);
+        
+    }
+};
+//获取通知内容
+var onReceiveNotification = function(event) {
+    try {
+        var alertContent;
+        if (device.platform == "Android") {
+            alertContent = event.alert;
+        } else {
+            alertContent = event.aps.alert;
+        }
+        //alert("把接受的通知显示在页面上");
+        //$("#notificationResult").html(alertContent);
+    } catch (exception) {
+        alert(exception)
+    }
+};
+// 获取自定义消息推送内容
+var onReceiveMessage = function(event) {
+    try {
+        var message;
+        if (device.platform == "Android") {
+            message = event.message;
+        } else {
+            message = event.content;
+        }
+        alert("把自定义的消息显示在页面上");
+        $("#messageResult").html(message);
+    } catch (exception) {
+        alert("JPushPlugin:onReceiveMessage-->" + exception);
+    }
+};
+
+var viewModel;
+summerready = function(){
+	$('.username').val(summer.getStorage("lk_username"));
+    $('.pwd').val(summer.getStorage("lk_pwd"));
+    setBtnLogin(summer.getStorage("lk_username"),summer.getStorage("lk_pwd"));
+    var autoLogin = summer.getStorage("lk_autoLogin")==='false'?false:true;
+    $("[name = um-checkbox-inline]:checkbox").attr("checked", autoLogin);
+    
+    $('.clear').on('click',function(){
+    	$(".btn-login").css("background-color","#b1b1b1");
+		$(".btn-login").attr('disabled',true);
+    })
+    app.initialize(); //注册推送服务
+    $('#changePassType').on('click',function(){
+        var $this = $(this);
+        var type = $('.pwd').attr('type')=='text'?'password':'text';
+        $('.pwd').attr('type',type);
+        $this.toggleClass('show-pass');
+    })
+    
+    //登录点击事件
+    $('.btn-login').on('click',function(){
+    	var username = $('.username').val().trim();
+    	var pwd = $('.pwd').val().trim();
+    	if(isNull(username)||isNull(pwd)){
+    		$summer.alert("信息填写不完整");
+    		return;
+    	}
+    	summer.setStorage("lk_username", username);
+    	var check = $("input[type='checkbox']").is(':checked');
+    	if(check){
+    		summer.setStorage("lk_pwd", pwd);
+    	}else{
+    		summer.setStorage("lk_pwd", "");
+    	}
+    	summer.setStorage("lk_autoLogin", check);
+    	loginNetWork(username,pwd);
+    })
+    
+}
+function confirmInputChange() {
+	var pwd = $('.pwd').val();
+	var username = $('.username').val();
+	setBtnLogin(username,pwd);
+}
+function setBtnLogin(username,pwd){
+	if (isNull(pwd)||isNull(username)) {
+		$(".btn-login").attr('disabled',true);
+	} else {
+		$(".btn-login").attr('disabled',false);
+	}
+}
+//登录请求服务 
+function loginNetWork(username,pwd){
+	var url = getHttpPro()+'mologin/formLogin';
+	UM.showLoadingBar({
+        "text" : "加载中",
+        "icons" : "ti-loading"
+    });
+    
+	summer.ajax({
+        "type":"post",//请求方式
+        "url":url,//url地址
+        "param":{ user: username,pwd: pwd,registrationId:reg.get()},//可选参数，post请求的要写入的条件数据，须为json对象 
+    }, function(response){//成功回调
+        var res = $summer.strToJson(response.data);
+    	summer.setStorage("usercode", res.usercode);
+    	summer.setStorage("name", res.user.name);
+        if(res.flag=="success"){
+        	summer.setStorage("lk_isLeader", res.isLeader);
+        	UM.hideLoadingBar();
+        	summer.setStorage("lk_userInfo", res.user);
+        	summer.openWin({
+                "id" : "home",
+                "url" : "html/index/index.html",
+                "addBackListener":"true",
+                isKeep:true,
+            });
+        }else{
+        	UM.hideLoadingBar();
+        	summer.toast({
+                 "msg" : res.msg||"登录失败" 
+            });
+        }
+    }, function(response){//失败回调
+    	UM.hideLoadingBar();
+        summer.toast({
+                 "msg" : "登录失败" 
+            });
+    });
+}
+function isNull(args){
+	return args == null || args=="null" || args == undefined || args == "undefined" || args == "";
+}
+function trim(str){
+     return str.replace(/(^\s*)|(\s*$)/g,""); 
+} 
+

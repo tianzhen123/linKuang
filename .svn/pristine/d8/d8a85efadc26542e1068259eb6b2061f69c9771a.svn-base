@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="lvZhiLvZePingFen.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iuapmobile.um.listview.css">
+		<link rel="stylesheet" href="../../css/base.css" />
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="../../js/knockout.js"></script>
+		<script src="../../js/hp/hp_function.js"></script>
+		<script src="../../js/hp/hp_slide.js"></script>
+		<script src="base64.js"></script>
+		<script src="lvZhiLvZePingFen.js"></script>
+		
+	</head>
+	<body>
+		<div class="um-win" id="index" name="hp_slide">
+			
+            <div class="um-header um-box-hc" >
+            	<a href="#"  class="um-back" onclick="backCilck()">返回</a>
+            	<h3>履职履责评分</h3>
+            	<div  class="um-header-btns" onclick="saveClick()">
+                	<h3 >保存</h3> 
+                </div> 
+            	
+            </div>
+
+
+			<div class="um-content">
+				<div class="um-list">
+                <label class="um-label um-box-justify">
+	                	<div>党员编号</div>
+	                	<div data-bind = "text:code">123123123</div>
+                </label>
+                
+                <label class="um-label um-box-justify">
+	                	<div>党员姓名</div>
+	                	<div  data-bind="text:name">张友金</div>
+                </label>
+                
+                <label class="um-label um-box-justify">
+	                	<div>岗位</div>
+	                	<div  data-bind="text:post">实验科科长</div>
+                </label>
+                
+                <label class="um-label um-box-justify">
+	                	<div>职责</div>
+	                	<div data-bind="text:duty">管理人员</div>
+                </label>
+                
+                  
+                  <label class="um-label um-box-justify">
+                	<div>自身建设情况</div>
+                	<div>
+                		<input id="selfconstruction" type="text" class="form-control tr" placeholder="请输入"  data-bind="text:selfconstruction">
+                	</div>
+                </label>
+                
+                
+                <label class="um-label um-box-justify">
+                	<div>岗位目标完成情况</div>
+                	<div>
+                		<input id="positiontarget" type="text" class="form-control tr" placeholder="请输入"  data-bind="text:positiontarget">
+                	</div>
+                </label>
+                
+                <div class="um-listview-wrap" id="listview">
+					<ul class="um-list um-no-active list" data-bind="foreach:data" >
+						<li class="um-listview-row">
+							<div class="um-list-item um-swipe-action um-no-icon">
+								<label class="um-label um-box-justify" style="width: 100%">
+				                	<div  style="  min-width: 50%;">
+				                		<span data-bind="text:app_project_name">“党”分</span>
+				                		&nbsp;(占比<span class="scale" data-bind="text:scale"></span>%)
+				                	</div>
+				                	<div>
+				                		<input id="partyscore" type="number" class="getValue form-control tr" placeholder="请输入" >
+				                	</div>
+				                </label>
+							</div>
+						</li>
+					</ul>
+				</div>
+                	
+                <!--
+                <label class="um-label um-box-justify">
+                	<div>“党”分</div>
+                	<div>
+                		<input id="partyscore" type="number" class="form-control tr" placeholder="请输入" onchange="changeFunction()" data-bind="text:partyscore">
+                	</div>
+                </label>
+
+                
+                <label class="um-label um-box-justify">
+	                	<div>“德”分</div>
+	                	<div>
+                		<input id="descore" type="number" class="form-control tr" placeholder="请输入" onchange="changeFunction()"  data-bind="text:descore">
+                		</div>
+                </label>
+                
+                 <label class="um-label um-box-justify">
+	                	<div>“能”分</div>
+	                	<div>
+                		<input id="abilityscore" type="number" class="form-control tr" placeholder="请输入" onchange="changeFunction()" data-bind="text:abilityscore">
+                		</div>
+                </label>
+                
+                 <label class="um-label um-box-justify">
+	                	<div>“勤”分</div>
+	                	<div>
+                		<input id="qinscore" type="number" class="form-control tr" placeholder="请输入" onchange="changeFunction()" data-bind="text:qinscore">
+                		</div>
+                </label>
+                
+                 <label class="um-label um-box-justify">
+	                	<div>“绩”分</div>
+	                	<div>
+                		<input id="jiscore" type="number" class="form-control tr" placeholder="请输入" onchange="changeFunction()" data-bind="text:jiscore">
+                		</div>
+                </label>
+                
+                <label class="um-label um-box-justify">
+	                	<div>“廉”分</div>
+	                	<div>
+                		<input id="lianscore" type="number" class="form-control tr" placeholder="请输入" onchange="changeFunction()" data-bind="text:lianscore">
+                		</div>
+                </label>
+                -->                
+                
+                <label class="um-label um-box-justify" style="width: 100%">
+	                	<div style="width: 50%">合计</div>
+	                	<input id="totalscore" type="number" style="width: 50%" disabled="disabled" class="form-control tr" placeholder="0" >
+                </label>
+                
+                  
+                  <label class="um-label um-box-justify">
+	                	<div>奖惩情况</div>
+	                	<div>
+                		<input id="rewardspunish" type="text" class="form-control tr" placeholder="请输入" data-bind="text:rewardspunish">
+                		</div>
+                </label>
+                
+                <label class="um-label um-box-justify">
+	                	<div>党员评价</div>
+	                	<div>
+                		<input id="evaluate" type="text" class="form-control tr" placeholder="请输入" data-bind="text:evaluate">
+                		</div>
+                </label>
+                
+                </div>
+
+			</div>
+
+		</div>
+		<script src="../../js/mui.min.js"></script>
+	</body>
+</html>

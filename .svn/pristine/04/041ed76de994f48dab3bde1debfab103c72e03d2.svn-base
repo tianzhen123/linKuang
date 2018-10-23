@@ -1,0 +1,49 @@
+body{
+background: white;
+}
+
+.um-content{
+margin-top: 50px;
+margin-left: 20px;
+margin-right: 20px
+}
+
+.wdzp{
+/* float: left; */
+width:90px;
+height:126px;
+/* margin-left: 20px; */
+margin-right: 10px;
+
+}
+
+.sj{
+margin: 20px;
+margin-top:40px;
+}
+
+.um-list-item-body{
+margin-left: 16px;
+}
+
+.um-text-overflow{
+/* margin-TOP: 10px; */
+}
+
+.um-gray{
+/* margin-TOP: 10px; */
+}
+
+.um-grayy{
+text-indent: 2em;
+}
+
+#ziduan{
+/* margin-top: 20px; */
+margin-bottom: 10px;
+margin-left: 1px;
+} 
+
+.um-list-item-inner:after{
+margin-bottom: 5px;
+}

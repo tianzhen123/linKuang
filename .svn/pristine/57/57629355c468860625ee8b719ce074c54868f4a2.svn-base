@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="newsPropagandaDet.css" />
+		<link rel="stylesheet" href="../../css/base.css" />
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="../../js/knockout.js"></script>
+		<script src="../../js/base.js"></script>
+		<script src="newsPropagandaDet.js"></script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div id="header" class="um-header" >
+				<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            		<h3 id="pageTitle">新闻宣传</h3>
+			</div>
+
+			<div class="um-content">
+				<div id="title" class="f20 fb tc" data-bind="text:title"></div>
+				<div id="time" class="f16 tr um-gray" data-bind="text:ts"></div>
+				<div style="width: 100%">
+					<div id="detail">
+						<p id="frame" ></p>
+					</div>
+				</div>
+
+		</div>
+		</div>
+	</body>
+</html>

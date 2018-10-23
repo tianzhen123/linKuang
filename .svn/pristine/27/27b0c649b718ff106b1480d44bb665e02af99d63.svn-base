@@ -1,0 +1,80 @@
+summerready=function(){
+	var code = summer.pageParam.param.code;
+	summer.setStorage("host", "dj.lykyjt.com:8899/");
+	//$summer.alert(code);
+	//getUserInfo();
+}
+
+//党的宣传
+function xuanChuan(){
+	summer.openWin({
+        "id" : "newsPropaganda",
+        "url" : "html/newsPropaganda/newsPropaganda.html",
+       "isKeep" : true,
+        "pageParam" : {
+            "count" : "01010101",
+            "pageTitle":"党的宣传",
+        }
+    });
+}
+
+// 履职履责评分
+function lvZhiLvZeClick(){
+  summer.openWin({
+  id:'lvZhiLvZe2',
+  url:'html/lvZhiLvZe/lvZhiLvZe2.html',
+  type: "actionBar",
+  create: false, //设置保留原生header
+  actionBar: {
+      title: "履职履责",
+      titleColor: "#ffffff", //注意必须是6位数的颜色值。（3位数颜色值会不正常）
+      backgroundColor: "#FF0000",
+      leftItem:{
+          image: "img/back.png",
+          method:"", //返回按钮自定义事件，不传方法时默认点击返回后关闭当前页面，也可在打开的window中自定义事件
+          text:"返回",
+          textColor:"#ffffff"  //返回文字颜色，注意必须是6位数的颜色值。（3位数颜色值会不正常）
+      },
+      
+  }
+});
+    
+}
+
+//专题管理
+function zhuanTiGuanLi(){
+	   summer.openWin({
+        "id" : "newsPropaganda",
+        "url" : "html/newsPropaganda/newsPropaganda.html",
+       "isKeep" : true,
+        "pageParam" : {
+            "count" : "01010102",
+            "pageTitle":"专题管理",
+        }
+    });
+}
+
+//统一战线
+function tongYiZhanXian(){
+	summer.openWin({
+        "id" : "newsPropaganda",
+        "url" : "html/newsPropaganda/newsPropaganda.html",
+       "isKeep" : true,
+        "pageParam" : {
+            "count" : "01010103",
+            "pageTitle":"统一战线",
+        }
+    });
+}
+//先锋队伍
+function xianFengTeam(){
+	summer.openWin({
+        "id" : "xianFengTeam",
+        "url" : "html/xianFengTeam/xianFengTeam.html",
+       "isKeep" : true,
+    });
+}
+function backClick(){
+	summer.closeWin({});
+}
+

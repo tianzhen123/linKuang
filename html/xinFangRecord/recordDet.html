@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="../../css/base.css" />	
+		<link rel="stylesheet" href="recordDet.css" />
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/knockout.js"></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="recordDet.js"></script>
+		<script src="../../js/base.js"></script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-header" >
+				<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            	<h3 id="pageTitle">信访记录</h3>
+			</div>
+
+			<div class="um-content">
+				<div class="content-head">
+					<ul class="content-head-list">
+						<li>
+							<div class="li-left f14">
+								姓名
+							</div>
+							<div class="li-center f14" data-bind="text:p_name">
+								
+							</div>
+							<div class="li-right">
+								<img src="../../img/name.png" />
+							</div>
+						</li>
+						<li>
+							<div class="li-left f14">
+								手机号
+							</div>
+							<div class="li-center f14" data-bind="text:phone">
+								
+							</div>
+							<div class="li-right">
+								<img src="../../img/phone.png" />
+							</div>
+						</li>
+						<li>
+							<div class="li-left f14">
+								身份证号
+							</div>
+							<div class="li-center f14" data-bind="text:idcode">
+								
+							</div>
+							<div class="li-right">
+								<img src="../../img/idCard.png" />
+							</div>
+						</li>
+						<li>
+							<div class="li-left f14">
+								单位/住址
+							</div>
+							<div class="li-center f14" data-bind="text:home_address">
+								
+							</div>
+							<div class="li-right">
+								<img src="../../img/home.png" />
+							</div>
+						</li>
+					</ul>
+				</div>
+			
+				<div class="content-body">
+					<ul class="body-list" data-bind="foreach: data">
+						<li>
+							<div class="li-content">
+								<div class="body-head">
+									<img class="body-place" src="../../img/icon_place.png" />
+									<span class="come-time f14">来访时间</span>
+									<span class="f14 um-gray" data-bind="text:present_time"></span>
+								</div>
+								<div class="body-pro body-desc">
+									<p class="f14">主要问题：<span class="um-gray" data-bind="text:reflect_problem">会计师的法律会计师了快递费吉林省肯德基</span></p>
+								</div>
+								<div class="body-ad body-desc">
+									<p class="f14">处理意见：<span class="um-gray" data-bind="text:settlement_advice">会计师的法律会计师了快递费吉林省肯德基</span></p>
+								</div>
+							</div>
+							<div class=" w  line"></div>
+							
+						</li>
+					</ul>
+				</div>
+			</div>
+			
+
+		</div>
+	</body>
+</html>

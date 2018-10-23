@@ -1,0 +1,27 @@
+ul li{
+	padding:10px;
+	display:flex;
+	border-bottom: 1px solid #b2b2b2;
+}
+.li-left{
+	
+}
+.li-right{
+	flex:1;
+	text-align:right;
+}
+input{
+	border: none;
+	outline:none;
+	background: #FFFFFF;
+}
+.header-right {
+    position: absolute;
+    right: 10px;
+    color: #fff;
+    font-size: 14px;
+    top: inherit;
+    font-weight: 500;
+    line-height: 44px;
+}
+

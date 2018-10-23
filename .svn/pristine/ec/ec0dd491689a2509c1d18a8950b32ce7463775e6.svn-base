@@ -1,0 +1,52 @@
+var viewModel={};
+var flag = false;
+summerready = function(){
+	window.totalData = summer.pageParam.count;
+	pageLoad(window.totalData);
+}
+//返回
+function backClick(){
+		if(flag){
+			var jsfun = 'getListData2();';
+			summer.execScript({
+			    winId: 'html/examine/examine.html',
+			    script: jsfun
+			});
+		}
+		summer.closeWin({});
+}
+
+function editClick(){
+		summer.openWin({
+                "id" : "editExamine",
+                "url" : "html/examine/editExamine.html",
+                "pageParam" : {
+                    "param" : window.totalData
+                }
+            });
+}
+function pageLoad(data){
+	window.totalData = data;
+	var pageTitle = data.infocolumn_name||'';
+	if(summer.getStorage("lk_isLeader")) $('.edit').css("display","block")
+	document.getElementById("pageTitle").innerHTML = pageTitle;
+	
+		viewModel = {
+		title : ko.observable(data.title),
+		ts : ko.observable(data.ts),
+	}
+	
+	
+    ko.applyBindings(viewModel);
+    
+    if(data.content.indexOf('<')==-1){
+    	$('#frame').html($('#frame').html(data.content).text());
+    }else{
+    	$('#frame').html(data.content);
+    }
+	imgCenter();
+}
+function backPageLoad(data){
+	flag = true;
+	pageLoad(data);
+}

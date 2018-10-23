@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">
+		<link rel="stylesheet" href="../../css/base.css" />
+		<link rel="stylesheet" href="aboutWe.css" />		
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-header" >
+				<a href="#"  class="um-back" onclick="backClick()">返回</a>
+				<h3>关于我们</h3>
+			</div>
+
+			<div class="um-content">
+				<div class="content-head">
+					<img class="app-logo" src="../../img/app-logo.png"/>
+					<p>临矿党建平台</p>
+					<p style="font-size: 16px;">v<span class="version"></span>版</p>
+				</div>
+				<div class="content-body">
+					<p>
+					“临矿党建系统”是山东能源临矿集团借助“互联网+党建”的新模式，建立的一套涵盖党、纪、工、团、临矿党校、信访维稳和老干部等管理职的信息化系统。系统以电脑和手机为传播媒介，借助互联网技术和IUAP开发平台，实现了与山东省委组织部推行的灯塔系统、临矿集团的人力资源系统和电子书屋等第三方系统进行对接、集成、改造和整合应用，实现了“六位一体、全员宣传和全员应用”。在大型国企中，通过党建平台“自上而下传播正能量，自下而上反映职工心声”，该系统是一次很有价值的尝试。
+欢迎各位系统应用人员对“临矿党建系统”提出宝贵意见和建议。
+					</p>
+				</div>
+			</div>
+
+		</div>
+		<script src="./aboutWe.js"></script>
+	</body>
+</html>

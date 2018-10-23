@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+	</head>
+	<body>
+		<div class="um-win" >
+			<!-- 头部  start-->
+			<div class="um-header" style="background-color: #FF0000;" id="header">
+            	<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            	<h3>团费管理</h3>      
+            </div>
+			<!-- 头部  end-->
+			<div class="um-content">
+				
+			</div>
+
+		</div>
+	</body>
+	<script>
+		summerready=function(){
+			var height_header = $("#header").height();
+			var pageTitle= summer.pageParam.pageTitle;
+			summer.openFrame({
+			    id: 'tuanFeiGuanLi_frame',
+			    url: 'html/tuanFeiGuanLi/tuanFeiGuanLi_frame.html',
+			    bounces: true,
+		        position: {
+		            top:height_header,
+		            left: 0,
+		            right: 0,
+		            bottom:0,
+		        },
+		        pageParam : {
+		           
+		            "pageTitle":pageTitle,
+		        },
+		        
+			});
+			
+		}
+		
+		/**
+		 * 刷新团费管理的列表 
+		 */
+	function tuanFeiGuanLi_win_refresh(time){
+			var jsfun = 'myRefresh('+0+','+ time +');';
+			summer.execScript({
+				frameId : 'tuanFeiGuanLi_frame',
+				script : jsfun
+			});
+		}
+		
+		/**
+		 *关闭窗口
+		 */
+		function backClick() {
+			summer.closeWin({});
+		}
+		
+	</script>
+</html>
+
+

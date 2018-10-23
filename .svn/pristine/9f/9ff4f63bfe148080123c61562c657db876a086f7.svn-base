@@ -1,0 +1,50 @@
+body{
+background: white;
+}
+
+.um-content{
+margin-top: 50px;
+margin-left: 20px;
+margin-right: 20px
+}
+
+.wdzp{
+float: left;
+width:90px;
+height:120px;
+margin-left: 20px;
+margin-right: 20px;
+
+}
+
+.sj{
+margin: 20px;
+margin-top:40px;
+}
+
+.um-list-item-body{
+margin-left: 16px;
+}
+
+.um-text-overflow{
+margin-TOP: 10px;
+}
+
+.um-gray{
+margin-TOP: 10px;
+text-indent: 2em
+}
+
+.um-listview-row{
+margin-top: 10px;
+margin-bottom: 10px;
+margin-left: 10px;
+}
+
+.um-list-item-inner:after{
+margin-bottom: 5px;
+}
+
+#title{
+margin-top: 20px;
+}

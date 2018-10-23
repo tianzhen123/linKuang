@@ -1,0 +1,232 @@
+var infocolumn = "10000";
+var ViewModel = function() {
+	};
+var viewModel = new ViewModel();
+var jsonArray = [];
+var searchType = "";//选项卡
+var pageIndex = 0;//访问页
+var title = "";//搜索条件
+//def1内容
+//def2开始时间
+//def3截止时间
+//def4人数
+summerready=function(){
+	hp_scroll();//刷新事件，放在最前面
+	hp_slide();//滑动事件，放在最前面
+	
+	/*导航更换js*/
+	$('ul.um-tabbar-switch  Li').click(function() {
+		$(this).addClass('active').siblings('.active').removeClass('active');
+		var tar = $(this).attr('data-tar');
+		$(tar).addClass('active').siblings('.active').removeClass('active');
+		document.getElementById("sear").value = "";
+		searchType = tar;
+		title = "";
+		pageIndex = 0;
+		myRefresh(tar,title,0);
+	});
+
+	//Knockout绑定
+	
+	/*渲染的数据*/
+	viewModel.data = ko.observableArray([]);
+	viewModel.data2 = ko.observableArray([]);
+	ko.applyBindings(viewModel);
+	
+	
+	
+	//ko.applyBindings(viewModel.fimage[0], document.getElementById('img_signUp'));
+	
+	
+	var listview = UM.listview("#listview");
+	var listview2 = UM.listview("#listview2");
+	//活动通知
+	listview.on("itemClick", function(sender, args) {
+		//这里可以处理行点击事件，参数sender即为当前列表实例对象，args对象有2个属性，即rowIndex(行索引)和$target(目标行的jquery对象)
+		var item = viewModel.data()[args.rowIndex];
+		var data = JSON.stringify(item);
+		data = $summer.strToJson(data);
+		summer.openWin({
+			"id" : "HuoDongTongZhiXiangQing",
+			"url" : "html/HuoDongLiuCheng/HuoDongTongZhiXiangQing.html",
+			"isKeep" : true,
+			"pageParam" : {
+				"count" : data
+			}
+		});
+	});
+	//活动宣传
+	listview2.on("itemClick", function(sender, args) {
+		//这里可以处理行点击事件，参数sender即为当前列表实例对象，args对象有2个属性，即rowIndex(行索引)和$target(目标行的jquery对象)
+		var item = viewModel.data2()[args.rowIndex];
+		var data = JSON.stringify(item);
+		data = $summer.strToJson(data);
+		summer.openWin({
+			"id" : "HuoDongXuanChuanXiangQing",
+			"url" : "html/HuoDongLiuCheng/HuoDongXuanChuanXiangQing.html",
+			"isKeep" : true,
+			"pageParam" : {
+				"count" : data
+			}
+		});
+	});
+	
+	//getUserInfo2();//先获取用户，在刷新（停用）	
+	//刷新
+	searchType = ".news";
+	myRefresh(".news",title,0);
+}
+
+/**
+ * 右滑执行的方法
+ */
+function function_rightSlide(){
+	summer.closeWin();
+}
+
+
+
+/**
+ * 下拉执行的方法
+ */
+function function_pullDown(){
+	title = document.getElementById("sear").value;
+	pageIndex = 0;
+	myRefresh(searchType,title,0);
+}
+/**
+ * 上拉执行的方法
+ */
+function function_pullUp(){
+	title = document.getElementById("sear").value;
+	pageIndex = pageIndex+1;
+	myRefresh(searchType,title,1);
+}
+
+
+//搜索事件
+function searchClick(){
+	title = document.getElementById("sear").value;
+	pageIndex = 0;
+	myRefresh(searchType,title,0);
+}
+/**
+ * 点击选项卡之后的请求操作
+ * @author tianzhen
+ * @param {Object} button
+ * 
+ */
+function myRefresh(button,title,load) {
+	//$summer.alert(button+"\n"+title+"\n"+pageIndex);
+	var viewmodel = "";
+	var requestid ="";
+	var type = 0;
+
+	switch (button) {
+			case ".news":
+					requestid =""+getHttp()+"partyconstrutproject/Api/info/list";
+					
+					viewmodel = viewModel.data;
+				
+				break;
+			case ".product":
+					requestid =""+getHttp()+"partyconstrutproject/Api/info/lists";
+					viewmodel = viewModel.data2;
+				
+				break;
+	}
+	var json = {
+		"infocolumn":infocolumn,
+		"title" : title,
+		"pageIndex":pageIndex,
+		"pageSize":30,
+		"sortField":"def2",
+		"sortDirection":"desc",
+	}
+	summer.get(requestid, json , //可选参数，方便开发者设置请求的header
+	{
+		"Content-Type" : "application/x-www-form-urlencoded", //可选参数，post请求的要写入的条件数据，须为json对象
+	}, function(response) {//成功回调
+		var data = $summer.strToJson(response.data);
+		if(load == 0){
+			viewmodel.removeAll();
+		}
+		if (data.success == "success") {
+			jsonArray = data.detailMsg;
+			var count = jsonArray.data.content.length;
+			
+			for (var k = 0; k < count; k++) {
+				var ts = jsonArray.data.content[k].ts;//编辑时间
+				jsonArray.data.content[k].ts = formatDate(ts);
+				var def2 = jsonArray.data.content[k].def2;//活动开始时间
+				jsonArray.data.content[k].def2 = formatDate(def2);
+				viewmodel.push(jsonArray.data.content[k]);
+				
+			}
+			//$summer.alert(jsonArray.data.content);
+		} else {
+			//$summer.alert("网络错误");
+		}
+	}, function(response) {//失败回调
+		//$summer.alert(response);
+	});
+
+}
+
+
+
+
+/**
+ *	格式化服务器传来的时间
+ */
+function formatDate(str) {
+	var date = new Date(str);
+    var seperator1 = "-";
+    var seperator2 = ":";
+    var month = date.getMonth() + 1;
+    var strDate = date.getDate();
+    var strHours = date.getHours();
+    var strMinutes = date.getMinutes();
+    var strSeconds = date.getSeconds();
+    
+   	//拼时间
+    var currentdate = date.getFullYear() + seperator1 + month + seperator1 + addZero(strDate);
+              //  + " " + addZero(strHours) + seperator2 + addZero(strMinutes) + seperator2 + addZero(strSeconds);
+    return currentdate;
+}
+/**
+ * 时间为单位数时,前面加0
+ */
+function addZero(time){
+	if(parseInt(time) < 10){  
+        time = '0'+time;  
+     }  
+     return time;
+}
+
+function backClick(){
+	summer.closeWin();
+}
+function getUserInfo2(){
+	summer.setStorage("host", getHttp());
+	
+	var code = summer.pageParam.code;
+	//姓名name
+	//电话mobile
+	var requestip = ""+getHttp()+"partyconstrutproject/friendspaceadaptorcontroller/getUserinfo";
+	summer.post(requestip,{"code":code},//可选参数，方便开发者设置请求的header
+        {
+        "Content-Type" : "application/x-www-form-urlencoded", //可选参数，post请求的要写入的条件数据，须为json对象
+        }, 
+    	function(response){//成功回调
+        	var data = $summer.strToJson(response.data);
+        	data = data.data;
+			summer.setStorage("userInfo", data);
+			//刷新
+			searchType = ".news";
+			myRefresh(".news",title,0);
+        },
+    	function(response){ //失败回调
+    	
+    });
+}

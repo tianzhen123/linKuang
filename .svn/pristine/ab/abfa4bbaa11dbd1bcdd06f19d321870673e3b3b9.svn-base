@@ -1,0 +1,18 @@
+
+summerready = function(){
+	
+}
+function pageLoad(){
+	var url = getHttpPro()+'infoMobile/infoMobile/waitapprove';
+	summer.ajax({
+        "header":{Authorization: "OAuth2: token"},//可选参数，方便开发者设置请求的header
+        "type":"get",//请求方式
+        "url":"xxx",//url地址
+        "param":{ a: 1,b: 2},//可选参数，post请求的要写入的条件数据，须为json对象 
+    }, function(response){//成功回调
+        alert(response.data);
+    }, function(response){ //失败回调
+        alert(response.data);
+        alert(response.error);
+    });
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="../../css/base.css" />
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-header" id="header" style="height: 93px">
+				<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            		<h3 id="pageTitle"></h3>
+            		
+            	<div class="um-input-group">
+			            	<span class="ti-search"></span>
+			            	<input id="sear" type="search" class="form-control" onsearch="searchClick()"  placeholder="请输入标题名称">
+				</div>
+			</div>
+			<div class="um-content">
+				
+			</div>
+
+		</div>
+	</body>
+	<script>
+		summerready=function(){
+			var infocolumn = summer.pageParam.count;
+			var pageTitle= summer.pageParam.pageTitle;
+			document.getElementById("pageTitle").innerHTML = pageTitle;
+			var top = $summer.offset($summer.byId('header')).h;
+			summer.openFrame({
+			    id: 'newsP_frame',
+			    url: 'html/newsPropaganda/newsP_frame.html',
+			    bounces: true,
+		        position: {
+		        	top:top,
+		            left: 0,
+		            right: 0
+		        },
+		        pageParam : {
+		            "count" :infocolumn ,
+		            "pageTitle":pageTitle,
+		        },
+		        
+			});
+		}
+		function backClick(){
+			summer.closeWin({});
+		}
+	</script>
+</html>

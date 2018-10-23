@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="../../css/base.css" />	
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="../../js/base.js"></script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-header" id="header">
+				<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            		<h3 id="pageTitle">新闻宣传</h3>
+			</div>
+
+			<div class="um-content">
+				
+			</div>
+		</div>
+	</body>
+	<script>
+		summerready=function(){
+			getUserInfo();
+			var top = $summer.offset($summer.byId('header')).h;
+			summer.openFrame({
+			    id: 'news_frame',
+			    url: 'html/news/news_frame.html',
+			    bounces: true,
+		        position: {
+		        	top:top,
+		            left: 0,
+		            right: 0,
+		            bottom:0,
+		        },
+		        
+			});
+		}
+		function backClick(){
+			summer.closeWin({});
+		}
+	</script>
+</html>

@@ -1,0 +1,6 @@
+function backClick(){
+	summer.closeWin({});
+}
+(function(){
+	$summer.fixStatusBar($summer.byId('header'));
+})()

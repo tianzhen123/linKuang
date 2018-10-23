@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<!-- 默认 start -->
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<!-- 默认 end -->
+		
+		<!-- 头部 start -->
+		<link rel="stylesheet" href="../../css/base.css" />
+		<!-- 头部 end -->
+		
+		<!-- 样式修改  start-->
+		<link rel="stylesheet" href="liuYanBanChaKan.css"/>
+		<!-- 样式修改  end-->
+
+		<!-- 默认 start -->
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<!-- 默认 end -->
+		<!-- <script src="../../js/knockout.js"></script> -->
+		<script src="common.js" ></script>
+		<script src="liuYanBanChaKan.js" ></script> 
+		
+		<script type="text/javascript" src="../../js/knockout.js"></script>
+		<script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<!-- 头部  start-->
+			<div class="um-header">
+            	<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            	<h3>留言板</h3>  
+            	 
+            </div>
+			<!-- 头部  end-->
+			
+			<!-- 内容体 start-->
+			<div class="um-content"  >
+				<!-- 帮扶申请表 start-->
+                <ul class="um-list" >
+                	<li class="um-list-item">
+                		<div class="um-list-item-inner">
+                			<div class="um-list-item-left pl15">
+                				标题
+                			</div>
+                			<!-- placeholder="请输入所属党组织" -->
+                			<div class="um-list-item-right">
+                				<input id="title" type="text"  readonly="readonly" data-bind="value: title" class="form-control tr" placeholder="请输入标题">
+                			</div>
+                		</div>
+                	</li>
+                	<li class="um-list-item">
+                		<div class="um-list-item-inner">
+                			<div class="um-list-item-left pl15">
+                				姓名
+                			</div>
+                			<div class="um-list-item-right">
+                				<input id="name" type="text"  readonly="readonly" data-bind="value: name" class="form-control tr" placeholder="请输入姓名">
+                			</div>
+                		</div>
+                	</li>
+                   <li class="um-list-item">
+                		<div class="um-list-item-inner">
+                			<div class="um-list-item-body" >
+	                			<div class="vt pl15 um-row">
+	                				内容
+	                			</div>
+	                			<div class="vt pl15 um-row pr15">
+	                				<textarea name="" id="content" readonly="readonly" data-bind="value: content" cols="37" rows="10" class="form-control i-form-control"></textarea>
+	                			</div>
+	                		</div>
+                		</div>
+                	</li>
+                	<li class="um-list-item">
+                		<div class="um-list-item-inner">
+                			<div class="um-list-item-left pl15">
+                				时间
+                			</div>
+                			<div class="um-list-item-right">
+                				<span id="time" class=" mr15 " disabled="disabled" data-bind="text: time"> </span> 
+                				
+                			</div>
+                		</div>
+                	</li>
+                	
+                	
+                </ul>
+				<!-- 帮扶申请表 end-->
+			</div>
+			<!-- 内容体 end-->
+			
+			<!-- 底部 start-->
+			<!-- <div class="um-footer">
+			                <div class="um-footer">
+			                    <div class="um-footerbar">
+			                                                
+			                        <a href="#" class="um-footerbar-item">
+			                             <button id="submit" class="btn-red btn-inline">提交</button>
+			                        </a>
+			                    </div>
+			                </div>
+			</div> -->
+			<!-- 底部 end-->
+			
+		</div>
+	</body>
+</html>

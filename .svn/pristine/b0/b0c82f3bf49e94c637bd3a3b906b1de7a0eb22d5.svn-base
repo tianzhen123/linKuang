@@ -1,0 +1,174 @@
+/**
+ * 韩鹏
+ * 用友能源
+ * 2017.11.24
+ */
+var ViewModel = function() {
+};
+var viewModel = new ViewModel();
+//var jsonArray = [];
+
+summerready = function() {
+
+	/*Knockout绑定*/
+	viewModel.data = ko.observableArray([]);
+	
+	/*刷新 */
+	var temp = getCurrentDate();
+	var time = time_substr(temp);
+	//$summer.alert("当前时间="+time);
+	refresh(time);
+	//$summer.alert("viewModel="+viewModel);
+	//$summer.alert(viewModel);
+	ko.applyBindings(viewModel);
+	
+	/*页面初始化*/
+	init();
+	
+	/*每个列表 事件绑定*/
+	var listview = UM.listview("#listview");
+	listview.on("itemClick", function(sender, args) {
+		//这里可以处理行点击事件，参数sender即为当前列表实例对象，args对象有2个属性，即rowIndex(行索引)和$target(目标行的jquery对象)
+		currentRowIndex = args.rowIndex;
+		/*var item = viewModel.data()[args.rowIndex];
+		var data = JSON.stringify(item);
+		data = $summer.strToJson(data);
+		*/
+		summer.openWin({
+			"id" : "tuanFeiXiangQing",
+			"url" : "html/tuanFeiGuanLi/tuanFeiXiangQing.html",
+			"isKeep" : true,
+			"pageParam" : {				
+				"currentRowIndex" : args.rowIndex,
+				"timeOfSelected" : getTimeOfSelected(),
+			}
+		});
+	});	
+	
+	
+	
+	/*
+	//实时去判断款号  
+	$("#time").on("onPropertyChange",function(){  
+	     alert("时间改变");
+	}) 
+		
+	$("#time").on("onchange",function(){
+		alert("时间改变");
+	});
+	
+	*/
+/*	document.getElementById("#definite").on("click", function(sender, args) {
+			alert("确定");
+	
+	});
+	
+*/
+
+
+	
+	
+	
+	
+	
+		
+}
+
+
+
+/**
+ * 刷新 
+ */
+function refresh(time) {
+	
+	var url = "http://172.47.12.21:8080/partyconstrutproject/tuanorgfee/selectbydate?yearmonth="+time;
+	//$summer.alert("获取列表");
+	summer.get(url, {
+		
+	}, {
+		"Content-Type" : "application/x-www-form-urlencoded",
+	}, //url地址
+	function(response) {//成功回调
+		var data = $summer.strToJson(response.data);
+		viewModel.data.removeAll();
+		//$summer.alert(data);
+		if (data.success == "success") {
+			var jsonArray = data.detailMsg;
+			var count = jsonArray.data.length;
+			for (var k = 0; k < count; k++) {
+				viewModel.data.push(jsonArray.data[k]);
+				//$summer.alert(jsonArray.data[k]);
+			}
+		} else {
+			$summer.alert("网络错误");
+		}
+	}, function(response) {//失败回调
+		$summer.alert("请求失败");
+	});
+}
+
+/**
+ * 页面初始化 
+ */
+function init(){
+	
+	/*初始化时间*/
+	var time = getCurrentDate();
+	/*var timeViewModel={
+		time: ko.observable(time)
+	}*/
+	//ko.applyBindings(timeViewModel, document.getElementById('time'));
+	
+	$('#time').attr("value",time);
+	
+	
+}
+/*
+function nextData(){
+	$summer.alert("currentRowIndex = "+currentRowIndex)
+	var item = viewModel.data()[currentRowIndex];
+	var data = JSON.stringify(item);
+	data = $summer.strToJson(data);
+	$summer.alert("data = "+data)
+	summer.execScript({
+        "winId" : "tuanFeiXiangQing",
+        
+        "script" : "next("+data+");",
+    });
+
+}
+*/
+
+
+
+
+/**
+ *获取当前时间 
+ */
+function getCurrentDate() {
+	var date = new Date();
+    var month = date.getMonth() + 1;
+    var strDate = date.getDate();
+   	//拼时间
+    var currentdate = date.getFullYear() + "年" + addZero(month) + "月" 
+    return currentdate;
+}
+/**
+ * 时间为单位数时,前面加0
+ */
+function addZero(time){
+	if(parseInt(time) < 10){  
+        time = '0'+time;  
+     }  
+     return time;
+}
+
+
+
+/**
+ *关闭窗口
+ */
+function backClick() {
+	summer.closeWin({});
+}
+

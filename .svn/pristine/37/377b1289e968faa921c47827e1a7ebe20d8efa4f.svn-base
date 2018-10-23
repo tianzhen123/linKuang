@@ -1,0 +1,26 @@
+var viewModel={};
+summerready = function(){
+	
+	viewModel = {
+		backClick : function() {
+			summer.closeWin({});
+		},
+		openCrimePrevention:function(){
+			summer.openWin({
+        				"id" : "crimePrevention",
+        				"url" : "html/armedDefense/crimePrevention.html",
+        				"isKeep": true,
+    				});
+		},
+		openExaminationResult:function(){
+			summer.openWin({
+        				"id" : "examinationResult",
+        				"url" : "html/armedDefense/examinationResult.html",
+        				"isKeep": true,
+    				});
+		}
+		//-----------------------------------请求后台数据----------------------------------/
+	}
+
+	ko.applyBindings(viewModel);
+}

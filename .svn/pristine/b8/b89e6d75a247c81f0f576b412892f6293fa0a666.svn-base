@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="../../css/base.css" />
+		<link rel="stylesheet" href="xianFengDuiWu.css" />
+
+		
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="../../js/knockout.js"></script>
+		<script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+		<script type="text/javascript" src="xianFengDuiWu.js"></script>
+	</head>
+	
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-header">
+            	<a href="#"  class="um-back" onclick="backClick()"></a>
+            	<h3>先锋队伍</h3>
+            </div>
+
+			<div class="um-content">
+				
+				<ul class="um-tabbar um-tabbar-underline pt10 pb10 um-tabbar-switch">
+	                	<li class="active" data-tar='.news'><a>优秀党员</a></li>
+	                	<li data-tar='.product'><a>优秀党组织</a></li>
+	                	<li data-tar='.game'><a>先进个人</a></li>
+	                	<li data-tar='.download'><a>先进团队</a></li>
+                </ul>
+                
+                
+                <div class="um-input-group">
+	                	<span class="ti-search"></span>
+	                	<input  type="search" class="form-control" id="sear" onsearch="searchClick()" placeholder="姓名/岗位" >
+	                <span class="input-group-btn">
+	                    			<button class="btn btn-primary" onclick="searchClick()">搜索</button>
+	                	</span>
+                </div>
+                
+               
+               <div class="Artical">        
+               	<div class="news active ">
+	               	<div class="um-listview" id="listview">
+		                		<ul class="um-list" data-bind="foreach:data"> 
+			                		<li class="um-listview-row" style="margin: 10px;">
+								    <div class="um-list-item"> 
+								        <div class="um-list-item-media" style="max-width: 35%;"> 
+                                            <img src="../../img/waite.png"    alt="" class="um-img-responsive" >
+								        </div> 
+								        <div class="um-list-item-inner" style="max-width: 55%"> 
+								            <div class="um-list-item-body" > 
+								            			<div data-bind="text:name" style="height: 30%;">张金友</div> 
+								            			<div data-bind="text:post" style="height: 30%;">科长</div>
+								            			<div style="height: 40%;text-overflow:ellipsis;overflow:hidden;-webkit-line-clamp: 2;-webkit-box-orient: vertical;display: -webkit-box;">思想作风好,旗帜鲜明，政治觉悟高，大局意识强,艰苦奋斗...</div>
+								            </div> 
+								        </div> 
+								    </div>
+								  </li>
+							</ul>
+						</div>
+               	</div>
+               	
+               	
+               	
+               	<div class="product">
+               			<div class="um-listview" id="listview">
+		                		<ul class="um-list" data-bind="foreach:data"> 
+			                		<li class="um-listview-row" style="margin: 10px;">
+								    <div class="um-list-item"> 
+								        <div class="um-list-item-media" style="max-width: 35%;"> 
+                                            <img src="../../img/waite.png"    alt="" class="um-img-responsive" >
+								        </div> 
+								        <div class="um-list-item-inner" style="max-width: 55%"> 
+								            <div class="um-list-item-body" > 
+								            			<div data-bind="text:name" style="height: 30%;">张金友</div> 
+								            			<div data-bind="text:post" style="height: 30%;">科长</div>
+								            			<div style="height: 40%;text-overflow:ellipsis;overflow:hidden;-webkit-line-clamp: 2;-webkit-box-orient: vertical;display: -webkit-box;">思想作风好,旗帜鲜明，政治觉悟高，大局意识强,艰苦奋斗...</div>
+								            </div> 
+								        </div> 
+								    </div>
+								  </li>
+							</ul>
+						</div>
+               	</div>
+               	
+               	
+               	<div class="game">
+               			<div class="um-listview" id="listview">
+		                		<ul class="um-list" data-bind="foreach:data"> 
+			                		<li class="um-listview-row" style="margin: 10px;">
+								    <div class="um-list-item"> 
+								        <div class="um-list-item-media" style="max-width: 35%;"> 
+                                            <img src="../../img/waite.png"    alt="" class="um-img-responsive" >
+								        </div> 
+								        <div class="um-list-item-inner" style="max-width: 55%"> 
+								            <div class="um-list-item-body" > 
+								            			<div data-bind="text:name" style="height: 30%;">张金友</div> 
+								            			<div data-bind="text:post" style="height: 30%;">科长</div>
+								            			<div style="height: 40%;text-overflow:ellipsis;overflow:hidden;-webkit-line-clamp: 2;-webkit-box-orient: vertical;display: -webkit-box;">思想作风好,旗帜鲜明，政治觉悟高，大局意识强,艰苦奋斗...</div>
+								            </div> 
+								        </div> 
+								    </div>
+								  </li>
+							</ul>
+						</div>
+               	
+               	</div>
+               	
+               	
+               	<div class="download">
+               			<div class="um-listview" id="listview">
+		                		<ul class="um-list" data-bind="foreach:data"> 
+			                		<li class="um-listview-row" style="margin: 10px;">
+								    <div class="um-list-item"> 
+								        <div class="um-list-item-media" style="max-width: 35%;"> 
+                                            <img src="../../img/waite.png"    alt="" class="um-img-responsive" >
+								        </div> 
+								        <div class="um-list-item-inner" style="max-width: 55%"> 
+								            <div class="um-list-item-body" > 
+								            			<div data-bind="text:name" style="height: 30%;">张金友</div> 
+								            			<div data-bind="text:post" style="height: 30%;">科长</div>
+								            			<div style="height: 40%;text-overflow:ellipsis;overflow:hidden;-webkit-line-clamp: 2;-webkit-box-orient: vertical;display: -webkit-box;">思想作风好,旗帜鲜明，政治觉悟高，大局意识强,艰苦奋斗...</div>
+								            </div> 
+								        </div> 
+								    </div>
+								  </li>
+							</ul>
+						</div>
+               	
+               	</div>				
+               	
+               	
+               </div>
+ 
+				
+				
+			</div>
+
+		</div>
+
+        <script>
+        	$(function () {			 
+        		 /*导航更换js*/
+        		 $('ul.um-tabbar-switch  Li').click(function(){
+        			$(this).addClass('active').siblings('.active').removeClass('active');
+        			var tar=$(this).attr('data-tar');
+        			$(tar).addClass('active').siblings('.active').removeClass('active');
+        		}); 
+        	});
+        </script>
+	</body>
+</html>

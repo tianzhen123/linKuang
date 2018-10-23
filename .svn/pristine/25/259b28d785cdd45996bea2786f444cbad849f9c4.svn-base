@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../../css/font-icons.css">
+		<link rel="stylesheet" href="../../../css/base.css" />
+		<link rel="stylesheet" href="orgDet.css" />		
+		<link rel="stylesheet" href="../../../css/mescroll.min.css" />
+		<script src="../../../js/summer.js" ></script>		
+		<script src="../../../js/jquery.min.js" ></script>
+		<script src="../../../js/mescroll.min.js"></script>
+		<script src="../../../js/base.js" ></script>
+		<script src="../../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script type="text/javascript" src="../../../js/knockout.js"></script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-header" >
+				<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            	<h3 id="pageTitle">组织机构详情</h3>
+			</div>
+
+			<div id="um-content" class="um-content" style="background-color: #F2F2F2;">
+				<div id="mescroll" class="mescroll">
+				<ul style="background-color: #ffffff;">
+					<li>
+						<div class="li-content">
+							<div class="title"><span>组织名称</span></div>
+							<div  class="name"><span id="name">校务委员会</span></div>
+						</div>
+					</li>
+					<!--<li class="person" onclick="personClick()">
+						<div class="li-content">
+							<div class="title"><span>组织成员</span></div>
+							<div id="member" class="name"><span>5人</span></div>
+						</div>
+					</li>-->
+					<li>
+						<div class="li-content">
+							<div class="title"><span>组织联系人</span></div>
+							<div  class="name"><span id="contacts">刘昊然</span></div>
+						</div>
+					</li>
+					<li>
+						<div class="li-content">
+							<div class="title"><span>组织联系人电话</span></div>
+							<div  class="name"><span id="contactsphone">18888888</span></div>
+						</div>
+					</li>
+					<li>
+						<div class="li-content">
+							<div class="title"><span>地址</span></div>
+							<div  class="name"><span id="address">校务委员会中区东路1号楼2单元</span></div>
+						</div>
+					</li>
+					
+				</ul>
+				<!-- 二级菜单-->
+				<div style="background-color: #ffffff;position: relative;top: 25px;">
+					<ul id="dataList" class="list" data-bind="foreach:data">
+						<li class="list-li" data-bind="click:$root.openWin.bind($data)">
+							<div class="li-content">
+								<img style="width: 35px;height: 35px;margin-right: 20px;" class="li-img" src="../../../img/organiz.png"/>
+								<p data-bind="text:name"></p>
+							</div>
+						</li>
+					</ul>
+				</div>
+				</div>
+			</div>
+
+		</div>
+		<script src="orgDet.js"></script>
+	</body>
+</html>

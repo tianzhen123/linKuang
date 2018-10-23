@@ -1,0 +1,85 @@
+<!DOCTYPE html><!--干事审批界面-->
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="../../css/base.css" />	
+		<link rel="stylesheet" href="examine.css" />
+		
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-header" >
+				<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            	<h3 id="pageTitle">审批</h3>
+			</div>
+
+			<div class="um-content">
+				<div class="content-body">
+					<div class="body-head">
+						<div data-bind="click:waitClick">
+							<img class="body-head-img" alt="待审批" src="../../img/daishenpi.png"/>
+							<p>待审批</p>
+							<span data-bind="text:waitCount"></span>
+						</div>
+						<div data-bind="click:myClick">
+							<img class="body-head-img" alt="我发起的" src="../../img/faqi.png" />
+							<p>我发起的</p>
+						</div>
+						<div data-bind="click:alreadyClick">
+							<img class="body-head-img" alt="已完成" src="../../img/yiwancheng.png"/>
+							<p>已审批</p>
+						</div>
+						
+					</div>
+				
+					<div class="body-content">
+						<p>共青团工作</p>
+						<ul class="body-content-ul">
+							<li>
+								<div>
+								<img src="../../img/work.png"/>
+								<p>团员推优</p>
+								</div>
+							</li>
+							<li>
+								<div>
+								<img src="../../img/work.png"/>
+								<p>团员推优</p>
+								</div>
+							</li>
+							<li>
+								<div>
+								<img src="../../img/work.png"/>
+								<p>团员推优</p>
+								</div>
+							</li>
+							<li>
+								<div>
+								<img src="../../img/work.png"/>
+								<p>团员推优</p>
+								</div>
+							</li>
+							<li>
+								<div>
+								<img src="../../img/work.png"/>
+								<p>团员推优</p>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="../../js/base.js"></script>
+		<script src="../../js/font.js"></script>
+		<script type="text/javascript" src="../../js/knockout.js"></script>
+		<script src="examine_ganShi.js"></script>
+	</body>
+</html>

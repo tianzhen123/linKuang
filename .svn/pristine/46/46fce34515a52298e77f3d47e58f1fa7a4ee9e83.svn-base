@@ -1,0 +1,43 @@
+summerready = function() {
+    var ViewModel = function () {            
+            };	
+    var jsonArray = [
+                        {         
+                        	"img": "../../img/ldh.png",
+                            "title": "人名",
+                            "detail": "个人信息1",
+                            "comments": 2300
+                        }, 
+                    ];
+    var jsonArray2 = [
+    {         
+    	"img": "../../img/ldh.png",
+        "title": "人名2",
+        "detail": "个人信息2",
+        "comments": 2300
+                    }, 
+                ];
+	var jsonArray3 = [
+    {         
+    	"img": "../../img/ldh.png",
+        "title": "人名3",
+        "detail": "个人信息3",
+        "comments": 2300
+                    }, 
+                ];
+    var jsonArray4 = [
+    {         
+    	"img": "../../img/ldh.png",
+        "title": "人名4",
+        "detail": "个人信息4",
+        "comments": 2300
+                    }, 
+                ];
+	var viewModel = new ViewModel();
+	viewModel.data = ko.observableArray(jsonArray);
+	viewModel.data2 = ko.observableArray(jsonArray2);
+	viewModel.data3 = ko.observableArray(jsonArray3);
+	viewModel.data4 = ko.observableArray(jsonArray4);
+    ko.applyBindings(viewModel);
+}
+

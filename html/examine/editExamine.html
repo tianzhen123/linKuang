@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="../../css/base.css" />	
+		<link rel="stylesheet" href="../../css/layout/base.css">
+		<link rel="stylesheet" href="editExamine.css" />
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-header" >
+				<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            	<h3 id="pageTitle">待审批</h3>
+            	<a href="#" class="addBtn" >提交</a>
+			</div>
+
+			<div class="um-content">
+				<div class="content-head">
+					<ul class="content-head-list f16">
+						<li>
+							<div class="li-left li-title">
+								标题
+							</div>
+							<input class="li-center title" type="text" class="" />
+						</li>
+						<li>
+							<div class="li-left">
+								摘要
+							</div>
+							<input class="li-center summary" type="text" class="" />
+						</li>
+						<li>
+							<div class="li-left">
+								标签
+							</div>
+							<input class="li-center tag" type="text" class="" />
+						</li>
+						<li>
+							<div class="li-left">
+								创建时间
+							</div>
+							<input class="li-center create-time" type="date" class="" />
+						</li>
+						<li data-bind = "click:selColumn" >
+							<div class="li-left" class="li-column">
+								栏目
+							</div>
+							<div class="li-center" data-bind="text:column"></div>
+						</li>
+					</ul>
+				</div>
+				<div class="content-body">
+					<p class="f14 body-title">内容</p>
+					<div class="con-body-con">
+						<div id="editorBody" class="editor" contenteditable="true" style="-webkit-user-select: auto" placeholder="请输入内容">
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="../../js/base.js"></script>
+		<script src="../../js/knockout.js"></script>
+		<script src="../../js/font.js"></script>
+		<script src="editExamine.js"></script>
+	</body>
+</html>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<!-- 默认 start -->
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<!-- 默认 end -->
+		
+		<!-- 头部 start -->
+		<link rel="stylesheet" href="../../css/base.css" />
+		<!-- 头部 end -->
+		
+		<!-- 样式修改  start-->
+		<link rel="stylesheet" href="wenTiZhengGaiTianXie.css"/>
+        <link rel="stylesheet" href="../../css/iscroll.css" /> 
+        <style>
+        .um-time{
+            background:#ffffff;
+            border-top:1px solid #dddddd;
+            border-bottom:1px solid #dddddd;
+        }
+        .um-time-list{
+            height:46px;
+            line-height: 46px;
+        }
+        .um-time-list:first-child{
+            border-bottom:1px solid #dddddd;
+        }
+        .um-time-txt{
+            float: left;
+            color:#8c8d8e;
+        }
+        .um-time-list .fr{
+            position:relative;
+            float: right;
+            margin-right:30px;
+        }
+        .um-time-list .fr:after{
+            content: "";
+            position:absolute;
+            right:-15px;
+            top:15px;
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            border-right: 2px solid #8c8d8e;
+            border-top: 2px solid #8c8d8e;
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+        .um-time-list input{
+            display:block;
+            width: 180px;
+            height: 45px;
+            line-height:45px;
+            border: none;
+            outline: none;
+            text-align: right;
+            background: #fff;
+        }
+        </style>
+
+
+		<!-- 样式修改  end-->
+
+
+		<!-- 默认 start -->
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<!-- 默认 end -->
+		
+		<script src="../../js/base.js"></script>
+		 
+		<!-- 自定义 start -->
+		<script src="../../js/hp/hp_function.js" ></script> 
+		<script src="wenTiZhengGaiTianXie.js" ></script> 
+		<script src="../../js/hp/hp_slide.js"></script>
+		<!-- 自定义 end -->
+		
+		<!-- 引用 start -->			
+	        <!-- 列表 -->
+	        <script src="../../js/knockout.js"></script>
+			<script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+        <!-- 引用  end -->
+        <script src="../../js/iscroll.js"></script>
+	</head>
+	<body>
+		<div class="um-win" id="index" name="hp_slide">
+			<!-- 头部  start-->
+			<div class="um-header">
+            	<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            	<h3>纪委举报</h3>  
+            	<div id="submit" class="um-header-btns">
+            		<h3>提交</h3>  
+                </div> 
+            </div>
+			<!-- 头部  end-->
+			
+			<!-- 内容体 start-->
+			<div class="um-content"  >
+				<!-- 基本信息   start-->
+                <ul class="um-list" style="position: unset; border-bottom:0;">
+                	<li class="um-list-item" style="position: unset;">
+                		<div class="um-list-item-inner" style="position: unset;">
+                			<div class="um-list-item-left pl15">
+                				<img src="../../img/liuYanBan_title.png" style="width: 25px;" />&nbsp群监员：
+                			</div>
+                			
+                			<div class="um-list-item-right">
+                				<input id="pk_supervisor_name" type="text" class="form-control tr" readonly="true">
+                			</div>
+                		</div>
+                	</li>
+                	<li class="um-list-item" style="position: unset;">
+                		<div class="um-list-item-inner" style="position: unset;">
+                			<div class="um-list-item-left pl15">
+                				<img src="../../img/liuYanBan_time.png" style="width: 25px;" />&nbsp时间：
+                			</div>
+                			
+                			<div class="um-list-item-right">
+		                        <ul class="um-time-view pl40">
+		                            <li class="um-time-list clearfix" style="border: 0">
+		                                <div >
+		                                    <input name="start" id="p_time" type="text" class="scroller-date" readonly="true" style="font-size: inherit;float: right;">
+		                                </div>
+		                            </li>
+		                        </ul>
+                			</div>
+                		</div>
+                	</li>
+                	<li class="um-list-item" style="position: unset;">
+                		<div class="um-list-item-inner" style="position: unset;">
+                			<div class="um-list-item-left pl15">
+                				<img src="../../img/liuYanBan_title.png" style="width: 25px;" />&nbsp地点：
+                			</div>
+                			
+                			<div class="um-list-item-right">
+                				<input  id="p_place" type="text" class="form-control tr flag_hasNull" placeholder="请输入地点(必填)">
+                			</div>
+                		</div>
+                	</li>
+                	
+                	<li class="um-list-item" style="position: unset;">
+                		<div class="um-list-item-inner" style="position: unset;">
+                			<div class="um-list-item-left pl15">
+                				<img src="../../img/liuYanBan_title.png" style="width: 25px;" />&nbsp班次：
+                			</div>
+                			
+                			<div class="um-list-item-right">
+                				<input  id="p_code" type="text"  class="form-control tr flag_hasNull" placeholder="请输入班次(必填)">
+                			</div>
+                		</div>
+                	</li>
+                	
+                	<li class="um-list-item" style="position: unset;">
+                		<div class="um-list-item-inner" style="position: unset;">
+                			<div class="um-list-item-left pl15">
+                				<img src="../../img/liuYanBan_title.png" style="width: 25px;" />&nbsp班组长：
+                			</div>
+                			
+                			<div class="um-list-item-right">
+                				<input  id="headmen" type="text" class="form-control tr flag_hasNull" placeholder="请输入班组长(必填)">
+                			</div>
+                		</div>
+                	</li>
+                </ul>
+				<!-- 基本信息 end-->
+				
+                <!-- 问题填写 start -->
+	                <ul class="um-list problems_form" style="border: 0" data-bind="foreach:data" > 
+	                	<li class="um-list-item myBorder" style="position: unset;background: #f5f5f5;">
+	                		<div class="um-list-item-inner" style="position: unset;">
+	                			<div class="um-list-item-left pl15" style="width: 50%;">
+	                				<span class="title_problems_form"></span>
+	                			</div>
+	                			
+	                			<div class="um-list-item-right ">
+	                				<div class="delete" style="float: right;">
+	                					<img src="../../img/delete.png" style="width: 25px;" />
+	                				</div>
+	                			</div>
+	                		</div>
+	                	</li>
+	                	
+	                	<li class="um-list-item" style="position: unset;">
+	                		<div class="um-list-item-inner" style="position: unset;">
+	                			<div class="um-list-item-left pl15" style="width: 50%;">
+	                				&nbsp问题分类：
+	                			</div>
+	                			
+	                			<div class="um-list-item-right problems">
+	                				<input id="pk_problem_type" type="text" data-bind="value: pk_problem_type_name" class="form-control tr flag_hasNull" placeholder="请点击选择(必填)" readonly="true">
+	                			</div>
+	                		</div>
+	                	</li>
+	                	<li class="um-list-item problems_content" style="display: none">
+	                		<div class="um-list-item-inner">
+	                			<div style="width: 100%;margin: 0;">
+			                    	<label  style="padding: 9px 15px;">
+			                    		<input class="mySelect" checked type="text" value="基础问题" readonly="true" >
+			                    	</label>
+			                    	<label class="um-check-group-item" style="padding: 9px 15px;">
+			                    		<input class="mySelect" type="text" value="建设问题" readonly="true" >
+			                    	</label>
+			                    	<label class="um-check-group-item" style="padding: 9px 15px;">
+			                    		<input class="mySelect"  type="text" value="其他问题" readonly="true" >
+			                    	</label>
+			                    </div>
+	                		</div>
+	                	</li>
+	                   <li class="um-list-item" style="position: unset;">
+	                		<div class="um-list-item-inner" style="position: unset;">
+	                			<div class="um-list-item-body" >
+		                			<div class="vt pl15 um-row">
+		                				&nbsp问题描述:
+		                			</div>
+		                			<div class="vt pl15 um-row pr15">
+		                				
+		                				<textarea name="" id="problem_detail" data-bind="value: problem_detail" cols="37" rows="10" class="form-control i-form-control flag_hasNull" placeholder="请输入问题描述(必填)" style="word-break:break-all; text-indent: 35px;"></textarea>
+		                			</div>
+		                		</div>
+	                		</div>
+	                	</li>
+	                	<li class="um-list-item" style="position: unset;">
+	                		<div class="um-list-item-inner" style="position: unset;">
+	                			<div class="um-list-item-body" >
+		                			<div class="vt pl15 um-row">
+		                				&nbsp备注:
+		                			</div>
+		                			<div class="vt pl15 um-row pr15">
+		                				
+		                				<textarea name="" id="remark" data-bind="value: remark" cols="37" rows="10" class="form-control i-form-control " style="word-break:break-all; text-indent: 35px; height: 100px;"></textarea>
+		                			</div>
+		                		</div>
+	                		</div>
+	                	</li>
+	                	<li class="um-list-item " style="position: unset;" >
+	                		<div class="um-list-item-inner" style="position: unset;">
+	                			<div class="um-list-item-left pl15" style="width: 50%;">
+	                				<span>复查情况:</span>
+	                			</div>
+	                			
+	                			<div class="um-list-item-right reexamination">
+	                				<input id="reexamination" type="text" data-bind="value: reexamination" class="form-control tr flag_hasNull"  readonly="true">
+	                			</div>
+	                		</div>
+	                	</li>
+	                	<li class="um-list-item reexamination_content" style="display: none">
+	                		<div class="um-list-item-inner" >
+	                           <div  class="um-check-group" style="width: 100%;margin: 0;">
+			                    	<label class="um-check-group-item" style="padding: 9px 15px;">
+			                    		<input name="um-radio" checked type="radio" value="待复查">
+			                    		<span class="um-black">待复查</span>
+			                    	</label>
+			                    	<label class="um-check-group-item" style="padding: 9px 15px;">
+			                    		<input id="" name="um-radio" type="radio" value="合格">
+			                    		<span class="um-black">合格</span>
+			                    	</label>
+			                    	<label class="um-check-group-item" style="padding: 9px 15px;">
+			                    		<input id="" name="um-radio" type="radio" value="不合格">
+			                    		<span class="um-black">不合格</span> 
+			                    	</label>
+			                    	
+			                    </div> 
+	                		</div>
+	                	</li>
+	                </ul>
+                <!-- 问题填写 end -->
+				<!-- 新增问题 start-->
+        		<div class="um-list-item-inner">
+        			<div class=" pl15" style="width: 100%;">
+        				<input id="add"  type="text" value="+新增问题" readonly="true"  />
+        			</div>
+        			
+        		</div>
+				<!-- 新增问题 end-->
+			</div>
+			<!-- 内容体 end-->
+		</div>
+
+        <script>
+        	$(function () {//时间选择插件初始化
+        		$('.scroller-date').scroller('destroy').scroller({
+        			preset: 'date',
+        			theme: "ios7",
+        			mode: "scroller",
+        			display: "bottom",
+        			animate: ""
+        		});	
+        	});
+        </script>
+	</body>
+</html>

@@ -1,0 +1,9 @@
+summerready=function(){
+	var timestamp = Date.parse(new Date())/1000;
+	var accountKey="AHgBcFBrUWEEclIyWHQEMFczU2oCMAY7CStVKwZ+BWwBcAs/XCxQPlYgB2xdYlNlAWMCNgU+AjBUdlUrVy9QOABiAT9QZ1EnBGpSKlg+BGhXMVNnAjIGNgkrVSsGfgV3AWsLNVxrUCZWOAdsXWZTZQFsAjoFPgI2VGRVMVc+UCs=";
+	var userName="18866905935";
+	var sign=$.md5(userName+timestamp.toString()+accountKey);
+	var urlString="http://wk.bookan.com.cn/index.php?op=Authentication.redirect&authType=1&id=21518&userName="+userName+
+				"&time="+timestamp+"&sign="+sign;
+	window.location=urlString;
+}

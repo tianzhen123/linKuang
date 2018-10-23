@@ -1,0 +1,161 @@
+
+summerready = function() {
+    var ViewModel = function () {            
+            };	
+    var jsonArray = [
+    {         
+        "img": "../../img/contact1.jpg",
+        "title": "人名",
+        "detail": "个人信息1",
+        "jianli":"人员简历",
+        "comments": 2300
+     }, 
+    {         
+        "img": "../../img/contact2.jpg",
+        "title": "人名",
+        "detail": "个人信息2",
+        "jianli":"人员简历",
+        "comments": 2300
+                        }, 
+    {         
+        "img": "../../img/contact3.jpg",
+        "title": "人名",
+        "detail": "个人信息3",
+        "jianli":"人员简历",
+        "comments": 2300
+     }, 
+    {         
+        "img": "../../img/contact4.jpg",
+        "title": "人名",
+        "detail": "个人信息4",
+        "jianli":"人员简历",
+        "comments": 2300
+     }, 
+                    ];
+    var jsonArray2 = [
+    {         
+    	"img": "../../img/contact2.jpg",
+        "title": "人名2",
+        "detail": "个人信息2",
+        "jianli":"人员简历",
+        "comments": 2300
+                    }, 
+                        {         
+    	"img": "../../img/contact3.jpg",
+        "title": "人名2",
+        "detail": "个人信息2",
+        "jianli":"人员简历",
+        "comments": 2300
+                    }, 
+                        {         
+    	"img": "../../img/contact4.jpg",
+        "title": "人名2",
+        "detail": "个人信息2",
+        "jianli":"人员简历",
+        "comments": 2300
+                    }, 
+                        {         
+    	"img": "../../img/contact1.jpg",
+        "title": "人名2",
+        "detail": "个人信息2",
+        "jianli":"人员简历",
+        "comments": 2300
+                    }, 
+                ];
+	var jsonArray3 = [
+    {         
+    	"img": "../../img/contact3.jpg",
+        "title": "人名3",
+        "detail": "个人信息3",
+        "jianli":"人员简历",
+        "comments": 2300
+                    }, 
+                        {         
+    	"img": "../../img/contact4.jpg",
+        "title": "人名3",
+        "detail": "个人信息3",
+        "jianli":"人员简历",
+        "comments": 2300
+                    }, 
+                        {         
+    	"img": "../../img/contact1.jpg",
+        "title": "人名3",
+        "detail": "个人信息3",
+        "jianli":"人员简历",
+        "comments": 2300
+                    }, 
+                        {         
+    	"img": "../../img/contact2.jpg",
+        "title": "人名3",
+        "detail": "个人信息3",
+        "jianli":"人员简历",
+        "comments": 2300
+                    }, 
+                ];
+    var jsonArray4 = [
+    {         
+    	"img": "../../img/contact4.jpg",
+        "title": "人名4",
+        "detail": "个人信息4",
+        "jianli":"人员简历",
+        "comments": 2300
+                    }, 
+    {         
+    	"img": "../../img/contact1.jpg",
+        "title": "人名4",
+        "detail": "个人信息4",
+        "jianli":"人员简历",
+        "comments": 2300
+                    }, 
+    {         
+    	"img": "../../img/contact2.jpg",
+        "title": "人名4",
+        "detail": "个人信息4",
+        "jianli":"人员简历",
+        "comments": 2300
+                    }, 
+    {         
+    	"img": "../../img/contact3.jpg",
+        "title": "人名4",
+        "detail": "个人信息4",
+        "jianli":"人员简历",
+        "comments": 2300
+                    },                                         
+                ];
+	var viewModel = new ViewModel();
+	viewModel.data = ko.observableArray(jsonArray);
+	viewModel.data2 = ko.observableArray(jsonArray2);
+	viewModel.data3 = ko.observableArray(jsonArray3);
+	viewModel.data4 = ko.observableArray(jsonArray4);
+    ko.applyBindings(viewModel);
+    
+    var listview = UM.listview("#listview");
+    //添加控件方法
+    listview.on("itemClick", function (sender, args) {                       
+		summer.openWin({
+			"id" : "xianFengTeamXiangQing",
+			"url" : "html/xianFengTeam/xianFengTeamXiangQing.html",
+			"isKeep" : true,
+			"pageParam" : {
+				"count" : "",
+				"pageTitle" : "",
+			}
+		});
+		});
+}
+
+	$(function () {			 
+        		 /*导航更换js*/
+        		 $('ul.um-tabbar-switch  Li').click(function(){
+        			$(this).addClass('active').siblings('.active').removeClass('active');
+        			var tar=$(this).attr('data-tar');
+        			$(tar).addClass('active').siblings('.active').removeClass('active');
+        		}); 
+        	});
+        	
+        	
+function backClick(){
+  	summer.closeWin({});
+}
+
+

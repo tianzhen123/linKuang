@@ -1,0 +1,44 @@
+.header{
+	background-color: red
+}
+.um-content{
+	background-color: #EFEFEF;
+}
+.describe{
+	background-color: #EFEFEF;
+	color: #A7A4A5;
+	padding: 5px;
+}
+.approvalProcess{
+	width: 100%;
+	height: 130px;
+	background-color: white;
+}
+.wait{
+	width: 33.33%;
+	text-align: center;
+	display: table;
+	height: 130px;
+	float: left
+}
+.wait2{
+	width: 50%;
+	text-align: center;
+	display: table;
+	height: 130px;
+	float: left
+}
+.verticalCenter{
+	display: table-cell;
+	vertical-align: middle;
+}
+.imgsyl{
+	padding-bottom: 15px;
+}
+.imgsyl img{
+	width: 25%;
+}
+.imgDescribe{
+	color:#3C3C3C;
+	margin-top: -10px;
+}

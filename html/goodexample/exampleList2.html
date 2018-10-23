@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">		
+		<link rel="stylesheet" href="../../css/account2.css">	
+		<link rel="stylesheet" href="../../css/base.css" />
+		<link rel="stylesheet" href="./exampleList.css" />
+		<link rel="stylesheet" href="../../css/commons.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iuapmobile.um.listview.css">
+		<link rel="stylesheet" href="../../css/iscroll.css"/>
+		<link rel="stylesheet" href="../../css/public.css">
+		<link rel="stylesheet" href="../../css/commons.css"/>
+		<script src="../../js/commons.js" ></script> 
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/summer.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="../../js/swipe.js" ></script>
+		<script src="../../js/swipeTab.js" ></script>
+		<script type="text/javascript" src="../../js/knockout.js"></script>
+    	<script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+    	<script src="../../js/iscroll.js"></script>
+		<script src="./exampleList2.js" ></script>
+		
+		<script>
+			$isWeb = true;
+			function $pageReady() {
+				alert("webview ready");
+			}
+
+			$(function() {
+
+			});
+		</script>
+		
+
+	</head>
+	<body>
+		<div class="um-page active" id="index">
+			<div id="header" class="um-header">
+				<div id="backContainer" style="width: 30%">
+					<a href="#"  class="headerText backup" onclick="backClick()"></a>
+				</div>
+				<div id="titleContainer" style="width:40%">
+					<h3>先进劳模</h3>
+				</div>
+				<div id="appealContainer" style="width:30%">
+					<select id='select1' class="" style="background-color: red;">
+						<option selected="BUSI_TYPE_ALL">年份</option>
+                        <option value="2018">2018</option>
+                        <option value="2017">2017</option>
+                        <option value="2016">2016</option>
+                        <option value="2015">2015</option>
+                    </select> 
+				</div> 
+			</div>
+
+			<div class="um-content" style="background-color: #F4F2F5;">
+				<ul class="um-tabbar um-tabbar-underline" style="background-color: #fff;border-bottom: 1px solid #F4F2F5;">
+					<li id="GETYPE_MODEL">
+						<a href="javascript:;">劳动模范</a>
+					</li>
+					<li id="GETYPE_ADVANCED" class="active">  
+						<a href="javascript:;">先进工作者</a>
+					</li>
+				</ul>     
+			
+				<div class="um-listview-wrap" id="advancedExampleView" style="padding-top: 15px;background-color: #F7F7F7;">
+		            <ul class="um-list um-no-active" data-bind="foreach:data">
+		                <li class="um-listview-row">
+						    <div class="um-xs-4 um-sm-4 um-md-4 ge-obj" >
+						    	<div class="contentsyl GE_MODEL">
+						    		<div class="topsyl" data-bind="text:geType">
+						    		</div>
+    								<div class="imgsyl" style="padding:15px;padding-bottom: 5px;padding-top: 8px;">
+						    			<a>
+						    				<img data-bind="attr:{src:photoUrl}" src="" />
+						    			</a>
+    								</div>
+    								<div class="namesyl" data-bind="text:name"></div>
+    								<div class="worksyl" data-bind="text:companyName"></div>
+    							</div>
+    						</div>
+		                </li>
+		            </ul>
+		        </div>
+
+			</div>
+		</div>
+	</body>
+</html>

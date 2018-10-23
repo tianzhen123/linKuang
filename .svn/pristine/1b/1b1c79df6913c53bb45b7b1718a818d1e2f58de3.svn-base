@@ -1,0 +1,92 @@
+/**
+ * 韩鹏
+ * 用友能源
+ * 2017.11.24
+ */
+var ViewModel = function() {
+};
+var viewModel = new ViewModel();
+//var jsonArray = [];
+summerready = function() {
+
+	/*Knockout绑定*/
+	viewModel.data = ko.observableArray([]);
+	ko.applyBindings(viewModel);
+	
+	/*刷新 获取留言*/
+	refresh();
+	
+	/*每个留言 事件绑定*/
+	var listview = UM.listview("#listview");
+	listview.on("itemClick", function(sender, args) {
+		//这里可以处理行点击事件，参数sender即为当前列表实例对象，args对象有2个属性，即rowIndex(行索引)和$target(目标行的jquery对象)
+		var item = viewModel.data()[args.rowIndex];
+		var data = JSON.stringify(item);
+		data = $summer.strToJson(data);
+		summer.openWin({
+			"id" : "liuYanBanChaKan",
+			"url" : "html/liuYanBan/liuYanBanChaKan.html",
+			"isKeep" : true,
+			"pageParam" : {
+				"count" : data
+			}
+		});
+	});
+
+	/*点击打开新页面 */
+	$("#newApplication").on("click", function(sender, args) {
+		//这里可以处理行点击事件，参数sender即为当前列表实例对象，args对象有2个属性，即rowIndex(行索引)和$target(目标行的jquery对象)
+
+		summer.openWin({
+			"id" : "liuYanBanTianXie",
+			"url" : "html/liuYanBan/liuYanBanTianXie.html",
+			"isKeep" : true,
+
+		});
+	});
+	/*下拉刷新列表 */
+	listview.on("pullDown", function(sender) {
+		//这是可以编写列表下拉加载逻辑，参数sender即为当前列表实例对象
+		refresh();
+	});
+	
+}
+/**
+ * 刷新 获取留言
+ */
+function refresh() {
+
+	var url = "http://"+summer.getStorage("host")+"partyconstrutproject/message/list";
+	//$summer.alert("获取列表");
+	summer.get(url, {
+		
+	}, {
+		"Content-Type" : "application/x-www-form-urlencoded",
+	}, //url地址
+	function(response) {//成功回调
+		var data = $summer.strToJson(response.data);
+		viewModel.data.removeAll();
+		//$summer.alert(data);
+		if (data.success == "success") {
+			jsonArray = data.detailMsg;
+			var count = jsonArray.data.content.length;
+			for (var k = 0; k < count; k++) {
+				viewModel.data.push(jsonArray.data.content[k]);
+			}
+		
+		} else {
+			$summer.alert("网络错误");
+		}
+	}, function(response) {//失败回调
+		$summer.alert("请求失败");
+	});
+
+}
+
+/**
+ *关闭窗口
+ */
+function backClick() {
+	summer.closeWin({});
+}
+

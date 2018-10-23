@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="../../css/base.css" />
+        <style>
+        	div.Artical>div {
+        		display:none;
+        		color:#555;
+        	}
+        	div.Artical>div.active {
+        		display:block;
+        	}
+        	div.Artical>div.news {
+        		background:lightblue;
+        	}
+        	div.Artical>div.product {
+        		background:lightgreen;
+        	}
+        	div.Artical>div.game {
+        		background:lightyellow;
+        	}
+        	div.Artical>div.download {
+        		background:lightpink;
+        	}
+         
+         
+        </style>
+
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-header">
+            	<a href="#"  class="um-back" onclick="backClick()"></a>
+            	<h3>活动申请</h3>
+            </div>
+			
+
+			<div class="um-content">
+				 
+                <div class="Artical">
+                	<div class="news active ">
+                		
+                        <ul class="um-list">
+                        	<li class="um-list-item">
+                        		<div class="um-list-item-inner">
+                        			<div class="um-list-item-body">
+                        				<input type="text" class="form-control" placeholder="活动主题">
+                        			</div>
+                        		</div>
+                        	</li>
+                        	<li class="um-list-item">
+                        		<div class="um-list-item-inner">
+                        			<div class="um-list-item-body">
+                        				<input type="password" class="form-control" placeholder="活动时间">
+                        			</div>
+                        		</div>
+                        	</li>
+                        	<li class="um-list-item">
+                        		<div class="um-list-item-inner">
+                        			<div class="um-list-item-body">
+                        				<input type="password" class="form-control" placeholder="活动地点">
+                        			</div>
+                        		</div>
+                        	</li>
+                        	<li class="um-list-item">
+                        		<div class="um-list-item-inner">
+                        			<div class="um-list-item-body">
+                        				<input type="password" class="form-control" placeholder="活动描述">
+                        			</div>
+                        		</div>
+                        	</li>
+                        	
+                        </ul>
+                        <div class="um-row">
+                        	<button class="um-btn um-btn-danger um-no-brs">提交</button>
+                        </div>
+
+                	</div>
+                </div>
+
+			</div>
+
+		</div>
+
+        <script>
+        	$(function () {			 
+        		 /*导航更换js*/
+        		 $('ul.um-tabbar-switch  Li').click(function(){
+        			$(this).addClass('active').siblings('.active').removeClass('active');
+        			var tar=$(this).attr('data-tar');
+        			$(tar).addClass('active').siblings('.active').removeClass('active');
+        		}); 
+        	});
+        </script>
+	</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">
+        <link rel="stylesheet" type="text/css" href="../../css/islider.css">
+        <link rel="stylesheet" type="text/css" href="home.css" />
+        <link rel="stylesheet" href="../../css/base.css" />
+        <!--列表 start-->
+        <link rel="stylesheet" type="text/css" href="../../css/mescroll.min.css" />
+        <link rel="stylesheet" type="text/css" href="../../css/iuapmobile.um.listview.css">
+		<!--列表 end-->
+
+	</head>
+	<body>
+		<div class="um-win" id="index">
+		
+			<div class="um-content">
+				<div id="mescroll" class="mescroll">
+					<!--轮播 start-->
+	               <div class="um-row"><div id="iSlider-wrapper" class="iSlider-wrapper"></div></div>
+	                
+					<!--轮播 end-->
+					
+					<!--图标 start-->
+					
+	                 	 <div class="item-list" >
+	                 	 
+	                 	 	<ul class="item-list-ul" data-bind="foreach:data_menu">
+	                 	 		<li class="item-list-li" data-bind="event:{click:itemClick.bind(this)}">
+	                 	 			<img data-bind="attr:{src: logoUrl}"  alt="" />
+	                 	 			<div class="li-name">
+	                 	 				<span class="f14" data-bind="text:name"></span>
+	                 	 			</div>
+	                 	 		</li>
+	                 	 	</ul>
+	                 	 
+	                 	 </div>
+					<!--图标 end-->
+						<div class="mg">
+						</div>
+					<!--列表 start-->
+	                
+	                	<ul class="um-list um-no-active" data-bind="foreach:data_list" style="background: #fff;display: none">
+	                		<li class="um-listview-row">
+	                			<div class="list_top">
+	                				<div class="tl fl " style="display: flex;align-items:center">
+		    							<div class="title-name"></div><p class="f14" data-bind="text:name" style="line-height: 18px;"></p>
+		    						</div>
+	                				<div class="f12 tr " data-bind="click:moreClick">
+		    							<span class="f14 title-more" class="ml5">更多</span>
+		    						</div>
+	                			</div>
+	                			<div class="list-content" data-bind="event:{click:listItemClick.bind(this)}">
+									<div class="content-left">
+										<img class="lazy image" src="../../img/placeholder.jpg" alt="" onerror="nofind(this,1)" data-bind="attr:{'data-echo':infoData.fimage}" width="100%">
+									</div>
+									<div class="content-right">
+										<div class="desc f16">
+											<span class="desc-p" data-bind="text:infoData.title"></span>
+										</div>
+							        	<div id="time" class="f12 tl um-gray"  ><span data-bind="text:getMyDate(infoData.ts)"></span></div>
+									</div>
+								</div>
+								<div class=" w  line"></div>
+	                		</li>
+	                	</ul>
+	               <!--  </div> -->
+					<!--列表 end-->
+				</div>
+			</div>
+		</div>
+		
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		
+       	<!--轮播 start-->
+        <script type="text/javascript" src="../../js/islider.js"></script>
+        <!--轮播 end-->
+         <!--轮播 start-->
+        <script type="text/javascript" src="../../js/swipe.js"></script>
+        <!--轮播 end-->
+        <!--列表 start-->
+        <script type="text/javascript" src="../../js/knockout.js"></script>
+        <script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+        <script src="../../js/base.js"></script>
+        <script src="../../js/mescroll.min.js"></script>
+        <script src="../../js/jpushSet.js"></script>
+        <script src="home.js"></script>
+		 <!--列表 end-->
+		 <script>
+			var list = [
+        				{
+        					content: "../../img/dw_banner1.png"
+        				}, 
+        				{
+        					content: "../../img/dw_banner2.png"
+        				},
+        				{
+        					content: "../../img/dw_banner3.png"
+        				},
+        				
+        			];
+        			var islider = new iSlider({
+        				type: 'pic',
+        				data: list,
+        				dom: document.getElementById("iSlider-wrapper"),
+        				isLooping: true,
+        				animateType: 'default',
+        				isAutoplay: true,
+        				duration: 3000,
+        			});
+        			islider.addDot();
+		</script>
+
+	</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="../../css/base.css" />
+		<link rel="stylesheet" href="../../html/wangShangZhiDaiHui/wangShangZhiDaiHui.css" />
+        <link rel="stylesheet" type="text/css" href="../../css/iuapmobile.um.listview.css">
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/base.js" ></script>
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+        <script type="text/javascript" src="../../js/knockout.js"></script>
+        <script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+        <script src="../../js/hp/hp_slide.js"></script>
+		<script src="../../html/wangShangZhiDaiHui/wangShangZhiDaiHui.js" ></script>	
+	</head>
+	<body>
+		<div class="um-win" id="index" name="hp_slide">
+			<div class="um-header" id="header">
+            	<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            	<h3>提案</h3>
+			    <div class="um-input-group">
+                	<form style="width: 100%"  action="javascript:searchClick();">
+		            	<span class="ti-search" onclick="searchClick();"></span>
+		            	<input id="sear" type="search" class="form-control"   placeholder="搜索">
+					</form>            	              	
+                </div>
+			</div>
+
+			<div class="um-content">
+                <div class="um-listview-wrap" id="listview">
+                	<ul class="um-list um-no-active" data-bind="foreach: data">
+                		<li class="um-listview-row">
+                			<a href="#" class="um-list-item um-swipe-action um-no-icon">
+<!--                  				<div class="um-swipe-btns">
+                 				    <span class="um-swipe-btn to-store ti-star" data-bind="click:$parent.rowCollect"></span>
+                 				    <span class="um-swipe-btn um-delete ti-trash"></span>
+                 				    </div>  -->
+
+                				<div class="um-list-item-inner">
+                					<div class="um-list-item-body" style="width: 100%;height: 50px;padding: 12px 10px;background: #fff;">
+                						<p class="f16 "><span data-bind="text:proposalsub"></span></p>
+                					</div>
+
+                				</div> 
+                				
+<!--                 					<button class="btn-inline btn-sm um-btn-danger" id="btn1" onclick="addClick()">
+                					    赞</button> -->
+<!--                 					<div class="pr5">
+                					<span class="ti-thumb-up"></span>
+                					    <span class="um-gray f14" id="span1" data-bind="text:lastNo"></span>
+                					</div>    -->             				
+                			</a>
+                		</li>
+                	</ul>
+                </div>
+ 
+			</div>
+
+			
+		</div>
+
+
+	</body>
+</html>

@@ -1,0 +1,180 @@
+var ViewModel = function() {};	
+var viewModel = new ViewModel();
+var searchType = "";
+summerready = function() {
+	/*导航更换js*/
+        		 $('ul.um-tabbar-switch  Li').click(function(){
+        			$(this).addClass('active').siblings('.active').removeClass('active');
+        			var tar=$(this).attr('data-tar');
+        			$(tar).addClass('active').siblings('.active').removeClass('active');
+        		    document.getElementById("sear").value = "";
+        			searchType = tar;
+		            refush(tar);
+                 });
+
+	var jsonArray = [];
+	viewModel.data=ko.observableArray(jsonArray);
+    ko.applyBindings(viewModel);    
+    var listview = UM.listview("#listview");
+	var listview2 = UM.listview("#listview2");
+	var listview3 = UM.listview("#listview3");
+	var listview4 = UM.listview("#listview4");
+    
+    
+
+    //添加控件方法
+    listview.on("itemClick", function (sender, args) {                       
+		var item = viewModel.data()[args.rowIndex];
+		var data = JSON.stringify(item);
+		data = $summer.strToJson(data);
+		summer.openWin({
+			"id" : "xianFengTeamXiangQing",
+			"url" : "html/xianFengTeam/xianFengTeamXiangQing.html",
+			"isKeep" : true,
+			"pageParam" : {
+				"count" : data			
+			}
+		});
+		});
+		
+		
+   listview2.on("itemClick", function (sender, args) {                       
+		var item = viewModel.data()[args.rowIndex];
+		var data = JSON.stringify(item);
+		data = $summer.strToJson(data);
+		summer.openWin({
+			"id" : "xianFengTeamXiangQing",
+			"url" : "html/xianFengTeam/xianFengTeamXiangQing.html",
+			"isKeep" : true,
+			"pageParam" : {
+				"count" : data			
+			}
+		});
+		});
+		
+    listview3.on("itemClick", function (sender, args) {                       
+		var item = viewModel.data()[args.rowIndex];
+		var data = JSON.stringify(item);
+		data = $summer.strToJson(data);
+		summer.openWin({
+			"id" : "xianFengTeamXiangQing",
+			"url" : "html/xianFengTeam/xianFengTeamXiangQing.html",
+			"isKeep" : true,
+			"pageParam" : {
+				"count" : data			
+			}
+		});
+		});
+		
+    listview4.on("itemClick", function (sender, args) {                       
+		var item = viewModel.data()[args.rowIndex];
+		var data = JSON.stringify(item);
+		data = $summer.strToJson(data);
+		summer.openWin({
+			"id" : "xianFengTeamXiangQing",
+			"url" : "html/xianFengTeam/xianFengTeamXiangQing.html",
+			"isKeep" : true,
+			"pageParam" : {
+				"count" : data			
+			}
+		});
+		});  		
+	searchType = ".news";
+    refush(".news");  
+}
+
+	
+function refush(button) {
+
+	var requestid = "http://"+summer.getStorage("host")+"partyconstrutproject/xianFengTeam/list";
+	var viewmodel =viewModel.data;
+	var type = 0;
+	switch (button) {
+			case ".news":
+					type = 1;
+			break;
+			case ".product":
+					type = 2;
+			break;
+			case ".game":
+					type = 3;
+			break;
+			case ".download":
+				    type = 4;			
+			break;
+		
+	}
+	var json = {"search_param": type,"search_lpf":""}
+	//summer.get(requestid, {"json":json} , //可选参数，方便开发者设置请求的header
+	summer.get(requestid,json,
+	{
+		"Content-Type" : "application/x-www-form-urlencoded", //可选参数，post请求的要写入的条件数据，须为json对象
+	}, function(response) {//成功回调
+		var data = $summer.strToJson(response.data);
+		console.log(data);		
+		viewmodel.removeAll();
+		if (data.success == "success") {
+			jsonArray = data.detailMsg;
+			var count = jsonArray.data.content.length;
+			for (var k = 0; k < count; k++) {
+				var a=new Date(jsonArray.data.content[k].huodeshijian);
+				jsonArray.data.content[k].huodeshijian=a.toLocaleDateString();
+				viewmodel.push(jsonArray.data.content[k]);
+			}
+		} else {
+			$summer.alert("网络错误");
+		}
+	}, function(response) {//失败回调
+		$summer.alert(response);
+	});
+
+}    
+
+
+ function searchClick(){
+	var requestid = "http://"+summer.getStorage("host")+"partyconstrutproject/xianFengTeam/list";
+	var viewmodel = viewModel.data;	
+	var type = 1;
+	var tp = document.getElementById("sear").value;
+		switch (searchType) {
+			case ".news":
+					type= 1;
+			break;
+			case ".product":
+					type = 2;
+			break;
+			case ".game":
+					type = 3;
+			break;
+			case ".download":
+				    type = 4;			
+			break;
+		
+	}
+	var json = {"search_param":type,"search_lpf":tp}
+	summer.get(requestid, json, //可选参数，方便开发者设置请求的header
+	{
+		"Content-Type" : "application/x-www-form-urlencoded", //可选参数，post请求的要写入的条件数据，须为json对象
+	}, function(response) {//成功回调
+		var data = $summer.strToJson(response.data);
+		viewmodel.removeAll();
+		if (data.success == "success") {
+			jsonArray = data.detailMsg;
+			var count = jsonArray.data.content.length;
+			for (var k = 0; k < count; k++) {
+				viewmodel.push(jsonArray.data.content[k]);
+			}
+
+		} else {
+			$summer.alert("网络错误");
+		}
+	}, function(response) {//失败回调
+		$summer.alert(response);
+	});
+
+} 
+    	
+function backClick(){
+  	summer.closeWin({});
+}
+

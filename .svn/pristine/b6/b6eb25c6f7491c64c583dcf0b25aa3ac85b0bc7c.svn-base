@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<!-- 默认 start -->
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<!-- 默认 end -->
+		
+		<!-- 头部 start -->
+		<link rel="stylesheet" href="../../css/base.css" />
+		<!-- 头部 end -->
+		
+		<!-- 样式修改  start-->
+		<link rel="stylesheet" href="liuYanBanTianXie.css"/>
+		<!-- 样式修改  end-->
+
+
+		<!-- 默认 start -->
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<!-- 默认 end -->
+		
+		<script src="../../js/base.js"></script>
+		 
+		<!-- 自定义 start -->
+		<script src="../../js/hp/hp_function.js" ></script> 
+		<script src="liuYanBanTianXie.js" ></script> 
+		<script src="../../js/hp/hp_slide.js"></script>
+		<!-- 自定义 end -->
+		
+		<!-- 引用 start -->			
+	        <!-- 列表 -->
+	        <script src="../../js/knockout.js"></script>
+			<script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+        <!-- 引用  end -->
+	
+	</head>
+	<body>
+		<div class="um-win" id="index" name="hp_slide">
+			<!-- 头部  start-->
+			<div class="um-header">
+            	<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            	<h3>纪委举报</h3>  
+            	<div id="look_liuYanJIlu" class="um-header-btns">
+                	<img src="../../img/liuYanBan_jiLu.png" style="width: 25px;" />
+                </div> 
+            </div>
+			<!-- 头部  end-->
+			
+			<!-- 内容体 start-->
+			<div class="um-content"  >
+				<!-- 帮扶申请表 start-->
+                <ul class="um-list" >
+                	<li class="um-list-item">
+                		<div class="um-list-item-inner">
+                			<div class="um-list-item-left pl15">
+                				<img src="../../img/liuYanBan_title.png" style="width: 25px;" />&nbsp标题：
+                			</div>
+                			
+                			<div class="um-list-item-right">
+                				<input id="title" type="text" data-bind="value: title" class="form-control tr" placeholder="请输入标题">
+                			</div>
+                		</div>
+                	</li>
+                   <li class="um-list-item">
+                		<div class="um-list-item-inner">
+                			<div class="um-list-item-body" >
+	                			<div class="vt pl15 um-row">
+	                				<img src="../../img/liuYanBan_neiRong.png" style="width: 25px;" />&nbsp内容:
+	                			</div>
+	                			<div class="vt pl15 um-row pr15">
+	                				
+	                				<textarea name="" id="content" data-bind="value: content" cols="37" rows="10" class="form-control i-form-control" style="word-break:break-all; text-indent: 35px;"></textarea>
+	                			</div>
+	                		</div>
+                		</div>
+                	</li>
+                	<li class="um-list-item">
+                		<div class="um-list-item-inner" style="line-height: 2.5;">
+							<div class="um-check-group" style="width: 100%;padding: 0 15px;margin: 0;">
+                            	<label class="um-check-inline" style="float: right;">
+								    <input name="um-checkbox-inline" type="radio" value="0"checked>
+								  	<span class="um-black">匿名</span> 
+								    <span class="um-icon-checkbox um-css3-vc"></span>
+								</label>
+								 <label class="um-check-inline" style="float: right;margin-right: 30px;">
+								    <input name="um-checkbox-inline" type="radio" value="1">
+								   <span class="um-black">实名</span>
+								    <span class="um-icon-checkbox um-css3-vc"></span>
+								</label>                           	
+                            </div>
+                		</div>
+                	</li>
+                	<li class="um-list-item">
+                		<div class="um-list-item-inner">
+                			<div class="um-list-item-left pl15">
+                				<img src="../../img/liuYanBan_time.png" style="width: 25px;" />&nbsp时间:
+                			</div>
+                			<div class="um-list-item-right">
+                			 
+							    <span id="time" class=" mr15 " disabled="disabled" data-bind="text: time"> </span> 
+                				
+                				
+                			</div>
+                		</div>
+                	</li>
+                	
+                	
+                </ul>
+				<!-- 帮扶申请表 end-->
+			</div>
+			<!-- 内容体 end-->
+			<div class="um-footer " style="background: #fff">
+                <button id="submit" class="btn " style="margin-bottom:3px; border-radius: 20px;">提交</button>
+			</div>
+		
+			
+		</div>
+	</body>
+</html>

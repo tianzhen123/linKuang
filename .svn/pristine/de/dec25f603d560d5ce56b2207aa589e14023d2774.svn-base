@@ -1,0 +1,32 @@
+
+summerready = function() {
+	data = summer.pageParam.count;
+	if(data.zhanshileixing==2||data.zhanshileixing==4){
+	$("#yincang").css('display','none');
+	$("#yincang1").css('height','10px');
+	$("#yincang2").css('height','20px');
+	}else{
+	$("#yincang").css('display','block');
+	$("#yincang1").css('height','0px');
+	$("#yincang2").css('height','0px');
+	}
+    
+    var json = {                
+        xingming:ko.observable(data.xingming),
+        xingbie:ko.observable(data.xingbie),
+        nianling:ko.observable(data.nianling),
+        suozaidangzuzhi:ko.observable(data.suozaidangzuzhi),
+        tupian:ko.observable(data.tupian),
+        huodeshijian:ko.observable(data.huodeshijian),
+        //guangrongshiji:ko.observable(data.guangrongshiji)
+     };
+                        
+	ko.applyBindings(json); 
+$("#guangrongshiji").html(data.guangrongshiji);
+    }
+
+function backClick(){
+summer.closeWin({});
+}
+
+

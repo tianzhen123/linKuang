@@ -1,0 +1,336 @@
+var ViewModel = function() {
+	};
+var viewModel = new ViewModel();
+var jsonArray = [];
+var searchType = "";//选项卡
+var pageIndex = 0;//访问页
+var flag_selector_time=false;//时间选择器是否显示的标记，默认false（没有显示）
+var selectorStart=transformTime(getCurrentDate(-1));//时间选择器的开始时间
+var selectorEnd=transformTime(getCurrentDate(1));//时间选择器的结束时间
+//时间设置：开始时间：今天-1  结束时间：今天+1
+
+/*
+f20160802193042vmHFhPtpbc	"班车经常晚点，希望准时发车"//诉求原因
+f20160802193053FjctEhHn9D//诉求意见
+startTime	"2017-12-01T15:28:10.000+08:00"//时间
+imgList//图片数组
+["https://ncc-ys-prod-oss.oss-cn-beijing.aliyuncs.com/6d3f2022-e7c0-4032-9871-2e4ae4646d27_1512113268395_F57AF398-2B25-4462-BED0-31D6D162ED40.jpeg"]
+state//审批状态 run待审批 end通过 ""待审批  其他拒绝
+
+
+
+
+http://10.176.2.29:8082/partyconstrutproject/mstd/query
+这个是所有已提交的民生通道的数据（未批注）
+http://10.176.2.29:8082/partyconstrutproject/mstd/querypizhu
+这个是所有已批注的民生通道的数据（包含批注信息）
+
+http://10.176.2.29:8082/partyconstrutproject/mstd/save
+这个是添加批注之后的保存方法
+
+ 
+ */
+summerready=function(){
+	
+	hp_slide();//滑动事件，放在最前面
+	getUserInfo();
+	/*时间选择器默认时间*/
+	document.getElementById("start_time").value=getCurrentDate(-1);
+	document.getElementById("end_time").value=getCurrentDate(1);
+	
+	/*导航更换js*/
+	$('ul.um-tabbar-switch  Li').click(function() {
+		$(this).addClass('active').siblings('.active').removeClass('active');
+		var tar = $(this).attr('data-tar');
+		$(tar).addClass('active').siblings('.active').removeClass('active');
+		searchType = tar;
+		pageIndex = 0;
+		if(tar==".product"){
+			$(".falg_time").css("display","none");
+		}else{
+			$(".falg_time").css("display","block");
+		}
+		
+		myRefresh(tar,0);
+	});
+
+	/*时间选择器*/
+	$(function () {
+		$('.scroller-date').scroller('destroy').scroller({
+			preset: 'date',
+			theme: "ios7",
+			mode: "scroller",
+			display: "bottom",
+			animate: ""
+		});	
+	});
+
+
+
+	//Knockout绑定
+	
+	/*渲染的数据*/
+
+	viewModel.data = ko.observableArray([]);
+	viewModel.data2 = ko.observableArray([]);
+	ko.applyBindings(viewModel);
+
+
+
+	var listview = UM.listview("#listview");
+	var listview2 = UM.listview("#listview2");
+	//民生诉求
+	listview.on("itemClick", function(sender, args) {
+		//这里可以处理行点击事件，参数sender即为当前列表实例对象，args对象有2个属性，即rowIndex(行索引)和$target(目标行的jquery对象)
+		var item = viewModel.data()[args.rowIndex];
+		var data = JSON.stringify(item);
+		data = $summer.strToJson(data);
+		summer.openWin({
+			"id" : "minShengTongDaoXiangQing",
+			"url" : "html/minShengTongDao/minShengTongDaoXiangQing.html",
+			"isKeep" : true,
+			"pageParam" : {
+				"count" : data,
+				"performstatus":".news",
+			}
+		});
+	});
+	//已批注
+	listview2.on("itemClick", function(sender, args) {
+		//这里可以处理行点击事件，参数sender即为当前列表实例对象，args对象有2个属性，即rowIndex(行索引)和$target(目标行的jquery对象)
+		var item = viewModel.data2()[args.rowIndex];
+		var data = JSON.stringify(item);
+		data = $summer.strToJson(data);
+		summer.openWin({
+			"id" : "minShengTongDaoXiangQing",
+			"url" : "html/minShengTongDao/minShengTongDaoXiangQing.html",
+			"isKeep" : true,
+			"pageParam" : {
+				"count" : data,
+				"performstatus":".product",
+			}
+		});
+	});
+	
+	
+	/*日历按钮事件 */
+	$("#newApplication").on("click", function(sender, args) {
+		//点击日历，时间选择显示出来
+		$("#selector_time").toggle(function(){
+			if(flag_selector_time==true){
+				flag_selector_time=false;
+			}else{
+				flag_selector_time=true;
+			}
+		});
+		
+	});
+	/*点击其他地方日历隐藏事件 */
+	$("#event_time").on("click", function(sender, args) {
+		if(flag_selector_time==true){
+			flag_selector_time=false;
+			$("#selector_time").toggle();
+			
+		}
+	});
+	/*点击时间选择的确定按钮，把时间提交给服务器*/
+	$("#submit_time").on("click",function(sender,args){
+		selectorStart=transformTime($("#start_time").val());
+		selectorEnd=transformTime($("#end_time").val());
+		$("#selector_time").toggle(function(){
+			if(flag_selector_time==true){
+				flag_selector_time=false;
+			}else{
+				flag_selector_time=true;
+			}
+		});
+		
+		myRefresh(".news",0);
+	});
+	
+	
+	searchType = ".news";
+	myRefresh(".news",0);
+	
+}
+/**
+ * 右滑执行的方法
+ */
+function function_rightSlide(){
+	summer.closeWin();
+}
+/**
+ * 时间格式转换
+ * 2018/01/04转换成2018-01-04
+ */
+function transformTime(time){
+	var timeArray = time.split("/");
+	var timeStr = "";
+	var length=timeArray.length;
+	for(var i=0;i<length-1;i++){
+		temp=timeArray[i]+"-";
+		timeStr+=temp;
+	}
+	timeStr+=timeArray[length-1];
+	return timeStr;
+}
+
+
+/**
+ * 点击选项卡之后的请求操作
+ * @param {Object} button
+ */
+function myRefresh(button,load) {
+	
+	$("#loading").css("display","block");
+	$(".Artical").hide();
+	//document.getElementsByName('loading_content').hide();
+
+	var requestid = "";
+	var viewmodel = "";
+
+	switch (button) {
+			case ".news":
+					requestid = ""+summer.getStorage("host")+"partyconstrutproject/mstd/query";
+					//requestid = "http://10.176.2.70:8080/partyconstrutproject/mstd/query";
+					viewmodel = viewModel.data;
+				
+				break;
+			case ".product":
+					requestid = ""+summer.getStorage("host")+"partyconstrutproject/mstd/querypizhu";
+					//requestid = "http://10.176.2.70:8080/partyconstrutproject/mstd/querypizhu";
+					viewmodel = viewModel.data2;
+					
+				break;
+	}
+	var json = {
+		//"pageIndex":pageIndex,
+		//"pageSize":30,
+		//"sortField":"ts",
+		//"sortField":"startTime",
+		//"sortDirection":"desc",
+		"start":selectorStart.toString(),
+		"end":selectorEnd.toString(),
+	}
+
+	summer.post(requestid, json , //可选参数，方便开发者设置请求的header
+	{
+		"Content-Type" : "application/x-www-form-urlencoded", //可选参数，post请求的要写入的条件数据，须为json对象
+	}, function(response) {//成功回调
+		var data = $summer.strToJson(response.data);
+		if(load == 0){
+			viewmodel.removeAll();
+			
+		}
+		if (data.success == "success") {
+			jsonArray = data.detailMsg.data.data;
+			
+			var count = jsonArray.length;
+			for (var k = 0; k < count; k++) {
+				var startTime = jsonArray[k].startTime;//编辑时间
+				if(startTime != null && startTime.replace(/\s/g,'')!=""){
+					jsonArray[k].startTime = formatDate(startTime);
+				}
+				var time_leader = jsonArray[k].time_leader;//编辑时间
+				if(time_leader != null && time_leader.replace(/\s/g,'')!=""){
+					jsonArray[k].time_leader = time_leader;
+				}
+				var state = jsonArray[k].state;
+				jsonArray[k].state = changeImg(state);
+				viewmodel.push(jsonArray[k]);
+			}
+			$("#loading").css("display","none");
+			$(".Artical").show();
+			
+		} else {
+			//$summer.alert("网络错误");
+		}
+	}, function(response) {//失败回调
+		//$summer.alert(response);
+	});
+
+}
+
+/**
+ * 根据state_appeal诉求的状态，改变图片的状态
+ */
+function changeImg(state_apeal){
+	var url_img = "";
+	
+	if(state_apeal=="run"){//待审批
+		url_img = "../../img/minShengTongDao_wait.png";
+	}else if(state_apeal=="end"){//通过
+		url_img = "../../img/minShengTongDao_ok.png";
+	}else if(state_apeal == null || state_apeal.replace(/\s/g,'')==""){//为空
+		url_img = "../../img/minShengTongDao_others.png";
+	}else{//拒绝
+		url_img = "../../img/minShengTongDao_no.png";
+	}
+	return url_img;
+}
+/**
+ * 根据state_img照片的状态，还原成数值状态
+ */
+function restoreImg(state_img){
+	var state_apeal = "";//诉求的状态
+	if(state_img=="../../img/minShengTongDao_wait.png"){//待审批
+		state_apeal = "run";
+	}else if(state_img=="../../img/minShengTongDao_ok.png"){//通过
+		state_apeal = "end";
+	}else if(state_img=="../../img/minShengTongDao_others.png"){//为空
+		state_apeal = "run";
+	}else if(state_img=="../../img/minShengTongDao_no.png"){//拒绝
+		state_apeal = "no";
+	}
+	return state_apeal;
+}
+
+/**
+ *	格式化服务器传来的时间
+ */
+function formatDate(str) {
+	var date = new Date(str);
+    var seperator1 = "-";
+    var seperator2 = ":";
+    var month = date.getMonth() + 1;
+    var strDate = date.getDate();
+    var strHours = date.getHours();
+    var strMinutes = date.getMinutes();
+    var strSeconds = date.getSeconds();
+    
+   	//拼时间
+    var currentdate = date.getFullYear() + seperator1 + addZero(month) + seperator1 + addZero(strDate)
+            + " " + addZero(strHours) + seperator2 + addZero(strMinutes) + seperator2 + addZero(strSeconds);
+  
+    return currentdate;
+}
+
+/**
+ *	获取当前时间
+ * date_add:增加天数，可以为负号
+ */
+function getCurrentDate(date_add) {
+	
+	var date = new Date();
+    var seperator1 = "/";
+    var month = date.getMonth() + 1;
+    var strDate = date.getDate()+date_add;
+    
+   	//拼时间
+    var currentdate = date.getFullYear() + seperator1 + addZero(month) + seperator1 + addZero(strDate);
+  
+    return currentdate;
+}
+/**
+ * 时间为单位数时,前面加0
+ */
+function addZero(time){
+	if(parseInt(time) < 10){  
+        time = '0'+time;  
+     }  
+     return time;
+}
+
+function backClick(){
+	summer.closeWin();
+}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="../../css/base.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/mescroll.min.css" />
+		<link rel="stylesheet" href="generalPage.css" />
+
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="../../js/base.js"></script>
+		<script type="text/javascript" src="../../js/knockout.js"></script>
+		<script src="../../js/mescroll.min.js"></script>
+		<script src="../../js/underscore.js"></script>
+		<script src="generalPage.js"></script>
+	</head>
+	<body>
+		<div class="um-win" id="index" name="hp_slide">
+			<div class="um-header" >
+				<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            	<h3 id="pageTitle"></h3>
+			</div>
+
+			<div class="um-content">
+			<div id="mescroll" class="mescroll">
+				<img class="banner" style="width: 100%;" src="../../img/dx.png" />
+				
+				<ul  class="item-list-ul" data-bind="foreach:data_menu">
+         	 		<li class="item-list-li" data-bind="click:$root.itemClick.bind(this)">
+         	 			<img data-bind="attr:{src: logoUrl}"  alt="" />
+         	 			<div class="li-name">
+         	 				<span class="f14" data-bind="text:name"></span>
+         	 			</div>
+         	 		</li>
+         	 	</ul>
+         	 	
+         	 	<div class="mg">
+				</div>
+				
+				<ul id="dataList" class="newsList" data-bind="foreach:newsArray">
+					<li data-bind="click:$root.openWin.bind($data)">
+						<div class="list-content">
+							<div class="content-left">
+								<img class="lazy image" src="../../img/placeholder.jpg" alt="" onerror="nofind(this,1)" data-bind="attr:{'data-echo':fimage}" width="100%">
+							</div>
+							<div class="content-right">
+								<div class="desc f16">
+									<span class="desc-p" data-bind="text:title"></span>
+								</div>
+					        	<div id="time" class="f12 tl um-gray"  ><span data-bind="text:publishtime"></span></div>
+							</div>
+						</div>
+						<div class=" w  line"></div>
+					</li>
+				</ul>
+				
+			</div>
+			</div>
+			
+			
+		</div>
+	</body>
+</html>

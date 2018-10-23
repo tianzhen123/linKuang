@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-header" id="header" style="background-color: red">
+            	<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            	<h3>提案</h3>
+			    <div class="um-input-group">
+                    <span class="ti-search"></span>                 
+                	<input type="search" class="form-control" id="sear" placeholder="搜索">              	              	
+                    <button class="btn-inline btn-primary" style="background-color: #1E90FF;color:white;height: 40px;width: 40px" onclick="searchClick()">搜索</button>
+                </div>
+			</div>
+		</div>
+			<div class="um-footer">
+				
+			</div>
+		</div>
+	</body>
+	<script>
+		summerready=function(){
+			 var pageTitle= summer.pageParam.pageTitle;
+			 var top = $summer.offset($summer.byId('header')).h;
+			summer.openFrame({
+			    id: 'tiAnList',
+			    url: 'html/wangShangZhiDaiHui/tiAnList.html',
+			    bounces: true,
+		        position: {
+		            top:top,
+		            left: 0,
+		            right: 0,
+		            bottom: 0
+		        },
+		        pageParam : {
+		            "count" : "",
+		            "pageTitle":"",
+        		},
+			});
+		}
+  function backClick(){
+  	summer.closeWin({});
+  }
+		</script>
+</html>

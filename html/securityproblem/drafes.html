@@ -1,0 +1,161 @@
+<!-- 问题列表 -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+        <meta charset="UTF-8">
+        <title></title>
+       	<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">
+		<link rel="stylesheet" href="../../css/base.css" />
+		<link rel="stylesheet" href="../../css/public.css">
+		<link rel="stylesheet" href="../../css/commons.css"/>
+		<link rel="stylesheet" href="../../css/iscroll.css"/>
+		<link rel="stylesheet" href="../massessecurity/drafes.css"/>
+		<script src="../../js/commons.js" ></script> 
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="../../js/summer.js" ></script>
+		<script src="./drafes.js" ></script>
+		<script src="../../js/iscroll.js"></script>
+    </head>
+    <body style="background-color: #F2F2F2;">
+   		<div class="um-win" id="index">
+            <div id="header" class="um-header">
+				<div id="backContainer" style="width: 30%">
+					<a href="#"  class="headerText backup" onclick="backClick()">&nbsp;返回</a>
+				</div>
+				<div id="titleContainer" style="width:40%">
+					<h3 id="title"></h3>
+				</div>
+				<div id="appealContainer" style="width:30%">
+					<a id="fillReportBtn" href="#" class="headerText">提交</a>
+				</div>
+			</div>
+            <div class="um-content panel-info-container">
+				<div class="um-row panel-info">
+					<div class="panel-info-title">
+						基本信息
+					</div>
+					<div class="um-row content-container">
+	                   <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+	                    	上岗时间
+	                    </div>
+	                    <div class="um-xs-6 um-sm-6 um-md-6 content-value" >
+	                        <input type="text" id="startWorkTime" style="border: 0px;width: 100%" placeholder="请选择上岗时间" data-options="{'type':'YYYY-MM-DD hh:mm:ss','beginYear':2010,'endYear':2088}" style="width:166px;height:19px;">
+	                    </div>
+	                </div>
+	                <div class="um-row content-container">
+	                   <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+	                    	结束时间
+	                    </div>
+	                    <div class="um-xs-6 um-sm-6 um-md-6 content-value" >
+	                        <input type="text" id="endWorkTime" style="border: 0px;width: 100%" placeholder="请选择结束时间" data-options="{'type':'YYYY-MM-DD hh:mm:ss','beginYear':2010,'endYear':2088}" style="width:166px;height:19px;">
+	                    </div>
+	                </div>
+	                <div class="um-row content-container">
+	                    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+	                    	地点
+	                    </div>
+	                    <div class="um-xs-6 um-sm-6 um-md-6 content-value" >
+                         	<input type="text" id="place" style="border: 0px;width: 100%" placeholder="请输入地点">
+	                    </div>
+                    </div>
+                    <div class="um-row content-container" style="padding-top: 15px;">
+						<div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+	                     	问题分类
+	                    </div>
+	                    <div class="um-xs-6 um-sm-6 um-md-6 content-value" >
+                        	<select id='select1' class="um-scroller-select" style="float: left;width: 20px;">
+								<option value="SP_PROBLEM_TYPE_HT" selected>隐患问题</option>
+								<option value="SP_PROBLEM_TYPE_OT" >合理化建议</option>
+		                    </select> 
+		                    <img src="../../img/ico_xl.png" />
+	                    </div>
+                    </div>
+				</div>	
+				<div class="um-row panel-info">
+					<div class="panel-info-title">
+						问题描述
+					</div>
+					<div class="consyl">
+						<textarea id="problemDesc" style="width: 100%;" rows="15"></textarea>
+					</div>
+				</div>
+				
+				<div class="um-row panel-info">
+					<div class="panel-info-title">
+						附件
+					</div>
+					<ul id="uploadFileList" class="um-list f14" style="width: 100%;height: 300px;padding: 8px;">
+                  	</ul>
+				</div>
+            </div>
+        </div>
+        <script src="../../js/jquery.date.js"></script>
+        <script>
+        	$(function(){
+        		$.date('#startWorkTime');
+        		$.date('#endWorkTime');
+        		//如果是修改状态才回显
+				if('update' == localStorage.addOrUpdate){
+					var approvalId=localStorage.approvalId;
+					var jsonData={"approvalId":approvalId}
+					var obj={};
+					//obj.userId=userId;
+					obj.busiType='BUSI_TYPE_MS';
+					obj.approvalId=approvalId;
+					$.ajax({
+		                type: "POST",
+		                url: serviceUrl + "/securityProblem/securityProblemInfo",
+		                data:JSON.stringify(obj),
+		                contentType: 'application/json;charset=utf-8',
+		                dataType: 'json',
+		                success: function (res) {
+		                	if(res.sCode==200){
+			                	var node=res.rsMap.massesSecurity;
+		                		//上岗时间
+		                		$("#startWorkTime").val(node.startWorkTime);
+		                		//结束时间
+		                		$("#endWorkTime").val(node.endWorkTime);
+		                		//地点
+		                		$("#place").val(node.place);
+		                		//问题分类
+		                		$("#select1_dummy").val(node.problemType == 'MS_PROBLEM_TYPE_HT' ? '隐患问题' : '合理化建议')
+		                		//问题描述
+		                		$("#problemDesc").val(node.problemDesc);
+		                	}
+		                }
+		            });
+		            
+		            $.ajax({//附件信息
+		                type: "POST",
+		                url:serviceUrl + "/baseController/fileList",
+		                data:JSON.stringify(obj),
+		                contentType: 'application/json;charset=utf-8',
+		                dataType: 'json',
+		                success: function (res) {
+		                	if(res.sCode==200){
+		                		var fileList=res.rsMap.fileList;
+		                		if(fileList!=null&&fileList.length > 0){
+		                			var html='';
+		                			for(var i=0;i<fileList.length;i++){
+		                				var url=fileList[i].url;
+		                				if('' != url){
+			                				html = '<li style="position: relative;">'+
+											  				'<img id="button" src="../../img/clear.png" style="width: 16px;height: 16px;position: absolute;right: 5px;bottom: 80px;" onclick="removeImg(this)"/>'+
+											  				'<img src="'+url+'" />'+
+											  			'<li/>';
+		                				}
+								     $("#selectFileButtion").before(html);
+		                			}
+		                		}
+		                	}
+		                }
+		            });
+				}
+        	});
+        </script>
+    </body>
+
+</html>

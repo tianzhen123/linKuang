@@ -1,0 +1,10 @@
+
+summerready = function(){
+	
+}
+
+function nofind(_this,type){
+    src = "../../../img/pic_init.png";
+	_this.src = src;
+	_this.onerror=null;
+}

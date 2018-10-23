@@ -1,0 +1,488 @@
+﻿summerready = function () {	
+				var flag = 0;//判断下拉刷新
+				var userInfo;
+				$('#loadanimation').show();
+				$('#listview').hide();
+				var baseUrl = "http://pubaccount.yonyoucloud.com/summer";
+				var width = window.screen.width;
+				var height = width*0.4743;
+				
+				var tag = 0;
+				
+				if(height<=200){
+					$(".iSlider-wrapper").height(width*0.4743);
+				}
+				
+            	var code;
+            	//var YonYouJSBridge;
+            	function connectWebViewJavascriptBridge(callback){
+					if (window.WebViewJavascriptBridge){
+					    callback(WebViewJavascriptBridge);
+					} else {
+					    document.addEventListener('WebViewJavascriptBridgeReady', function(){
+					        callback(WebViewJavascriptBridge);
+					    }, false);
+					}
+				}
+				
+				connectWebViewJavascriptBridge(function(YonYouJSBridge){
+				    YonYouJSBridge.init(function(message, responseCallback){}); //初始化，此语句有且只能初始化一次
+//					var data = {
+//						'function': 'configNavBar',
+//						parameters: {hide: 1}
+//					};
+					var data = {};
+					YonYouJSBridge.send(JSON.stringify(data), function(responseData){});
+				});
+				
+			var mescroll = new MeScroll("mescroll", {
+				down: {
+					auto: true, //是否在初始化完毕之后自动执行下拉回调callback; 默认true
+					callback: downCallback //下拉刷新的回调
+				},
+			});
+			
+			/*下拉刷新的回调 */
+			function downCallback(){
+				//联网加载数据
+				++flag;
+				getUserInfo();
+				
+			}
+                /**获取用户信息**/
+               /**
+               function getUserInfo(){
+				connectWebViewJavascriptBridge(function(YonYouJSBridge){
+					var data =  { 'function': 'getAppCode', 'parameters': {}};
+					
+					YonYouJSBridge.send(JSON.stringify(data), function(responseData){
+						var result = JSON.stringify(JSON.parse(responseData), null, 4);
+						result = JSON.parse(result);
+						code = result.data.code;
+						var requestip = "https://dj.lykyjt.com:8898/lkdjls/friendspaceadaptorcontroller/getUserinfo";
+						$.ajax({
+							url:requestip,
+							type:"POST",
+							dataType:"json",
+							data:{"testcode":code},
+							success:function(data){
+                                var data = data.data;
+                                userInfo = data;
+                                summer.setStorage("userInfo", data);
+                                if(flag<=1){
+                               		getList(data);
+                                }else{
+                                	getNewsList(data);
+                                }
+							},
+							error:function(err){
+								//联网失败的回调,隐藏下拉刷新的状态
+	                			mescroll.endErr();
+							},
+						});
+					});
+				});
+				}
+				**/
+               
+				
+                  var jsonArray_menu = [];
+                  var jsonArray_list = [];
+                  
+            	
+            	/*列表 start*/
+                //Knockout绑定
+	            
+               var shopModal = function() {
+					var self = this;
+					self.data_menu = ko.observableArray(jsonArray_menu);
+					
+					itemClick= function(data, e){
+						console.log(tag);
+						if(tag){
+							return;
+						}
+						tag = 1;
+						 
+						 var itemData = data;
+						 switch(Number(itemData.urlType)){
+						 	case 100:{
+						 		//临矿公告
+						 	var userAgent = navigator.userAgent;
+							var isAndroid = userAgent.indexOf('Android') > -1 || userAgent.indexOf('Adr') > -1; //android终端
+						 	var data;
+							if (isAndroid) {
+								data =  {
+									  'function': 'openWindow', 
+									 parameters: {
+									 		url:'https://dj.lykyjt.com:8898/lkdjls/pages/youspace/gonggao.html',
+									 		title:'公告',//100
+									 	}
+								};
+							} else {
+								data =  {
+									 'function': 'openAPP', 
+									 parameters: {
+									 		app_id:'85',
+									 		title:'公告',
+									 	}
+								};
+							}
+							connectWebViewJavascriptBridge(function(YonYouJSBridge){
+								YonYouJSBridge.send(JSON.stringify(data), function(responseData){
+									//var result = JSON.stringify(JSON.parse(responseData), null, 4);
+								});
+							});
+							tag = 0;
+						 	}break;
+						 	case 200:{
+						 		//summer app
+						 		connectWebViewJavascriptBridge(function(YonYouJSBridge){
+									var data =  { 'function': 'getAppCode', 'parameters': {}};
+									
+									YonYouJSBridge.send(JSON.stringify(data), function(responseData){
+										var result = JSON.stringify(JSON.parse(responseData), null, 4);
+										result = JSON.parse(result);
+										code = result.data.code;
+										var infocolumn=itemData.infocolumn;
+										var json = {'type':1,'content':itemData.url};
+										json  = JSON.stringify(json);
+										json = encodeURIComponent(json);
+										data =  {
+											 'function': 'openSummerApp', 
+											 parameters: {
+											 	url:baseUrl+"?appid=LinKuang&page="+itemData.url+"&id="+itemData.id+"&oauth_extendInfo="+json+"&pageTitle="+itemData.name+"&code="+code+"&infocolumn="+infocolumn+"&mobile="+userInfo.mobile+"",
+													//url:baseUrl+"?appid=LinKuang&page="+itemData.url+"&id="+itemData.id+"&pageTitle="+itemData.name+"&code="+code+"",
+											 	}
+										};
+										connectWebViewJavascriptBridge(function(YonYouJSBridge){
+											YonYouJSBridge.send(JSON.stringify(data), function(responseData){
+												//var result = JSON.stringify(JSON.parse(responseData), null, 4);
+												
+												
+											});
+										});
+										tag = 0;
+									})
+									});
+						 	}break;
+						 	case 300:{
+						 		// 审批
+						 		
+						 		connectWebViewJavascriptBridge(function(YonYouJSBridge){
+									var data =  { 'function': 'getAppCode', 'parameters': {}};
+									
+									YonYouJSBridge.send(JSON.stringify(data), function(responseData){
+										var result = JSON.stringify(JSON.parse(responseData), null, 4);
+										result = JSON.parse(result);
+										code = result.data.code;
+										var pattern = "---";
+										 itemData.url =  itemData.url.replace(new RegExp(pattern), "?");
+										var conUrl = itemData.url + '&code=' + code;
+										data =  {
+											 'function': 'openWindow', 
+											 parameters: {
+											 		url:conUrl,
+											 		title:itemData.name,
+											 	}
+										};
+										connectWebViewJavascriptBridge(function(YonYouJSBridge){
+											YonYouJSBridge.send(JSON.stringify(data), function(responseData){
+												//var result = JSON.stringify(JSON.parse(responseData), null, 4);
+												
+												
+											});
+										});
+									tag = 0;
+										
+									})
+									});
+						 	}break;
+						 	
+						 	case 500:{
+						 		//电子书屋
+						 		
+						 		connectWebViewJavascriptBridge(function(YonYouJSBridge){
+									var data =  { 'function': 'getAppCode', 'parameters': {}};
+									
+									YonYouJSBridge.send(JSON.stringify(data), function(responseData){
+										var result = JSON.stringify(JSON.parse(responseData), null, 4);
+										result = JSON.parse(result);
+										code = result.data.code;
+										var conUrl = itemData.url + '?code=' + code;
+										data =  {
+											 'function': 'openWindow', 
+											 parameters: {
+											 		url:conUrl,
+											 		title:itemData.name,
+											 	}
+										};
+										connectWebViewJavascriptBridge(function(YonYouJSBridge){
+											YonYouJSBridge.send(JSON.stringify(data), function(responseData){
+												//var result = JSON.stringify(JSON.parse(responseData), null, 4);
+												
+												
+											});
+										});
+										tag = 0;
+										
+									})
+									});	
+						 	}break;
+						 	case 600:{
+						 		// 投票
+							 	var userAgent = navigator.userAgent;
+								var isAndroid = userAgent.indexOf('Android') > -1 || userAgent.indexOf('Adr') > -1; //android终端
+							 	var data;
+								if (isAndroid) {
+									data =  {
+										  'function': 'openWindow', 
+										 parameters: {
+										 		url:'https://dj.lykyjt.com:8898/lkdjls/pages/youspace/tpiao.html',
+										 		title:'投票',
+										 	}
+									};
+								} else {
+									data =  {
+										 'function': 'openAPP', 
+										 parameters: {
+										 		app_id:'65',
+										 		title:'投票',
+										 	}
+									};
+								}
+									connectWebViewJavascriptBridge(function(YonYouJSBridge){
+									YonYouJSBridge.send(JSON.stringify(data), function(responseData){
+										//var result = JSON.stringify(JSON.parse(responseData), null, 4);
+										
+										
+									});
+								});
+							tag = 0;
+								
+						 	}break;
+						 	
+						 	default:{
+						 		connectWebViewJavascriptBridge(function(YonYouJSBridge){
+									var data =  { 'function': 'getAppCode', 'parameters': {}};
+									
+									YonYouJSBridge.send(JSON.stringify(data), function(responseData){
+										var result = JSON.stringify(JSON.parse(responseData), null, 4);
+										result = JSON.parse(result);
+										code = result.data.code;
+										data =  {
+											 'function': 'openSummerApp', 
+											 parameters: {
+											 		url:baseUrl+"?appid=LinKuang&page="+itemData.url+"&id="+itemData.id+"&pageTitle="+itemData.name+"&code="+code+"",
+													
+											 	}
+										};
+										connectWebViewJavascriptBridge(function(YonYouJSBridge){
+											YonYouJSBridge.send(JSON.stringify(data), function(responseData){
+												//var result = JSON.stringify(JSON.parse(responseData), null, 4);
+												
+												
+											});
+										});
+										tag = 0;
+										
+									})
+									});
+						 	}
+						 }
+						 
+					}
+					
+					moreClick= function(data, e){
+						
+						var itemData = data;
+						var json = {'type':1,'content':itemData.url};
+						json  = JSON.stringify(json);
+						json = encodeURIComponent(json);
+						var data =  {
+									 'function': 'openSummerApp', 
+									 parameters: {
+									 		url:baseUrl+"?appid=LinKuang&page="+itemData.url+"&oauth_extendInfo="+json+"&pageTitle="+itemData.name+"&infocolumn="+itemData.infocolumn+""
+									 	}
+								};
+								//$summer.alert(data);
+        			     connectWebViewJavascriptBridge(function(YonYouJSBridge){
+								YonYouJSBridge.send(JSON.stringify(data), function(responseData){
+									//var result = JSON.stringify(JSON.parse(responseData), null, 4);
+									
+									
+								});
+							});
+						event.stopPropagation();
+					}
+					
+					listItemClick=function(data, e){
+						var str = /^[0-9]+-[\s\S]*/;
+						if(data.infoData == null ||data.infoData == undefined || data.infoData == "undefined"){
+							return;
+						}
+						if(!str.test(data.infoData.ts)){
+							data.infoData.ts = formatDate(data.infoData.ts);
+						}
+						data.infoData.pageTitle = data.name;
+						var infoData = $summer.jsonToStr(data.infoData);
+						
+						var content = encodeURIComponent(infoData);
+        			    var json = {'type':1,'content':'html/newsDet/newsPropagandaDet.html'};
+						json  = JSON.stringify(json);
+						json = encodeURIComponent(json);
+        			   var data =  {
+									 'function': 'openSummerApp', 
+									 parameters: {
+									 		url:baseUrl+"?appid=LinKuang&page=html/newsDet/newsPropagandaDet.html&oauth_extendInfo="+json+"&count="+content+"&pageTitle="+data.name,
+											
+									 	}
+								};
+        			     connectWebViewJavascriptBridge(function(YonYouJSBridge){
+								YonYouJSBridge.send(JSON.stringify(data), function(responseData){
+									//var result = JSON.stringify(JSON.parse(responseData), null, 4);
+									
+									
+								});
+							});
+					}
+					
+				}
+				var viewModel = new shopModal();
+        		viewModel.data_list = ko.observableArray(jsonArray_list);
+				viewModel.data_menu = ko.observableArray(jsonArray_menu);
+				ko.applyBindings(viewModel);
+				
+				/**请求列表信息**/
+				function getList(userInfo){
+               var requestMain = "https://dj.lykyjt.com:8898/lkdjls/resource/moblieUrl"; 	   
+				$.ajax({
+							url:requestMain,
+							type:"POST",
+							dataType:"json",
+							data:JSON.stringify(userInfo),
+							contentType: 'application/json',
+							success:function(data){
+								
+								viewModel.data_menu.removeAll();
+                                var menus = data.data1;
+                                menus.sort(compare('sort'));
+                                
+                                var length = menus.length;
+                                var i = length/8 + 1;
+                                if(length%8>0){
+                                	i = length/8 + 1;
+                                }else{
+                                	i = length/8;
+                                }
+                                for(var j=1;j<=i;j++){
+                                	var list = {};
+                                	if(j==i){
+                                		list.menu = menus.slice((j-1)*8,menus.length);
+                                	}else{
+                                		list.menu = menus.slice((j-1)*8,j*8);
+                                	}
+                                	viewModel.data_menu.push(list);
+                                }
+                                $('#loadanimation').hide();
+								$('#listview').show();
+								mescroll.endSuccess();
+                                 loadSlider();
+                                getNewsList(userInfo);
+                                
+							},
+							error:function(err){
+								//联网失败的回调,隐藏下拉刷新的状态
+	               				 mescroll.endErr();
+                                 $summer.alert("请求发生异常，请重新尝试！");
+							},
+						});  
+                
+        			}
+				function getNewsList(userInfo){
+					var requestIp = "https://dj.lykyjt.com:8898/lkdjls/resource/moblieData";	
+					$.ajax({
+							url:requestIp,
+							type:"POST",
+							dataType:"json",
+							data:JSON.stringify(userInfo),
+							contentType: 'application/json',
+							success:function(data){
+								viewModel.data_list.removeAll();
+								jsonArray_list = data.data;
+								for(var k=0;k<data.data.length;k++){
+									var ts = data.data[k].infoData.ts;
+									data.data[k].infoData.ts = formatDate(ts);
+                                	viewModel.data_list.push(data.data[k]);
+									
+									var listimg = data.data[k].infoData.fimage;
+										if(listimg == null || listimg == "" ){
+											$("#listimg").addClass("hidelistimg");
+										}else{
+											$("#listimg").addClass("listimg");
+										}
+                                }
+								mescroll.endSuccess();
+							},
+							error:function(err){
+								mescroll.endErr();
+								 $summer.alert("请求发生异常，请重新尝试");
+								
+							},
+					});
+				}
+        		
+        		 //构造控件实例
+                var listview = UM.listview("#listview");
+                //添加控件方法
+}
+            
+function loadSlider (){
+	/*图标 start*/
+	 var slider = Swipe(document.getElementById('slider'), {
+	    startSlide: 0,  //起始图片切换的索引位置
+		auto: false, //设置自动切换时间，单位毫秒
+		continuous: false,  //无限循环的图片切换效果
+		disableScroll: false,  //阻止由于触摸而滚动屏幕
+		stopPropagation: false,  //停止滑动事件
+		callback: function(index, element) {},  //回调函数，切换时触发
+		transitionEnd: function(index, element) {}  //回调函数，切换结束调用该函数。
+	});
+	/*图标 end*/	
+}
+
+/**
+ *	格式化服务器传来的时间
+ */
+function formatDate(str) {
+	var date = new Date(str);
+    var seperator1 = "-";
+    var seperator2 = ":";
+    var month = date.getMonth() + 1;
+    var strDate = date.getDate();
+    var strHours = date.getHours();
+    var strMinutes = date.getMinutes();
+    var strSeconds = date.getSeconds();
+    
+   	//拼时间
+    var currentdate = date.getFullYear() + seperator1 + month + seperator1 + addZero(strDate);
+              //  + " " + addZero(strHours) + seperator2 + addZero(strMinutes) + seperator2 + addZero(strSeconds);
+    return currentdate;
+}
+/**
+ * 时间为单位数时,前面加0
+ */
+function addZero(time){
+	if(parseInt(time) < 10){
+        time = '0'+time;  
+     }  
+     return time;
+}
+
+function compare(property){
+    return function(a,b){
+        var value1 = a[property];
+        var value2 = b[property];
+        return value1 - value2;
+    }
+}

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="../../css/swiper-3.3.1.min.css" />
+		<link rel="stylesheet" href="../../css/base.css" />
+		<link rel="stylesheet" href="../../css/mescroll.min.css">
+		<link rel="stylesheet" href="xianFengTeam.css" />
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/knockout.js"></script>
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div id="header" class="um-header">
+				<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            	<h3 id="pageTitle">先锋队伍</h3>
+			</div>
+			<div id="nav" class="nav">
+					<ul id="header-list" class="header-list">
+						<!--<li class="active" i="0">阵地建设</li>
+						<li i="1">政策之窗</li>
+						<li i="2">工作动态</li>
+						<li i="3">健康之道</li>
+						<li i="4">夕阳风采</li>-->
+					</ul>
+				</div>
+			<!--轮播-->
+		<div id="swiper" class="swiper-container">
+		    <div class="swiper-wrapper">
+		    	
+	        	<!--党员个人-->
+		        <div id="mescroll0" class="swiper-slide mescroll">
+					<ul id="contentList0" data-bind="foreach: data0">
+						<li data-bind="click:$root.openWin.bind($data)">
+							<div class="list-content">
+								<div class="content-left">
+									<img class="image" alt="" class="um-rounded" onerror="nofind(this,1)" data-bind="attr:{src: tupian}" width="100%"> 
+								</div>
+								<div class="content-right">
+									<p class="f16">姓名：<span class="um-gray" data-bind="text:xingming"></span></p>
+									<p class="f16">党组织：<span class="um-gray" data-bind="text:suozaidangzuzhi"></span></p>
+									<p class="f16">获得时间：<span class="um-gray" data-bind="text:huodeshijian"></span></p>
+								</div>
+							</div>
+							<div class=" w  line"></div>
+						</li>
+					</ul>
+		        </div>
+		    	
+	        	<!--党组织-->
+		        <div id="mescroll1" class="swiper-slide mescroll">
+					<ul id="contentList1" data-bind="foreach: data1">
+						<li data-bind="click:$root.openWin.bind($data)">
+								<div class="list-content">
+									<div class="content-left2">
+										<img class="image2" alt="" class="um-rounded" onerror="nofind2(this,1)" data-bind="attr:{src: tupian}" width="100%">
+									</div>
+									<div class="content-right">
+										<p class="f16">党组织：<span class="um-gray" data-bind="text:suozaidangzuzhi"></span></p>
+										<p class="f16">获得时间：<span class="um-gray" data-bind="text:huodeshijian"></span></p>
+									</div>
+								</div>
+								<div class=" w  line"></div>
+						</li>
+					</ul>
+		        </div>
+		    	
+		    </div>
+		</div>
+
+		</div>
+		<script src="../../js/swiper.min.js"></script>
+		<script src="xianFengTeam.js"></script>
+		<script src="../../js/mescroll.min.js"></script>
+		<script src="../../js/base.js"></script>
+	</body>
+</html>

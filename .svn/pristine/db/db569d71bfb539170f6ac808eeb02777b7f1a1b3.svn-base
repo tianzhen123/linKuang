@@ -1,0 +1,41 @@
+.btn-primary{
+height: 100%
+}
+
+.um-rounded{
+width:105px;
+height:147px;
+}
+
+.um-list-item-body{
+margin-left: 6px;
+}
+
+.um-box-vc{
+margin-top: 2px;
+}
+
+.um-listview-row{
+margin-top: 5px;
+margin-bottom: 10px;
+margin-left: 10px;
+}
+
+.um-list-item-inner:after{
+margin-bottom: 5px;
+}
+
+.um-list .um-list-item-inner:after{
+width:110%;
+left:-10px;
+bottom:-10px;
+}
+
+body{
+background-color: white;
+}
+
+
+.um-gray{
+width:156px;
+}

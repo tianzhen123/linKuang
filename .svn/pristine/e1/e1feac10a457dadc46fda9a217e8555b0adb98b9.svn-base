@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="../../css/base.css" />
+		<link rel="stylesheet" href="../../css/iuapmobile.um.listview.css" />		
+		<link rel="stylesheet" href="xianFengTeam.css" />
+         <link rel="stylesheet" href="../../css/iscroll.css" /> 
+        <style>
+          #select1_dummy{
+        	border:none;
+        	padding-left:10px;
+        	color:#555;
+        	font-size:17px;
+          }
+          #select1_dummy:disabled{
+        	background:#fff;
+          }
+        </style>
+
+
+      	<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script type="text/javascript" src="../../js/knockout.js"></script>
+		<script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+		<script src="xianFengTeam.js" ></script>
+        <script src="../../js/iscroll.js"></script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-header" >
+			  	<a href="#"  class="um-back" onclick="backClick()">返回</a>
+				<h3>先锋队伍</h3>
+			</div>
+			<ul class="um-tabbar um-tabbar-underline pt10 pb10 um-tabbar-switch">
+                	<li class="active" data-tar='.news'><a>优秀党员</a></li>
+                	<li data-tar='.product'><a>优秀党组织</a></li>
+                	<li data-tar='.game'><a>先进党员</a></li>
+                	<li data-tar='.download'><a>先进党组织</a></li>
+                </ul>
+                <div class="um-input-group">
+	                	<span class="ti-search"></span>
+	                	<input  type="search" class="form-control" id="sear" onsearch="searchClick()" placeholder="姓名/党组织" >
+	                <span class="input-group-btn">
+
+		<button class="btn btn-primary" onclick="searchClick()">搜索</button>
+                			</span>
+                </div>
+			<div class="um-content">  
+                <div class="Artical">        
+                	<div class="news active">
+                	<div id="list1"> 
+                			<div class="um-listview" id="listview">
+								<ul class="um-list um-no-active" data-bind="foreach:data">
+									<li class="um-listview-row">
+										<a href="#" class="um-list-item um-swipe-action um-no-icon">
+										<div class="um-swipe-btns">
+											<span class="um-swipe-btn um-delete ti-trash"></span>
+										</div>
+											<div class="um-list-item-inner um-rounded"> 
+												 <img id="peoPho" alt="" class="um-rounded" data-bind="attr:{src: tupian}"> 
+												<div class="um-list-item-body">
+													<div id="itemLeft" class="um-bf1">
+														<div class="um-box-vc">
+															<span>姓名：</span><div data-bind="text:xingming" class="f14 um-text-overflow">																
+															</div>															
+														</div>
+														<div class="um-box-vc">
+															<span>党组织：</span><div data-bind="text:suozaidangzuzhi" class="f12 um-gray">																
+															</div>
+													      </div>
+														<div class="listTime um-box-vc">
+															<span>获得时间：</span><div data-bind="text:huodeshijian" class="f12 um-gray">
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>	
+                	</div>
+                	<div class="product">
+                	<div id="list1"> 
+                			<div class="um-listview" id="listview2">
+								<ul class="um-list um-no-active" data-bind="foreach:data">
+									<li class="um-listview-row">
+										<a href="#" class="um-list-item um-swipe-action um-no-icon">
+										<div class="um-swipe-btns">
+											<span class="um-swipe-btn um-delete ti-trash"></span>
+										</div>
+											<div class="um-list-item-inner um-rounded">
+												 <img id="peoPho" alt="" class="um-rounded" data-bind="attr:{src: tupian}" > 
+												<div class="um-list-item-body">
+													<div id="itemLeft" class="um-bf1">
+<!-- 														<div class="um-box-vc">
+															<span>姓名：</span><div data-bind="text:xingming" class="f14 um-text-overflow">
+															</div>                              
+														</div> -->
+														<div class="um-box-vc">
+															<span>党组织：</span><div data-bind="text:suozaidangzuzhi" class="f12 um-gray">
+															</div>
+														</div>
+														<div class="listTime um-box-vc">
+															<span>获得时间：</span><div data-bind="text:huodeshijian" class="f12 um-gray">
+															</div>
+														</div>
+													</div>
+													<div id="itemRight" class="um-box-center">
+														<div id="turnPng"></div>
+													</div>
+												</div>
+											</div>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>	
+                	</div>
+                	<div class="game">
+                	<div id="list1"> 
+                			<div class="um-listview" id="listview3">
+								<ul class="um-list um-no-active" data-bind="foreach:data">
+									<li class="um-listview-row">
+										<a href="#" class="um-list-item um-swipe-action um-no-icon">
+										<div class="um-swipe-btns">
+											<span class="um-swipe-btn um-delete ti-trash"></span>
+										</div>
+											<div class="um-list-item-inner um-rounded">
+											    <img id="peoPho" alt="" class="um-rounded" data-bind="attr:{src: tupian}"> 
+												<div class="um-list-item-body">
+													<div id="itemLeft" class="um-bf1">
+														<div class="um-box-vc">
+															<span>姓名：</span><div data-bind="text:xingming" class="f14 um-text-overflow">
+															</div>
+														</div>
+														<div class="um-box-vc">
+															<span>党组织：</span><div data-bind="text:suozaidangzuzhi" class="f12 um-gray">
+															</div>
+														</div>
+														<div class="listTime um-box-vc">
+															<span>获得时间：</span><div data-bind="text:huodeshijian" class="f12 um-gray">
+															</div>
+														</div>
+													</div>
+													<div id="itemRight" class="um-box-center">
+														<div id="turnPng"></div>
+													</div>
+												</div>
+											</div>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>	
+                	</div>
+                	<div class="download">
+                	<div id="list1"> 
+                			<div class="um-listview" id="listview4">
+								<ul class="um-list um-no-active" data-bind="foreach:data">
+									<li class="um-listview-row">
+										<a href="#" class="um-list-item um-swipe-action um-no-icon">
+										<div class="um-swipe-btns">
+											<span class="um-swipe-btn um-delete ti-trash"></span>
+										</div>
+											<div class="um-list-item-inner um-rounded">
+												<img id="peoPho" alt="" class="um-rounded" data-bind="attr:{src:tupian}"> 
+												<div class="um-list-item-body">
+													<div id="itemLeft" class="um-bf1">
+<!-- 														<div class="um-box-vc">
+															<span>姓名：</span><div data-bind="text:xingming" class="f14 um-text-overflow">
+															</div>
+														</div> -->
+														<div class="um-box-vc">
+															<span>党组织：</span><div data-bind="text:suozaidangzuzhi" class="f12 um-gray">
+															</div>
+														</div>
+														<div class="listTime um-box-vc">
+															<span>获得时间：</span><div data-bind="text:huodeshijian" class="f12 um-gray">
+															</div>
+														</div>
+													</div>
+													<div id="itemRight" class="um-box-center">
+														<div id="turnPng"></div>
+													</div>
+												</div>
+											</div>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>	
+                	</div>				
+                </div>
+			</div>
+		</div>
+
+        <script>
+        	 $(function () {
+        		// var curr = new Date().getFullYear();
+        	   var opt = {
+        			'date': {
+        				preset: 'date'
+        			},
+        			'select': {
+        			   preset: 'select'
+        		   }
+        		};
+        		$('#select1').scroller('destroy').scroller(
+        			$.extend(opt['select'], {
+        				theme: "ios7",
+        				mode: "scroller",
+        				display: "bottom",
+        				animate: ""
+        			})
+        		);
+        	});
+        </script>
+	</body>
+</html>

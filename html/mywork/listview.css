@@ -1,0 +1,131 @@
+.um-list {
+    overflow: hidden;
+    position: relative;
+    border-bottom: 0px solid #ddd;
+    border-top: 0px solid #ddd;
+    background: #f7f7f7;
+    width: 100%;
+}
+ul{
+    list-style-type: disc;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 40px;
+}
+ol,ul{
+	list-style: none;
+}
+ul,li{
+	margin: 0;
+    padding: 0;
+}
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+div {
+    display: block;
+}
+dl, dt, dd, ul, ol, li, pre, form, p, fieldset, input, textarea, blockquote, th, td, button {
+    margin: 0;
+    padding: 0;
+}
+.um-content {
+    font-size: 14px;
+}
+.um-listview-row {
+    width: 100%;
+    transform: translate3d(0,0,0);
+}
+.um-row {
+    background-color: #FFFFFF;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    height: 74px;
+}
+.approval-item {
+    margin-bottom: 1px;
+}
+.contsyl {
+    text-align: center;
+}
+.um-xs-3 {
+    width: 25%;
+}
+.um-xs-4 {
+    width: 33.33333%;
+}
+.um-xs-5 {
+    width: 41.66667%;
+}
+.um-xs-1, .um-xs-2, .um-xs-3, .um-xs-4, .um-xs-5, .um-xs-6, .um-xs-7, .um-xs-8, .um-xs-9, .um-xs-10, .um-xs-11, .um-xs-12 {
+    float: left;
+}
+.um-xs-1, .um-sm-1, .um-md-1, .um-lg-1, .um-xs-2, .um-sm-2, .um-md-2, .um-lg-2, .um-xs-3, .um-sm-3, .um-md-3, .um-lg-3, .um-xs-4, .um-sm-4, .um-md-4, .um-lg-4, .um-xs-5, .um-sm-5, .um-md-5, .um-lg-5, .um-xs-6, .um-sm-6, .um-md-6, .um-lg-6, .um-xs-7, .um-sm-7, .um-md-7, .um-lg-7, .um-xs-8, .um-sm-8, .um-md-8, .um-lg-8, .um-xs-9, .um-sm-9, .um-md-9, .um-lg-9, .um-xs-10, .um-sm-10, .um-md-10, .um-lg-10, .um-xs-11, .um-sm-11, .um-md-11, .um-lg-11, .um-xs-12, .um-sm-12, .um-md-12, .um-lg-12 {
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.um-xs-1, .um-xs-2, .um-xs-3, .um-xs-4, .um-xs-5, .um-xs-6, .um-xs-7, .um-xs-8, .um-xs-9, .um-xs-10, .um-xs-11, .um-xs-12 {
+    float: left;
+}
+.middSyl1 {
+    font-size: 15px;
+    text-align: left;
+    padding-top: 5px;
+    padding-bottom: 21px;
+}
+.middSyl1 p {
+    font-weight: bold;
+}
+.middSyl2 {
+    font-size: 15px;
+    text-align: left;
+}
+.ge_orgname {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 12px;
+    color: #999999;
+}
+.iconSyl {
+    text-align: center;
+    width: 100%;
+}
+.iconSyl img {
+    width: 40px;
+    height: 40px;
+}
+
+.swipe-wrap img {
+    max-width: 100%;
+}
+img {
+    border: 0;
+    vertical-align: middle;
+}
+.timesyl {
+    font-size: 11px;
+    text-align: right;
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+.rightsyl {
+    text-align: right;
+}
+.rightsyl img {
+    width: 30px;
+    height: 30px;
+}
+
+body{
+    line-height: 1.5;
+}
+
+.um-xs-6 {
+    width: 50%;
+}

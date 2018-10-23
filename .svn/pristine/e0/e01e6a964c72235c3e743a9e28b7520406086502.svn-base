@@ -1,0 +1,30 @@
+function getHttp(){
+	var http = "https://dj.lykyjt.com:8898/";
+	//http = "http://10.176.2.97:8080/";
+	return http;
+}
+function getUserInfo(){
+	
+	summer.setStorage("host", getHttp());
+	
+	var code = summer.pageParam.code;
+	
+	var requestip = ""+getHttp()+"partyconstrutproject/friendspaceadaptorcontroller/getUserinfo";
+	summer.post(requestip,{"code":code},//可选参数，方便开发者设置请求的header
+        {
+        "Content-Type" : "application/x-www-form-urlencoded", //可选参数，post请求的要写入的条件数据，须为json对象
+        }, 
+    	function(response){//成功回调
+        	var data = $summer.strToJson(response.data);
+        	data = data.data;
+			summer.setStorage("userInfo", data);
+			//localStorage.setItem("userInfo",data);
+			return true;
+        },
+    	function(response){ //失败回调
+        	
+        	return false;
+    });
+
+}
+

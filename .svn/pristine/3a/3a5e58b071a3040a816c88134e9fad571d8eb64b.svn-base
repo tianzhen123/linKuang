@@ -1,0 +1,15 @@
+function about(){
+	summer.toast({
+         "msg" : "关于我们！" 
+    })
+}
+function help(){
+	summer.toast({
+         "msg" : "新手帮助！" 
+    })
+}
+function signout(){
+	summer.toast({
+         "msg" : "退出登录！" 
+    })
+}

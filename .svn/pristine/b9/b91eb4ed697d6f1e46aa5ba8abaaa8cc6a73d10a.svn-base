@@ -1,0 +1,165 @@
+var flag = 0,viewModel,param;//是否选择提交
+var chooseData = {
+	ganShiShenHe:[{
+		name:"通过",
+		statue:"pass",
+	},{
+		name:"驳回",
+		statue:"reject",
+	},{
+		name:"废稿",
+		statue:"discard",
+	},{
+		name:"发布",
+		statue:"publish",
+	}],
+	ganShiFaBu:[{
+		name:"发布",
+		statue:"publish",
+	}],
+	buZhang:[{
+		name:"通过",
+		statue:"pass",
+	},{
+		name:"驳回",
+		statue:"reject",
+	}],
+}
+summerready = function(){
+	editorInit();
+	param = summer.pageParam;
+	var addBtn = document.querySelector('.addBtn'),
+	choose = document.querySelector('#choose');
+	
+	document.querySelector('.title').value = param.content.title;
+	document.querySelector('.summary').value = param.content.summary;
+	document.querySelector('.tag').value = param.content.tag;
+	document.querySelector('.create-time').value = getMyDate(param.content.create_time);
+	if(param.content.content.indexOf('<')==-1){
+    	$('#article-body').html($('#article-body').html(param.content.content).text());
+    }else{
+    	$('#article-body').html(param.content.content);
+    }
+	imgCenter();
+	
+	addBtn.onclick = function(){
+		if(flag){
+			choose.className = '';
+			addBtn.innerText = '提交';
+			flag = 0;
+		}else{
+			if(isNull(viewModel.column())){
+				return summer.toast({
+                              "msg" : "请选择栏目" 
+                         })
+			}
+			choose.className = 'on';
+			addBtn.innerText = '取消';
+			flag = 1;
+		}
+	}
+	var chooseArr;
+	switch (param.content.billstatus*1){
+		case 1: chooseArr = chooseData.ganShiShenHe;//干事审核
+			break;
+		case 2:case 3: chooseArr = chooseData.buZhang;//宣传副部长和部长审核
+			break;
+		case 4: chooseArr = chooseData.ganShiFaBu;//干事发布
+			break;
+		default:chooseArr = [];
+			break;
+	}
+	viewModel = {
+		chooseArr : ko.observableArray(chooseData.ganShiShenHe),
+		chooseClick : function(data){
+			
+			setBillStatus(data);
+			choose.className = '';
+			addBtn.innerText = '提交';
+			flag = 0;
+			summer.openWin({
+                "id" : 'ex-msg',
+                "url" : "html/examine/ex-msg.html",
+                "pageParam" : {
+                    "content" : param.content
+                }
+            });
+		},
+		column : ko.observable(),
+		selColumn : function(){
+			summer.openWin({
+                "id" : "selColumn",
+                "url" : "html/examine/selColumn.html",
+            });
+		}
+	}
+	ko.applyBindings(viewModel);
+}
+function editorInit(){
+	artEditor = new Eleditor({
+					el: '#article-body',
+					upload:{
+						server: getImageUploadUrl(),
+					},
+					toolbars: [
+				      'insertText',
+				      'editText',
+				      'undo',
+				      'cancel'
+				    ],
+				});
+}
+function backClick(){
+	summer.closeWin({});
+}
+//选择栏目后的回调
+function selColumnCallBack(data){
+	viewModel.column(data.name);
+	param.content.def2 = data.name;
+	param.content.infocolumn = data.value;
+}
+//设置单据状态
+function setBillStatus(data){
+	switch (data.status){
+				case 'pass': param.content.billstatus+=1;
+					break;
+				case 'reject': {
+						param.content.billstatus = param.content.billstatus*1>1?1:0;
+					}break;
+				case 'discard' : param.content.billstatus = 6;
+					break;
+				case 'publish' : param.content.billstatus = 5;
+					break;
+			}
+}
+function getMyDate(str){
+			if(str){
+				if(CheckDateTime(str)){
+					var date = new Date(str).format("yyyy-MM-dd");
+					return date;
+				}
+			}
+			var ODate;
+			oDate = new Date();
+			if(str) oDate = new Date(str*1);
+            oYear = oDate.getFullYear(),  
+            oMonth = oDate.getMonth()+1,  
+            oDay = oDate.getDate(),  
+            oHour = oDate.getHours(),  
+            oMin = oDate.getMinutes(),  
+            oSen = oDate.getSeconds(),
+            oTime = oYear +'-'+ getzf(oMonth) +'-'+ getzf(oDay);//最后拼接时间  
+            return oTime;
+}; 
+//补0操作
+function getzf(num){
+      if(parseInt(num) < 10){
+          num = '0'+num;  
+      }  
+      return num;  
+}
+function CheckDateTime(str){
+  var reg=/^(\d+)-(\d{1,2})-(\d{1,2}) (\d{1,2}):(\d{1,2}):(\d{1,2})/; 
+  var r=reg.test(str);
+  return r;
+}

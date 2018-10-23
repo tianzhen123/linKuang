@@ -1,0 +1,144 @@
+/**
+ * 上下拉刷新功能
+ * 用友能源   韩鹏
+ * 2017.12.27
+ */
+
+/*
+ * 使用说明：
+ * 一、html文件要求： （1、2、3都需满足才可正常使用）
+ *	1.下拉
+ *	使用说明： 将此div整体内容放到要现实的位置（放上面），
+ *	注意：id="pullDown"（不可修改）
+ *		   img 图片路径可以自己定义
+ *	 	   span文字可以自己定义
+ *	 div说明：下拉时，要显示的此div
+		<div id="pullDown" style="display: none">
+			<img src="../../img/loading.gif" />
+		 	<span>加载中...</span>
+		</div>
+		
+ * 	2.上拉
+ * 	使用说明： 将此div整体内容放到要现实的位置（放下面），
+ * 	注意：id="pullUp"（不可修改）
+ * 	   img 图片路径可以自己定义
+ * 	   span文字可以自己定义
+ * 	div说明：上拉时，要显示的此div	
+	  	<div id="pullUp" style="display: none">
+			<img src="../../img/loading.gif" />
+			<span>加载中...</span>
+	  	</div>
+	  	
+	 3.监控手指触摸区域
+	 使用说明：将要监控的区域的div或ul或其他（都可以），加上name="hp_scroll"即可
+	 建议：第一种：加载ul上，li里面是内容
+	 	 第二种：加载内容外面的div上
+	 	（尽量在包裹整个内容的di或ulv上） 
+		 <ul  name="hp_scroll">
+			<li >
+				
+			</li>
+		 </ul>
+	 
+ * 二、js文件要求：（1、2.(1)、2.(2)都需满足才可正常使用）
+ *  1.引用方法
+ *  使用说明：只需要引用hp_scroll()即可（其他方法不需要）
+ * 	hp_scroll();//引用上下拉方法
+ * 	2.上下拉时，执行自己定义的方法
+ * 	使用说明：下面(1)(2)方法必须要有
+ *
+ *	(1)
+ 	//下拉执行的方法
+	function function_pullDown(){
+		//写自己下拉要执行的代码（若没有自己要执行的代码，就不用写内容，但必须要有function_pullDown()方法）
+	}
+	
+ *	(2)
+ 	//上拉执行的方法
+	function function_pullUp(){
+		//写自己上拉要执行的代码（若没有自己要执行的代码，就不用写内容，但必须要有function_pullUp()方法）
+	}
+ *
+ *  
+ */
+
+var flag_scroll=true;
+var obj;
+var startx;
+var starty;
+var overx;
+var overy;
+
+function hp_scroll(){
+	window_scroll();
+	var hp_scroll = document.getElementsByName('hp_scroll');
+	//alert(hp_scroll.length);
+   	for(var i=0;i<hp_scroll.length;i++){         
+        obj = hp_scroll[i];      
+        evenlistener(obj);     
+    }
+}
+
+function window_scroll(){
+	$(window).scroll(function(){
+	//	alert("window_scroll()");
+		var scrollTop = $(this).scrollTop(); 
+		var scrollHeight = $(document).height();  
+		var windowHeight = $(this).height();       
+		if(scrollTop + windowHeight >= scrollHeight){
+			//alert(0001);
+			flag_scroll=true;
+         }else if(scrollTop<=0){
+        	//alert(0002);
+			flag_scroll=true;
+         }else{
+        	//alert(0003);
+         	flag_scroll=false;
+         }
+   
+	});
+	   
+	
+}
+
+function evenlistener(obj){
+	obj.addEventListener('touchstart', function(event) {
+	   	startx = event.touches[0].clientX;
+	    starty = event.touches[0].clientY;
+	   // var index_li = $("ul").closest("li").index();
+	  // var index_li = $(this).index();
+		//	alert(index_li);
+	  //  $summer.alert(this.html());
+	} , false); 
+	obj.addEventListener('touchmove', function(event) {
+	 	/*禁止ios系统的右滑关闭事件*/
+	 	//event.preventDefault();
+		//event.stopPropagation();
+	 	
+	 	overx = event.touches[0].clientX;
+	    overy = event.touches[0].clientY;
+	    if(flag_scroll){
+		    if(starty-overy>100){
+		    	//alert(11);
+	        	$("#pullUp").css('display','block');
+				function_pullUp();
+				setTimeout('hidden_pull()',3000);
+		    }else if(overy-starty>200){
+		    	//alert(22);
+	        	$("#pullDown").css('display','block'); 
+				function_pullDown(); 
+				setTimeout('hidden_pull()',3000);  
+		    }
+	    }
+	} , false);
+	obj.addEventListener('touchend', function(event) {
+	    		
+    } , false);
+} 
+
+function hidden_pull(){
+ 	$("#pullUp").css('display','none'); 
+    $("#pullDown").css('display','none'); 
+}
+
+

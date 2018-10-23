@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../../css/font-icons.css">	
+		<link rel="stylesheet" href="../../../css/base.css" />
+		<link rel="stylesheet" href="teachersDet.css" />
+		<link rel="stylesheet" href="teachers.css" />
+		<style>
+			ul li:after {
+			    border-right: 2px solid #FFFFFF;
+			    border-top: 2px solid #FFFFFF;
+		    }
+		</style>
+		<script src="../../../js/summer.js" ></script>		
+		<script src="../../../js/jquery.min.js" ></script>
+		<script src="../../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="../../../js/base.js" ></script>
+		<script src="../../../js/knockout.js"></script>	
+		<script src="teachersDet.js" ></script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-header" >
+				<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            	<h3 id="pageTitle">教师风采详情</h3>
+			</div>
+			
+			<div class="um-content" >
+				<div class="li-content">
+					<div class="li-left">
+						<img id="img" onerror="nofind(this,1)"  />
+					</div>
+					<div class="li-right">
+						<span class="name" id="name"></span>
+						<p><span>职称</span>:<span id="ranks" ></span></p>
+						<p><span>毕业于</span>:<span id="school" ></span></p>
+					</div>
+				</div>
+				<div class="content-desc">
+					<p id="frame" ></p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

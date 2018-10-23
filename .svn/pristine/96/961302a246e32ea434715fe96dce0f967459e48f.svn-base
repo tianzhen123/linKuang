@@ -1,0 +1,387 @@
+summerready=function(){
+    var loaddingJson = [{ //加载中
+        filename : "正在加载中...",
+        color : "gray",
+        icon : "fa fa-2x fa-spinner fa-spin",
+        creator : "",
+        time : "",
+        size : "",
+        type : 1, //用于标识初始化加载中的属性
+    }],
+    CACHE_TIMEOUT=15*60*1000, //缓存时间
+    TEXT={
+        PULL_LOAD:"上拉加载更多内容",
+        LOADING:'<i class="fa fa-spinner fa-spin"></i> 正在加载中...',
+        NO_MORE_CONTENT:"没有更多内容了",
+    },
+    CACHE_STORAGE_KEY="doc_cache",//储存缓存数据用的key
+    FOLDER_CACHE={"0":{id:void 0}}, //记录目录上级关系的对象
+    current={//当前数据
+        pageSize:10,
+        folderid:"0",
+        folderIndex:-1,
+        folderLast:false, //
+        fileIndex:-1,
+        fileLast:false,
+        search:void 0,
+        sort:{
+            sortDirection:"ASC",
+            sortField:"name"
+        },
+        sortTypeIndex:0, //选择的排序方式index
+    },
+    viewModel = {
+        data : ko.observableArray(loaddingJson),
+        moreText: ko.observable(TEXT.PULL_LOAD),
+        event:{
+            onSearchInput:function(vm,e){
+                if(e.keyCode==13){
+                    current.search=e.target.value
+                    initData("0");
+                    $("#searchBackButton").fadeIn(500);
+                    loadData();
+                }
+                return true;
+            },
+            listClick:function(data){//点击列表事件
+                if(data.folderid){
+                    var result=loadData(data.folderid,FOLDER_CACHE[data.folderid].parentid);
+                    if(result=="loading"){
+                        alert("正在加载中,请稍候")
+                    }else if(result.then){
+                        showLoadingBar();
+                        result.then(function(){
+                            hideLoadingBar();
+                        })
+                    }
+                }else if(data.type!=1){
+                    console.log("点击了文件",data)
+                }
+            },
+            onScroll:function(vm,e){
+                var dom=e.target;
+                if(dom.scrollTop+dom.offsetHeight>=dom.scrollHeight){
+                    var result=loadData();
+                    if(result=="last"){
+                        viewModel.moreText(TEXT.NO_MORE_CONTENT)
+                    }else{
+                        viewModel.moreText(TEXT.LOADING)
+                    }
+                    if(result.then){
+                        showLoadingBar();
+                        result.then(function(){
+                            hideLoadingBar();
+                        })
+                    }
+                }
+            },
+            onSearchCancel:function(){
+                $("#searchBackButton").fadeOut(500);
+                current.search=void 0;
+                initData("0");
+                loadData();
+            },
+            onSortMenuClick:function(){
+                var itemData=['默认排序','按文件名正序排列', '按文件名倒序排列' ,'按时间正序排列','按时间倒序排列'];
+                itemData[current.sortTypeIndex]='<span style="color:red;">'+itemData[current.sortTypeIndex]+"</span>"
+                UM.actionsheet({
+                    items : itemData,
+                    callbacks : [
+                        function(){
+                            selectSortType(0,"asc","name")
+                        },
+                        function(){
+                            selectSortType(1,"asc","name")
+                        },
+                        function(){
+                            selectSortType(2,"desc","name")
+                        },
+                        function(){
+                            selectSortType(3,"asc","createtime")
+                        },
+                        function(){
+                            selectSortType(4,"desc","createtime")
+                        },
+                    ]
+                });
+
+            },
+        }
+    };
+    ko.applyBindings(viewModel);
+    console.log(viewModel); //DEBUG
+    function selectSortType(index,direction,field){
+        current.sortTypeIndex=index;
+        current.sort.sortDirection=direction;
+        current.sort.sortField=field;
+        initData(current.folderid);
+        loadData(current.folderid,FOLDER_CACHE[current.folderid].parentid);
+    }
+    function showLoadingBar(){
+        UM.showLoadingBar({
+            text: "加载中",
+            icons: 'ti-loading',
+        })
+    }
+    function hideLoadingBar(){
+        UM.hideLoadingBar()
+    }
+    var isLoading=false;
+    function setLoadStatus(flag){
+        isLoading=flag;
+    }
+    function loadData(folderid,parentid){
+        if(isLoading){
+            return "loading"
+        }
+        //不传参数或相同folderid
+        if(folderid==void 0||folderid==current.folderid){
+            viewModel.moreText(TEXT.LOADING)
+            //加载更多
+            folderid=current.folderid;
+            if(current.folderLast||current.search){ //目录已经加载到最后一页 或者是搜索
+                if(!current.search&&current.fileLast){ //不是搜索，并且文件最后一页
+                    return "last"
+                }
+                setLoadStatus(true);
+                return getFileData(current.folderid,current.fileIndex+1,current.pageSize,current.sort,current.search)
+                    .then(function(res){
+                        var data=res.detailMsg.data;
+                        if(viewModel.data()[0].type==1){
+                            viewModel.data([]);
+                        }
+                        current.fileIndex=data.number;
+                        current.fileLast=data.last;
+                        for(var i in data.content){
+                            if(data.content.hasOwnProperty(i)){
+                                var d=data.content[i];
+                                viewModel.data.push(convertListData(d));
+                            }
+                        }
+                        if(data.last){
+                            viewModel.moreText(TEXT.NO_MORE_CONTENT)
+                        }
+                    }).then(function(){
+                        setLoadStatus(false);
+                    })
+            }else{//加载下一页目录
+                setLoadStatus(true);
+                return getFolderData(current.folderid,current.folderIndex+1,current.pageSize,current.sort)
+                    .then(function(res){
+                        var data=res.detailMsg.data;
+                        if(viewModel.data()[0].type==1){
+                            if(parentid&&folderid!="0"){
+                                viewModel.data([{
+                                    folderid:parentid,
+                                    filename : ".. 上一级目录",
+                                    color : "#FFD753",
+                                    icon : "fa fa-folder-open fa-2x",
+                                    creator : "",
+                                    time : "",
+                                    size : "" 
+                                }]);
+                            }else if(data.content.length>0){
+                                viewModel.data([]);
+                            }
+                        }
+                        current.folderIndex=data.number;
+                        current.folderLast=data.last;
+                        for(var i in data.content){
+                            if(data.content.hasOwnProperty(i)){
+                                var d=data.content[i];
+                                FOLDER_CACHE[d.id]=d
+                                viewModel.data.push({
+                                    folderid:d.id,
+                                    filename : d.name,
+                                    color : "#FFD753",
+                                    icon : "fa fa-folder fa-2x",
+                                    creator : "",
+                                    time : formatDate(new Date(d.createtime)),
+                                    size : "" ,
+                                    data : d,
+                                });
+                            }
+                        }
+                        //如果文件夹加载完毕，则继续加载一次文件
+                        if(data.last&&data.numberOfElements<current.pageSize){
+                            setLoadStatus(false);
+                            return loadData(folderid,parentid);
+                        }
+                    }).then(function(){
+                        setLoadStatus(false);
+                    })
+            }
+        }else{
+            //更换目录
+            initData(folderid);
+            return loadData(folderid,parentid)
+        }
+    }
+    function initData(folderid){
+        opt={
+            folderid:folderid,
+            folderIndex:-1,
+            folderLast:false,
+            fileIndex:-1,
+            fileLast:false,
+        }
+        Object.assign(current,opt);
+        viewModel.data(loaddingJson);
+    }
+    
+    
+    
+    var iconExtList={
+        word:"doc,docx",
+        excel:"xls,xlsx",
+        pdf:"pdf",
+        image:"jpg,jpeg,bmp,gif,png",
+        archive:"zip,rar,7z,cab,iso",
+        text:"txt,ini,cfg"
+    }
+    for(var i in iconExtList){
+        iconExtList[i]=iconExtList[i].split(",")
+        for(var j in iconExtList[i]){
+            if(iconExtList[i].hasOwnProperty(j))
+                iconExtList[iconExtList[i][j]]=i
+        }
+        delete(iconExtList[i])
+    } //加工成  {  doc:"word" } 的格式
+    var colorExtList={
+        word:"#419AF3",
+        excel:"#39825A",
+        pdf:"#E20000",
+        image:"#6B69A6",
+        archive:"gray",
+        text:"gray"
+    }
+    function convertListData(d){
+        var icon=iconExtList[d.ext];
+        var result={
+            filename : d.name,
+            color : icon?colorExtList[icon]:"gray",
+            icon : "fa fa-2x "+(icon?"fa-file-"+icon+"-o":"fa-file-o"),
+            creator : d.creator_name,
+            time : formatDate(new Date(d.createtime)),
+            size : convertFileLength(d.length),
+            data : d
+        }
+        
+        return result;
+    }
+    function convertFileLength(length){
+        for(var i=0;length>=1024;length/=1024,++i){}
+        return Math.round(length*100)/100+["B","K","M","G","T","P"][i];
+    }
+    //加载文件夹
+    function getFolderData(folderid,page,size,sort){
+        folderid=folderid||"0";
+        page=page||0;
+        size=size||10;
+        sort=sort||{
+            sortDirection:"ASC",
+            sortField:"name"
+        }
+        var data={
+            pid:folderid,
+            pageIndex:page,
+            pageSize:size,
+            sortDirection:sort.sortDirection,
+            sortField:sort.sortField,
+        };
+        var url = "http://localhost:8080/partyconstrutproject/docfolder/listbypid";
+        return getData(url,data);
+    }
+
+    //加载文件
+    function getFileData(folderid,page,size,sort,search_filename){
+        folderid=folderid||"0";
+        page=page||0;
+        size=size||10;
+        sort=sort||{
+            sortDirection:"ASC",
+            sortField:"name"
+        }
+        var data={
+            search_filename:search_filename,
+            folderid:folderid,
+            pageIndex:page,
+            pageSize:size,
+            sortDirection:sort.sortDirection,
+            sortField:sort.sortField,
+        };
+        var url="http://localhost:8080/partyconstrutproject/doc/list";
+        return getData(url,data);
+    }
+    // === 缓存   =======================
+    var cacheData=summer.getStorage(CACHE_STORAGE_KEY)||{};
+    cacheData.timeout=CACHE_TIMEOUT; //缓存时间
+    function tryGetFromCache(url,data){
+        if(cacheData[url]){
+            var key=JSON.stringify(data);
+            if(cacheData[url][key]){
+                var now=+new Date();
+                if(now-cacheData[url][key].__cacheTimestamp<cacheData.timeout){
+                    //缓存未超时
+                    return cacheData[url][key];
+                }else{
+                    //缓存超时 删除
+                    delete(cacheData[url][key]);
+                }
+            }
+        }
+    }
+    function saveCache(url,data,cache){
+        if(cacheData[url]==void 0){
+            cacheData[url]={};
+        }
+        var key=JSON.stringify(data);
+        cacheData[url][key]=cache;
+        if(cache){
+            cacheData[url][key].__cacheTimestamp=+new Date();
+        }
+        summer.setStorage(CACHE_STORAGE_KEY,cacheData)
+    }
+    // === 缓存 END   =======================
+    function getData(url,data){
+        var cache=tryGetFromCache(url,data);
+        if(cache){
+            return Promise.resolve(cache);
+        }
+        return new Promise(function(resolve,reject){
+            $.ajax({
+                type : "get",
+                url : url,
+                data : data,
+                success:function(res) {
+                    saveCache(url,data,res);
+                    resolve(res);
+                },
+                error:function(res) {
+                    reject(res);
+                },
+           });
+       })
+    }
+    function formatDate(date,fmt) {
+        fmt=fmt||"yyyy-MM-dd hh:mm";
+        var o = {
+            "M+": date.getMonth() + 1, //月份
+            "d+": date.getDate(), //日
+            "h+": date.getHours(), //小时
+            "m+": date.getMinutes(), //分
+        };
+        if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
+        for (var k in o)
+        if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        return fmt;
+    }
+    
+    
+    loadData(); //初始加载
+}
+
+
+
+
+

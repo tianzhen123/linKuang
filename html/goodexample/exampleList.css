@@ -1,0 +1,92 @@
+#scroll_position {
+   -moz-box-sizing:border-box;
+   -webkit-box-sizing:border-box;
+   box-sizing:border-box;
+   margin-top:-10px;
+   margin-left:-15px;
+   margin-right:-15px;
+   border-top:1px solid #FFF;
+   border-bottom:1px solid #FFF;
+}
+#scroll_position li a {
+   height:40px;
+   line-height:40px;
+   text-align:center;
+   border-right:1px solid #FFF;
+}
+
+#scroll_position li:last-child a {
+   border-right:none;
+}
+
+#slider {
+   margin-left:-15px;
+   margin-right:-15px;
+}
+.um-tabbar-underline > li.active {
+	border-bottom: 2px solid #d72424;
+}
+
+
+.um-tabbar-underline > li.active > a {
+	color: #d72424;
+	
+}
+
+.um-tabbar-underline > li{
+	padding-top: 5px;
+	padding-bottom: 5px;
+	
+}
+
+.contentsyl{
+
+	background-color: #FFFFFF;
+
+}
+.topsyl{
+	background-color: #d72424;
+	text-align: center;
+	color: #FFFFFF;
+	font-size: 13px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.namesyl{
+	font-size: 15px;
+	font-weight: bold;
+	text-align:center;
+}
+.worksyl{
+	font-size: 12px;
+	text-align:center;
+}
+.worksyl p{
+	 white-space:nowrap; 
+	 text-overflow:ellipsis; 
+	 overflow:hidden;
+}
+.imgsyl {
+	width: 100%;
+	text-align: center;
+}
+.imgsyl img{
+	width: 100%;
+	height:100px;
+	
+}
+
+.ge-obj{
+	padding: 5px;
+}
+
+#appealContainer input{
+	width: 100%;
+	text-align: right;
+	background-color: #d72424;
+	border-style: none;
+	color: #fff;
+}
+
+.GE_MODEL{}
+.GE_ADVANCED{}

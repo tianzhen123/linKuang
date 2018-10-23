@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">
+        <link rel="stylesheet" type="text/css" href="../../css/islider.css">
+        <!--列表 start-->
+        <link rel="stylesheet" type="text/css" href="../../css/iuapmobile.um.listview.css">
+		<!--列表 end-->
+
+        <style>
+        	*{
+        	font-size: 15px;
+        	}
+       		/*列表 start*/
+        	.listview-detail {
+        		overflow: hidden;
+        		text-overflow: ellipsis;
+        		display: -webkit-box;
+        		-webkit-line-clamp: 2;
+        		-webkit-box-orient: vertical;
+        	}
+        	.list_top{
+        		margin-left: 7px;
+    			margin-right: 12px;
+        	}
+        	/*列表 end*/
+        	/*图标 start*/
+            .swipe {
+                overflow: hidden;
+                visibility: hidden;
+                position: relative;
+                background: #fff;
+                padding-bottom: 10px;
+            }
+        
+            .swipe-wrap {
+                overflow: hidden;
+                position: relative;
+            }
+        
+            .swipe-wrap .swipe-box {
+                float: left;
+                width: 100%;
+                position: relative;
+            }
+        
+            .sliderow {
+                text-align: center;
+                width: 100%;
+                display: block;
+                overflow: hidden;
+            }
+        
+            .sliderow .slidecol {
+                float: left;
+                width: 25%;
+            }
+        
+            .sliderow .slidecol img {
+                width: 40%;
+                margin-top: 10px;
+            }
+        
+            .sliderow .slidecol div {
+                font-size: 13px;
+                margin-top: 5px;
+            }
+            /*图标 end*/
+           
+           /*轮播 start*/
+        	.iSlider-wrapper {
+        		height: 150px;
+        	}
+        	/*轮播 end*/
+        </style>
+
+	
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+       	<!--轮播 start-->
+        <script type="text/javascript" src="../../js/islider.js"></script>
+        <!--轮播 end-->
+        <script>
+        	summerready = function () {
+        		/*轮播 start*/
+        		$(function() {
+        			var list = [
+        				{
+        					content: "../../img/dw_banner1.png"
+        				}, 
+        				{
+        					content: "../../img/dw_banner2.png"
+        				}, 
+        				{
+        					content: "../../img/dw_banner3.png"
+        				}
+        			];
+        			var islider = new iSlider({
+        				type: 'pic',
+        				data: list,
+        				dom: document.getElementById("iSlider-wrapper"),
+        				isLooping: true,
+        				animateType: 'default',
+        				isAutoplay: true,
+        				animateTime: 800
+        			});
+        			islider.addDot();
+        		})
+        	/*轮播 end*/
+        	
+        	}
+        </script>
+         <!--轮播 start-->
+        <script type="text/javascript" src="../../js/swipe.js"></script>
+        <!--轮播 end-->
+        <!--列表 start-->
+        <script type="text/javascript" src="../../js/knockout.js"></script>
+        <script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+		 <!--列表 end-->
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<!-- <div class="um-header" >
+				<h3>导航栏</h3>
+			</div> -->
+
+			<div class="um-content">
+				<div class="um-listview-wrap" id="listview">
+					<!--轮播 start-->
+	                <div class="um-row"><div id="iSlider-wrapper" class="iSlider-wrapper"></div></div>
+					<!--轮播 end-->
+					
+					<!--图标 start-->
+	                 <div id='slider' class='swipe' style="margin-bottom: 5px;">
+	                    <div class='swipe-wrap' data-bind="foreach:data_menu">
+	                        
+	                        <div class="swipe-box">
+	                            <div class="sliderow">
+	                            	<ul  data-bind="foreach:menu" style="background: #fff;">
+            							<li >
+			                                <div class="slidecol" tapmode="" onclick="">
+			                                    <img src="../../img/lvZhiLvZe.png"  alt="" data-bind="attr:{src: img}">
+			                                    <div class="">
+			                                    	<span data-bind="text:title" ></span>
+			                                    </div>
+			                                </div>
+			                           	</li>
+			                        </ul>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+					<!--图标 end-->
+					<!--列表 start-->
+	                <!-- <div class="um-listview-wrap" id="listview"> -->
+	                	<ul class="um-list um-no-active" data-bind="foreach:data_list" style="background: #fff;">
+	                		<li class="um-listview-row">
+	                			<div class="list_top">
+	                				<div class="f12 tl fl ">
+		    							<img style=" height: 15px;" src="../../img/main_verticalLine.png" /><span data-bind="text:title"></span>
+		    						</div>
+	                				<div class="f12 tr ">
+		    							<img style=" height: 15px;" src="../../img/main_more.png" />
+		    							<span class="ml5">更多</span>
+		    						</div>
+	                			</div>
+	                			<a href="#" class="um-list-item um-swipe-action um-no-icon">
+	                				<div class="um-swipe-btns">
+	                					<span class="um-swipe-btn um-delete ti-trash"></span>
+	                				</div>
+	                				<div class="um-list-item-media">
+	                					<img alt="" height=74 data-bind="attr:{src: img}">
+	                				</div>
+	                				<div class="um-list-item-inner">
+	                					<div class="um-list-item-body" style="padding-right:5px;">
+	                						<!-- <div data-bind="text:title" class="fb f16 um-text-overflow"></div> -->
+	                						<div>
+	                							<span data-bind="text:detail" class=" um-gray listview-detail" style="height:40px;"></span>
+	                						</div>
+	                
+	                						
+	                					</div>
+	                				</div>
+	                			</a>
+	                		</li>
+	                	</ul>
+	               <!--  </div> -->
+					<!--列表 end-->
+				</div>
+			</div>
+		</div>
+
+        <script>
+            $(function () {		
+            	/*列表 start*/
+                //Knockout绑定
+                var ViewModel = function () {            
+                };		
+                var jsonArray_list = [
+                        {         
+                        	"img": "../../img/dang1.jpg",
+                            "title": "时政要闻",
+                            "detail": "决胜全面建成小康社会 夺取新时代中国特色社会主义伟大胜利",
+                        }, {
+                            "img": "../../img/dang2.jpg",
+                            "title": "书记领学十九大",
+                            "detail": "集团公司党委举行中心组理论学习（扩大）会议",
+                        }, {
+                            "img": "../../img/dang3.jpg",
+                            "title": "十九大精神进矿区",
+                            "detail": "菏泽煤电公司学习党的十九大精神",
+                        }
+                    ];
+                 var jsonArray_menu = [{"menu": [
+                        {         
+                        	"img": "../../img/icon_dangDeXuanChuan.png",
+                            "title": "党的宣传",
+                        }, {
+                            "img": "../../img/icon_dianZiShuWu.png",
+                            "title": "两学一做",
+                        },{
+                        	"img": "../../img/icon_jinQiuZhuXue.png",
+                            "title": "和谐临矿",
+                        },{
+                            "img": "../../img/icon_weiWenBangFu.png",
+                            "title": "民生通道",
+                        },{         
+                        	"img": "../../img/icon_huoDongShenQing.png",
+                            "title": "工会工作",
+                        }, {
+                            "img": "../../img/icon_kunNanDangYuanShenQing.png",
+                            "title": "共青团工作",
+                        },{
+                        	"img": "../../img/icon_minShengDongTai.png",
+                            "title": "民生动态",
+                        },{
+                            "img": "../../img/icon_minShengSuQiu.png",
+                            "title": "纪检举报3",
+                        }
+                    ]},{"menu": [
+                        {         
+                        	"img": "../../img/icon_dangDeXuanChuan.png",
+                            "title": "党的宣传",
+                        }, {
+                            "img": "../../img/icon_dianZiShuWu.png",
+                            "title": "两学一做",
+                        },{
+                        	"img": "../../img/icon_jinQiuZhuXue.png",
+                            "title": "和谐临矿",
+                        },{
+                            "img": "../../img/icon_weiWenBangFu.png",
+                            "title": "民生通道",
+                        },{         
+                        	"img": "../../img/icon_huoDongShenQing.png",
+                            "title": "工会工作",
+                        }, {
+                            "img": "../../img/icon_kunNanDangYuanShenQing.png",
+                            "title": "共青团工作",
+                        },{
+                        	"img": "../../img/icon_minShengDongTai.png",
+                            "title": "民生动态",
+                        },{
+                            "img": "../../img/icon_minShengSuQiu.png",
+                            "title": "纪检举报1",
+                        }
+                    ]},{"menu": [
+                        {         
+                        	"img": "../../img/icon_dangDeXuanChuan.png",
+                            "title": "党的宣传",
+                        }, {
+                            "img": "../../img/icon_dianZiShuWu.png",
+                            "title": "两学一做",
+                        },{
+                        	"img": "../../img/icon_jinQiuZhuXue.png",
+                            "title": "和谐临矿",
+                        },{
+                            "img": "../../img/icon_weiWenBangFu.png",
+                            "title": "民生通道",
+                        },{         
+                        	"img": "../../img/icon_huoDongShenQing.png",
+                            "title": "工会工作",
+                        }, {
+                            "img": "../../img/icon_kunNanDangYuanShenQing.png",
+                            "title": "共青团工作",
+                        },{
+                        	"img": "../../img/icon_minShengDongTai.png",
+                            "title": "民生动态",
+                        },{
+                            "img": "../../img/icon_minShengSuQiu.png",
+                            "title": "纪检举报2",
+                        }
+                    ]}];
+	            
+                var viewModel = new ViewModel();
+        		
+        		viewModel.data_menu = ko.observableArray(jsonArray_menu);
+        		//viewModel.data_menu = ko.observable(jsonArray_menu);
+        		viewModel.data_list = ko.observableArray(jsonArray_list);
+                ko.applyBindings(viewModel);	
+               
+                /*图标 start*/
+    			 var slider = Swipe(document.getElementById('slider'), {
+    	            startSlide: 1,  //起始图片切换的索引位置
+    				auto: false, //设置自动切换时间，单位毫秒
+    				continuous: true,  //无限循环的图片切换效果
+    				disableScroll: true,  //阻止由于触摸而滚动屏幕
+    				stopPropagation: false,  //停止滑动事件
+    				callback: function(index, element) {},  //回调函数，切换时触发
+    				transitionEnd: function(index, element) {}  //回调函数，切换结束调用该函数。
+    	        });
+        		/*图标 end*/	
+        		
+        		
+        		 //构造控件实例
+                var listview = UM.listview("#listview");
+                //添加控件方法
+                /*listview.on("pullDown", function (sender) {
+                    //这是可以编写列表下拉加载逻辑，参数sender即为当前列表实例对象
+        			 var row = {
+                        "img": "../../img/news5.png",
+                         "title": "科大讯飞发布新交互界面 语音可同步转成文字",
+                         "detail": "此外科大讯飞还发布了录音宝、录音笔、讯飞听见网、智学网、E听说等新品。",
+                         "comments": 1800
+                    };
+                    viewModel.data.unshift(row); 
+                    sender.refresh(); 
+                });*/
+               /* listview.on("pullUp", function (sender) {
+                    //这是可以编写列表上拉刷新逻辑，参数sender即为当前列表实例对象
+                     var row = {
+                          "img": "../../img/news6.png",
+                          "title": "科幻成真？微软开发可预测未来犯罪应用",
+                          "detail": "这种新技术可依据历史记录，预测哪些囚犯将在获释6个月内重新被捕。",
+                          "comments": 2633
+                     };
+                    viewModel.data.push(row); 
+                    sender.refresh(); 
+                }); */
+                listview.on("itemDelete", function (sender, args) {
+                    //这是可以编写行删除逻辑，参数sender即为当前列表实例对象，args对象有2个属性，即rowIndex(行索引)和$target(目标行的jquery对象)
+                    /* args.$target.slideUp(500,function(){
+                     var item = viewModel.data()[args.rowIndex];
+                     viewModel.data.remove(item);
+                     });*/
+                });
+                listview.on("itemClick", function (sender, args) {
+                    //这里可以处理行点击事件，参数sender即为当前列表实例对象，args对象有2个属性，即rowIndex(行索引)和$target(目标行的jquery对象)
+        			//alert("您点击了列表的第" + (args.rowIndex + 1) +　"行！");
+                });
+                listview.on("itemSwipeLeft", function (sender, args) {
+                    //这里可以处理行左滑事件，参数sender即为当前列表实例对象，args对象有2个属性，即rowIndex(行索引)和$target(目标行的jquery对象)
+                    //sender.showItemMenu(args.$target);
+                });
+        		listview.on("tapHold", function () {
+                   //这里可以处理长按事件
+        		   //console.log("您长按了列表！");
+                });
+                /*列表 end*/
+            });
+        </script>
+	</body>
+</html>

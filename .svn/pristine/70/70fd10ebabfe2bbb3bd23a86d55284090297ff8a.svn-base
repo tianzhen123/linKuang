@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<!-- 默认 start -->
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<!-- 默认 end -->
+		
+		<!-- 头部 start -->
+		<link rel="stylesheet" href="../../css/base.css" />
+		<!-- 头部 end -->
+		
+		<!-- 样式修改  start-->
+		<link rel="stylesheet" href="liuYanBan.css "/>
+    
+
+		<!-- 样式修改  end-->
+
+		<!-- 默认 start -->
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<!-- 默认 end -->
+		
+		
+		<!-- 自定义 start -->
+		<!-- <script src="liuYanBan.js" ></script>  -->
+		<!-- 自定义 end -->
+		
+		<!-- 引用 start -->			
+	        <!-- 列表 -->
+	        <script src="../../js/knockout.js"></script>
+			<script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+        <!-- 引用  end -->
+		
+		
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<!-- 头部  start-->
+			<div class="um-header">
+            	<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            	<h3>留言板</h3>
+            	<!-- 加号 start -->
+            	<div class="um-header-btns">
+                	<i class="ti-plus mr5" id="newApplication"></i>
+                </div>   
+                <!-- 加号 end -->              
+            </div>
+			<!-- 头部  end-->
+			
+			<!-- 内容体 start-->
+			<div class="um-content">
+        		<!-- 列表   start -->
+        		<div class="um-listview" id="listview">
+            		<ul class="um-list" data-bind="foreach:data"> 
+                		<li class="um-listview-row">
+						    <a href="#" class="um-list-item"> 
+						        <div class="um-list-item-inner"> 
+						            <div class="um-list-item-body" > 
+						            	
+						            	<div class="clearfix pr15">
+                							<div class="um-xs-6 tl um-text-overflow">
+                								<span  data-bind="text:title">标题</span>
+                							</div>
+                							<div class="um-xs-6 tr f14 um-text-overflow">
+                								
+                								<span class="um-gray" data-bind="text:name">姓名</span>
+                							</div>
+                						</div>
+                						<div class="clearfix mt5 f12 pr15">
+                							<div class="um-xs-6 tl um-text-overflow">
+                								
+                								
+                							</div>
+                							<div class="um-xs-6 tr um-text-overflow">
+                								<span class="um-gray" data-bind="text:time" >2017.11.23 11.22.33</span>
+                							</div>
+                						</div>
+						            	
+						            </div> 
+						            
+						        </div> 
+						    </a>
+					  	</li>
+					  	
+					</ul>
+				</div>
+				<!-- 列表   end -->
+				
+			</div>
+			<!-- 内容体 end-->
+		</div>
+
+        
+	</body>
+</html>

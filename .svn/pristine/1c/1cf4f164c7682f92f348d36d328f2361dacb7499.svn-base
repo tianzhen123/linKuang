@@ -1,0 +1,39 @@
+.um-header{
+	background:#FFFFFF;
+}
+
+.um-header h3{
+	color: #000000;
+	font-weight:normal;
+}
+
+.um-back, .um-header-right, .um-header-left {
+   font-size: 14px;
+   color:#000000
+}
+
+.um-back:before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-left: 2px solid #000000;
+    border-bottom: 2px solid #000000;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    margin: 0px -3px 0px 0px;
+}
+body{
+	background:#FFFFFF;
+}
+/*新闻详情，图片按比例缩放*/
+/*新闻详情的图片，收拾在p标签下*/
+p img{
+ 	width: auto;  
+    height: auto;  
+    max-width: 100%;  
+    max-height: 100%; 
+}
+p table{
+	width:100%
+}

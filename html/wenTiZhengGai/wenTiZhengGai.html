@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<!-- 默认 start -->
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<!-- 默认 end -->
+		<link rel="stylesheet" type="text/css" href="../../css/iuapmobile.um.listview.css">
+		
+		<!-- 头部 start -->
+		<link rel="stylesheet" href="../../css/base.css" />
+		<!-- 头部 end -->
+		
+		
+		<!-- 样式修改  start-->
+		<link rel="stylesheet" href="wenTiZhengGai.css "/>
+    
+		<!-- 样式修改  end-->
+		
+		
+		<!-- 默认 start -->
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<!-- 默认 end -->
+		
+		
+		<!-- 自定义 start -->
+		<script src="../../js/base.js"></script>
+		<script src="wenTiZhengGai.js" ></script>
+		<script src="../../js/hp/hp_slide.js"></script>
+		<!-- 自定义 end -->
+		
+		<!-- 引用 start -->			
+	        <!-- 列表 -->
+	        <script src="../../js/knockout.js"></script>
+			<script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+			<script src="../../js/base.js"></script>
+        <!-- 引用  end -->
+		
+		
+	</head>
+	<body>
+		<div class="um-win" id="index" name="hp_slide">
+			<!-- 头部  start-->
+			<div class="um-header">
+            	<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            	<h3>纪委举报</h3>
+            	<!-- 加号 start -->
+            	<div class="um-header-btns">
+		            	<i class="ti-plus mr5" style="color: #000;" id="newApplication"></i>
+		        </div>  
+                <!-- 加号 end --> 
+            </div>
+			<!-- 头部  end-->
+			<!-- 选项卡 end -->   
+            <ul class="um-tabbar um-tabbar-underline pt10 pb10 um-tabbar-switch">
+            	<li class="active" data-tar='.news'><a>问题整改</a></li>
+            	<li data-tar='.product'><a>我的问题整改</a></li>
+      		</ul>
+      		<!-- 选项卡 end -->  
+            <!-- 搜索 start -->  
+             <div class="um-input-group">
+				<form style="width: 100%"  action="javascript:searchClick();">
+            		<span class="ti-search" onclick="searchClick();"></span>
+            		<input  type="search" class="form-control" id="sear"  placeholder="姓名/党组织" >
+            	</form>
+            </div>  
+            <!-- 搜索 end -->  
+			<!-- 内容体 start-->
+			<div class="um-content" >
+				<div class="Artical">        
+                	<div class="news active">
+		        		<!-- 列表   start -->
+		        		<div class="um-listview-wrap" id="listview1">
+		            		<ul class="um-list" data-bind="foreach:data" style="background: #fff"> 
+		                		<li class="um-listview-row">
+								    <a href="#" class="um-list-item"> 
+									    <div class="um-swipe-btns">
+		                					<span class="um-swipe-btn um-delete ti-trash"></span>
+		                				</div>
+								        <div class="um-list-item-inner"> 
+								            <div class="um-list-item-body" > 
+								            	
+								            	<div class="clearfix pr15">
+		                							<div class="um-xs-6 tl um-text-overflow" style="padding-left: 15px;">
+		                								<span  data-bind="text:p_place">地点</span>
+		                							</div>
+		                							<div class="um-xs-6 tr f14 um-text-overflow">
+		                								
+		                								<span class="um-gray" data-bind="text:pk_supervisor_name">姓名</span>
+		                							</div>
+		                						</div>
+		                						<div class="clearfix mt5 f12 pr15">
+		                							<div class="um-xs-6 tl um-text-overflow">
+		                								
+		                								
+		                							</div>
+		                							<div class="um-xs-6 tr um-text-overflow">
+		                								<span class="um-gray" data-bind="text:p_time" >2017.11.23 11.22.33</span>
+		                							</div>
+		                						</div>
+								            	
+								            </div> 
+								            
+								        </div> 
+								    </a>
+							  	</li>
+							  	
+							</ul>
+						</div>
+						<!-- 列表   end -->
+					</div>	
+            	
+            		<div class="product">
+		        		<!-- 列表   start -->
+		        		<div class="um-listview-wrap" id="listview2">
+		            		<ul class="um-list" data-bind="foreach:data" style="background: #fff"> 
+		                		<li class="um-listview-row">
+								    <a href="#" class="um-list-item"> 
+								    	<div class="um-swipe-btns">
+		                					<span class="um-swipe-btn um-delete ti-trash"></span>
+		                				</div>
+								        <div class="um-list-item-inner"> 
+								            <div class="um-list-item-body" > 
+								            	<div class="clearfix pr15">
+		                							<div class="um-xs-6 tl um-text-overflow" style="padding-left: 15px;">
+		                								<span  data-bind="text:p_place">地点</span>
+		                							</div>
+		                							<div class="um-xs-6 tr f14 um-text-overflow">
+		                								
+		                								<span class="um-gray" data-bind="text:pk_supervisor_name">姓名</span>
+		                							</div>
+		                						</div>
+		                						<div class="clearfix mt5 f12 pr15">
+		                							<div class="um-xs-6 tl um-text-overflow">
+		                								
+		                								
+		                							</div>
+		                							<div class="um-xs-6 tr um-text-overflow">
+		                								<span class="um-gray" data-bind="text:p_time" >2017.11.23 11.22.33</span>
+		                							</div>
+		                						</div>
+								            	
+								            </div> 
+								            
+								        </div> 
+								    </a>
+							  	</li>
+							  	
+							</ul>
+						</div>
+						<!-- 列表   end -->
+					</div>	
+				</div>
+				<!-- 内容体 end-->
+			</div>
+
+        
+	</body>
+</html>

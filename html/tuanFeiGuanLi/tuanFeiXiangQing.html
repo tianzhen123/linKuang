@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<!-- 默认 start -->
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<!-- 默认 end -->
+		
+		<!-- 头部 start -->
+		<link rel="stylesheet" href="../../css/base.css" />
+		<!-- 头部 end -->
+		
+		<!-- 样式修改  start-->
+		<link rel="stylesheet" href="tuanFeiXiangQing.css "/>
+       
+        
+		<!-- 样式修改  end-->
+
+		<!-- 默认 start -->
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<!-- 默认 end -->
+		
+		<!-- 自定义 start -->
+		<script src="../../js/base.js"></script>
+ 		<script src="tuanFeiXiangQing.js" ></script>
+ 		<script src="../../js/hp/hp_slide.js"></script>
+		<!-- 自定义 end -->
+		
+		<!-- 引用 start -->
+			
+	        
+	        <!-- 列表 -->
+	        <script src="../../js/knockout.js"></script>
+			<script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+        <!-- 引用  end -->
+	</head>
+	<body>
+		<div class="um-win" id="index" name="hp_slide">
+			<!-- 头部  start-->
+			<div class="um-header">
+            	<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            	<h3>团费管理</h3>
+            	<!-- 右角 start -->
+            	<div id="next" class="um-header-btns">
+                	<h3 >下一项</h3> 
+                </div>    
+                <!-- 右角 end -->               
+            </div>
+			<!-- 头部  end-->
+			
+			<!-- 内容体 start-->
+			<div class="um-content">
+        		<!-- 列表  start -->
+        		<ul class="um-list" >
+        			<li class="um-list-item">
+                		<div class="um-list-item-inner">
+                			<div class="um-list-item-left pl15">
+                				<h3 class="tr" style="font-size: 50px">￥</h3>
+                			</div>
+                			<div class="um-list-item-right">
+                				<input id="amount"  maxlength="10" class="my-form-control " data-bind="value:feeamount" placeholder="0.00">
+                			</div>
+                		</div>
+                	</li>
+                	<li class="um-list-item">
+                		<div class="um-list-item-inner">
+                			<div class="um-list-item-left pl15">
+                				所属支部
+                			</div>
+                			<div class="um-list-item-right">
+                				<span id="parent_id" class="form-control tr" disabled="disabled" data-bind="text:def4">支部</span> 
+                			</div>
+                		</div>
+                	</li>
+                  	<li class="um-list-item">
+                		<div class="um-list-item-inner">
+                			<div class="um-list-item-left pl15">
+                				姓名
+                			</div>
+                			<div class="um-list-item-right">
+                				<span id="name_name" class="form-control tr"  disabled="disabled" data-bind="text:def3">姓名</span>
+                			</div>
+                		</div>
+                	</li>
+                	<li class="um-list-item">
+                		<div class="um-list-item-inner">
+                			<div class="um-list-item-left pl15">
+                				缴费月份
+                			</div>
+                			<div class="um-list-item-right">
+                				<span id="yearmonth" class="form-control tr" disabled="disabled" data-bind="text:yearmonth">月份</span>
+                			</div>
+                		</div>
+                	</li>
+                	<li class="um-list-item">
+                		<div class="um-list-item-inner">
+                			<div class="um-list-item-left pl15">
+                				备注：
+                			</div>
+                		</div>
+                	</li>
+                </ul>
+                <div >
+    				<textarea name="" id="content" style="margin: 0 15px;" maxlength="20"  cols="2" rows="2" class="form-control form-control test " placeholder="限20个字" data-bind="value:def0"></textarea>
+    				<!-- <input id="title" type="text" style="border: groove" data-bind="value: title" class="form-control tr" placeholder="限20个字"> -->
+    			</div>
+				<!-- 列表   end -->
+			</div>
+			<!-- 内容体 end-->
+		</div>
+
+
+	</body>
+</html>

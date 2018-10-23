@@ -1,0 +1,206 @@
+var data= "";
+var performstatus="";
+summerready = function(){
+	/*
+	 * 民生通道思路：
+	 * 从民生通道两个不同选项卡中进入后，进行不同的操作
+	 * 从民生诉求进来（.new），显示提交按钮，判断批注内容是否为空，
+	 * 不为空的情况下，将所有的信息（民生诉求和审批信息）都提交给服务器
+	 * 提交之后，刷新民生通道的页面，该条信息从民生诉求进入已批注选项卡内
+	 * 
+	 * 从已批注选项卡中进入（.product），批注内容设置只读，提交按钮隐藏，只显示信息
+	 * 
+	 * 
+	 */
+	hp_slide();//滑动事件，放在最前面
+	data = summer.pageParam.count;
+	performstatus = summer.pageParam.performstatus;
+   
+   	/*审批流点击查看事件*/
+  	$("#look_shenPi").on("click",function(sender,args){
+		$("#shenPi").toggle();
+	
+	});
+    
+    /*诉求原因*/
+    var title = data.f20160802193042vmHFhPtpbc;
+    $('#title').html(title);
+    
+    /*诉求内容*/
+    var content = data.f20160802193053FjctEhHn9D;
+    $('#content').html(content); 
+    
+    /*审批流*/
+    var task = data.task;
+    $('#task').html(task);   
+      
+ 	 /*诉求时间*/
+    var startTime = data.startTime;
+    $('#startTime').html(startTime); 
+    
+   	//测试数据（图片）
+   	//data.img = "[../../img/1.jpg,../../img/1.jpg,../../img/1.jpg,../../img/1.jpg,../../img/1.jpg,]";
+    var fimageA = data.imgList;
+	var s = "";
+	for(var i = 0; i<fimageA.length;i++){
+		if(fimageA[i] != null && fimageA[i].replace(/\s/g,'')!=""){//不为空
+			s+= "<img src=\""+fimageA[i]+"\" style=\"padding: 5px 28px;max-width: 100%;width: 100%;\"/>";
+		}
+	}
+	$('#img').html(s);
+	
+    
+    //根据选项卡的两种状态，判断是提交给服务器，还是仅仅查看
+    if(performstatus==".news"){//民生诉求，进行提交批注操作
+    	init_data();//初始化领导姓名和发表时间
+
+	    /*提交*/
+		$("#submit").on("click", function(sender, args) {
+			//这里可以处理行点击事件，参数sender即为当前列表实例对象，args对象有2个属性，即rowIndex(行索引)和$target(目标行的jquery对象)
+			var value_hasNull = hasNull();
+			if(value_hasNull == true){
+				hp_alert("请填写批注信息！");
+			}else{
+				saveClick();
+			}
+		});
+	}else{//已批注，进行服务器获取数据
+	
+		/*批注内容*/
+	    var comment_leader = data.comment_leader;
+	    $('#comment_leader').html(comment_leader); 
+	    
+	    /*批注姓名*/
+	    var name_leader = data.name_leader;
+	    $('#name_leader').html(name_leader); 
+	    
+	    /*批注时间*/
+	    var time_leader = data.time_leader;
+	    $('#time_leader').html(time_leader); 
+    
+		//$('#frame').html(data.content);
+		$("#comment_leader").attr("readOnly","true");
+		$("#submit").hide();
+	}
+}
+
+/**
+ * 右滑执行的方法
+ */
+function function_rightSlide(){
+	summer.closeWin();
+}
+
+/**
+ * 初始化领导姓名和发表时间
+ * 把领导的手机号传给服务器用于做数据隔离
+ */
+function init_data(){
+	/*初始化领导姓名和发表时间*/
+	var time = getCurrentDate();//获取当前时间
+	var uerInfo = summer.getStorage("userInfo");
+	data.time_leader= time;
+	data.name_leader= uerInfo.name;
+	data.mobile_leader= uerInfo.mobile;
+	data.comment_leader="";
+	
+	/*批注姓名*/
+    var name_leader = data.name_leader;
+    $('#name_leader').html(name_leader); 
+    
+    /*批注时间*/
+    var time_leader = data.time_leader;
+    $('#time_leader').html(time_leader); 
+	
+}
+
+/**
+ * 前端页面是否有空值
+ * 有空值 
+ */
+function hasNull(){
+	var content = $("#comment_leader").val();
+	if( content == null || content.replace(/\s/g,'')==""){//去除空格  replace(/\s/g,'')
+		return true;
+	}else{
+		return false;
+	}
+}
+
+
+/**
+ * 网络添加事件
+ */
+function saveClick(){
+/**
+ * 点击提交 触发提交事件
+ * 获取前端页面的数据
+ * 将数据写入json中
+ * 提交给服务器
+ * 关闭页面
+ */
+	var requestid = ""+summer.getStorage("host")+"partyconstrutproject/mstd/save";
+	
+	//var requestid = "http://10.176.2.70:8080/partyconstrutproject/mstd/save";
+	
+	//往json插入数据
+	data.comment_leader = $("#comment_leader").val();
+    //data.name_leader = document.getElementById("name_leader").innerHTML;
+    //data.time_leader = document.getElementById("time_leader").innerHTML;
+    
+    
+	//把json传给服务器
+	summer.post(requestid, data , //可选参数，方便开发者设置请求的header
+	{
+		"Content-Type" : "application/x-www-form-urlencoded", //可选参数，post请求的要写入的条件数据，须为json对象
+	}, function(response) {//成功回调
+
+		var data_response = $summer.strToJson(response.data);
+		if (data_response.flag == "success") {
+			hp_alert("提交成功",backClick);
+			/*var jsfun = 'myRefresh(\".news\",0);';
+			summer.execScript({
+				winId : 'minShengTongDao',
+				script : jsfun
+			});*/
+		} else {
+			//$summer.alert("保存失败");
+		}
+	}, function(response) {//失败回调
+		//$summer.alert("网络错误");
+	});
+}
+
+/**
+ *获取当前时间 
+ */
+function getCurrentDate() {
+	var date = new Date();
+    var seperator1 = "-";
+    var seperator2 = ":";
+    var month = date.getMonth() + 1;
+    var strDate = date.getDate();
+    var strHours = date.getHours();
+    var strMinutes = date.getMinutes();
+    var strSeconds = date.getSeconds();
+    
+   	//拼时间
+    var currentdate = date.getFullYear() + seperator1 + month + seperator1 + addZero(strDate)
+            + " " + addZero(strHours) + seperator2 + addZero(strMinutes) + seperator2 + addZero(strSeconds);
+    return currentdate;
+}
+/**
+ * 时间为单位数时,前面加0
+ */
+function addZero(time){
+	if(parseInt(time) < 10){  
+        time = '0'+time;  
+     }  
+     return time;
+}
+/**
+ *关闭窗口 
+ */
+function backClick(){
+		summer.closeWin({});
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="../../css/base.css" />
+		<link rel="stylesheet" href="./opinion.css" />
+		<link rel="stylesheet" href="../../css/public.css" />
+		<link rel="stylesheet" href="../../css/commons.css" />
+		<script src="../../js/commons.js" ></script> 
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		 
+		<script src="./opinion.js" ></script>	
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div id="header" class="um-header">
+               <div id="backContainer" style="width: 30%">
+					<a href="#"  class="headerText backup" onclick="backClick()">&nbsp;返回</a>
+				</div>
+				<div id="titleContainer" style="width:40%">
+					<h3>审批意见</h3>
+				</div>
+				<div id="appealContainer" style="width:30%">
+					<a id="fillReportBtn" href="#" class="headerText phone" data-target="actionsheet">提交</a>  
+				</div>
+            </div>
+
+			<div class="um-content">
+				<div class="opinion-title">
+					审批意见<span style="color: red">*</span>
+				</div>
+				<div class="consyl" style="padding: 15px;">
+					<textarea style="width: 100%;padding: 15px;" id="opinion" rows="15" placeholder="请您输入审批意见"></textarea>
+					<p id="secondLevelOpinion" style="font-weight: 400;font-size: 12px;color: red;display: none">经核实上述内容真实有效，情况属实信息准确！</p>
+				</div>
+			</div> 
+		</div>
+		<script>
+		</script>
+		
+	</body>
+</html>

@@ -1,0 +1,13 @@
+
+summerready = function(){
+	
+}
+function personClick(){
+	summer.openWin({
+            "id" : "personDet",
+            "url" : "html/partySchool/organization/personDet.html",
+            "pageParam" : {
+                "count" : 1
+            }
+        });
+}

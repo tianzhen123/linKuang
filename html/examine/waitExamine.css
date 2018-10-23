@@ -1,0 +1,136 @@
+.addBtn{
+	position: absolute;
+	right: 10px;
+	color: #fff;
+	font-size: 14px;
+	top:inherit;
+	font-weight:500;
+	line-height: 44px;
+}
+.content-head-list li{
+	display: flex;
+	flex-direction:row;
+	line-height: 30px;
+}
+.li-left{
+	padding-right: 20px;
+	flex:1;
+	text-align: right;
+}
+.li-center{
+	flex:3.4;
+	color: gray;
+	font-size: 14px;
+}
+.um-content{
+	padding:15px;
+	background-color: #f6f6f6;
+	display: flex;
+	flex-direction:column;
+}
+.content-head{
+	padding: 10px 0;
+	background-color: #FFFFFF;
+	border-radius: 10px;
+}
+input{
+	border: none;
+	outline: none;
+	background-color:#FFFFFF;
+}
+.content-body{
+	background-color: #f6f6f6;
+}
+.con-body-con{
+	min-height: 300px;
+	background-color: #FFFFFF;
+	border-radius: 10px;
+}
+#article-body{
+	padding: 10px;
+	font-size:14px;
+}
+.body-title{
+	padding: 10px 20px;
+}
+.li-title:before{
+	content:"*";
+	color: red;
+}
+.li-column:before{
+	content:"*";
+	color: red;
+}
+.choose-tab{
+	position: fixed;
+	top:0;
+	bottom: 0;
+	left:0;
+	right:0;
+	background-color: rgba(0, 0, 0, 0.13);
+	z-index: 4;
+}
+#choose{
+	position: fixed;
+	bottom:-4rem;
+	width: 100%;
+	left:0px;
+	z-index:9;
+}
+#choose li{
+	display:none;
+	color:#fff;
+	background-color: #BEBEBE;
+	border: 1px solid #fff;
+	text-align: center;
+	height: 1rem;
+	line-height: 1rem;
+}
+#choose li:first-child{
+	background-color: #E06666;
+}
+#choose.on{
+	display:block;
+	animation:remove 0.5s;
+	-webkit-animation:remove 0.5s; /*Safari and Chrome*/
+	animation-fill-mode:forwards;
+}
+@keyframes remove
+{
+	from {bottom:-4rem;}
+	to {bottom:0px;}
+}
+@-webkit-keyframes remove /*Safari and Chrome*/
+{
+	from {bottom:-4rem;}
+	to {bottom:0px;}
+}
+.content-head-list li:last-child:after{
+	content: "";
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid #9c9a9a;
+    border-top: 2px solid #9c9a9a;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    margin: 10px 10px 0px 0px;
+    line-height: 30px;
+}
+.textarea{
+	border: none;
+	border-radius: 10px;
+	width: 100%;
+	min-height: 100px;
+	padding: 10px;
+	outline: none;
+	font-size: 16px;
+}
+.textarea-title{
+	color: #3e3a3a;
+}
+.editor{
+	min-height: 300px;
+	outline:none;
+	padding:10px;
+}

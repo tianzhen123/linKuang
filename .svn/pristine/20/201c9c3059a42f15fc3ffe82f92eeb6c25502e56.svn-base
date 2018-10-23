@@ -1,0 +1,57 @@
+body,p{
+	font-family: "Microsoft JhengHei";
+	color: #525252;
+}
+.addBtn{
+	position: absolute;
+	right: 10px;
+	color: #fff;
+	font-size: 14px;
+	top:inherit;
+	font-weight:500;
+	line-height: 44px;
+}
+ul li,.line{
+	border-bottom: 1px solid #cbcbcb;
+}
+ul li{
+	padding:10px 20px 10px 10px;
+	display:flex;
+	margin-left:20px;
+	background: #f0f0f0;
+}
+.ulTitle{
+	color:#000000;
+	padding:10px 20px;
+}
+.ulTitle div{
+	display: flex;
+}
+.ulTitle-left{
+	flex:5;
+}
+.ulTitle-right{
+	flex:1;
+}
+#topTurn{
+	transform:rotate(-90deg);
+	transition: 0.5s;
+	transform-origin: 50% 50%;
+}
+#topTurn.on{
+	transform:rotate(90deg);
+	transition: 0.5s;
+	transform-origin: 50% 50%;
+}
+ul{
+	height:200px;
+	overflow:hidden;
+	transition:0.5s;
+}
+ul.on{
+	height:0;
+	overflow: hidden;
+	transition:0.5s;
+}
+
+

@@ -1,0 +1,125 @@
+body,button{
+	font-family: "Microsoft JhengHei";
+}
+.content{
+	width: 100%;
+	height: auto;
+}
+.bg{
+	width:100%;
+	height: auto;
+	position: relative;
+	display: block;
+}
+.logo{
+	display:flex;
+	position: absolute;
+	margin-left: auto;
+	margin-right: auto;
+	width:100%;
+	justify-content:center;
+	flex-direction:column;
+	align-items:center;
+	top:1rem;
+}
+.logo-img{
+	width: 2rem;
+	height:2rem;
+	margin: 0px;
+}
+.logo-title{
+	color: #FFFFFF;
+	font-size:0.45rem;
+}
+.login-text{
+	position: absolute;
+	transform: translate(-50%,-30%);
+	left: 50%;
+	width: 90%;
+}
+.login-text-content{
+	padding:0.4rem;
+	background-color: #FFFFFF;
+	border-radius: 5px 5px 0 0;
+}
+.user-name{
+	background: url(../../img/user.png) no-repeat;
+    background-size: auto 100%;
+}
+.lock{
+	background: url(../../img/pwd.png) no-repeat;
+    background-size: auto 100%;
+    
+}
+.user-name, .lock {
+    display: inline-block;
+    width: 6px;
+    height: 12px;
+    margin-top: 12px;
+    margin-left: 8px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 7px 10px;
+    z-index: 5;
+    font-weight: bold;
+}
+.user-message{
+	padding-left:35px;
+	color:#040404;
+}
+.um-input-group{
+	  margin-top: 0.3rem
+}
+.form-control{
+	background-color: #f6f3f3;
+	font-size: 0.3rem;
+}
+.um-icon-checkbox{
+    border-radius: 10%;
+    color:#eb1111;
+}
+.check-text{
+	color:#959a9c;
+	font-size: 0.3rem;
+}
+.um-check-inline{
+	margin-top: 10px;
+	margin-left: 10px;
+}
+.btn-login{
+	width: 100%;
+	background-color: #cc3535;
+	color:#FFFFFF;
+	height:0.8rem;
+	border: none;
+	font-size:0.35rem;
+	border-radius: 0 0 5px 5px;
+}
+.btn-login:disabled{
+	width: 100%;
+	background-color: #b1b1b1;
+	color:#FFFFFF;
+	height:0.8rem;
+	border: none;
+	font-size:0.35rem;
+	border-radius: 0 0 5px 5px;
+}
+.pass {
+	position:absolute;
+	right:5px;
+	background:url(../../img/pwd_none.png) no-repeat;
+	background-size:100%;
+	background-position: 0px 7px;
+	width: 21px;
+    height: 100%;
+}
+.pass.show-pass {
+	position:absolute;
+	right:5px;
+	background:url(../../img/pwd_show.png) no-repeat;
+	background-size:100%;
+	background-position: 0px 7px;
+	width: 21px;
+    height: 100%;
+}

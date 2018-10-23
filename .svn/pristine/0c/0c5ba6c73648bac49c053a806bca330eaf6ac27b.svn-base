@@ -1,0 +1,24 @@
+
+summerready = function() {
+	data = summer.pageParam.count;
+    var ViewModel = function () {            
+            };	
+    var jsonArray = [
+    {                
+        xingming:ko.observable(data.xingming),
+        suozaidangzuzhi:ko.observable(data.suozaidangzuzhi),
+        tupian:ko.observable(data.tupian),
+        guangrongshiji:ko.observable(data.guangrongshiji)
+     },                    
+                    ];
+                        
+	var viewModel = new ViewModel();
+	viewModel.data = ko.observableArray(jsonArray);
+	ko.applyBindings(viewModel); 
+    }
+
+function backClick(){
+summer.closeWin({});
+}
+
+

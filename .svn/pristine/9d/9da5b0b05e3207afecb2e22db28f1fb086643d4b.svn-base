@@ -1,0 +1,574 @@
+var ViewModel = function() {
+};
+var viewModel = new ViewModel();//存储问题明细表的数据
+var userInfo;//用户信息
+var flag_delete=false;
+var number_form = 1;
+var sum_problems_form ;//问题明细表第一次初始化的值后的li总数
+var singleSum_problems_form;//单个问题明细表中li的长度，为问题明细表第一次初始化的值
+var flag_submit = false;//提交的标记//用于删除，只有提交的数据才从服务器中删除//false 未提交
+var data = {//基本信息表 数据模型
+	"pk_problem":null,
+	"pk_org":"",
+	"pk_org_name":"",
+	"p_place":"",
+	"p_time":"",
+	"p_code":"",
+	"pk_supervisor":"",
+	"pk_supervisor_name":"",
+	"headmen":"",
+	"creator":null,
+	"createtime":null,
+	"def0":null,
+	"def1":null,
+	"def2":null,
+	"def3":null,
+	"def4":null,
+	"id_problemdetail":[]
+};//提交给服务器的数据,先存储基本信息表的数据，提交之前将问题明细表的和数据添加进去
+var data_detail = {//问题明细表 数据模型
+	"fk_id_problemdetail":null,
+	"pk_problem_detail":null,
+	"pk_problem_type":"",
+	"pk_problem_type_name":"",
+	"problem_detail":"",
+	"reexamination":"",
+	"remark":"22",
+	"pk_org":null,
+	"pk_org_name":null,
+	"creator":null,
+	"creatime":null,
+	"def0":null,
+	"def1":null,
+	"def2":null,
+	"def3":null,
+	"def4":null
+};
+var viewModel_data;//上个页面传来的数据
+summerready = function() {
+	hp_slide();//滑动事件，放在最前面
+	//获取前一个页面传来的数据
+	var temp_data = summer.pageParam.count;
+	
+	viewModel_data = temp_data;
+	$summer.alert(viewModel_data);
+	
+	viewModel.data = ko.observableArray([]);
+	
+	/*初始化主表（基本信息表）*/
+	init_MainTable();
+	
+	/*获取子表*/
+	myRefresh(viewModel_data.pk_problem);
+}
+
+/**
+ *初始化主表（基本信息表） 
+ */
+function init_MainTable(){
+	//1.时间
+	$("#p_time").val(viewModel_data.p_time);
+	data.p_time = viewModel_data.p_time;
+	//2.地点
+	$("#p_place").val(viewModel_data.p_place);
+	data.p_place = viewModel_data.p_place;
+	//3.班次
+	$("#p_code").val(viewModel_data.p_code);
+	data.p_code = viewModel_data.p_code;
+	//4.班组长
+	$("#headmen").val(viewModel_data.headmen);
+	data.headmen = viewModel_data.headmen;
+	//5.姓名、手机号
+	$("#pk_supervisor_name").val(viewModel_data.pk_supervisor_name);
+	data.pk_supervisor_name = viewModel_data.pk_supervisor_name;
+	
+	//主表  不显示的数据
+	data.pk_problem = viewModel_data.pk_problem;
+	data.pk_org = viewModel_data.pk_org;
+	data.pk_org_name = viewModel_data.pk_org_name;
+	data.pk_supervisor = viewModel_data.pk_supervisor;
+	data.creator = viewModel_data.creator;
+	data.createtime = viewModel_data.createtime;
+	data.def0 = viewModel_data.def0;
+	data.def1 = viewModel_data.def1;
+	data.def2 = viewModel_data.def2;
+	data.def3 = viewModel_data.def3;
+	data.def4 = viewModel_data.def4;
+}
+/**
+ * 初始化问题分类选择项
+ */
+function init_problemsType(){
+	/*问题分类选择项*/
+	var length_array = viewModel_data.array_problem_type.length;
+	var str = ""
+	for (var k = 0; k < length_array; k++) {	
+		str += "<label  style=\"padding: 9px 15px;\"><input class=\"mySelect\" checked type=\"text\" value=\""
+		+viewModel_data.array_problem_type[k].problem_type+"\"  readonly=\"true\" ></label>";
+	}
+	$(".array_problem_type").html(str);
+}
+
+/**
+ * 判断是否重名
+ */
+function judge_name(){
+	
+	/*var userInfo = summer.getStorage("userInfo");
+	var mobile = userInfo.mobile;
+	var name = userInfo.name;*/
+	var name = "张三涛";
+	var mobile = "17603335200";
+	//不是自己发布的，不能编辑
+	if(viewModel_data.def2 == mobile){//重名
+		/*设置input只读*/
+		//data.mobile = "17603335200";
+		return true;
+	}else{//不重名
+		var length = $(".flag_edit").length;
+		var flag = false;
+		for(var i=0;i<length;i++){
+			 $(".flag_edit").eq(i).attr("readonly",true);
+		}
+		return false;
+	}
+}
+/**
+ * 重新给问题表单编号 
+ * 用于：
+ * 初始化时，添加问题表单后，删除问题表单后
+ */
+function init_formNumber(){
+	sum_problems_form = $(".problems_form li").length;
+	var sum = sum_problems_form/singleSum_problems_form;//问题明细表的个数sum = 明细表li总数sum_problems_form / 单个明细表li总数singleSum_problems_form
+		
+	for(var i=0;i<sum;i++){
+		$(".problems_form li").eq(singleSum_problems_form*i).find(".title_problems_form").html("问题明细表("+i+")");
+	}
+}
+
+/**
+ * 添加问题明细表事件
+ */
+function event_add(){
+	/*新增问题 点击事件   实现新一个增问题分类*/
+	$("#add").on("click", function(sender, args) {//新增问题
+		viewModel.data.push({//必须通过此方法（逐个列出要添加的数据）来添加，不能通过创建对象，然后把对象放进去的方法（数据会都绑定成一样的，一个动都动）
+			pk_problem_type_name:"",
+			problem_detail:"",
+			remark:"",
+			reexamination:"待复查",
+		});
+	//	init_problemsType();//初始化问题分类
+		init_formNumber();//重新给问题表单编号
+		event();//绑定事件
+	});
+}
+/**
+ * 提交事件
+ */
+function event_submit(){
+	/*提交*/
+	$("#submit").on("click", function(sender, args) {
+		//判断必填项是否为空
+		var value_hasNull = hasNull();
+		if(value_hasNull == true){
+			hp_alert("请填写标题和内容！");
+		}else{
+			saveClick();
+		}
+		
+	});
+}
+/**
+ * 右滑执行的方法
+ */
+function function_rightSlide(){
+	summer.closeWin();
+}
+/**
+ * 获取子表
+ */
+function myRefresh(searchContent) {
+	
+	//var url = ""+summer.getStorage("host")+"partyconstrutproject/problemRectification/list";
+	var url = "http://10.176.2.87:8080/partyconstrutproject/problemDetail/list";
+	
+	summer.get(url, {
+		"search_fk_id_problemdetail":searchContent,	
+		"sortDirection":"desc",
+		"sortField":"ts"
+	}, {
+		"Content-Type" : "application/x-www-form-urlencoded",
+	}, //url地址
+	function(response) {//成功回调
+		var data = $summer.strToJson(response.data);
+		viewModel.data.removeAll();//清除
+		if (data.success == "success") {
+			$summer.alert(data);
+			jsonArray = data.detailMsg;
+			var count = jsonArray.data.content.length;
+			for (var k = 0; k < count; k++) {
+				var reexamination = jsonArray.data.content[k].reexamination;//编辑时间
+				jsonArray.data.content[k].reexamination = formatReexamination(reexamination);
+				viewModel.data.push(jsonArray.data.content[k]);
+				
+			}
+			
+		ko.applyBindings(viewModel);
+		//获取子表 （问题明细表）之后，对子表进行重新编号，并绑定事件
+		after_myRefresh();	
+		//$summer.alert(viewModel.data());
+		} else {
+			
+			//$summer.alert("网络错误");
+		}
+		
+	}, function(response) {//失败回调
+		//$summer.alert("请求失败");
+		
+	});
+
+}
+/**
+ * 获取子表 （问题明细表）之后，对子表进行重新编号，并绑定事件
+ */
+function after_myRefresh(){
+	sum_problems_form = $(".problems_form li").length;//问题明细表第一次初始化的值后的li总数
+		singleSum_problems_form = 7;//单个问题明细表中li的长度，为问题明细表第一次初始化的值
+	
+		/*重新给问题表单编号*/
+		init_formNumber();
+		
+		/*隐藏 第一个的问题明细表的删除按钮*/
+		//$(".problems_form li").eq(0).find(".delete").hide();
+		/*判断是否重名*/
+		var flag_sameName = judge_name();
+		if(flag_sameName==true){	
+			/*时间事件*/
+			$('.scroller-date').scroller('destroy').scroller({
+				preset: 'date',
+				theme: "ios7",
+				mode: "scroller",
+				display: "bottom",
+				animate: ""
+			});	
+			/*绑定事件*/
+			event();
+			/*添加事件*/
+			event_add();
+			/*提交事件*/
+			event_submit();
+		}
+}
+
+
+/**
+ * 网络添加事件
+ */
+function saveClick(){
+	
+	//var requestid = ""+summer.getStorage("host")+"/problemRectification/update";
+	var requestid = "http://10.176.2.87:8080/partyconstrutproject/problemRectification/update";
+	//把要传给服务器的数据，放到data中
+	data_save();
+	
+	$summer.alert(data);
+	
+	
+	$.ajax({
+        type: "post",
+        url: requestid,
+        contentType: 'application/json;charset=utf-8',
+        data: JSON.stringify(data),//将对象序列化成JSON字符串
+        success: function (res) {
+            if (res) {
+                if (res.success == 'success') {
+                	$summer.alert(data);
+                } else {
+                	$summer.alert("shibai");
+                }
+            } else {
+            	$summer.alert("k");
+            }
+        } 
+    });
+	
+}
+/**
+ * 把要传给服务器的数据，放到data中
+ */
+function data_save(){
+	//往json插入数据
+	//主表（基本信息表）
+	data.p_place = $("#p_place").val();
+	data.p_code = $("#p_code").val();
+	data.headmen = $("#headmen").val();
+	data.p_time = resetDate($("#p_time").val());
+	
+	//子表（问题明细表）
+	var length_viewModel = viewModel.data().length;
+	data.id_problemdetail=[];
+	
+	for (var k = 0; k < length_viewModel; k++) {
+		var reexamination = viewModel.data()[k].reexamination;//编辑时间
+		viewModel.data()[k].reexamination = resetReexamination(reexamination);
+		
+		/*将子表的数据赋值给data_detail，最后给data.id_problemdetail*/
+		var data_detail = {};
+		data_detail.fk_id_problemdetail = viewModel.data()[k].fk_id_problemdetail;
+		data_detail.pk_problem_detail = viewModel.data()[k].pk_problem_detail;
+		data_detail.pk_problem_type = viewModel.data()[k].pk_problem_type;
+		data_detail.pk_problem_type_name = viewModel.data()[k].pk_problem_type_name;
+		data_detail.problem_detail = viewModel.data()[k].problem_detail;
+		data_detail.reexamination = viewModel.data()[k].reexamination;
+		data_detail.remark = viewModel.data()[k].remark;
+		if(viewModel.data()[k].pk_org==null){
+			data_detail.pk_org = " ";
+		}else{
+			data_detail.pk_org = viewModel.data()[k].pk_org;
+		}
+		data_detail.creator = viewModel.data()[k].creator;
+		data_detail.def0 = viewModel.data()[k].def0;
+		data_detail.def1 = viewModel.data()[k].def1;
+		data_detail.def2 = viewModel.data()[k].def2;
+		data_detail.def3 = viewModel.data()[k].def3;
+		data_detail.def4 = viewModel.data()[k].def4;
+	
+		data.id_problemdetail.push(data_detail);
+	}
+}
+/**
+ *	格式化时间
+ */
+function resetDate(str) {
+	var date = "";
+	var strArrary = [];
+	strArrary = str.split("/");
+	for(var i=0;i<strArrary.length-1;i++){
+		date += strArrary[i] + "-";
+	}
+	date += strArrary[strArrary.length-1];
+   	date += " ";
+   	date += "00:00:00";
+    return date;
+}
+/**
+ *	格式化服务器传来的复查情况
+ */
+function formatReexamination(number) {
+	var str = "";
+	if(number=="0"){
+		str = "合格";
+	}else if(number=="1"){
+		str = "不合格";
+	}else{
+		str = "待复查";
+	}
+    return str;
+}
+function resetReexamination(str){
+	var number ="";
+	if(str=="合格"){
+		number = 0;
+	}else if(str=="不合格"){
+		number = 1;
+	}else{
+		number ;
+	}
+	return number;
+}
+
+/**
+ *获取当前时间 
+ */
+function getCurrentDate() {
+	var date = new Date();
+    var seperator1 = "/";
+    var seperator2 = ":";
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var strDate = date.getDate();
+    var strHours = date.getHours();
+    var strMinutes = date.getMinutes();
+    var strSeconds = date.getSeconds();
+    
+   	//拼时间
+    var currentdate = year + seperator1 + addZero(month) + seperator1 + addZero(strDate);
+           // + " " + addZero(strHours) + seperator2 + addZero(strMinutes) + seperator2 + addZero(strSeconds);
+    return currentdate;
+}
+/**
+ * 时间为单位数时,前面加0
+ */
+function addZero(time){
+	if(parseInt(time) < 10){  
+        time = '0'+time;  
+     }  
+     return time;
+}
+
+/**
+ *关闭窗口
+ */
+function backClick() {
+	summer.closeWin({});
+}
+
+/**
+ * 绑定事件 
+ */
+function event(){
+	event_problems();//问题分类事件 
+	event_reexamination();//复查情况事件
+	event_delete();//删除事件
+}
+
+
+/**
+ *问题分类事件 
+ */
+function event_problems(){
+	/*移除之前绑定的事件（必须移除，否则会出现事件出错，例如：事件不可用、多次触发该事件）*/
+	$(".problems").unbind("click");
+	$(".problems_content").find("input").unbind("click");
+	
+	/*一、问题分类 */
+	/*实现选择问题分类时，把选择的值赋给上面li里的input（选择后自动隐藏），同时把选择的值赋给viewModel.data中对应的pk_problem_type*/
+	$(".problems").on("click", function(sender, args) {//问题分类
+		$(this).parentsUntil("li").last().parent().next().toggle();
+		
+	});
+	$(".problems_content").find("input").on("click",function(){//分类内容
+	   	var obj = $(this).parentsUntil("li").last().parent()//li
+      	/*1.把选择的值赋给上面li里的input  */
+      	obj.prev().find("input").val(this.value);
+    	/*2.把选择的值赋给viewModel.data中对应的pk_problem_type*/
+    	var index = obj.index();//一组li
+    	var number = parseInt(index/singleSum_problems_form);
+    	viewModel.data()[number].pk_problem_type_name = this.value;
+    	
+    	if(this.value=="建设问题"){
+    		viewModel.data()[number].pk_problem_type = "45c5aa69-f9cf-4864-9ade-e57666d3339b";
+    	}else if(this.value=="基础问题"){
+    		viewModel.data()[number].pk_problem_type = "47997745-fc66-498e-9a6c-8fb3916ab67e";
+    	}else{
+    		viewModel.data()[number].pk_problem_type = "1a1c8c67-5e0a-400d-b8e4-148d70ce8b8e";
+    	}
+    	//$summer.alert(viewModel.data());
+    	/*3.选择后自动隐藏*/
+	    $(this).parentsUntil("li").last().parent().hide();
+	})
+
+}
+
+/**
+ *复查情况事件 
+ */
+function event_reexamination(){
+	/*移除之前绑定的事件（必须移除，否则会出现事件出错，例如：事件不可用、多次触发该事件）*/
+	$(".reexamination").unbind("click");
+	$(".reexamination_content").find("input").unbind("click");
+	
+	/*二、复查情况   */
+	/*实现选择复查情况时，把选择的值赋给上面li里的input（选择后自动隐藏），同时把选择的值赋给viewModel.data中对应的reexamination*/
+	$(".reexamination").on("click", function(sender, args) {//问题分类
+		$(this).parentsUntil("li").last().parent().next().toggle();
+		
+	});
+	$(".reexamination_content").find("input").on("click",function(){
+      	var obj = $(this).parentsUntil("li").last().parent()//li
+      	/*1.把选择的值赋给上面li里的input  */
+      	obj.prev().find("input").val(this.value);
+    	/*2.把选择的值赋给viewModel.data中对应的pk_problem_type*/
+    	var index = obj.index();//一组li
+    	var number = parseInt(index/singleSum_problems_form);
+    	viewModel.data()[number].reexamination = this.value;
+    	//$summer.alert(viewModel.data());
+    	/*3.选择后自动隐藏*/
+    	$(this).parentsUntil("li").last().parent().hide();
+    	//实现选择问题分类，修改viewModel中的值
+	})
+}
+
+
+/**
+ * 删除事件
+ */
+function event_delete(){
+	/*移除之前绑定的事件（必须移除，否则会出现事件出错，例如：事件不可用、多次触发该事件）*/
+	$(".delete").unbind("click");
+
+	/*三、删除问题明细表*/
+	$(".delete").on("click", function() {//问题分类
+		/*1.变量*/
+		var obj = $(this).parentsUntil("li").last().parent()//li
+		var index = obj.index();//一组li
+		var number = parseInt(index/singleSum_problems_form);//点击的li对应的数据在viewModel.datal中的位置
+		
+		UM.confirm({
+		    text: '你确定要删除该问题明细吗？',
+		    btnText: ["取消", "确定"],
+		    overlay: true,
+		    ok: function () {
+		       
+			    if("fk_id_problemdetail" in viewModel.data()[number]){
+			      	ajax_delete(number,obj);
+		       	}else{		
+	       			/*2.删除 viewModel.datal中对应位置的数据*/
+					viewModel.data().splice(number,1);
+					/*3.删除该问题明细表中一组li*/
+					for(var i=1;i<singleSum_problems_form;i++){
+						obj.next().remove();
+					}
+					obj.remove();	
+					
+					init_formNumber();//重新给问题表单编号
+					hp_alert("删除成功");
+				}
+		        
+		    },
+		    cancle: function () {
+		       
+		    }
+		});
+		
+	});
+	
+}
+/**
+ *从服务器删除数据 
+ */
+function ajax_delete(number,obj){
+	$.ajax({
+		    type: "post",
+		    url: "http://10.176.2.87:8080/partyconstrutproject/problemDetail/del",
+		    contentType: 'application/json;charset=utf-8',
+		    data: JSON.stringify(viewModel.data()[number]),
+		    success: function (res) {
+		        if (res) {
+		            if (res.success == 'success') {
+		               /*2.删除 viewModel.datal中对应位置的数据*/
+						viewModel.data().splice(number,1);
+						
+						/*3.删除该问题明细表中一组li*/
+						for(var i=1;i<singleSum_problems_form;i++){
+							obj.next().remove();
+						}
+						obj.remove();	
+						
+						init_formNumber();//重新给问题表单编号
+						hp_alert("删除成功");
+		            } else {
+		               
+	            }
+	        } else {
+	            
+	        }
+	    } 
+	});
+}
+
+
+
+

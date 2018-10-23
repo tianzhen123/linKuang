@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">
+		<link rel="stylesheet" href="../../css/activityCategory.css">
+		<link rel="stylesheet" href="../../css/base.css" />
+		<link rel="stylesheet" href="activityCategory.css" />
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="../../js/activityCategory.js" ></script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-header">
+	            	<a href="#"  class="um-back" onclick="backClick()">返回</a>
+	            	<h3>活动申请</h3>
+            </div>
+
+			<div class="um-content">
+				
+                <div class="um-list" style="margin-left: 20px;margin-right: 20px;margin-top: 20px;">
+                	<a href="#"  class="um-list-item" style="border: 2px;">
+                		<div class="um-list-item-inner">
+                			<img class="img" src="../../img/iphone6.jpg" alt="..." >
+                			<div class="um-list-item-body um-box-vc" style="padding-right:20px;">
+                				<h4 >填写申请单</h4>
+                			</div>
+                		</div>
+                	</a>
+                	
+                	<a href="#"  class="um-list-item" style="border: 2px;">
+                		<div class="um-list-item-inner">
+                			<img class="img" src="../../img/iphone6.jpg" alt="..." >
+                			<div class="um-list-item-body um-box-vc" style="padding-right:20px;">
+                				<h4 >我的申请单</h4>
+                			</div>
+                		</div>
+                	</a>
+                	
+                	<a href="#"  class="um-list-item" style="border: 2px;">
+                		<div class="um-list-item-inner">
+                			<img class="img" src="../../img/iphone6.jpg" alt="..." >
+                			<div class="um-list-item-body um-box-vc" style="padding-right:20px;">
+                				<h4 >申请单审批</h4>
+                			</div>
+                		</div>
+                	</a>
+                </div>
+
+			</div>
+
+			
+		</div>
+	</body>
+</html>

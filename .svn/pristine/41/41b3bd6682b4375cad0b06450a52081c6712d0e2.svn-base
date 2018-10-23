@@ -1,0 +1,12 @@
+
+summerready = function(){
+	window.content = summer.pageParam.content;
+	var addBtn = document.querySelector('.addBtn');
+	var textarea = document.querySelector('.textarea');
+	addBtn.onclick = function(){
+		alert(textarea.value);
+	}
+}
+function backClick(){
+	summer.closeWin({});
+}

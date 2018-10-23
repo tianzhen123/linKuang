@@ -1,0 +1,30 @@
+
+/* 链接 默认设置 */
+a {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/*单行 超出变成..*/
+.single{
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 1;
+	overflow: hidden;
+}
+
+
+div.Artical>div {
+display:none;
+color:#555;
+        	}
+div.Artical>div.active {
+display:block;
+color:red;
+        	}
+
+
+
+
+

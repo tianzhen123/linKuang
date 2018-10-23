@@ -1,0 +1,58 @@
+.header{
+	background-color: red
+}
+.um-content{
+	background-color: #EFECF0;
+}
+.um-list .um-list-item-left {
+    width: 62px;
+    text-align: left;
+}
+input{
+	text-align: right;
+}
+.um-list .um-list-item-inner:after{
+	background-color: white;
+}
+.describe{
+	background-color: #EFECF0;
+	color: #A7A4A5;
+	padding: 1% 4%;
+	text-align:left;
+}
+.um-list textarea{
+	width: 100%;
+	height: 140px;
+	resize:none;
+	border: 0px
+}
+.enclosure{
+	position: absolute;
+	width: 50px;
+	height: 50px;
+	top: 20%;
+	left: 4%;
+}
+.enclosure img{
+	width: 100%;
+	height: 100%;
+}
+.confim{
+	position: absolute;
+	width: 100%;
+	height: 70px;
+	bottom: 10%;
+	text-align: center;
+	display: table;
+}
+.confim div{
+	display: table-cell;
+	vertical-align: middle;
+}
+.confim div button{
+	width: 50%;
+	border: 0px;
+	height: 50px;
+	background-color: red;
+	color: white;
+}

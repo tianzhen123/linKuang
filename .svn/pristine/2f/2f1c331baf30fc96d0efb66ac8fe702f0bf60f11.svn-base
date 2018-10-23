@@ -1,0 +1,84 @@
+var ViewModel = function () {
+                };	
+var viewModel = new ViewModel();
+var pageIndex = 0;
+summerready = function(){
+		var param = summer.pageParam.count;
+		viewModel.data = ko.observableArray([]);
+        			
+        ko.applyBindings(viewModel);
+	
+		var listview = UM.listview("#listview");
+
+		listview.on("itemClick", function(sender, args) {
+			//这里可以处理行点击事件，参数sender即为当前列表实例对象，args对象有2个属性，即rowIndex(行索引)和$target(目标行的jquery对象)
+			var item = viewModel.data()[args.rowIndex];
+			var data = JSON.stringify(item);
+			data = $summer.strToJson(data);
+			summer.openWin({
+				"id" : "qrCode",
+				"url" : "html/lianZhengJianShe/qrCode.html",
+				"isKeep" : true,
+				"pageParam" : {
+					"count" : data.id,
+					"param":param.pk_psexamsub,
+					"exammode":param.exammode,
+				}
+			});
+		});
+		listview.on("pullDown", function(sender) {
+        			//这是可以编写列表下拉加载逻辑，参数sender即为当前列表实例对象
+        			pageIndex = 0;
+        			var title = document.getElementById("sear").value;
+        			netService(title,0);
+        			sender.refresh();
+        		});
+		listview.on("pullUp", function(sender) {
+			//这是可以编写列表上拉刷新逻辑，参数sender即为当前列表实例对象
+			pageIndex = pageIndex+1;
+			var title = document.getElementById("sear").value;
+			netService(title,1);
+			sender.refresh();
+		});
+		
+		netService("",0);
+	
+}
+//搜索的方法
+function searchClick(){
+	var title = document.getElementById("sear").value;
+	netService(title,0);
+}
+function netService(search,type){
+	var url = ""+summer.getStorage("host")+"partyconstrutproject/Api/PsOrg/list";
+		summer.get(url, {
+						"pageIndex":pageIndex,
+						"pageSize":10,
+						"searchOrg":search,
+		}, 
+		{
+				"Content-Type" : "application/x-www-form-urlencoded", 
+		},//url地址 
+                function(response){//成功回调
+                    var data = $summer.strToJson(response.data);
+                    if(type==0)
+					viewModel.data.removeAll();
+					
+					if (data.success == "success") {
+						jsonArray = data.detailMsg;
+						var count = jsonArray.data.content.length;
+						for (var k = 0; k < count; k++) {
+							viewModel.data.push(jsonArray.data.content[k]);
+						}
+			
+					} else {
+						$summer.alert("网络错误");
+					}
+				}, function(response) {//失败回调
+					$summer.alert("请求失败");
+				});
+}
+
+function backClick(){
+	summer.closeWin({});
+}

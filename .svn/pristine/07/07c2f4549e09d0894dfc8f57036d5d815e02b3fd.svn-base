@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">
+		<link rel="stylesheet" href="psexam_list.css">
+         <link rel="stylesheet" href="../../css/iscroll.css" /> 
+        <style>
+          #select1_dummy{
+        	border:none;
+        	padding-left:10px;
+        	color:#555;
+        	font-size:17px;
+          }
+          #select1_dummy:disabled{
+        	background:#fff;
+          }
+        </style>
+
+
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="psexam_list.js" ></script>
+        <script src="../../js/iscroll.js"></script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-header" >
+				<h3>导航栏</h3>
+			</div>
+
+			<div class="um-content">
+				在这编辑您的页面...
+                           <div class="um-input-text">
+                           	<span class="um-input-left">学历:</span>
+                           	<input type="text"  id='select1_dummy' />
+                           	<select id='select1'>
+                           		<option>初中</option>
+                           		<option>高中</option>
+                           		<option>大专</option>
+                           		<option>本科</option>
+                           		<option>硕士</option>
+                           		<option>博士</option>
+                           	</select>
+                           </div>
+
+			</div>
+
+			<div class="um-footer">
+				
+			</div>
+		</div>
+
+        <script>
+        	 $(function () {
+        		// var curr = new Date().getFullYear();
+        	   var opt = {
+        			'date': {
+        				preset: 'date'
+        			},
+        			'select': {
+        			   preset: 'select'
+        		   }
+        		};
+        		
+        		$('#select1').scroller('destroy').scroller(
+        			$.extend(opt['select'], {
+        				theme: "ios7",
+        				mode: "scroller",
+        				display: "bottom",
+        				animate: ""
+        			})
+        		);
+        		
+        	});
+        </script>
+	</body>
+</html>

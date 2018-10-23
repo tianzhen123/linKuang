@@ -1,0 +1,20 @@
+var viewModel;
+var arr = [
+	{name:'1',level:'2',school:'北大'},
+	{name:'1',level:'2',school:'北大'}
+];
+summerready = function(){
+	viewModel = {
+		array : ko.observableArray(arr),
+		lineClick : function(data){
+			$summer.alert(data);
+		}	
+	}
+	ko.applyBindings(viewModel);
+}
+
+function nofind(_this,type){
+    src = "../../../img/pic_init.png";
+	_this.src = src;
+	_this.onerror=null;
+}

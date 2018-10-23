@@ -1,0 +1,70 @@
+summerready=function(){
+	getUserInfo();
+	$(function() {
+        			var list = [
+        				{
+        					content: "https://dj.lykyjt.com:8898/image/gH_banner1.png"
+        				}, 
+        				{
+        					content: "https://dj.lykyjt.com:8898/image/gH_banner2.png"
+        				}, 
+        			];
+        			var islider = new iSlider({
+        				type: 'pic',
+        				data: list,
+        				dom: document.getElementById("iSlider-wrapper"),
+        				isLooping: true,
+        				animateType: 'default',
+        				isAutoplay: true,
+        				animateTime: 800
+        			});
+        			islider.addDot();
+        		})
+}
+
+function backClick(){
+	summer.closeWin({});
+}
+
+//基层动态
+function jiCengActive(){
+	summer.openWin({
+        "id" : "newsPropaganda",
+        "url" : "html/newsPropaganda/newsPropaganda.html",
+       "isKeep" : true,
+        "pageParam" : {
+            "count" : "01010301",
+            "pageTitle":"基层动态",
+        }
+    });
+}
+
+// 普惠服务
+function puHuiFuWu(){
+	summer.openWin({
+        "id" : "newsPropaganda",
+        "url" : "html/newsPropaganda/newsPropaganda.html",
+       "isKeep" : true,
+        "pageParam" : {
+            "count" : "01010302",
+            "pageTitle":"普惠服务",
+        }
+    });
+}
+
+//主席信箱
+function zhuXiMail(){
+	summer.openWin({
+        "id" : "zxMailbox",
+        "url" : "html/mailbox/zxMailbox.html",
+       "isKeep" : true,
+    });
+}
+// 网上职代会
+function zhiDaiHui(){
+	summer.openWin({
+        "id" : "wangShangZhiDaiHui",
+        "url" : "html/wangShangZhiDaiHui/wangShangZhiDaiHui.html",
+       "isKeep" : true,
+    });
+}

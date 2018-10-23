@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">
+		<link rel="stylesheet" href="../../css/mboileEbook-frame.css">
+		<script src="../../js/summer.js" ></script>
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="../../js/jquery-md5.js"></script>
+	</head>
+	<body>
+		<div class="um-frame" id="index">
+			<div class="um-content">
+				
+			</div>
+		</div>
+		<script>
+			var timestamp = Date.parse(new Date())/1000;
+			var accountKey="AHgBcFBrUWEEclIyWHQEMFczU2oCMAY7CStVKwZ+BWwBcAs/XCxQPlYgB2xdYlNlAWMCNgU+AjBUdlUrVy9QOABiAT9QZ1EnBGpSKlg+BGhXMVNnAjIGNgkrVSsGfgV3AWsLNVxrUCZWOAdsXWZTZQFsAjoFPgI2VGRVMVc+UCs=";
+			var userName= summer.getStorage("lk_username");
+			var sign=$.md5(userName+timestamp.toString()+accountKey);
+			var urlString="https://wk.bookan.com.cn/index.php?op=Authentication.redirect&authType=1&id=21518&userName="+userName+
+						"&time="+timestamp+"&sign="+sign;
+			window.location=urlString;
+			$("head").append('<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">');
+			UM.hideLoadingBar();
+		</script>
+	</body>
+</html>

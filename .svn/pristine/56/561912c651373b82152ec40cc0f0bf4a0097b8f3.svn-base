@@ -1,0 +1,244 @@
+var viewModel={};
+var data = "";
+var flag_canSave = false;
+//def1内容
+//def2开始时间
+//def3截止时间
+//def4人数
+/*
+ * 通知详情思路：
+ * 从前面页面获取信息绑定到显示页面
+ * 根据当前时间与截止时间的比较结果，判断是否需要请求服务器
+ * 已经到截止时间，则进行提示已经截止。
+ * 未到截止日期，则请求服务器，进行查询用户是否已经报名。
+ * 根据查询的返回值，判断是否可以报名。
+ * 已经报过名，则提示已经报过名
+ * 没有报过名，则可以给按键绑定点击事件。
+ * 用户点击报名按键之后，首先获取用户信息，将用户信息添加到data中，然后提交给服务器。
+ * 
+ */
+summerready = function(){
+	hp_slide();//滑动事件，放在最前面
+	
+	data = summer.pageParam.count;
+	//data = $summer.strToJson(data);
+	//$summer.alert(data);
+	viewModel = {
+		title : ko.observable(data.title),
+		def1 : ko.observable(data.def1),
+		def3 : ko.observable(data.def3),
+		//content : ko.observable(data.content),
+	}
+	
+	
+	ko.applyBindings(viewModel);
+	
+	/*绑定通知图片和通知内容*/
+	//从服务器获取的图片数组fimage，进行拼串，绑定到前端页面
+	var fimageA = data.def5;//通知图片
+	if(fimageA != null && fimageA.replace(/\s/g,'')!=""){//def5不为空
+		fimageA = fimageA.split("[");
+		fimageA = fimageA[1].split("]");
+		var fimageArray = fimageA[0].split(",");
+		var s = "";
+		for(var i = 0; i<fimageArray.length;i++){
+			if(fimageArray[i] != null && fimageArray[i].replace(/\s/g,'')!=""){//不为空
+				s+= "<img src=\""+fimageArray[i]+"\" style=\"padding: 15px 35px 15px 35px;\"/>";
+			}
+		}
+		$('#imgg').html(s);
+	}	
+	
+	$('#cont').html(data.def1);//通知内容
+	
+	
+	/*根据当前时间与截止时间的比较结果，判断是否需要请求服务器*/
+	if(data.def3 != null && data.def3.replace(/\s/g,'')!=""){//截止时间不为空
+		var flag_time = timeComparison(data.def3,getCurrentDate());//比较当前时间和报名截止时间
+		if(flag_time==true){
+			init_userInfo();//获取用户信息，初始化数据，用于提交给服务器 
+			search();//获取用户是否已经报名
+		}else{//当前时间大
+			document.getElementById("submit").innerHTML="报名已截止";
+		}
+  	}else{
+  		$('#time').html("待定");//时间待定
+  		init_userInfo();//获取用户信息，初始化数据，用于提交给服务器 
+  		search();//获取用户是否已经报名
+  	}
+  	
+  	/*提交*/
+	$("#submit").on("click", function(sender, args) {
+		//这里可以处理行点击事件，参数sender即为当前列表实例对象，args对象有2个属性，即rowIndex(行索引)和$target(目标行的jquery对象)
+		if(flag_canSave == true){
+			saveClick();
+		}
+	});
+  	
+  	
+}
+
+/**
+ * 获取用户是否已经报名
+ * 根据服务器返回的参数状态判断是否已经报名 
+ */
+function search() {
+	var url = ""+summer.getStorage("host")+"partyconstrutproject/Api/info/isBm";
+	//var url = "http://10.176.2.70:8080/partyconstrutproject/Api/info/isBm";
+	//$summer.alert("获取列表");
+	
+	var json = {
+		"id":data.id,
+		"name" : data.name,
+		"mobile" : data.mobile,
+	}
+	summer.post(url, json, {
+		"Content-Type" : "application/x-www-form-urlencoded",
+	}, //url地址
+	function(response) {//成功回调
+		var data_response = $summer.strToJson(response.data);
+		
+		if (data_response.success == "success") {
+			var msg = data_response.detailMsg.data.msg;
+			signUp(msg);//根据参数状态判断是否已经报名 
+		} else {
+			//$summer.alert("网络错误");
+		}
+	}, function(response) {//失败回调
+		//$summer.alert("请求失败");
+		
+	});
+}
+/**
+ *	根据参数状态判断是否已经报名 ，是否到截止时间
+ * 	已经报名，修改button状态
+ * 	没有报名，给button绑定事件
+ *  noSuccess（不可以报名）
+ *  success（可以报名）
+ */
+function signUp(flag_signUp){
+	if(flag_signUp=="noSuccess"){//已经报名
+		document.getElementById("submit").innerHTML="您已经报过名";
+	}else if(flag_signUp=="success"){//没有报名
+		document.getElementById("submit").innerHTML="我要报名";
+		flag_canSave = true;
+	}else{//数据丢失
+		hp_alert("请重新进入此页面  ^_^");
+	}
+}
+
+
+
+
+/**
+ *获取用户信息，初始化数据，用于提交给服务器 
+ */
+function init_userInfo(){
+	//从本地获取用户信息
+	var userInfo = summer.getStorage("userInfo");
+	data.name = userInfo.name;
+	data.mobile = userInfo.mobile;
+}
+
+
+
+/**
+ *	时间比较 
+ * 	当前时间大，返回false
+ */
+function timeComparison (time_start,time_end){
+	var time_start = Date.parse(time_start);
+	var time_end = Date.parse(time_end);
+	var time_difference  = time_start-time_end;
+	
+	if(time_difference<0){//time_end时间大
+		return false;
+	}else{//time_start时间小于或等于time_end
+		return true;
+	}
+	
+}
+
+/**
+ *获取当前时间 
+ */
+function getCurrentDate() {
+	var date = new Date();
+    var seperator1 = "-";
+    var seperator2 = ":";
+    var month = date.getMonth() + 1;
+    var strDate = date.getDate();
+    var strHours = date.getHours();
+    var strMinutes = date.getMinutes();
+    var strSeconds = date.getSeconds();
+    
+   	//拼时间
+    var currentdate = date.getFullYear() + seperator1 + addZero(month) + seperator1 + addZero(strDate);
+         //  + " " + addZero(strHours) + seperator2 + addZero(strMinutes) + seperator2 + addZero(strSeconds);
+    return currentdate;
+}
+/**
+ * 时间为单位数时,前面加0
+ */
+function addZero(time){
+	if(parseInt(time) < 10){  
+        time = '0'+time;  
+     }  
+     return time;
+}
+
+/**
+ * 网络添加事件
+ */
+function saveClick(){
+/**
+ * 点击提交 触发提交事件
+ * 获取前端页面的数据
+ * 将数据写入json中
+ * 提交给服务器
+ * 关闭页面
+ */
+	var requestid = ""+summer.getStorage("host")+"partyconstrutproject/Api/info/save";
+	//var requestid = "http://10.176.2.70:8080/partyconstrutproject/Api/info/save";
+	//往json插入数据
+	
+	//把json传给服务器
+	summer.post(requestid, data , //可选参数，方便开发者设置请求的header
+	{
+		"Content-Type" : "application/x-www-form-urlencoded", //可选参数，post请求的要写入的条件数据，须为json对象
+	}, function(response) {//成功回调
+		var data = $summer.strToJson(response.data);
+		if (data.success == "success") {
+			var json = data.detailMsg;
+			var count = json.data;
+			
+			//$summer.alert(count.msg);//提示报名
+			
+			var msg =  count.msg;
+			document.getElementById("submit").innerHTML=msg;
+			
+			/*var jsfun = 'searchClick();';
+			summer.execScript({
+				winId : 'signupAndPropaganda',
+				script : jsfun
+			});*/
+			
+		} else {
+			//$summer.alert("网络错误");
+		}
+	}, function(response) {//失败回调
+		//$summer.alert("网络错误");
+	});
+	
+}
+/**
+ * 右滑执行的方法
+ */
+function function_rightSlide(){
+	backClick();
+}
+
+
+function backClick(){
+		summer.closeWin({});
+}

@@ -1,0 +1,172 @@
+var param;
+summerready = function(){
+	param = summer.pageParam;
+	window.type = param.type;
+	document.querySelector('#pageTitle').innerText = param.pageTitle;
+	if(window.type == "edit"){//草稿箱
+		document.querySelector('.title').value = param.content.title;
+		document.querySelector('.summary').value = param.content.summary;
+		document.querySelector('.tag').value = param.content.tag;
+		document.querySelector('.create-time').value = getMyDate(param.content.create_time);
+		if(!isNull(param.content.content)){
+			if(param.content.content.indexOf('<')==-1){
+		    	$('.editor').html($('.editor').html(param.content.content).text());
+		    }else{
+		    	$('.editor').html(param.content.content);
+		    }
+		    imgCenter();
+	    }
+	}else{
+		document.querySelector('#pageTitle').innerText = "投稿"
+		document.querySelector('.create-time').value = getMyDate();
+	}
+	imgCenter();
+	var addBtn = document.querySelector('.addBtn');
+	addBtn.onclick = function(){
+		var title = document.querySelector('.title').value;
+		if(isNull(title)){
+			$summer.alert("标题不能为空");
+			return;
+		}else{
+			saveFun("待宣传干事审核");
+		}
+	}
+	
+	window.error = function(error){
+		console.log(error);
+	}
+	
+}
+//提交
+function saveFun(infostatus){
+	UM.showLoadingBar({
+        "text" : "加载中",
+        "icons" : "ti-loading"
+    });
+	var url = getHttpPro()+'infoMobile/save';
+	
+	var jsonData = [{
+		title : document.querySelector('.title').value,
+		summary : document.querySelector('.summary').value,
+		tag : document.querySelector('.tag').value,
+		create_time : new Date(document.querySelector('.create-time').value).getTime(),
+		content : $('.editor').html(),
+		billstatus : window.type == "edit"?0:1,
+		infostatus : infostatus,
+	}];
+	if(window.type == "edit"){
+		jsonData[0].id = window.param.content.id;
+	}
+	var param = JSON.stringify(jsonData);
+	
+	$.ajax({
+		url : url,
+		type : 'post',
+		data : param,
+		dataType : 'json',
+		contentType : 'application/json', 
+		//可选参数，方便开发者设置请求的header
+	    success:function(data){//成功回调
+	    	UM.hideLoadingBar();
+	        summer.toast({
+                 "msg" : "保存成功" 
+            });
+            if(window.type == "edit"){//草稿箱
+            	var jsfun = 'function_pullDown();';
+				summer.execScript({
+				    winId: 'editNews',
+				    script: jsfun
+				});
+            }else{
+            	var jsfun = 'netWork();';
+				summer.execScript({
+				    winId: 'html/xuanChuanFaBu/xuanChuanFaBu.html',
+				    script: jsfun
+				});
+            }
+            summer.closeWin({});
+	    },error: function(error){ //失败回调
+	    	UM.hideLoadingBar();
+	        summer.toast({
+                 "msg" : "保存失败,请重试" 
+            })
+	    }
+	    });
+}
+function editorInit(){
+	window.artEditor = new Eleditor({
+					el: '#article-body',
+					upload:{
+						server: getImageUploadUrl(),
+						fileSizeLimit: 5,//设置文件大小
+						formName: 'image',//设置文件name,
+					},
+					toolbars: [
+				      'insertText',
+				      'editText',
+				      'undo',
+				      'cancel'
+				    ],
+				});
+}
+function backClick(){
+	var title = document.querySelector('.title').value;
+	if(isNull(title)){
+		summer.closeWin({});
+		return;
+	}else{
+		saveFun("待提交");
+	}
+}
+function imgCenter(){
+	var frameId = document.getElementById("article-body");
+	var length_p =  $("#article-body p").length;
+	for(var i=0;i<length_p;i++){
+		var p = frameId.getElementsByTagName("p")[i];//dom对象转换为jquery对象
+		if($(p).find('img').length != 0){
+			p.setAttribute('style', 'text-indent: 0');
+		}
+	}
+}
+
+function getMyDate(str){
+			if(str){
+				if(CheckDateTime(str)){
+					var date = new Date(str).format("yyyy-MM-dd");
+					return date;
+				}
+			}
+			var ODate;
+			oDate = new Date();
+			if(str) oDate = new Date(str*1);
+            oYear = oDate.getFullYear(),  
+            oMonth = oDate.getMonth()+1,  
+            oDay = oDate.getDate(),  
+            oHour = oDate.getHours(),  
+            oMin = oDate.getMinutes(),  
+            oSen = oDate.getSeconds(),
+            oTime = oYear +'-'+ getzf(oMonth) +'-'+ getzf(oDay);//最后拼接时间  
+            return oTime;
+}; 
+//补0操作
+function getzf(num){
+      if(parseInt(num) < 10){
+          num = '0'+num;  
+      }  
+      return num;  
+}
+function CheckDateTime(str){ 
+  var reg=/^(\d+)-(\d{1,2})-(\d{1,2}) (\d{1,2}):(\d{1,2}):(\d{1,2})/; 
+  var r=reg.test(str);
+  return r;
+}
+function imgCenter(){
+	var frameId = document.getElementById("article-body");
+	var length_p =  $("#article-body p").length;
+	for(var i=0;i<length_p;i++){
+		var p = frameId.getElementsByTagName("p")[i];//dom对象转换为jquery对象
+		if($(p).find('img').length != 0){
+			p.setAttribute('style', 'text-indent: 0');
+		}
+	}
+}

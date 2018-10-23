@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="../../css/base.css" />	
+		<link rel="stylesheet" type="text/css" href="../../css/iuapmobile.um.listview.css">
+		<link rel="stylesheet" type="text/css" href="../../css/mescroll.min.css" />
+		<link rel="stylesheet" type="text/css" href="xinFangRecord.css" />
+		<script src="../../js/summer.js" ></script>
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="../../js/mescroll.min.js"></script>
+		<script src="../../js/knockout.js"></script>
+		<script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+		<script type="text/javascript" src="xinFangRecord.js"></script>
+		<script src="../../js/base.js"></script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-header" >
+				<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            	<h3 id="pageTitle">信访记录</h3>
+			</div>
+			<div class="um-input-group" >
+		           	<form style="width: 100%"  action="javascript:searchClick();">
+		           		<span class="ti-search" onclick="searchClick()"></span>
+		           		<input type="search" id="sear" class="form-control f14" placeholder="姓名/身份证号">
+		           	</form>
+	          </div>
+			<div id="um-content" class="um-content">
+					<div id="mescroll" class="mescroll">
+							<ul  id="dataList" class="" data-bind="foreach: data">
+								<li data-bind="click:$root.openWin.bind($data)">
+										<div class="list-content">
+											<div class="content-left">
+												<div class="left-img">
+													<img class="image" alt="" onerror="nofind(this,1)" src="../../img/date.png" width="100%">
+												</div>
+											</div>
+											<div class="content-right">
+												<div class="desc f16" data-bind="text:p_name"></div>
+									        	<div id="time" class="f14 um-gray"  ><span data-bind="text:first_visit_time"></span></div>
+									        	<div class="f14 um-gray"><span data-bind="text:home_address"></span></div>
+											</div>
+										</div>
+										<div class=" w  line"></div>
+								</li>
+							</ul>
+					</div>
+			            
+			</div>
+		</div>
+	</body>
+</html>

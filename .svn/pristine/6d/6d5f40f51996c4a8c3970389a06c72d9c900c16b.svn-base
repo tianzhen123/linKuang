@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="../../css/base.css" />
+		<link rel="stylesheet" href="message.css" />
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="message.js"></script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-header" >
+				<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            		<h3 id="pageTitle">董事长寄语</h3>
+			</div>
+
+			<div class="um-content">
+				<div id="title" class="f20 fb tc"> 董事长寄语</div>
+				<div id="time" class="f16 tr"></div>
+				<div style="width: 100%">
+				<img id="img"  src="../../img/dongshizhang.jpg"  /></div>
+				<div id="detail">
+					<p>临矿集团是全国煤炭企业50强和山东省重点工业企业之一。
+					其前身是抗日及解放战争时期为八路军和解放军兵工厂提供燃料的地方煤矿。解放初期设立临沂煤矿，其后在整合周边煤矿基础上于1960年建立临沂矿务局，
+					1986年上划国家煤炭部管理，2006年改制为临沂矿业集团公司，2011年划归山东能源集团管理。近年来，通过不断优化产业结构、加大资源获取力度、努力构建高效运营模式，
+					临矿集团已发展成为一家国内横跨鲁蒙陕甘四省区十余个地市，海外涉足澳大利亚、香港，以煤电、铁矿、玻纤三大产业为支柱，
+					以物流贸易、技术服务、现代农业三大产业为支撑，拥有全资、控股企业21家，从业人员2.28万人，
+					后备矿产资源储量200亿吨以上的大型企业集团。</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

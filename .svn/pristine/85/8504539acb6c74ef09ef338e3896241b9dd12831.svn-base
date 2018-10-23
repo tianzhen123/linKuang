@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="../../css/base.css" />	
+		<link rel="stylesheet" href="dangDeXuanChuan.css" />
+        <link rel="stylesheet" type="text/css" href="../../css/iuapmobile.um.listview.css">
+
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="../../js/knockout.js"></script>
+		<script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+		<script src="../../js/base.js"></script>
+		<script src="../../js/hp/hp_scroll.js"></script>
+		<script src="../../js/hp/hp_slide.js"></script>
+		<script src="dangDeXuanChuan.js"></script> 
+	
+	</head>
+	<body>
+		<div class="um-win" id="index" name="hp_slide">
+			<div class="um-header" >
+				<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            	<h3 id="pageTitle">党的宣传</h3>
+            	<!--滑动选项卡 start-->
+            	<div class="um-nav f14" style="background: #fff">
+            		 <div class="um-nav-inner" >
+	            		<ul class="um-tabbar um-tabbar-underline  um-tabbar-switch">
+		                	<li class="active" data-tar='.lingXue' style="margin: 0 10px;border-bottom: 2px solid #fff;"><a style="font-size: 16px;">书记领学十九大</a></li>
+		                	<li data-tar='.jingShen' style="margin: 0 10px;border-bottom: 2px solid #fff;"><a style="font-size: 16px;">十九大精神进矿区</a></li>
+		                	<li data-tar='.baoGao' style="margin: 0 10px;border-bottom: 2px solid #fff;"><a style="font-size: 16px;">十九大报告</a></li>
+		                	<li data-tar='.dangJian' style="margin: 0 10px;border-bottom: 2px solid #fff;"><a style="font-size: 16px;">国家党建工作</a></li>
+		                </ul>
+	          		</div>
+	          	</div>
+	            <!--滑动选项卡 end-->
+	            <!--搜索 start-->
+            	<div class="um-input-group" >
+		           	<form style="width: 100%"  action="javascript:searchClick();">
+		           		<span class="ti-search" onclick="searchClick()"></span>
+		           		<input type="search" id="sear" class="form-control" placeholder="请输入">
+		           	</form>
+	           </div>
+	           <!--搜索 end-->
+			</div>
+			
+			<div class="um-content">
+					<!--下拉加载 start-->
+					<div id="pullDown" style="display: none">
+						<img src="../../img/loading.gif" />
+						<span>加载中...</span>
+					</div>
+					<!--下拉加载 end-->
+					
+					<!--选项卡对应的内容 start-->
+	                <div class="Artical"  >  
+	                	<!-- 书记领学十九大叶签内容 start -->
+	                	<div class="lingXue active " >
+							<!--内容 start-->
+					            <div class="um-listview" id="listview" >
+						            	<ul name="hp_scroll"  class="um-list um-no-active " data-bind="foreach:data">
+						            		<li  class="um-listview-row" style="background-color: #FFFFFF">
+						            			<a href="#" class="um-list-item um-swipe-action um-no-icon">
+						            				<div class="um-list-item-inner" > 
+											            <div class="um-list-item-body" >
+											            		<div class="um-row" style="">
+											            				<img   style="float:left;padding-right: 10px;max-width: 50%;"   data-bind="attr:{src:fimage}"/>
+											            				<p class="f18 fb um-row" data-bind="text:title"></p>
+											            		</div>
+											            		<div id="time" class="f14 tr"  ><span data-bind="text:ts"></span></div>
+											            </div> 
+											        </div> 
+						            			</a>
+						            		</li>
+						            	</ul>
+					            </div>
+					        <!--内容 end-->
+			            </div>
+	                	<!-- 书记领学十九大叶签内容 end -->
+	                	<!-- 十九大精神进矿区叶签内容 start -->
+	                	<div class="jingShen" >
+							<!--内容 start-->
+					            <div class="um-listview" id="listview1" >
+						            	<ul name="hp_scroll"  class="um-list um-no-active " data-bind="foreach:data1">
+						            		<li  class="um-listview-row" style="background-color: #FFFFFF">
+						            			<a href="#" class="um-list-item um-swipe-action um-no-icon">
+						            				<div class="um-list-item-inner" > 
+											            <div class="um-list-item-body" >
+											            		<div class="um-row" style="">
+											            				<img   style="float:left;padding-right: 10px;max-width: 50%;"   data-bind="attr:{src:fimage}"/>
+											            				<p class="f18 fb um-row" data-bind="text:title"></p>
+											            		</div>
+											            		<div id="time" class="f14 tr"  ><span data-bind="text:ts"></span></div>
+											            </div> 
+											        </div> 
+						            			</a>
+						            		</li>
+						            	</ul>
+					            </div>
+					        <!--内容 end-->
+			            </div>
+	                	<!-- 十九大精神进矿区叶签内容 end -->
+	                	<!-- 十九大报告叶签内容 start -->
+	                	<div class="baoGao" >
+							<!--内容 start-->
+					            <div class="um-listview" id="listview2" >
+						            	<ul name="hp_scroll"  class="um-list um-no-active " data-bind="foreach:data2">
+						            		<li  class="um-listview-row" style="background-color: #FFFFFF">
+						            			<a href="#" class="um-list-item um-swipe-action um-no-icon">
+						            				<div class="um-list-item-inner" > 
+											            <div class="um-list-item-body" >
+											            		<div class="um-row" style="">
+											            				<img   style="float:left;padding-right: 10px;max-width: 50%;"   data-bind="attr:{src:fimage}"/>
+											            				<p class="f18 fb um-row" data-bind="text:title"></p>
+											            		</div>
+											            		<div id="time" class="f14 tr"  ><span data-bind="text:ts"></span></div>
+											            </div> 
+											        </div> 
+						            			</a>
+						            		</li>
+						            	</ul>
+					            </div>
+					        <!--内容 end-->
+			            </div>
+	                	<!-- 十九大报告叶签内容 end -->
+	                	<!-- 国家党建工作叶签内容 start -->
+	                	<div class="dangJian" >
+							<!--内容 start-->
+					            <div class="um-listview" id="listview3" >
+						            	<ul name="hp_scroll"  class="um-list um-no-active " data-bind="foreach:data3">
+						            		<li  class="um-listview-row" style="background-color: #FFFFFF">
+						            			<a href="#" class="um-list-item um-swipe-action um-no-icon">
+						            				<div class="um-list-item-inner" > 
+											            <div class="um-list-item-body" >
+											            		<div class="um-row" style="">
+											            				<img   style="float:left;padding-right: 10px;max-width: 50%;"   data-bind="attr:{src:fimage}"/>
+											            				<p class="f18 fb um-row" data-bind="text:title"></p>
+											            		</div>
+											            		<div id="time" class="f14 tr"  ><span data-bind="text:ts"></span></div>
+											            </div> 
+											        </div> 
+						            			</a>
+						            		</li>
+						            	</ul>
+					            </div>
+					        <!--内容 end-->
+			            </div>
+	                	<!-- 国家党建工作叶签内容 end -->
+                	</div>
+                	<!-- 选项卡对应的内容 end -->
+                	
+		            <!--上拉加载 start-->
+			        <div id="pullUp" style="display: none">
+						<img src="../../img/loading.gif" />
+						<span>加载中...</span>
+					</div>  
+					<!--上拉加载 end-->   
+			</div>
+			
+	</body>
+</html>

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>职工帮困</title>
+	<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">   
+    <link rel="stylesheet" href="../../js/ydui/ydui.px.css">
+	<link rel="stylesheet" href="https://unpkg.com/cube-ui/lib/cube.min.css">
+
+	<script src="../../js/commons.js" ></script> 
+	<script src="../../js/jquery.min.js" ></script>
+	<script src="../../js/summer.js" ></script>
+	<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+	<script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+	  
+    
+    <style>
+    .yd-navbar{
+    	padding-top: 10px;
+    }
+    .yd-navbar-item{
+    	padding-top: 15px;
+    }
+    .geList{
+    	padding: 5px;
+    	display:flex;
+    	flex-wrap:wrap;
+    	padding-left: 10px;
+    	padding-right:10px;
+    	padding-top:50px;
+    }
+    .geObj{
+    	width:33.33%;
+    	padding-left:5px;
+    	padding-right:5px;
+    	padding-bottom: 5px;
+    	background-color: #FFFFFF;
+    }
+    .geObj-img{
+    	padding-top: 5px;
+    	width:100%;
+    	height: 50px;
+    	text-align: center;
+    }
+    .geObj-img img{
+    	width:50px;
+    	height: 50px;
+    }
+    .geObj-type{
+    	width: 100%;
+    	padding: 10px;
+    	background-color: #d72424;
+    	text-align: center;
+    	color: #ffffff;
+    }
+   .geObj-name {
+    	text-overflow: ellipsis;
+     	white-space: nowrap;
+   	 	overflow: hidden;
+   	 	font-weight: 800;
+   	 	text-align: center;
+   	 	background-color: #FFFFFF;
+   	 	padding: 5px;
+   	 	padding-bottom: 0px;
+   	 	font-size:15px;
+   	 	width: 100%;
+   	 	text-align: center;
+   }
+   .geObj-companyName {
+    	text-overflow: ellipsis;
+     	white-space: nowrap;
+   	 	overflow: hidden;
+   	 	text-align: center;
+   	 	background-color: #FFFFFF;
+   	 	padding:5px;
+   	 	font-weight: 100;
+   	 	padding-top: 10px;
+   }
+   .yd-tab-box{
+   		position: fixed;
+   		width: 100%;
+   		z-index: 9999;
+   }
+   .headerBar{
+   		position:fixed;
+   		background-color: red;
+   		height: 64px;
+   		top: 0px;
+   		z-index: 99999;
+   		width: 100%;
+   		padding-top: 20px;
+   }
+   .yd-back-icon{
+   	    font-size: 10px;
+   }
+    </style>
+</head>
+<body>
+<div id="app">
+	<template>
+	    <yd-navbar title="职工帮困" bgcolor="#d72424" height="64px" color="#FFFFFF" fixed="true">
+	        <router-link to="#" slot="left" @click="backFunc">
+	            <yd-navbar-back-icon color="#ffffff">&nbsp;返回</yd-navbar-back-icon>
+	        </router-link>
+	        <router-link to="#" slot="right">
+	        </router-link>
+	    </yd-navbar>
+	    <yd-pullrefresh :callback="pullLoadList" ref="pullrefresh">
+	    <yd-tab style="margin-top: 64px;" :callback="switchCallBack">
+	        <yd-tab-panel label="困难帮扶" tabkey="0">
+	        	<yd-infinitescroll :callback="loadList" ref="modelInfinitescroll">
+	        		<div slot="list" class="geList">
+        				<!--<div v-for="item, key in list" :key="key" class="geObj" @click="toDetails(item)">-->
+        				<div v-for="item, key in list" :key="key" class="geObj">
+        					<div class="geObj-type">{{item.geType}}</div>
+        					<div class="geObj-img">
+        						<img slot="img" :src="item.photoUrl">
+        					</div>
+        					<div class="geObj-name">{{item.name}}</div>
+        					<div class="geObj-companyName">{{item.companyName}}</div>
+        				</div>
+	        		</div>
+			
+			        <span slot="doneTip">已加载全部数据</span>
+			        <img slot="loadingTip" src="http://static.ydcss.com/uploads/ydui/loading/loading10.svg"/>
+			
+			    </yd-infinitescroll>
+	        </yd-tab-panel>
+	        <yd-tab-panel label="大病帮扶" tabkey="1">
+		        <yd-infinitescroll :callback="loadList1" ref="advancedInfinitescroll">
+				    <div slot="list" class="geList">
+        				<div v-for="item, key in list1" :key="key" class="geObj" @click="toDetails(item)">
+        					<div class="geObj-type">{{item.geType}}</div>
+        					<div class="geObj-img">
+        						<img slot="img" :src="item.photoUrl">
+        					</div>
+        					<div class="geObj-name">{{item.name}}</div>
+        					<div class="geObj-companyName">{{item.companyName}}</div>
+        				</div>
+	        		</div>
+				
+			        <span slot="doneTip">已加载全部数据</span>
+			        <img slot="loadingTip" src="http://static.ydcss.com/uploads/ydui/loading/loading10.svg"/>
+				</yd-infinitescroll>
+	        </yd-tab-panel>
+	    </yd-tab>
+     </yd-pullrefresh>
+	</template>
+</div>
+<script src="../../js/ydui/vue.min.js"></script>
+<script src="../../js/ydui/ydui.px.js"></script>
+<script src="https://unpkg.com/cube-ui/lib/cube.min.js"></script>
+<script>
+
+    new Vue({
+        el: '#app',
+        data:{
+        	page: 0,
+            pageSize: 15, 
+            page1: 0, 
+            pageSize1: 15, 
+            list: [], 
+            list1: [], 
+            tabIndex:0, 
+        },
+        created: function () {
+			this.loadList();    
+			this.loadList1(); 		
+  		},
+        methods: {
+        	pullLoadList:function(){
+        		if(this.tabIndex == 0){
+		    		this.page = 0;
+		    		this.list = [];
+		    		this.loadList();
+		    	}else if(this.tabIndex == 1){
+		    		this.page1 = 0;
+		    		this.list1 = [];
+		    		this.loadList1();
+		    	}
+        		this.$refs.pullrefresh.$emit('ydui.pullrefresh.finishLoad');
+        	},
+        	/**
+        	 * 标题栏返回方法 
+        	 */
+            backFunc:function(){
+            	summer.closeWin({});
+            },
+		    toDetails:function(item){
+		    	console.log(item);
+		    	localStorage.approvalId = item.approvalId;
+        		//forword("details","html/goodexample/details.html");
+		    },
+		    /**
+		     * TabBar切换回调 
+		     */
+		    switchCallBack:function(label,key){
+		    	this.tabIndex = key;
+
+		    },
+		    /**
+		     * 获取劳动模范数据 
+		     */
+            loadList:function(){
+            	console.log("method >> loadList");
+  				var jsonData = {};
+				jsonData.userId = localStorage.userid;
+				jsonData.busiType = "BUSI_TYPE_HW";
+				console.log("AAA THIS.PAGE:::" + this.page);
+				jsonData.currentPage = this.page+"";
+				jsonData.pageSize = this.pageSize+"";
+				this.getDataList(jsonData,1);
+				
+            },
+            /**
+             * 获取先进工作者数据 
+             */
+            loadList1:function(){
+  				var jsonData = {};
+				jsonData.userId = localStorage.userid;
+				jsonData.busiType = "BUSI_TYPE_HS";
+				jsonData.currentPage = this.page1+"";
+				jsonData.pageSize = this.pageSize1+"";
+				this.getDataList(jsonData,2);
+            },
+            /**
+             * 调用后台接口获取数据 
+             */
+            getDataList:function(jsonData,tabIndex){
+            	if(this.publicityYear != "全部年份"){
+            		jsonData.publicityYear = this.publicityYear;
+            	}
+            
+            	var _this = this;
+	            $.ajax({
+					type:"POST",
+					url:serviceUrl + "/goodExample/goodExampleList",
+					datatype:'json',
+					data:JSON.stringify(jsonData),
+					contentType: 'application/json;charset=utf-8',  
+					success:function(res){
+						console.log(res);
+						console.log("_this.page::::" + _this.page);
+						var goodExampleList = res.rsMap.goodExampleList;
+						for(var i=0; i<goodExampleList.length;i++){
+							var geObj = goodExampleList[i];
+							
+							if("BUSI_TYPE_HS" == jsonData.busiType){
+								geObj.photoUrl = "./img/fallill.png";
+							}else{
+								geObj.photoUrl = "./img/defficulty.png";
+							}
+							
+							if(tabIndex == 1){
+								_this.list.push(geObj); 
+							}else if(tabIndex == 2){
+								_this.list1.push(geObj); 
+							}
+							
+						}
+						
+						var pageModel = res.rsMap.pageModel;
+						
+						if(tabIndex == 1){
+							console.log("_this.page::::" + _this.page);
+							if(pageModel.totalPage <= _this.page){
+								_this.$refs.modelInfinitescroll.$emit('ydui.infinitescroll.loadedDone');
+								return;
+							}
+						}else if(tabIndex == 2){
+							console.log("_this.page::::" + _this.page1);
+							if(pageModel.totalPage <= _this.page1){
+								_this.$refs.advancedInfinitescroll.$emit('ydui.infinitescroll.loadedDone');
+								return;
+							}
+						}
+						
+						if(tabIndex == 1){
+							_this.$refs.modelInfinitescroll.$emit('ydui.infinitescroll.finishLoad');
+							_this.page++;
+						}else if(tabIndex == 2){
+							_this.$refs.advancedInfinitescroll.$emit('ydui.infinitescroll.finishLoad');
+							_this.page1++;
+						}
+						
+					},
+					error:function(er){
+
+					}
+				});	
+            }
+       }    
+    })
+    
+</script>
+
+
+
+</body>
+</html>

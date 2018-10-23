@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="../../css/base.css" />
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-header">
+            	<a href="#"  class="um-back" onclick="backClick()"></a>
+            	<h3>活动申请</h3>
+            </div>
+			
+
+			<div class="um-content">
+				
+					
+                    <ul class="um-list">
+                        <li>
+                            <a href="#" class="btn">
+                                <div class="um-media-left">
+                                    <img class="um-rounded" height=40 width=40 src="../../img/tuanWei/tianxiesq.png" alt="...">
+                                </div>
+                                <div class="um-media-body">
+                                    <h4 class="um-media-heading">填写申请单</h4>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="btn">
+                                <div class="um-media-left">
+                                    <img class="um-rounded" height=40 width=40 src="../../img/tuanWei/wodesq.png" alt="...">
+                                </div>
+                                <div class="um-media-body">
+                                    <h4 class="um-media-heading">我的申请单</h4>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="btn">
+                                <div class="um-media-left">
+                                    <img class="um-rounded" height=40 width=40 src="../../img/tuanWei/shenpisq.png" alt="...">
+                                </div>
+                                <div class="um-media-body">
+                                    <h4 class="um-media-heading">申请单审批</h4>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+			</div>
+
+		</div>
+	</body>
+</html>

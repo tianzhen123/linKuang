@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="../../css/base.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iuapmobile.um.listview.css">
+		<link rel="stylesheet" type="text/css" href="../../css/mescroll.min.css" />
+		<link rel="stylesheet" href="selectPro.css" />
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="../../js/knockout.js"></script>
+		<script src="../../js/base.js"></script>
+		<script src="../../js/mescroll.min.js"></script>
+		<script src="selectPro.js"></script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-header">
+            	<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            	<h3>党风廉政建设</h3>
+            </div>
+			<div class="um-input-group" style="height: 41px;">
+				<form style="width: 100%"  action="javascript:searchClick();">
+	            	<span class="ti-search" onclick="searchClick();"></span>
+	            	<input id="sear" type="search" class="form-control"   placeholder="请输入单位名称">
+				</form>
+			</div>
+			<div class="um-content">
+				<div id="mescroll" class="mescroll">
+					<ul class="um-list um-no-active" id="dataList"  data-bind="foreach: data" style="background:#fff">
+						<li data-bind="click:$root.openWin.bind($data)">
+							<a href="#" class="um-list-item um-swipe-action um-no-icon">
+								<div class="um-list-item-inner">
+									<div class="um-list-item-body">
+										<p class="pl15 desc-p" data-bind="text:name"></p>
+									</div>
+								</div>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>    
+			</div>
+		</div>
+	</body>
+</html>

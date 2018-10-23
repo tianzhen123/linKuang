@@ -1,0 +1,35 @@
+var flag = 0;//是否选择提交
+summerready = function(){
+	editorInit();
+	var addBtn = document.querySelector('.addBtn'),
+	choose = document.querySelector('#choose');
+	addBtn.onclick = function(){
+		if(flag){
+			choose.className = '';
+			addBtn.innerText = '提交';
+			flag = 0;
+		}else{
+			choose.className = 'on';
+			addBtn.innerText = '取消';
+			flag = 1;
+		}
+	}
+	
+}
+function editorInit(){
+	artEditor = new Eleditor({
+					el: '#article-body',
+					upload:{
+						server: '/upload.php',
+					},
+					toolbars: [
+				      'insertText',
+				      'editText',
+				      'undo',
+				      'cancel'
+				    ],
+				});
+}
+function backClick(){
+	summer.closeWin({});
+}

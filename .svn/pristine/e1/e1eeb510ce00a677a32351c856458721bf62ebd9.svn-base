@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">
+        <link rel="stylesheet" type="text/css" href="../../css/islider.css">
+        <link rel="stylesheet" type="text/css" href="home.css" />
+        <!--列表 start-->
+        <link rel="stylesheet" type="text/css" href="../../css/mescroll.min.css" />
+        <link rel="stylesheet" type="text/css" href="../../css/iuapmobile.um.listview.css">
+		<!--列表 end-->
+
+	</head>
+	<body>
+		<div class="um-win" id="index">
+		<div id="header" class="um-header" >
+				<img class="header_img" src="../../img/home_header.png" />
+		</div>
+		
+			<div class="um-content">
+				<div id="mescroll" class="mescroll">
+					<!--轮播 start-->
+	               <div class="um-row"><div id="iSlider-wrapper" class="iSlider-wrapper"></div></div>
+	                <!-- <div id="banner"><img src="../../img/dw_banner1.png"></div> -->
+					<!--轮播 end-->
+					
+					<!--图标 start-->
+	                 <div id='slider' class='swipe' style="margin-bottom: 5px;">
+	                    <div class='swipe-wrap' data-bind="foreach:data_menu">
+	                        
+	                        <div class="swipe-box">
+	                            <div class="sliderow">
+	                            	<ul  data-bind="foreach:menu" style="background: #fff;">
+            							<li >
+			                                <div class="slidecol" tapmode="" style="min-height: 110px;" data-bind="event:{click:itemClick.bind(this)}">
+			                                    <img data-bind="attr:{src: logoUrl}"  alt="">
+			                                    <div class=""  >
+			                                    	<span class="f14" data-bind="text:name"></span>
+			                                    </div>
+			                                </div>
+			                           	</li>
+			                        </ul>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+					<!--图标 end-->
+					<!--列表 start-->
+	                <!-- <div class="um-listview-wrap" id="listview"> -->
+	                	<ul class="um-list um-no-active" data-bind="foreach:data_list" style="background: #fff;">
+	                		<li class="um-listview-row">
+	                			<div class="list_top">
+	                				<div class="f12 tl fl ">
+		    							<img style=" height: 15px;" src="../../img/main_verticalLine.png" /><span data-bind="text:name"></span>
+		    						</div>
+	                				<div class="f12 tr " data-bind="click:moreClick">
+		    							<img style=" height: 15px;" src="../../img/main_more.png" />
+		    							<span class="ml5">更多</span>
+		    						</div>
+	                			</div>
+	                			<a href="#" class="um-list-item um-swipe-action um-no-icon" data-bind="event:{click:listItemClick.bind(this)}">
+	                				<div class="um-swipe-btns">
+	                					<span class="um-swipe-btn um-delete ti-trash"></span>
+	                				</div>
+	                				<div class="um-list-item-media">
+									<div data-bind="if:infoData.fimage" >
+	                					<img id="listimg" alt="" height=70 width=110 data-bind="attr:{src: infoData.fimage}">
+									</div>	  
+	  								</div>
+	                				<div class="um-list-item-inner">
+	                					<div class="um-list-item-body" style="padding-right:5px;">
+	                						<!-- <div data-bind="text:title" class="fb f16 um-text-overflow"></div> -->
+	                						<!--设置内容高度和图片高度保持一致-->
+											<div class="body-content" style="height:70px">
+	                							<span class="cont-desc" data-bind="html:infoData.title" class=" um-gray listview-detail"></span>
+	                							<div id="time" class="f10 um-gray"><span class="" data-bind="text:infoData.ts"></span></div>
+	                						</div>
+	                
+	                						
+	                					</div>
+	                				</div>
+	                			</a>
+	                		</li>
+	                	</ul>
+	               <!--  </div> -->
+					<!--列表 end-->
+				</div>
+			</div>
+		</div>
+		
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		
+       	<!--轮播 start-->
+        <script type="text/javascript" src="../../js/islider.js"></script>
+        <!--轮播 end-->
+         <!--轮播 start-->
+        <script type="text/javascript" src="../../js/swipe.js"></script>
+        <!--轮播 end-->
+        <!--列表 start-->
+        <script type="text/javascript" src="../../js/knockout.js"></script>
+        <script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+        <script src="../../js/base.js"></script>
+        <script src="../../js/mescroll.min.js"></script>
+        <script src="home.js"></script>
+		 <!--列表 end-->
+		 <script>
+			var list = [
+        				{
+        					content: "../../img/dw_banner1.png"
+        				}, 
+        				{
+        					content: "../../img/dw_banner2.png"
+        				},
+        				{
+        					content: "../../img/dw_banner3.png"
+        				},
+        				
+        			];
+        			var islider = new iSlider({
+        				type: 'pic',
+        				data: list,
+        				dom: document.getElementById("iSlider-wrapper"),
+        				isLooping: true,
+        				animateType: 'default',
+        				isAutoplay: true,
+        				duration: 3000,
+        			});
+        			islider.addDot();
+		</script>
+
+	</body>
+</html>

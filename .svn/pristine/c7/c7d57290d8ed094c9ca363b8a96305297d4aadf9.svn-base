@@ -1,0 +1,96 @@
+﻿
+
+summerready = function(){
+	var param = summer.pageParam;
+	//var code = summer.pageParam.code;
+	//var code = summer.pageParam.code;
+	var appid = param.ens_appid;
+	
+	summer.setStorage("host", "yonyou.s1.natapp.cc/");
+	//getUserInfo(code);
+	
+	var param = "1";
+	
+	var id = "";
+	var url = "";
+	
+	switch(parseInt(appid)){
+		case 125402:{//工会
+			id = "gongHui";
+			url = "html/gongHui/gongHui.html";
+		}break;
+		case 125408:{//共青团工作
+			id = "gongQingTuan";
+			url = "html/gongQingTuan/gongQingTuan.html";
+		}break;
+		case 125409:{//纪检监察
+			id = "jiJian";
+			url = "html/jiJian/jiJian.html";
+		}break;
+		case 125410:{//和谐临矿
+			id = "heXieLinKuang";
+			url = "html/heXieLinKuang/heXieLinKuang.html";
+		}break;
+		case 126790:{//新闻宣传
+			id = "news";
+			url = "html/news/news.html";
+		}break;
+		case 125382:{//党务工作
+			id = "dangJianGuanLi";
+			url = "html/dangJianGuanLi/dangJianGuanLi.html";
+		}break;
+		default :{
+			id = "news";
+			url = "html/news/news.html";
+		}
+		
+		
+	}
+	
+	
+	summer.openWin({
+        "id" : id,
+        "url" : url,
+        "isKeep":false,
+        "pageParam" : {
+            "param" : param,
+        },
+    });
+
+}
+
+
+function getUserInfo(code){
+
+	
+	//summer.setStorage("port", "9999");
+	$summer.alert("userInfo");
+	
+	
+	//var code = summer.pageParam.param.code;
+	//$summer.alert(code);
+	
+	var requestip = "http://"+summer.getStorage("host")+"yyisv/getuserinfo";
+	summer.post(requestip,{"code":code},//可选参数，方便开发者设置请求的header
+        {
+        "Content-Type" : "application/x-www-form-urlencoded", //可选参数，post请求的要写入的条件数据，须为json对象
+        }, 
+    	function(response){//成功回调
+        	var data = $summer.strToJson(response.data);
+        	data = data.data;
+        	$summer.alert(data);
+				var userinfo = {
+					userid : data.user_id,
+					username : data.name,
+				}
+			summer.setStorage("userinfo", userinfo);
+        },
+    	function(response){ //失败回调
+        	$summer.alert("网络错误");
+    	});
+    
+    	
+}
+
+
+

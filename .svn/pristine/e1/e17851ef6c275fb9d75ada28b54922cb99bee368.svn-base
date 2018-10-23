@@ -1,0 +1,6 @@
+function backClick(){
+	summer.closeWin();
+}
+summerready = function(){
+	
+}

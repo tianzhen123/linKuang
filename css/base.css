@@ -1,0 +1,92 @@
+.um-header{
+	position:relative;
+	background-color: #d72424;
+	display: flex;
+  	justify-content: center;
+  	align-items: center;
+  	height: 64px;
+  	padding-top: 20px;
+}
+.um-back{
+  position: absolute;
+  top:inherit;
+  left: 10px;
+  font-weight: 500;
+  color: #ffffff;
+  line-height: 44px;
+  text-decoration: none;
+}
+body,button{
+	font-family: "Microsoft YaHei";
+}
+.um-header h3{
+	color: #FFFFFF;
+	font-weight:normal;
+}
+
+.um-back, .um-header-right, .um-header-left {
+   font-size: 14px;
+   color:#FFFFFF;
+}
+
+.um-back:before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-left: 2px solid #FFFFFF;
+    border-bottom: 2px solid #FFFFFF;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    margin: 0px -3px 0px 0px;
+}
+body{
+	background:#FFFFFF;
+}
+/*新闻详情，图片按比例缩放*/
+/*新闻详情的图片，收拾在p标签下*/
+p img{
+ 	width: auto;  
+    height: auto;  
+    max-width: 100%;  
+    max-height: 100%; 
+}
+p table{
+	width:100%
+}
+.submitBtnContainer{
+	padding-top: 5px;
+	padding-bottom: 5px;
+	z-index: -1;
+}
+.submitBtnContainer Button{
+	background-color: red;
+	border-style: none;
+	color: #fff;
+	padding: 15px;
+	width: 95%;
+}
+
+.btnGroupContainer{
+	padding-top: 5px;
+	padding-bottom: 5px;
+	z-index: -1000;
+	float: left;
+}
+.mbtn-over{
+	background-color: #9B9B9B;
+	border-style: none;
+	color: #fff;
+	padding: 15px;
+	width: 95%;
+}
+.mbtn-red{
+	background-color: red;
+	border-style: none;
+	color: #fff;
+	padding: 15px;
+	width: 95%;
+}
+.um-input-group {
+    margin: 5px;
+}

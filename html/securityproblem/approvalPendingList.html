@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>问题列表</title>
+	<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">    
+
+    <link rel="stylesheet" href="../../js/ydui/ydui.px.css">
+	<link rel="stylesheet" href="https://unpkg.com/cube-ui/lib/cube.min.css">
+
+	<script src="../../js/commons.js" ></script> 
+	<script src="../../js/jquery.min.js" ></script>
+	<script src="../../js/summer.js" ></script>
+	<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+	<script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+	
+
+	  
+    
+    <style>
+    .yd-navbar{
+    	padding-top: 10px;
+    }
+    .yd-navbar-item{
+    	padding-top: 15px;
+    }
+    .geList{
+    	padding-top:70px;
+    }
+   
+   .yd-tab-box{
+   		position: fixed;
+   		width: 100%;
+   		z-index: 9999;
+   }
+   .headerBar{
+   		position:fixed;
+   		background-color: red;
+   		height: 64px;
+   		top: 0px;
+   		z-index: 99999;
+   		width: 100%;
+   		padding-top: 20px;
+   }
+   .scrollView{
+   		position: relative;
+   }
+   
+   .qItem{
+   		display: flex;
+   		background-color: #ffffff;
+   		border-bottom: 1px solid #EAEAEA;
+   		width: 100%;
+   		padding-top: 10px;
+   		padding-bottom: 10px;
+   }
+   
+   .icoContainer{
+   		width: 25%;
+   		
+   }
+   
+   .imgContainer{
+   		text-align: center;
+   		width: 100%;
+   }
+   
+   .imgContainer img {
+   		width: 50px;
+   		height: 50px;
+   }
+   .textContainer{
+   		font-size:11px;
+   		text-align: center;
+   		font-weight: 100;
+   		
+   }
+   
+   .nameContainer{
+   		width: 30%;
+   }
+   
+   .nameContainer-a{
+   		font-size: 15px;
+   		font-weight: bold;
+   		padding-top: 10px;
+   }
+   
+   .nameContainer-b{
+   		font-size: 12px;
+   		color: #999999;
+   		padding-top: 15px;
+   		text-overflow: ellipsis;
+     	white-space: nowrap;
+   	 	overflow: hidden;
+   	 	font-weight: 300;
+   }
+   
+   .stateContainer{
+   		width: 20%;
+   		font-weight: 300;
+   		font-size: 12px;
+   		text-align: center;
+   		padding-top: 26px;
+   }
+   
+   .timeContainer{
+   		width: 25%;
+   		text-align: right;
+   		padding-right: 10px;
+   		
+   }
+   .timeContainer-time{
+   		padding-top: 10px;
+   }
+   .timeContainer-right{
+   		
+   }
+   .timeContainer-right img{
+   		width: 30px;
+   		height: 30px;
+   }
+   .yd-back-icon{
+   	    font-size: 10px;
+   }
+    </style>
+</head>
+<body>
+<div id="app">
+	<template>
+	    <yd-navbar title="问题列表" bgcolor="#d72424" height="64px" color="#FFFFFF" fixed="true">
+	        <router-link to="#" slot="left" @click="backFunc">
+	            <yd-navbar-back-icon color="#ffffff">&nbsp;返回</yd-navbar-back-icon>
+	        </router-link>
+	        <router-link to="#" slot="right">
+	        	<div @click="addFunc" id="addSecurity" style="display: none">新增</div>
+	        </router-link>
+	    </yd-navbar>
+	    <yd-pullrefresh :callback="pullLoadList" ref="pullrefresh">
+	    <yd-infinitescroll :callback="loadList" ref="infinitescroll" >
+			<div slot="list" class="geList">
+				<div v-for="item, key in list" :key="key" class="qItem" @click="handler(item)">
+					<div class="icoContainer">
+						<div class="imgContainer">
+							<img src="" slot="img" :src="item.ico"/>
+						</div>
+						<div class="textContainer">
+							{{item.problemTypeName}}
+						</div>
+					</div>
+					<div class="nameContainer">
+						<div class="nameContainer-a">
+							{{item.name}}
+						</div>
+						<div class="nameContainer-b">
+							{{item.problemDesc}}
+						</div>
+					</div>
+					<div class="stateContainer">
+						{{item.state}}
+					</div>
+					<div class="timeContainer">
+						<div class="timeContainer-time">
+							{{item.submitTime}}
+						</div>
+						<div class="timeContainer-right">
+							<img src="../../img/right.png" />
+						</div>
+					</div>
+				</div>
+    		</div>
+	
+	        <span slot="doneTip">已加载全部数据</span>
+	        <img slot="loadingTip" src="http://static.ydcss.com/uploads/ydui/loading/loading10.svg"/>
+	    </yd-infinitescroll>
+	</yd-pullrefresh>
+	</template>
+</div>
+<script src="../../js/ydui/vue.min.js"></script>
+<script src="../../js/ydui/ydui.px.js"></script>
+<script src="https://unpkg.com/cube-ui/lib/cube.min.js"></script>
+<script>
+	const actionList = [{text:"申请",value:"approval"},{text:"我发起的",value:"launched"}];
+
+    new Vue({
+        el: '#app',
+        data:{
+        	page: 0, 
+            pageSize: 15, 
+            list: [] 
+        },
+        created: function () {
+			this.loadList();    
+  		},
+        methods: {
+        	pullLoadList:function(){
+        		this.page = 0;
+	    		this.list = [];
+	    		this.loadList();
+        		this.$refs.pullrefresh.$emit('ydui.pullrefresh.finishLoad');
+        	},
+        	/**
+        	 * 标题栏返回方法 
+        	 */
+            backFunc:function(){
+            	summer.closeWin({});
+            },
+		    addFunc:function(){
+		    	localStorage.title = '青安岗工作';
+				localStorage.addOrUpdate = 'add';
+		    	summer.openWin({  
+				    "id" : "addSecurity",
+				    "url" : "html/securityproblem/drafes.html"
+				});
+		    },
+		    handler:function(item){
+		        localStorage.approvalId = item.approvalId;
+		        localStorage.title = '编辑';
+				localStorage.addOrUpdate = 'update';
+				if(item.approvalState == 'DRAFT'){
+			        forword("update","html/securityproblem/drafes.html"); 
+		        }else{
+		        	localStorage.xuanze = "busitypesp";
+		        	forword("update","html/securityproblem/approval.html");
+		        }
+		    },
+		    /**
+		     * 获取数据 
+		     */
+            loadList:function(){
+            	console.log("method >> loadList");
+  				var jsonData = {};
+				jsonData.userId = localStorage.userid;
+				jsonData.pageIndex = this.page+"";
+				jsonData.pageSize = this.pageSize+"";
+				
+				this.getDataList(jsonData);
+				
+            },
+            /**
+             * 调用后台接口获取数据 
+             */
+            getDataList:function(jsonData){
+            	var userId = localStorage.userid;
+            	//var userId = 'e240bd56-9d6e-4902-8ef6-40e87c4d9c20';
+            	var _this = this;
+	           	$.ajax({
+					type:'get',
+					url:serviceUrl+'/securityProblem/myDrafesList?userId='+userId+'&pageIndex='+this.page+'&pageSize='+this.pageSize,
+					//url:serviceUrl+'/massesSecurity/myDrafesList?userId='+userId+'&pageIndex='+pageIndex+'&pageSize='+pageSize,
+					success:function(res){
+						console.log(res);
+						var draftFlag = res.rsMap.draftFlag;
+						if(draftFlag){
+							$("#addSecurity").show();
+						}else{
+							$("#addSecurity").hide();
+						}
+						if(res.sCode != 200){
+							return;
+						}
+						var list = res.rsMap.securityProblemList;
+						for(var i = 0 ; i < list.length; i++){
+							var examplejsondata = {};
+							examplejsondata.approvalId = list[i].approvalId;
+							if(list[i].problemValue == 'SP_PROBLEM_TYPE_HT'){
+								examplejsondata.ico = "../../img/ico_yhwt.png";
+							//}else if(list[i].problemValue == 'SP_PROBLEM_TYPE_OS'){
+							}else{
+								examplejsondata.ico = "../../img/ico_hlhjy.png";
+							}
+							examplejsondata.problemTypeName = list[i].problemType;					
+							examplejsondata.name = list[i].name;					
+							examplejsondata.submitTime = list[i].submitTime;
+							examplejsondata.problemDesc = list[i].problemDesc;	
+							examplejsondata.busiTypeVlue = list[i].busiTypeVlue;	
+							examplejsondata.approvalState = list[i].approvalState;
+							if('AGREE' == list[i].approvalState){
+								examplejsondata.state = '已处理';	
+							}else{
+								examplejsondata.state = list[i].state;	
+							}
+							
+							_this.list.push(examplejsondata);			
+						}
+						
+						var pageModel = res.rsMap;
+						
+						
+						if(pageModel.totlePage <= _this.page){
+							_this.$refs.infinitescroll.$emit('ydui.infinitescroll.loadedDone');
+							return;
+						}
+						
+						_this.$refs.infinitescroll.$emit('ydui.infinitescroll.finishLoad');
+						_this.page++;
+					},
+					error:function(er){
+						console.log(er)
+					}
+				});
+            } 
+       }    
+    })
+    
+</script>
+
+
+
+</body>
+</html>

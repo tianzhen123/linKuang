@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		
+		<link rel="stylesheet" href="../../css/base.css" />	
+		<link rel="stylesheet" href="labourUnionNews.css" />
+        <link rel="stylesheet" type="text/css" href="../../css/iuapmobile.um.listview.css">
+
+		<script src="../../js/summer.js" ></script>	
+		<script src="../../js/base.js" ></script>			
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="../../js/knockout.js"></script>
+		<script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+		<script type="text/javascript" src="labourUnionNews.js"></script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-header" >
+				<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            		<h3>基层动态</h3>
+			</div>
+
+			<div class="um-content">
+			
+	            <div class="um-input-group">
+	            	<span class="ti-search"></span>
+	            	<input id="sear" type="search" class="form-control" onsearch="searchClick()"  placeholder="请输入标题名称">
+			            <span class="input-group-btn">
+                    			<button class="btn btn-primary" onclick="searchClick()">搜索</button>
+                			</span>
+	            </div>
+	            
+			
+	            <div class="um-listview-wrap" id="listview">
+				            	<ul class="um-list um-no-active" data-bind="foreach:data">
+				            		<li class="um-listview-row" style="background-color: #FFFFFF">
+				            			<a href="#" class="um-list-item um-swipe-action um-no-icon">
+				            				<div class="um-list-item-inner" > 
+									            <div class="um-list-item-body" >
+									            		<div class="um-row" style="">
+									            				<img   style="float:left;padding-right: 10px;max-width: 50%;"   data-bind="attr:{src: fimage}"/>
+									            				<p class="f18 fb um-row" data-bind="text:title">思想建党与制度建党要双管齐下</p>
+									            		</div>
+									            		<div id="time" class="f14" data-bind="text:ts" >2017-10-10</div>
+									            </div> 
+									        </div> 
+				            			</a>
+				            		</li>
+				            	</ul>
+			            </div>
+
+		</div>
+
+	</body>
+</html>

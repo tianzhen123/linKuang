@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="../../css/base.css" />
+		<link rel="stylesheet" href="../../css/iuapmobile.um.listview.css" />		
+		<link rel="stylesheet" href="xianJinLaoMo.css" />
+         <link rel="stylesheet" href="../../css/iscroll.css" /> 
+      	<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script type="text/javascript" src="../../js/knockout.js"></script>
+		<script type="text/javascript" src="iuapmobile.frameworks.listview.js"></script>
+		<script src="../../js/base.js"></script>
+		<script src="xianJinLaoMo.js" ></script>
+		<script src="../../js/hp/hp_function.js"></script>
+		<script src="../../js/hp/hp_slide.js"></script>
+        <script src="../../js/iscroll.js"></script>
+	</head>
+	<body>
+		<div class="um-win" id="index" name="hp_slide">
+			<div class="um-header" >
+			  	<a href="#"  class="um-back" onclick="backClick()">返回</a>
+				<h3>先进劳模</h3>
+				<ul class="um-tabbar um-tabbar-underline pt10 pb10 um-tabbar-switch">
+                	<li class="active" data-tar='.news'><a>劳动模范</a></li>
+                	<li data-tar='.product'><a>先进工作者</a></li>
+	            </ul>
+                <div class="um-input-group">
+					<form style="width: 100%"  action="javascript:searchClick();">
+                		<span class="ti-search" onclick="searchClick();"></span>
+                		<input  type="search" class="form-control" id="sear"  placeholder="姓名/党组织" >
+                	</form>
+                </div>
+			</div>
+			
+			<div class="um-content">  
+                <div class="Artical">        
+                	<div class="news active">
+            			<div class="um-listview-wrap" id="listview">
+							<ul class="um-list um-no-active" data-bind="foreach:data" style="background: #fff;"> 
+								<li class="um-listview-row" >
+									<a href="#" class="um-list-item um-swipe-action um-no-icon">
+									<div class="um-swipe-btns">
+										<span class="um-swipe-btn um-delete ti-trash"></span>
+									</div>
+									
+									<div class="um-list-item-inner">	
+										<div class="um-list-item-media ">
+	                					 <img id="peoPho" alt="" class="um-rounded" data-bind="attr:{src: tupian}"> 
+	                					</div>
+										<div class="um-list-item-body" style="padding-right: 5px;">
+												<p class="f16  um-text-overflow">姓名：<span class="um-gray" data-bind="text:x_name"></span></p>
+												<p class="f16  um-text-overflow">职称：<span class="um-gray" data-bind="text:xzc"></span></p>
+												<p class="f16  um-text-overflow">工作单位：<span class="um-gray" data-bind="text:gzdw"></span></p>
+												<p class="f16  um-text-overflow">简要事迹：<span class="um-gray" data-bind="text:jysj"></span></p>
+										</div>
+									</div>
+									</a>
+								</li>
+							</ul>
+						</div>
+                	</div>
+                	<div class="product">
+            			<div class="um-listview" id="listview2">
+							<ul class="um-list um-no-active" data-bind="foreach:data" style="background: #fff;"> 
+								<li class="um-listview-row" >
+									<a href="#" class="um-list-item um-swipe-action um-no-icon">
+									<div class="um-swipe-btns">
+										<span class="um-swipe-btn um-delete ti-trash"></span>
+									</div>
+									
+									<div class="um-list-item-inner">	
+										<div class="um-list-item-media ">
+		                					 <img id="peoPho" alt="" class="um-rounded" data-bind="attr:{src: tupian}"> 
+		                				</div>
+										<div class="um-list-item-body" style="padding-right: 5px;">
+												<p class="f16  um-text-overflow">姓名：<span class="um-gray" data-bind="text:x_name"></span></p>
+												<p class="f16  um-text-overflow">职称：<span class="um-gray" data-bind="text:xzc"></span></p>
+												<p class="f16  um-text-overflow">工作单位：<span class="um-gray" data-bind="text:gzdw"></span></p>
+												<p class="f16  um-text-overflow">简要事迹：<span class="um-gray" data-bind="text:jysj"></span></p>
+										</div>
+									</div>
+									</a>
+								</li>
+							</ul>
+						</div>
+                	</div>
+                </div>
+			</div>
+		</div>
+	</body>
+</html>

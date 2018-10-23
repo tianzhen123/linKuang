@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="../../css/base.css" />
+		<link rel="stylesheet" href="generalPage.css" />
+        <link rel="stylesheet" type="text/css" href="../../css/islider.css">
+
+		
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="../../js/base.js"></script>
+		<script type="text/javascript" src="../../js/knockout.js"></script>
+		<script src="generalPage.js"></script>
+        <script type="text/javascript" src="../../js/islider.js"></script>
+	</head>
+	<body>
+		<div class="um-win" id="index" name="hp_slide">
+			<div class="um-header" >
+				<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            	<h3 id="pageTitle"></h3>
+			</div>
+
+			<div class="um-content" style="height: 100%">
+			
+            <div class="um-row" style="width: 100%;height: 28%">
+	            <div id="iSlider-wrapper" style="display: block" class="iSlider-wrapper">
+	            	
+	            </div>
+	            <div id="banner" class="banner" style="display: block">
+	            		<img src="" style="    width: 100%;height: 100%;">
+	            </div>
+            </div>
+
+				<!--<div class="um-grid um-row">-->
+                	<!--<div class="um-grid-row tc um-border-bottom">
+                		<div class="um-border-right um-bgc-white" onclick="zhuanTiGuanLi()">
+                			<a href="#" class="um-circle um-black">
+                				<img src="../../img/zhuanTiGuanLi.png" width=50 class="um-img-responsive" alt="">
+                				<div  class="f12 mt5">两学一做</div>
+                			</a>
+                		</div>
+                	</div>-->
+               		<!--图标 start-->
+	                 <div id='slider' class='swipe' style="margin-bottom: 5px;">
+	                    <div class='swipe-wrap' ><!--data-bind="foreach:menu"-->
+	                        <div class="swipe-box">
+	                            <div class="sliderow">
+	                            	<ul style="background: #fff;" data-bind="foreach:data_menu"><!--data-bind="foreach:menu"-->
+            							<li >
+			                                <div class="slidecol" tapmode="" data-bind="event:{click:itemClick.bind(this)}"><!--data-bind="event:{click:itemClick.bind(this)}"-->
+			                                    <img src="" data-bind="attr:{src:logoUrl}"  alt=""><!-- data-bind="attr:{src:logoUrl}"-->
+			                                    <div class="">
+			                                    	<span class="f17" data-bind="text:name"></span><!--data-bind="text:name"-->
+			                                    </div>
+			                                </div>
+			                           	</li>
+			                        </ul>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+					<!--图标 end-->
+                	
+                	
+                	
+               <!-- </div>-->
+			</div>
+			
+			
+		</div>
+	</body>
+</html>

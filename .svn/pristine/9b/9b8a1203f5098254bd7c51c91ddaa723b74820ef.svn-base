@@ -1,0 +1,75 @@
+var ViewModel = function() {
+	};
+var viewModel = new ViewModel();
+var pageIndex = 0;
+var param = "";
+summerready = function(){
+	hp_slide();//滑动事件，放在最前面
+	//Knockout数据绑定
+	
+	viewModel.projectdatas = ko.observableArray([]);
+
+	ko.applyBindings(viewModel);
+	
+	
+	var listview = UM.listview("#listview");
+	//添加控件方法
+	listview.on("pullDown", function(sender) {
+		//这是可以编写列表下拉加载逻辑，参数sender即为当前列表实例对象
+		param = document.getElementById("sear").value;
+		pageIndex = 0;
+		loadData(param,0);
+		sender.refresh();
+	});
+	listview.on("pullUp", function(sender) {
+		//这是可以编写列表上拉刷新逻辑，参数sender即为当前列表实例对象
+		param = document.getElementById("sear").value;
+		pageIndex = pageIndex+1;
+		loadData(param,1);
+		sender.refresh();
+	});
+	param = "";
+	loadData(param,0);
+	
+}
+/**
+ * 右滑执行的方法
+ */
+function function_rightSlide(){
+	summer.closeWin();
+}
+
+function searchClick(){
+	param = document.getElementById("sear").value;
+	pageIndex = 0;
+	loadData(param,0);
+}
+function loadData(param,type){
+	//$summer.alert(param+"\n"+pageIndex);
+	var url = ""+getHttpPro()+"api/excellent_member/list";
+	summer.get(url, {
+		"pageIndex":pageIndex,
+		"pageSize":10,
+		"param":param,
+	}, {
+		"Content-Type" : "application/json;charset=utf-8",
+	}, function(response) {
+		if(type==0){
+			viewModel.projectdatas.removeAll();
+		}
+		var argsResultjson = $summer.strToJson(response.data);
+		var projectjson = argsResultjson.detailMsg.data;
+		for (var k = 0; k < projectjson.content.length; k++) {
+			viewModel.projectdatas.push(projectjson.content[k]);
+		}
+		//$summer.alert(viewModel.projectdatas());
+	}, function(response) {
+		//$summer.alert(response);
+	});
+}
+
+
+
+function backClick(){
+	summer.closeWin({});
+}

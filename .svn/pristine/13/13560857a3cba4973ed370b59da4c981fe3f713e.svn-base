@@ -1,0 +1,38 @@
+var data = "";
+var viewModel={};
+summerready = function(){
+	data = summer.pageParam.count;
+	//Knockout数据绑定
+	viewModel = {
+		pk_exa_result : ko.observable(data.pk_exa_result),
+		pk_org_name : ko.observable(data.pk_org_name),
+		pk_appraise_project_name : ko.observable(data.pk_appraise_project_name),
+		projectdatas : ko.observableArray([]),
+		backClick : function() {
+			summer.closeWin({});
+		}
+		//-----------------------------------请求后台数据----------------------------------/
+	}
+
+	ko.applyBindings(viewModel);
+	summer.get("http://10.176.2.169:9999/partyconstrutproject/Result_Details/list", {
+		"pageIndex":0,
+		"pageSize":10,
+		"search_fk_id_result_details":data.pk_exa_result,
+		"sortDirection":"asc",
+		"sortField":"ts"
+	}, {
+		"Content-Type" : "application/json;charset=utf-8",
+	}, function(response) {
+		var argsResultjson = $summer.strToJson(response.data);
+
+		var projectjson = argsResultjson.detailMsg.data;
+		for (var k = 0; k < projectjson.content.length; k++) {
+			viewModel.projectdatas.push(projectjson.content[k]);
+		}
+
+
+	}, function(response) {
+		$summer.alert(response);
+	});
+}

@@ -1,0 +1,102 @@
+<!-- 问题列表 -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="./approval.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">
+		<link rel="stylesheet" href="../../css/base.css" />
+		<link rel="stylesheet" href="../../css/public.css">
+		<link rel="stylesheet" href="../../css/commons.css"/>
+		<script src="../../js/commons.js" ></script> 
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="../../js/summer.js" ></script>
+		<script src="./groupLeader.js" ></script>
+
+    </head>
+    <body style="background-color: #F2F2F2;">
+    	<div class="um-win" id="index">
+            <div id="header" class="um-header">
+				<div id="backContainer" style="width: 30%">
+					<a href="#"  class="headerText backup" onclick="backClick()">&nbsp;返回</a>
+				</div>
+				<div id="titleContainer" style="width:40%">
+					<h3>整改问题</h3>
+				</div>
+				<div id="appealContainer" style="width:30%">
+					<a id="fillReportBtn" href="#" class="headerText">提交</a> 
+				</div>
+			</div>
+            <div class="um-content panel-info-container">
+            	<div class="um-row panel-info">
+            		<div class="panel-info-title">
+						基本信息
+					</div>
+					<div class="um-row content-container" style="padding-top: 15px;">
+						<div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+	                     	整改人
+	                    </div>
+	                    <div class="um-xs-6 um-sm-6 um-md-6 content-value"  onclick="rectificationName('zg','spSupervisionRectify','SP','QJ')">
+							<span id="supervisenName"></span>
+							<input type="hidden" id="superviseId"/>
+							<span class="ti-angle-right"></span>
+	                    </div>
+                    </div>
+                    <div class="um-row content-container" style="padding-top: 15px;">
+						<div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+	                     	复查人
+	                    </div>
+	                    <div class="um-xs-6 um-sm-6 um-md-6 content-value"  onclick="rectificationName('fc','spSupervisionReview','SP','QJ')">
+							<span id="supervisenNameFc"></span>
+							<input type="hidden" id="superviseIdFc"/>
+							<span class="ti-angle-right"></span>
+	                    </div>
+                    </div>
+                    <div class="um-row content-container">
+	                   <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+	                    	要求整改时间
+	                    </div>
+	                    <div class="um-xs-6 um-sm-6 um-md-6 content-value" >
+	                        <input type="text" id="finishTime" placeholder="请选择要求整改时间" data-options="{'type':'YYYY-MM-DD','beginYear':2010,'endYear':2088}" style="width: 90%;;height:19px;border: 0px;text-align: right">
+	                    </div>
+	                </div>
+            	</div>
+				<div class="um-row panel-info">
+					<div class="panel-info-title">
+						整改要求
+					</div>
+					<div class="consyl">
+						<textarea id="demand" style="width: 100%;" rows="15"></textarea>
+					</div>
+				</div>
+				<!--
+				<div class="um-row panel-info">
+					<div class="panel-info-title">
+						复查人
+					</div>
+					<div class="um-row content-container" style="padding-top: 15px;">
+						<div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+	                     	复查人
+	                    </div>
+	                    <div class="um-xs-6 um-sm-6 um-md-6 content-value"  onclick="rectificationName('fc','spSupervisionReview','SP','QJ')">
+							<span id="supervisenNameFc"></span>
+							<input type="hidden" id="superviseIdFc"/>
+							<span class="ti-angle-right"></span>
+	                    </div>
+                    </div>
+				</div>
+				-->
+            </div>
+         </div>
+         <script src="../../js/jquery.date.js"></script>
+         <script>
+        	$(function(){
+        		$.date('#finishTime');
+        	});
+         </script> 
+    </body>
+</html>

@@ -1,0 +1,39 @@
+.content{
+			background-color: #FFFFFF;
+}
+
+#title{
+	padding:10px;
+}
+
+#img{
+	padding: 20px;
+	width: 100%;
+}
+
+#detail{
+	padding: 20px;
+}
+
+img{
+	width: 100%;
+}
+span{
+	font-size:18px;
+}
+#pageTitle{
+	font-size: 1em;
+    text-align: center;
+    display: block;
+    margin: 0;
+    padding: 9px 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    pointer-events: none;
+}
+.header{
+	    position: relative;
+	    min-height: 44px;
+	    z-index: 5;
+}

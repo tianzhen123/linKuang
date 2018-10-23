@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<!-- 默认 start -->
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<!-- 默认 end -->
+		
+		<!-- 头部 start -->
+		<link rel="stylesheet" href="../../css/base.css" />
+		<!-- 头部 end -->
+		
+		<!-- 样式修改  start-->
+		<link rel="stylesheet" href="bangFuJiLu.css "/>
+		<!-- 样式修改  end-->
+
+		<!-- 默认 start -->
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<!-- 默认 end -->
+		<script src="../../js/knockout.js"></script>
+		<!-- <script src="bangFuJiLu.js" ></script> -->
+		
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<!-- 头部  start-->
+			<div class="um-header">
+            	<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            	<h3>帮扶记录</h3>
+            	             
+            </div>
+			<!-- 头部  end-->
+			
+			<!-- 内容体 start-->
+			<div class="um-content">
+        		<!-- 我的填报   start -->
+        		<div class="um-listview" id="listview">
+            		<ul class="um-list" data-bind="foreach:data"> 
+                		<li class="um-listview-row">
+						    <a href="#" class="um-list-item"> 
+						        <div class="um-list-item-inner"> 
+						            <div class="um-list-item-body" > 
+						            		<div class="pl15" data-bind="text:name">张金友</div> 
+						            		<!-- <div data-bind="text:post">科长</div> -->
+						            </div> 
+						            <div class="um-list-item-right"> 
+						                <span class="um-gray mr15 f14" >审批中 </span> 
+						            </div> 
+						        </div> 
+						    </a>
+					  	</li>
+					</ul>
+				</div>
+			
+				<!-- 我的填报   end -->
+			</div>
+			<!-- 内容体 end-->
+		</div>
+	</body>
+</html>

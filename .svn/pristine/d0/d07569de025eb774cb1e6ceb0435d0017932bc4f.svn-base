@@ -1,0 +1,46 @@
+summerready = function() {
+	data = summer.pageParam.count;
+    var ViewModel = function () {            
+            };	
+    var jsonArray = [
+    {                
+        proposalsub:ko.observable(data.proposalsub),
+        workunit:ko.observable(data.workunit),
+        proposer:ko.observable(data.proposer),
+        post:ko.observable(data.post),
+        seconder:ko.observable(data.seconder),
+        create_date:ko.observable(data.create_date),
+        content:ko.observable(data.content)
+     },                    
+                    ];
+                        
+	var viewModel = new ViewModel();
+	viewModel.data = ko.observableArray(jsonArray);
+	//data.content = data.content.replace("localhost","192.168.1.110");
+	$('#frame').html(data.content);
+	
+	ko.applyBindings(viewModel); 
+    }
+        	function backClick(){
+              //返回按钮
+  	                   summer.closeWin({});  	
+                       } ;
+/**  
+         function addClick(){                 
+         //灰化
+         document.getElementById("btn1").disabled = true;
+         var y=document.getElementById("btn1").disabled;
+         //alert("点赞成功");
+         
+         //点赞+1
+         $("btn1").click(function(){
+         $("stn1").load('wangShangZhiDaiHui.html');
+         alert(stn1); 
+         });
+                                   
+       	 var x=document.getElementById("span2").innerHTML; 
+         x=parseInt(x)+1; 
+         document.getElementById("span2").innerHTML=x;
+                       
+         };
+**/                                       

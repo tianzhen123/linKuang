@@ -1,0 +1,44 @@
+
+summerready = function() {
+	hp_slide();//滑动事件，放在最前面
+	data = summer.pageParam.count;
+	if(data.zhanshileixing==2||data.zhanshileixing==4){
+	$("#yincang").css('display','none');
+	$("#yincang1").css('height','10px');
+	$("#yincang2").css('height','20px');
+	}else{
+	$("#yincang").css('display','block');
+	$("#yincang1").css('height','0px');
+	$("#yincang2").css('height','0px');
+	}
+    var ViewModel = function () {            
+            };	
+    var jsonArray = [
+    {                
+        xingming:ko.observable(data.xingming),
+        xingbie:ko.observable(data.xingbie),
+        nianling:ko.observable(data.nianling),
+        suozaidangzuzhi:ko.observable(data.suozaidangzuzhi),
+        tupian:ko.observable(data.tupian),
+        huodeshijian:ko.observable(data.huodeshijian),
+        //guangrongshiji:ko.observable(data.guangrongshiji)
+     },                    
+                    ];
+                        
+	var viewModel = new ViewModel();
+	viewModel.data = ko.observableArray(jsonArray);
+	ko.applyBindings(viewModel); 
+	$("#guangrongshiji").html(data.guangrongshiji);
+
+}
+/**
+ * 右滑执行的方法
+ */
+function function_rightSlide(){
+	summer.closeWin();
+}
+function backClick(){
+	summer.closeWin({});
+}
+
+

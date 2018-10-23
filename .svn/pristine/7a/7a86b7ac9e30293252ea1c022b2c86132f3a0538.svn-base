@@ -1,0 +1,78 @@
+div.Artical>div {
+display:none;
+color:#555;
+        	}
+div.Artical>div.active {
+display:block;
+color:red;
+        	}
+         
+ 
+.myEllipsis{
+word-break: break-all;
+text-overflow: ellipsis;
+display: -webkit-box; /** 将对象作为伸缩盒子模型显示 **/
+-webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
+-webkit-line-clamp: 1; /** 显示的行数 **/
+overflow: hidden;  /** 隐藏超出的内容 **/
+} 
+        	
+.um-tabbar-underline > li.active {
+    color: #FF0000;
+/*     background-color: transparent; */
+    border-bottom: 2px solid #FF0000;
+}
+.um-tabbar-underline > li.active > a {
+/*     background-color: transparent; */
+    color: #FF0000;
+}        	
+
+
+
+.btn-primary{
+height: 99%
+}
+
+.um-rounded{
+
+width:105px;
+height:147px;
+
+}
+.um-list-item-body{
+margin-left: 6px;
+}
+
+.um-text-overflow{
+float: left;
+margin-top: 0px;
+}
+
+.um-box-vc {
+    margin-top: 6px;
+}
+
+.um-listview-row{
+margin-top: 5px;
+margin-bottom: 10px;
+margin-left: 10px;
+}
+
+.um-list-item-inner:after{
+margin-bottom: 5px;
+}
+
+.um-list .um-list-item-inner:after{
+width:110%;
+left:-10px;
+bottom:-10px;
+}
+
+body{
+background-color: white;
+}
+
+
+.um-gray{
+width:180px;
+}

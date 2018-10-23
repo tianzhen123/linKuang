@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../../css/font-icons.css">
+		<link rel="stylesheet" href="../../../css/base.css" />
+        <link rel="stylesheet" type="text/css" href="../../../css/islider.css">
+        <style>
+        	.iSlider-wrapper {
+        		height: 150px;
+        	}
+        </style>
+	
+		<script src="../../../js/summer.js" ></script>		
+		<script src="../../../js/jquery.min.js" ></script>
+		<script src="../../../js/knockout.js"></script>		
+		<script src="../../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+        <script type="text/javascript" src="../../../js/islider.js"></script>
+        <script type="text/javascript" src="../../../js/swipe.js"></script>
+        <script src="../../../js/base.js" ></script>
+        <script type="text/javascript" src="homeSchool.js"></script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-header" >
+				<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            	<h3 id="pageTitle">党校</h3>
+			</div>
+
+			<div class="um-content">
+				<!--  轮播s-->
+                <div class="um-row" style="height: 30%;">
+               	<!-- <div id="iSlider-wrapper" class="iSlider-wrapper"></div>-->
+                <img style="width: 100%;" src="../../../img/dw_banner1.png" />
+                </div>
+				<!--  轮播e-->
+                
+                <!--  图标s-->
+                
+                <div class="um-grid" style="height: 35%;">
+                	<div class="um-grid-row tc">
+                		<div onclick="opendxgk()">
+                			<a href="#" class="um-circle um-black">
+                				<img src="../../../img/mt_mv.png" width=45 class="um-img-responsive" alt="">
+                				<div  class="f16 mt5">党校概况</div>
+                			</a>
+                		</div>
+                		<div onclick="openorg()">
+                			<a href="#" class="um-circle um-black">
+                				<img src="../../../img/mt_hotal.png" width=45 class="um-img-responsive" alt="">
+                				<div  class="f16 mt5">组织机构</div>
+                			</a>
+                		</div>
+                		<div onclick="openAbstract()">
+                			<a href="#" class="um-circle um-black">
+                				<img src="../../../img/mt_ktv.png" width=45 class="um-img-responsive" alt="">
+                				<div  class="f16 mt5">要论摘编</div>
+                			</a>
+                		</div>
+                	</div>
+                	<!-- 第二行 -->
+                	<div class="um-grid-row tc">
+                		<div onclick="openjxky()">
+                			<a href="#" class="um-circle um-black">
+                				<img src="../../../img/mt_money.png" width=45 class="um-img-responsive" alt="">
+                				<div  class="f16 mt5">教学科研</div>
+                			</a>
+                		</div>
+                		<div onclick="openzxxx()">
+                			<a href="#" class="um-circle um-black">
+                				<img src="../../../img/mt_you.png" width=45 class="um-img-responsive" alt="">
+                				<div  class="f16 mt5">在线学习</div>
+                			</a>
+                		</div>
+                		<div onclick="opencgzs()">
+                			<a href="#" class="um-circle um-black">
+                				<img src="../../../img/mt_xiaochi.png" width=45 class="um-img-responsive" alt="">
+                				<div  class="f16 mt5">成果展示</div>
+                			</a>
+                		</div>
+                	</div>
+				<div class=" w  line" style="background-color: #d0c9c9;height: 1px;position: relative;top: 5px;"></div>
+                </div>
+				<!--  图标e-->
+				
+                <div class=" um-row " style=" height: 35%;">
+                	<div class="um-panel-row" style="position: relative;top: 5%;height: 32%;">
+                		<div style="margin-top: 10px;">
+                			<img src="../../../img/jsfc.jpg"/> 
+                			<span style="font-size: 20px;font-weight: 900;color: #8a7d7d;font-family: cursive;">教师风采</span>
+                            <div onclick="openteachers();" style="border-radius: 15px;background-color: #FF9999;position: relative;float: right;right: 3%;width: 73px;text-align: center;color: #ffffff;" class=" btn-inline btn-sm">全部</div>
+
+                		</div>
+                	</div>
+                	<div class="um-panel-row"  style="position: relative;height: 60%;">
+	                	<!--图标 start-->
+                         <div class="um-nav" >
+                         	<ul class="um-nav-inner" data-bind="foreach:data">
+                         		<li data-bind="click:$root.openWin.bind($data)" class="um-nav-item" style="width: 33%;">
+                         			<img style="border-radius: 50px;width: 80px;max-width:100px;height: 80px;max-height: 100px;" data-bind="attr:{src:image}" onerror="nofind(this,1)" src="../../../img/love.png" width="100" alt="">
+                         			<div data-bind="text:name"></div>
+                         		</li>
+                         	</ul>
+                         </div>
+						<!--图标 end-->
+                	</div>
+                </div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../../css/font-icons.css">	
+		<link rel="stylesheet" href="../../../css/base.css" />
+		<link rel="stylesheet" href="learnOnLineDet.css"/>
+		<script src="../../../js/summer.js" ></script>		
+		<script src="../../../js/jquery.min.js" ></script>
+		<script src="../../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-header" >
+				<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            	<h3 id="pageTitle">在线学习详情</h3>
+			</div>
+
+			<div class="um-content">
+				<div id="title" class="f20 fb tc" data-bind="text:title"></div>
+				<div id="time" class="f12">发布时间：<span class="f12" data-bind="text:ts"></span></div>
+				<div style="width: 100%">
+					<!-- <div id="detail">
+						<video src="./move.mp4" controls="controls" style="width: 100%;"></video>
+					</div> -->
+				</div>
+			</div>
+
+		</div>
+		<script src="learnOnLineDet.js"></script>
+	</body>
+</html>

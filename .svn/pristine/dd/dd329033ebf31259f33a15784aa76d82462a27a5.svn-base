@@ -1,0 +1,36 @@
+ul li{
+	border-bottom: 1px solid #c3c3c3;
+	flex-direction: row;
+    position: relative;
+    align-items: center;
+}
+.li-content{
+	display:flex;
+	padding: 20px;
+}
+.name{
+	flex:1;
+	margin-left:10px;
+}
+.name span{
+	float: right;
+}
+.title{
+	color:#6c6c6c;
+}
+.person:after{
+	content: "";
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid #9c9a9a;
+    border-top: 2px solid #9c9a9a;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    margin: 10px 10px 0px 0px;
+    line-height: 30px;
+    position: absolute;
+    right:10px;
+    top:50%;
+    margin-top:-5px;
+}

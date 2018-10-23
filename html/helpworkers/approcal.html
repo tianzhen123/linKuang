@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="../../css/base.css" />
+		<link rel="stylesheet" href="./approcal.css" />
+		<link rel="stylesheet" href="../../css/public.css">
+		<link rel="stylesheet" href="../../css/commons.css"/>
+		<link rel="stylesheet" href="../approval/approvalPendingList.css" />
+		<script src="../../js/commons.js" ></script> 
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/config.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="./approcal.js" ></script>
+		<style>
+			.lookimg{}
+			.lookimg img{
+				width: 100%;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div id="header" class="um-header">
+               <div id="backContainer" style="width: 30%">
+					<a href="#"  class="headerText backup" onclick="backClick()">&nbsp;返回</a>
+				</div>
+				<div id="titleContainer" style="width:40%">
+					<h3>审批</h3>
+				</div>
+				<div id="appealContainer" style="width:30%">
+					<a id="fillReportBtn" href="#" class="headerText phone" style="display: none" data-target="actionsheet">选择</a>  
+				</div>
+            </div>
+			<div class="um-content panel-info-container">
+				<div class="um-row panel-info" >
+				    <div class="um-xs-6 um-sm-6 um-md-6 content-key" style="color: #1B1B1B;font-weight: 800;">
+						申请人类型
+					</div>
+					<div class="um-xs-6 um-sm-6 um-md-6 content-value" >
+						<span id="busiTypeName"></span>
+					</div>
+				</div>
+				<div class="um-row panel-info" >
+					<div class="panel-info-title">
+						基本信息
+					</div>
+					<div class="um-row content-container">
+					    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+							工号
+						</div>
+						<div class="um-xs-6 um-sm-6 um-md-6 content-value">
+							<span id="pcode"></span>
+						</div>
+					</div>
+					<div class="um-row content-container">
+					    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+							姓名
+						</div>
+						<div class="um-xs-6 um-sm-6 um-md-6 content-value" >
+							<span id="name"></span>
+						</div>
+					</div>
+					<div class="um-row content-container">
+					    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+							年龄
+						</div>
+						<div class="um-xs-6 um-sm-6 um-md-6 content-value" >
+							<span id="age"></span>
+						</div>
+					</div>
+					<div class="um-row content-container">
+					    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+							性别
+						</div>
+						<div class="um-xs-6 um-sm-6 um-md-6 content-value">
+							<span id="sex"></span>
+						</div>
+					</div>
+					<div class="um-row content-container">
+					    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+							联系电话
+						</div>
+						<div class="um-xs-6 um-sm-6 um-md-6 content-value" >
+							<span id="phone"></span>
+						</div>
+					</div>
+					<div class="um-row content-container">
+					    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+							身份证号
+						</div>
+						<div class="um-xs-6 um-sm-6 um-md-6 content-value" >
+							<span id="idcode"></span>
+						</div>
+					</div>
+					<!--
+					<div class="um-row content-container">
+					    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+							银行卡
+						</div>
+						<div class="um-xs-6 um-sm-6 um-md-6 content-value" >
+							<span id="bankNo"></span>
+						</div>
+					</div>
+					-->
+					<div class="um-row content-container">
+					    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+							工作单位
+						</div>
+						<div class="um-xs-6 um-sm-6 um-md-6 content-value" >
+							<span id="workunit"></span>
+						</div>
+					</div>
+				</div>
+			
+				<div class="um-row panel-info"  id="SeriousIllnessDIV" >
+					<div class="panel-info-title">
+						救助人信息
+					</div>
+					<div class="um-row content-container">
+					    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+							救助人
+						</div>
+						<div class="um-xs-6 um-sm-6 um-md-6 content-value" id="age">
+						<span id="resucer"></span>
+						</div>
+					</div>
+					<div class="um-row content-container">
+					    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+							与申请人关系
+						</div>
+						<div class="um-xs-6 um-sm-6 um-md-6 content-value" id="age">
+							<span id="relation"></span>
+						</div>
+					</div>
+					
+				<!--	<div class="um-row content-container">
+					    <div class="um-xs-12 um-sm-12 um-md-12 content-key" >
+							身份证明
+						</div>
+						<div class="um-xs-12 um-sm-12 um-md-12 panel-info-img" id="age">
+							<img src="./img/idcard.png" />
+						</div>
+					<div>
+					-->
+					<div class="um-row content-container">
+					    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+							性别
+						</div>
+						<div class="um-xs-6 um-sm-6 um-md-6 content-value" id="age">
+							<span id="hsSex"></span>
+						</div>
+					</div>
+					<div class="um-row content-container">
+					    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+							年龄
+						</div>
+						<div class="um-xs-6 um-sm-6 um-md-6 content-value" id="age">
+							<span id="resucreAge"></span>
+						</div>
+					</div>
+					<div class="um-row content-container">
+					    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+							住院时间(天)
+						</div>
+						<div class="um-xs-6 um-sm-6 um-md-6 content-value" id="age">
+							<span id="inHospitalDayss"></span>
+						</div>
+					</div>
+				</div>
+				
+				
+				<div class="um-row panel-info" id="JTXI">
+					<div class="panel-info-title">
+						家庭信息
+					</div>
+					<div class="um-row content-container">
+					    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+							家庭人口(人)
+						</div>
+						<div class="um-xs-6 um-sm-6 um-md-6 content-value" id="age">
+							<span id="familyPopulation"></span>
+						</div>
+					</div>
+					<div class="um-row content-container">
+					    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+							月人均收入(元)
+						</div>
+						<div class="um-xs-6 um-sm-6 um-md-6 content-value" id="age">
+							<span id="incomPer"></span>
+						</div>
+					</div>
+					<div class="um-row content-container">
+					    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+							家庭住址
+						</div>
+						<div class="um-xs-6 um-sm-6 um-md-6 content-value" id="age">
+							<span id="address"></span>
+						</div>
+					</div>
+					<div class="um-row content-container">
+					    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+							银行卡号
+						</div>
+						<div class="um-xs-6 um-sm-6 um-md-6 content-value" id="age">
+							<span id="bankNo"></span>
+						</div>
+					</div>
+				</div>
+				
+				
+				<div class="um-row panel-info" id="HomeDIV">
+					<div class="panel-info-title">
+						家庭收入及困难情况
+					</div>
+					<div class="panel-info-text" id="HomeInfoDIV"> 
+						
+					</div>
+					
+				</div>
+
+				<!--<div class="um-row panel-info" id="SeriousIllnessDIV2">
+					<div class="panel-info-title">
+							诊断证明
+					</div>
+					<div class="um-row content-container">
+						<div class="um-xs-12 um-sm-12 um-md-12 panel-info-img" >
+							<img src="./img/idcard.png" />
+						</div>
+					</div>
+				</div>-->
+				<div class="um-row panel-info" id="SeriousIllnessDIV3">
+					<div class="panel-info-title">
+						住院时间
+					</div>
+					<div class="um-row content-container" id="inHostpitalDays">
+					   
+					</div>
+					
+					<div class="um-row content-container">
+					    <div class="um-xs-4 um-sm-4 um-md-4 content-key" >
+							住院天数
+						</div>
+						<div class="um-xs-8 um-sm-8 um-md-8 content-value" style="padding-left: 0px" >
+							<span class="colorSyl" id="inHospitalDays"></span>天
+						</div>
+					</div>
+				</div>
+
+				<div class="um-row panel-info" id="SeriousIllnessDIV4">
+					<div class="panel-info-title">
+						住院费用
+					</div>
+					<div class="um-row content-container">
+					    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+							住院治疗费用
+						</div>
+						<div class="um-xs-6 um-sm-6 um-md-6 content-value" >
+							<span class="colorSyl"  id="hospitalTotalCost"></span>元
+						</div>
+						
+					</div>
+				</div>
+				
+				<div class="um-row panel-info" id="SeriousIllnessDIV5">
+					<div class="panel-info-title">
+						医保报销
+					</div>
+					<div class="um-row content-container">
+					    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+							医保报销金额
+						</div>
+						<div class="um-xs-6 um-sm-6 um-md-6 content-value" >
+							<span class="colorSyl" id="medicalInsuranceCost"></span>元
+						</div>
+						</div>
+						<div class="um-row content-container">
+						<div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+							个人自付金额
+						</div>
+						<div class="um-xs-6 um-sm-6 um-md-6 content-value" >
+							<span class="colorSyl" id="selfPaymentCost"></span>元
+						</div>
+						
+					</div>
+				</div>
+				
+				<div class="um-row panel-info" >
+					<div class="panel-info-title">
+						其他附件
+					</div>
+					<div class="enclosure" id="showDiv_imglook">
+						 
+					</div>
+				</div>
+				
+				<div id="optionsDIV">
+				
+				</div>
+				
+			</div>
+		</div>
+	</body>
+</html>

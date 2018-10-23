@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="./approval.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">
+		<link rel="stylesheet" href="../../css/base.css" />
+		<link rel="stylesheet" href="../../css/public.css">
+		<link rel="stylesheet" href="../../css/commons.css"/>
+		<script src="../../js/commons.js" ></script> 
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="../../js/summer.js" ></script>
+		<script src="./approval.js" ></script>
+        <script>
+        $(function(){
+		   var oHeight = $(document).height(); //屏幕当前的高度
+		   $(window).resize(function(){
+		       if($(document).height() < oHeight){
+			       $(".btnGroupContainer").css("display","none");
+			   }else{
+			       $(".btnGroupContainer").css("display","block");  
+			   } 
+	   		});      
+        })
+        
+        </script>
+    </head>
+    <body style="background-color: #F2F2F2;">
+	    <div class="um-win" id="index">
+			<div id="header" class="um-header">
+				<div id="backContainer" style="width: 30%">
+					<a href="#"  class="headerText backup" onclick="backClick()">&nbsp;返回</a>
+				</div>
+				<div id="titleContainer" style="width:40%">
+					<h3>问题处理</h3>
+				</div>
+				<div id="appealContainer" style="width:30%" >
+					<a id="fillReportBtn" href="#" class="headerText phone approval" style="display: none" data-target="actionsheet">选择</a>  
+					<a id="handleBtn" href="#" class="headerText phone approval" style="display: none" data-target="actionsheet">处理</a>  
+					<a id="reviewBtn" href="#" class="headerText phone approval" style="display: none" data-target="actionsheet">复查</a>  
+				</div>
+			</div>
+            
+            <!-- panel-info-container start -->
+            <div class="um-content panel-info-container">
+	            <div class="um-row panel-info">
+					<div class="panel-info-title">
+						基本信息
+					</div>
+					<div class="um-row content-container" style="padding-top: 15px;">
+						<div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+	                     	工号
+	                    </div>
+	                    <div class="um-xs-6 um-sm-6 um-md-6 content-value" >
+							<span id="workNo"></span>
+	                    </div>
+                    </div>
+                    <div class="um-row content-container">
+	                    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+		                	群监员
+		                </div>
+		                <div class="um-xs-6 um-sm-6 um-md-6 content-value" >
+		                    <span id="name"></span>
+		                </div>
+	                </div>
+	                <div class="um-row content-container">
+		                <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+	                    	上岗时间
+	                    </div>
+	                    <div class="um-xs-6 um-sm-6 um-md-6 content-value" >
+	                        <span id="startWorkTime"></span>
+	                    </div>
+                    </div>
+                    <div class="um-row content-container">
+	                    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+							结束时间
+	                    </div>
+	                    <div class="um-xs-6 um-sm-6 um-md-6 content-value" >
+	                        <span id="endWorkTime"></span>
+	                    </div>
+                    </div>
+                    <div class="um-row content-container">
+	                    <div class="um-xs-5 um-sm-6 um-md-6 content-key" >
+	                    	地点
+	                    </div>
+	                    <div class="um-xs-7 um-sm-6 um-md-6 content-value" >
+	                        <span id="place"></span>
+	                    </div>
+                    </div>
+                    <div class="um-row content-container">
+	                    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+	                    	问题分类
+	                    </div>
+	                    <div class="um-xs-6 um-sm-6 um-md-6 content-value" >
+	                    	<span id="problemType"></span>
+	                    </div>
+	                </div>     
+				</div>	
+				<div class="um-row panel-info">
+					<div class="panel-info-title">
+						问题描述
+					</div>	
+					<div class="panel-info-text" style="padding-bottom: 15px;padding-top: 15px;">
+						<p id="problemDesc">李成河同志，今年5月开创了一个新型的开产模式，且得到省专利。该同志工作积极主动，热心助人。勇于创新，在煤矿开采机外观设计获得了省级专利。</p>
+					</div>
+				</div>
+				<div class="um-row panel-info">
+					<div class="panel-info-title">
+						附件
+					</div>	
+					<div class="panel-info-img" id="files" style="padding-bottom: 15px;padding-top: 15px;">
+					</div>
+				</div>	
+				
+				<div id="opinionHtml" >
+				
+				</div>				
+            </div>
+            <!-- panel-info-container end -->
+            
+	    </div>
+	    
+	    <script>
+	    	$(function(){
+	    		//var approvalId='MA1537859357117';
+				var approvalId=localStorage.approvalId;
+				var jsonData={"approvalId":approvalId}
+				var obj={};
+				//obj.userId=userId;
+				obj.busiType='BUSI_TYPE_MS';
+				obj.approvalId=approvalId;
+				$.ajax({
+	                type: "POST",
+	                url: serviceUrl + "/massesSecurity/massesSecurityInfo",
+	                data:JSON.stringify(obj),
+	                contentType: 'application/json;charset=utf-8',
+	                dataType: 'json',
+	                success: function (res) {
+	                	if(res.sCode==200){
+		                	var node=res.rsMap.massesSecurity;
+		                	//工号
+	                		$("#workNo").text(node.workerNo);
+	                		//群监员姓名
+	                		$("#name").text(node.name);
+	                		//上岗时间
+	                		$("#startWorkTime").text(node.startWorkTime);
+	                		//结束时间
+	                		$("#endWorkTime").text(node.endWorkTime);
+	                		//地点
+	                		$("#place").text(node.place);
+	                		//问题分类
+	                		$("#problemType").text(node.problemType);
+	                		//问题描述
+	                		$("#problemDesc").text(node.problemDesc);
+	                		//填报人
+	                		$("#userName").text(node.userName);
+	                		//所属组织
+	                		$("#organization_name").text(node.organization_name);
+	                	}
+	                }
+	            });
+	            
+	            //查询审批意见列表
+	            $.ajax({
+	                type: "post",
+	                url: serviceUrl + "/massesSecurity/opinionList",
+	                data:JSON.stringify(jsonData),
+	                contentType: 'application/json;charset=utf-8',
+	                dataType: 'json',
+	                success: function (res) {
+	                	console.log(res);
+	                	if(res.sCode==200){
+                        	var opinionList=res.rsMap.opinionList;
+                        	var opinionHtml = '';
+		                	for(var i=0;i<opinionList.length;i++){
+					           	var createTime=opinionList[i].createTime;
+					           	var taskName=opinionList[i].taskName;
+					           	var opinionState=opinionList[i].opinionState;
+					           	var auIDName=opinionList[i].auIDName;
+					    	var opinionStateName=getOpinionStateName(opinionState);
+	                        	opinionHtml+='<div class="um-row panel-info" id="gqgl">'+
+												'<div class="panel-info-title"  style="display: Flex;padding: 0px">'+
+													'<div style="width: 50%">'+taskName+'</div>'+					
+													'<div style="text-align: right;width: 50%;color:#b7b8b7;font-size:12px;padding-top: 3px;">'+
+													'	<span>'+createTime+'</span>'+
+													'</div>'+
+												'</div>';
+												
+								  opinionHtml+='<div class="um-row content-container">'+
+					                    '    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >'+
+					                    '    	审批人:'+
+					                    '    </div>'+
+					                    '    <div class="um-xs-6 um-sm-6 um-md-6 content-value" >'+
+					                    '        <span id="opinionStateName">'+auIDName+'</span>'+
+					                    '    </div>'+
+					                    '</div>';				
+								  opinionHtml+='<div class="um-row content-container">'+
+					                    '    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >'+
+					                    '    	处理状态:'+
+					                    '    </div>'+
+					                    '    <div class="um-xs-6 um-sm-6 um-md-6 content-value" >'+
+					                    '        <span id="opinionStateName">'+opinionStateName+'</span>'+
+					                    '    </div>'+
+					                    '</div>';				
+												
+					           	var superviseName=opinionList[i].superviseName;
+					           	var organization_name=opinionList[i].organization_name;
+					           	
+			                	if(i==0){//第一条审批 显示提报人 和提报人所属组织
+									opinionHtml+='	<div class="um-row content-container">'+
+					                '        <div class="um-xs-6 um-sm-6 um-md-6 content-key" >'+
+					                '        	提报人:'+
+					                '        </div>'+
+					                '        <div class="um-xs-6 um-sm-6 um-md-6 content-value" >'+
+					                '             <span id="userName">'+superviseName+'</span>'+
+					                '        </div>'+
+					                '    </div>'+
+					                '    <div class="um-row content-container">'+
+					                '        <div class="um-xs-6 um-sm-6 um-md-6 content-key" >'+
+					                '        	提报人所属组织:'+
+					                '        </div>'+
+					                '        <div class="um-xs-6 um-sm-6 um-md-6 content-value" >'+
+					                '            <span id="organization_name">'+organization_name+'</span>'+
+					                '        </div>'+
+									'	</div>';
+								
+						           }
+						           
+						           var auIDName=opinionList[i].auIDName;
+					           	   var orgName=opinionList[i].orgName;
+					           	   if(auIDName==null){
+					           	   auIDName=='';
+					           	   }
+					           	   if(orgName==null){
+					           	   orgName=='';
+					           	   }
+					           	   
+						          	opinionHtml+='	<div class="um-row content-container">'+
+					                '        <div class="um-xs-6 um-sm-6 um-md-6 content-key" >'+
+					                '        	审批人:'+
+					                '        </div>'+
+					                '        <div class="um-xs-6 um-sm-6 um-md-6 content-value" >'+
+					                '             <span id="userName">'+auIDName+'</span>'+
+					                '        </div>'+
+					                '    </div>';
+					                opinionHtml+='    <div class="um-row content-container">'+
+					                '        <div class="um-xs-6 um-sm-6 um-md-6 content-key" >'+
+					                '        	审批人所属组织:'+
+					                '        </div>'+
+					                '        <div class="um-xs-6 um-sm-6 um-md-6 content-value" >'+
+					                '            <span id="organization_name">'+orgName+'</span>'+
+					                '        </div>'+
+									'	</div>'; 
+						           
+						           
+						           
+									//整改人和复查人
+									var rectifyUserName=opinionList[i].rectifyUserName;
+				           			var reviewUserName=opinionList[i].reviewUserName;
+									if(rectifyUserName!=null&&rectifyUserName!=''){
+									  opinionHtml+='<div class="um-row content-container">'+
+					                    '    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >'+
+					                    '    	整改人:'+
+					                    '    </div>'+
+					                    '    <div class="um-xs-6 um-sm-6 um-md-6 content-value" >'+
+					                    '        <span>'+rectifyUserName+'</span>'+
+					                    '    </div>'+
+					                    '</div>';
+									  opinionHtml+='<div class="um-row content-container">'+
+					                    '    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >'+
+					                    '    	复查人:'+
+					                    '    </div>'+
+					                    '    <div class="um-xs-6 um-sm-6 um-md-6 content-value" >'+
+					                    '        <span>'+reviewUserName+'</span>'+
+					                    '    </div>'+
+					                    '</div>';
+					                }
+									//要求整改时间
+									var finishTime=opinionList[i].finishTime;
+									if(finishTime!=null&&finishTime!=''){
+									  opinionHtml+='<div class="um-row content-container">'+
+					                    '    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >'+
+					                    '    	要求整改时间:'+
+					                    '    </div>'+
+					                    '    <div class="um-xs-6 um-sm-6 um-md-6 content-value" >'+
+					                    '        <span id="finishTime">'+finishTime+'</span>'+
+					                    '    </div>'+
+					                    '</div>';
+									}
+							
+								
+									//整改要求
+									if(undefined != opinionList[i].demand){
+									  opinionHtml+='<div class="um-row content-container">'+
+					                    '    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >'+
+					                    '    	整改要求:'+
+					                    '    </div>'+
+					                    '    <div class="um-xs-6 um-sm-6 um-md-6 content-value" >'+
+					                    '        <span>'+opinionList[i].demand+'</span>'+
+					                    '    </div>'+
+					                    '</div>';
+									}
+											//整改或复查时间
+									var requestTime=opinionList[i].requestTime;
+									if(requestTime!=null&&requestTime!=''){
+									  opinionStateName='整改';
+									  if(taskName.indexOf('复查')>=0){
+										  opinionStateName='复查';
+									  }
+									  opinionHtml+='<div class="um-row content-container">'+
+					                    '    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >'+
+					                    opinionStateName+'完成时间:'+
+					                    '    </div>'+
+					                    '    <div class="um-xs-6 um-sm-6 um-md-6 content-value" >'+
+					                    '        <span>'+requestTime+'</span>'+
+					                    '    </div>'+
+					                    '</div>';
+									}
+									//整改措施
+									if(undefined != opinionList[i].measure){
+									  opinionHtml+='<div class="um-row content-container">'+
+					                    '    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >'+
+					                    '    	整改措施:'+
+					                    '    </div>'+
+					                    '    <div class="um-xs-6 um-sm-6 um-md-6 content-value" >'+
+					                    '        <span>'+opinionList[i].measure+'</span>'+
+					                    '    </div>'+
+					                    '</div>';
+									}
+										//处理意见
+									var opinion=opinionList[i].opinion;
+									if(opinion!=null&&opinion!=''){
+									  opinionHtml+='<div class="um-row content-container">'+
+					                    '    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >'+
+					                    '    	处理意见:'+
+					                    '    </div>'+
+					                    '    <div class="um-xs-6 um-sm-6 um-md-6 content-value" >'+
+					                    '        <span>'+opinion+'</span>'+
+					                    '    </div>'+
+					                    '</div>';
+									}
+									
+					           		opinionHtml+='</div>';
+                				}
+                				$("#opinionHtml").html(opinionHtml);
+	                		}
+                		}
+	            });
+	            
+	            
+	            $.ajax({//附件
+                    type: "POST",
+                    url:serviceUrl + "/baseController/fileList",
+                    data:JSON.stringify(obj),
+                    contentType: 'application/json;charset=utf-8',
+                    dataType: 'json',
+                    success: function (res) {
+                    	if(res.sCode==200){
+                    		var fileList=res.rsMap.fileList;
+                    		if(fileList!=null&&fileList.length){
+                    			var html='';
+                    			for(var i=0;i<fileList.length;i++){
+                    				var url=fileList[i].url;
+                    				if(i == 0){
+	                    				html+='<div class="lookimg" num="0"><img src="'+url+'"></div>';
+                    				}else{
+	                    				html+='<div class="lookimg" num="0" style="margin-top:10px;"><img src="'+url+'"></div>';
+                    				}
+                    			}
+                    			$('#files').html(html);
+                    		}
+                    	}
+                    }
+                });
+	    	});
+	    </script>
+    </body>
+</html>

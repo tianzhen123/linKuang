@@ -1,0 +1,20 @@
+summerready=function (){
+	var count = summer.pageParam.count;
+	var param = summer.pageParam.param;
+	var exammode = summer.pageParam.exammode;//1 打分; 2 满意度
+	var pk_psexamsud = param;
+	var pk_org = count;
+	var url = "";
+	if( parseInt(exammode) == 1 || exammode == "1"){
+		url = "172.47.12.15:8080/LingDaoBanZiCePing/html/lingDaoBanZiCePing.html";
+	}else{
+		url = "172.47.12.15:8080/LingDaoBanZiCePing/html/lingDaoBanZiCePing2.html";
+	}
+	url = url + "?pk_psexamsud='"+pk_psexamsud+"'&pk_org='"+pk_org+"' ";
+	var text = encodeURIComponent(url);
+	document.getElementById("imageId").src = "http://172.16.0.35:8002/qrcode.ashx?text="+text;
+			
+}
+function backClick(){
+	summer.closeWin();
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="../../css/base.css" />	
+		<link rel="stylesheet" href="newsPropaganda3.css" />
+        <link rel="stylesheet" type="text/css" href="../../css/iuapmobile.um.listview.css">
+        <link rel="stylesheet" type="text/css" href="../../css/mescroll.min.css" />
+
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="../../js/knockout.js"></script>
+		<script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+		<script src="../../js/base.js"></script>
+		<script src="../../js/mescroll.min.js"></script>
+		<script src="newsPropaganda5.js"></script>
+	
+	</head>
+	<body>
+		<div class="um-win" id="index" name="hp_slide"> 
+			<div id="header" class="um-header" >
+				<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            	<h3 id="pageTitle"></h3>
+			</div>
+			<div class="um-input-group" >
+		           	<form style="width: 100%"  action="javascript:searchClick();">
+		           		<span class="ti-search" onclick="searchClick()"></span>
+		           		<input type="search" id="sear" class="form-control" placeholder="标题">
+		           	</form>
+	          </div>
+			<div id="um-content" class="um-content">
+					<div id="mescroll" class="mescroll">
+							<ul  id="dataList" class="" data-bind="foreach: data">
+								<li data-bind="click:$root.openWin.bind($data)">
+										<div class="list-content">
+											<div class="content-left">
+												<img class="image" alt="" onerror="nofind(this,1)" data-bind="attr:{'src': fimage}" width="100%">
+											</div>
+											<div class="content-right">
+												<div class="desc f16">
+													<span class="desc-p" data-bind="text:title"></span>
+												</div>
+									        	<div id="time" class="f12 tl um-gray"><span data-bind="text:getMyDate(ts)"></span></div>
+											</div>
+										</div>
+										<div class=" w  line"></div>
+								</li>
+							</ul>
+					</div>
+			            
+			</div>
+		</div>
+	</body>
+</html>

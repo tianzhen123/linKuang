@@ -1,0 +1,17 @@
+.um-label {
+    font-weight: normal;
+    background-color: #FFFFFF;
+    padding-left: 15px;
+    padding-right: 10px;
+    max-width: none;
+   	height: auto; 
+    overflow: hidden;
+}
+
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+    background-color: #fff;
+    opacity: 1;
+}
+#detail{
+	padding: 20px;
+}

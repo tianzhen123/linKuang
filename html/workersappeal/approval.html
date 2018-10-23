@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">		
+		<link rel="stylesheet" href="../../css/account2.css">	
+		<link rel="stylesheet" href="../../css/base.css" />
+		<link rel="stylesheet" href="./drafes.css" />
+		<link rel="stylesheet" href="../../css/commons.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iuapmobile.um.listview.css">
+		<link rel="stylesheet" href="../../css/public.css" />
+		<link rel="stylesheet" href="../../css/new_page1.css">
+		<link rel="stylesheet" href="../../css/iscroll.css"/>
+		<script src="../../js/commons.js" ></script> 
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/summer.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+		<script type="text/javascript" src="../../js/knockout.js"></script>
+		<script src="../../js/swipe.js" ></script>
+		<script src="../../js/swipeTab.js" ></script>
+		<script src="../../js/iscroll.js"></script>
+		<script src="../../js/new_page1.js" ></script>
+		<script src="./approval.js" ></script>
+		<style>
+	
+		</style>
+	</head>
+	<body style="background:#f2f3f3">
+		<div class="um-win" id="index">
+			<div id="header" class="um-header">
+				<div id="backContainer" style="width: 30%">
+					<a href="#"  class="headerText backup" onclick="backClick()">&nbsp;返回</a>
+				</div>
+				<div id="titleContainer" style="width:40%">
+					<h3>处理反馈</h3>
+				</div>
+				<div id="appealContainer" style="width:30%">
+				    
+					<a id="fillReportBtn" href="#" class="headerText" ><span id="submitText">回复</span></a>
+				</div>
+			</div>
+			<div class="um-content">
+				<div class="um-row pb5"  style="border-bottom:1px solid #e1e1e1;"> 
+				    <div class="um-xs-3 tl pt5">
+				    	<div class="um-row">
+				    		<img style="width: 29%;margin-left:3px;" src="../../img/dl.png">
+				    	</div>
+				    	<div class="um-row" style="font-size:12px;">
+				    		<span id="name"></span>
+				    	</div>
+				    </div>
+				    <div class="um-xs-9 tr f12 pt25 pr5"  style="text-align: right;font-size: 12px;color: #999999;position: relative;top: 5px;">
+				    	提交日期：<span id="approvalTime"></span>
+				    </div>
+				</div>
+				<div class="um-row f14" style="padding: 15px;">
+				    	诉求标题：<span id="title"></span>
+			    </div>
+				<div class="um-row f14" style="padding: 15px;">
+			    	 诉求类型：<span id="typeName"></span>
+				  </div>
+				 <div class="um-row f14" style="padding: 15px;">
+			    	 诉求内容：<span id="appealContent"></span>
+				  </div>
+				 <div class="um-row f14" style="padding: 15px;">
+			    	 诉求结果期望：<span id="appealExpect"></span>
+				  </div>
+				   <div class="um-row" id="files" style="padding: 15px;border-bottom:1px solid #e1e1e1;">
+		    			<!--<img src="../../img/timg.jpg" style="width: 24%;">
+		    			<img src="../../img/timg.jpg" style="width: 24%;">-->
+				  </div>
+				  <div class="um-row mt15">
+					<div class="um-xs-2 ">
+						<img class="w30 tr" src="../../img/fk.png">
+					</div>
+					<div class="um-xs-10 f14 pt5" style="position:relative;left:-6px;">
+						处理反馈
+					</div>
+				  </div>
+				  	<div id="opinionList">
+									
+					</div>
+					<div class="um-row f14" id="unionId" style="display: none">
+			    		<div class="um-xs-5"></div>
+			    		<div class="um-xs-7 tr">
+			    			<a id="unionFeedbackBtn" href="#"><span style="position:relative;left:-20px;">回复集团</span></a>
+			    		</div>
+			    	</div>
+				   <div id="showOpinionId" class="um-row" style="padding: 5px;margin-top: 5px;">
+						<textarea class="form-control" placeholder="处理意见" name="" id="opinion" rows="20" cols="300" style="font-size: 14px;height:90px;"></textarea>
+					</div>
+					<!--
+					<div class="um-row f14 pl15 ml5 pt5 pb5 mt5" style="color:#333333;background: #fff;width:97%;color:#d21d32;">
+						主题
+					</div>-->
+					<div id="approvalTypeId" class="um-row f14 ml5 pt5 pb5 mt10" style="color:#333333;background: #fff;width: 97%;display: none">
+						<div class="um-xs-6" >
+							<span class="ti-menu-alt">分类</span>
+						</div>
+						<div class="um-xs-6 content-value">
+		                    <select id='select1' name="select1" class="um-scroller-select" style="float: left;width: 20px;">
+		                    	<!--
+								<option value="traffic" selected>交通</option>
+								<option value="safe" >安全生产</option>
+								<option value="life" >群众生活</option>
+								-->
+		                    </select> 
+		                    <img src="../../img/ico_xl.png" />
+						</div>
+					</div>
+				<!-- 111-->
+			</div>
+			<!-- 
+			<div class="um-footer">
+				
+			</div>
+			-->
+		</div>
+		<script>
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="../../css/base.css" />
+		<link rel="stylesheet" href="./approval.css" />
+		<link rel="stylesheet" href="../../css/public.css">
+		<link rel="stylesheet" href="../../css/commons.css"/>
+		<script src="../../js/commons.js" ></script> 
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="./details.js" ></script>	
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div id="header" class="um-header">
+				<div id="backContainer" style="width: 30%">
+					<a href="#"  class="headerText backup" onclick="backClick()">&nbsp;返回</a>
+				</div>
+				<div id="titleContainer" style="width:40%">
+					<h3>详情</h3>
+				</div>
+				<div id="appealContainer" style="width:30%">
+					&nbsp;
+				</div>
+			</div>
+			
+			<div class="um-content panel-info-container">
+				<!--
+				<div class="um-row panel-info" >
+				    <div class="um-xs-6 um-sm-6 um-md-6 content-key" style="color: #1B1B1B;font-weight: 800;">
+						申请类型
+					</div>
+					<div class="um-xs-6 um-sm-6 um-md-6 content-value" >
+						<span id="subBusiTypeName"></span>
+					</div>
+				</div>
+				-->
+				<div class="um-row panel-info">
+					<div class="panel-info-title">
+						基本信息
+					</div> 
+					<!--
+					<div class="um-row content-container" style="padding-top: 15px;">
+					    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+							工号
+						</div>
+						<div class="um-xs-6 um-sm-6 um-md-6 content-value" >
+							<span id="workNo"></span>
+						</div>
+					</div>
+					-->
+					<div class="um-row content-container">
+					    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+							姓名
+						</div>
+						<div class="um-xs-6 um-sm-6 um-md-6 content-value" >
+							<span id="name"></span>
+						</div>
+					</div>
+					<!--
+					<div class="um-row content-container">
+					    <div class="um-xs-6 um-sm-6 um-md-6 content-key content-img-key" >
+							照片
+						</div>
+						<div class="um-xs-6 um-sm-6 um-md-6 content-value content-img" >
+							<img src="" id="img"/>
+						</div>
+					</div>
+					-->
+					<div class="um-row content-container">
+					    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+							性别
+						</div>
+						<div class="um-xs-6 um-sm-6 um-md-6 content-value" >
+							<span id="sex"></span>
+						</div>
+					</div>
+					<!--
+					<div class="um-row content-container">
+					    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+							籍贯
+						</div>
+						<div class="um-xs-6 um-sm-6 um-md-6 content-value" >
+							<span id="jg"></span>
+						</div>
+					</div>
+						<div class="um-row content-container">
+					    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+							出生年月
+						</div>
+						<div class="um-xs-6 um-sm-6 um-md-6 content-value" >
+							<span id="birthday"></span>
+						</div>
+					</div>
+					<div class="um-row content-container">
+					    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+							身份证号
+						</div>
+						<div class="um-xs-6 um-sm-6 um-md-6 content-value" >
+							<span id="idcode"></span>
+						</div>
+					</div>
+					<div class="um-row content-container">
+					    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+							文化程度
+						</div>
+						<div class="um-xs-6 um-sm-6 um-md-6 content-value" >
+							<span id="education_level"></span>
+						</div>
+					</div>
+					<div class="um-row content-container">
+					    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+							政治面貌
+						</div>
+						<div class="um-xs-6 um-sm-6 um-md-6 content-value" >
+							<span id="def5"></span>
+						</div>
+					</div>
+					<div class="um-row content-container">
+					    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+							联系电话
+						</div>
+						<div class="um-xs-6 um-sm-6 um-md-6 content-value" >
+							<span id="phone"></span>
+						</div>
+					</div>
+					-->
+					<div class="um-row content-container">
+					    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+							工作单位
+						</div>
+						<div class="um-xs-6 um-sm-6 um-md-6 content-value" >
+							<span id="workunitname"></span>
+						</div>
+					</div>
+					<!--
+					<div class="um-row content-container">
+					    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+							所在支部
+						</div>
+						<div class="um-xs-6 um-sm-6 um-md-6 content-value" >
+							<span id="organization_name"></span>
+						</div>
+					</div>
+					<div class="um-row content-container">
+					    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+							职称
+						</div>
+						<div class="um-xs-6 um-sm-6 um-md-6 content-value" >
+							<span id="groupjob"></span>
+						</div>
+					</div>
+					<div class="um-row content-container">
+					    <div class="um-xs-6 um-sm-6 um-md-6 content-key" >
+							职务
+						</div>
+						<div class="um-xs-6 um-sm-6 um-md-6 content-value" >
+							<span id="post"></span>
+						</div>
+					</div>
+					-->
+				</div>	
+				<div class="um-row panel-info">
+					<div class="panel-info-title">
+						简要事迹
+					</div>
+					
+					<div id="story">
+					
+					</div>
+					
+					
+				</div>	
+				<div class="um-row panel-info" >
+					<div class="panel-info-title">
+						其他附件
+					</div>
+					<div class="panel-info-img" id="files">
+						<img src="./img/zhuanli.png" />
+					</div>
+				</div>
+				
+				<!--
+				<div id="opinionList">
+				
+				</div>
+				-->
+				<!--
+				<div class="um-row panel-info">	
+					<div class="panel-info-title">
+						基层工会审批
+					</div>
+					<div class="panel-info-text" id="opinionList" style="padding-bottom: 15px;padding-top: 15px;">
+						<p>李成河同志，今年5月开创了一个新型的开产模式，且得到省专利。该同志工作积极主动，热心助人。勇于创新，在煤矿开采机外观设计获得了省级专利。</p>
+					</div>
+				</div>
+				<div class="um-row panel-info">	
+					<div class="panel-info-title">
+						基层工会审批
+					</div>
+					<div class="panel-info-text" id="opinionList1" style="padding-bottom: 15px;padding-top: 15px;">
+						<p>李成河同志，今年5月开创了一个新型的开产模式，且得到省专利。该同志工作积极主动，热心助人。勇于创新，在煤矿开采机外观设计获得了省级专利。</p>
+					</div>
+				</div>
+				-->
+			</div>
+
+		</div>
+		<script>
+			$(function(){
+				//var approvalId='GE1538888152116';
+				var approvalId=localStorage.approvalId;
+				var jsonData={"approvalId":approvalId}
+				var obj={};
+				//obj.userId=userId;
+				obj.busiType='BUSI_TYPE_GE';
+				obj.approvalId=approvalId;
+				$.ajax({
+	                type: "POST",
+	                url: serviceUrl + "/goodExample/goodExampleInfo",
+	                data:JSON.stringify(obj),
+	                contentType: 'application/json;charset=utf-8',
+	                dataType: 'json',
+	                success: function (res) {
+	                console.log(res)
+	                	if(res.sCode==200){
+		                	var node=res.rsMap.goodExample;
+		                	$("#subBusiTypeName").text(node.subBusiTypeName);
+		                	//工号
+	                		$("#workNo").text(node.pcode);
+	                		//姓名
+	                		$("#name").text(node.name);
+                			//头像
+	                		if(undefined == node.headImg || '' == node.headImg){
+		                		$("#img").prop("src",'../../img/pic_init.png');
+	                		}else{
+		                		$("#img").prop("src",node.headImg);
+	                		}
+	                		//性别
+	                		$("#sex").text(node.sex);
+	                		//籍贯
+	                		$("#jg").text(node.jg);
+	                		//出身年月
+	                		$("#birthday").text(node.birthday);
+	                		//身份证号
+	                		$("#idcode").text(node.idcode);
+	                		//文化程度
+	                		$("#education_level").text(node.education_level);
+	                		//政治面貌
+	                		$("#zzmm").text(node.zzmm);
+	                		//联系电话
+	                		$("#phone").text(node.phone);
+	                		//工作单位
+	                		$("#workunitname").text(node.workunit);
+	                		//所在支部
+	                		$("#organization_name").text(node.organization_name);
+	                		//职称
+	                		$("#groupjob").text(node.groupjob);
+	                		//职务
+	                		$("#post").text(node.post);
+	                		//简要事迹
+	                		$("#story").html(node.story);
+	                	}
+	                }
+	            });
+	            
+	            
+	            $.ajax({//附件
+                    type: "POST",
+                    url:serviceUrl + "/baseController/fileList",
+                    data:JSON.stringify(obj),
+                    contentType: 'application/json;charset=utf-8',
+                    dataType: 'json',
+                    success: function (res) {
+                    	if(res.sCode==200){
+                    		var fileList=res.rsMap.fileList;
+                    		if(fileList!=null&&fileList.length){
+                    			var html='';
+                    			for(var i=0;i<fileList.length;i++){
+                    				var url=fileList[i].url;
+                    				if(i == 0){
+	                    				html+='<div class="lookimg" num="0"><img src="'+url+'"></div>';
+                    				}else{
+	                    				html+='<div class="lookimg" num="0" style="margin-top:10px;"><img src="'+url+'"></div>';
+                    				}
+                    			}
+                    			//删除之前回显的图片
+                    			
+                    			$('#files').html(html);
+                    		}
+                    		
+                    	}
+                    }
+                });
+                /**
+                var xuanze = localStorage.xuanze;
+				//控制是从我的工作进入的详情页还是公司列表进入的详情页
+				if("myWork" == xuanze || "handle" == xuanze){
+	                var obj={};
+					obj.approvalId=approvalId;
+					$.ajax({//意见
+	                    type: "POST",
+	                    url:serviceUrl + "/goodExample/opinionList",
+	                    data:JSON.stringify(obj),
+	                    contentType: 'application/json;charset=utf-8',
+	                    dataType: 'json',
+	                    success: function (res) {
+	                    	if(res.sCode==200){
+		                        var opinionList=res.rsMap.opinionList;
+		                        var html='';
+		                        if(opinionList!=null&&opinionList.length>0){
+		                        	for(var i=0;i<opinionList.length;i++){
+		                        		var opinion=opinionList[i];
+		                           		html+='<div class="um-row panel-info">'+
+											  '	<div class="panel-info-title"  style="display: Flex;padding: 0px">'+
+												'<div style="width: 50%;">'+
+												'	'+opinion.taskName+''+
+									    		'</div>'+
+												'<div style="text-align: right;width: 50%;font-size: 12px;padding-top: 3px;">'+
+												'<span style="font-weight: normal;">'+opinion.createTime+'</span>'+
+											    '</div>'+
+												'</div>'+
+												'	<div class="panel-info-text" id="opinionList" style="padding-bottom: 15px;padding-top: 15px;">'+
+												'		<p>'+opinion.opinion+'</p>'+
+												'	</div>'+
+												'</div>';
+		                        	}
+		                        	
+		                        }	
+		                        $('#opinionList').html(html);
+	                     	}
+	                    }
+	                });
+                }else if("GEVIEW" == xuanze){
+					$("#opinionList").hide()
+				}
+				*/	
+			});
+		</script>
+	</body>
+</html>

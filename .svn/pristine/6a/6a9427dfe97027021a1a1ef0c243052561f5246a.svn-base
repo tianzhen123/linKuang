@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="../../css/base.css" />
+        <link rel="stylesheet" type="text/css" href="../../css/iuapmobile.um.listview.css">
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+        <script type="text/javascript" src="../../js/knockout-2.2.0.js"></script>
+        <script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+        <script src="tuiyou.js" ></script>
+	</head>
+	<style>
+		.um-media-left, .um-media-right, .um-media-body {
+    display: inline-block;
+    vertical-align: middle;
+    max-width: 80px;
+}
+	</style>
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-header">
+            	<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            	<h3>团员推优</h3>
+            </div>
+			
+			<div class="um-content">
+				
+                <div class="um-input-group" style="margin: 5px;">
+                	<span class="ti-user"></span>
+                	<input id="sear" type="search" class="form-control" onsearch="searchClick()" placeholder="姓名">
+                </div>
+				<div class="um-listview" id="listview">
+                <ul class="um-list"  data-bind="foreach:projectdatas" >
+                    <li>
+                        <div class="btn">
+                            <div class="um-media-left">
+                                <img class="um-rounded" height=90 width=70 src="../../img/1.jpg" alt="...">
+                            </div>
+                            <div class="um-media-body">
+                                <h4 class="um-media-heading" data-bind="text:name" ></h4>
+                                <p data-bind="text:pk_org_name" ></p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+               </div>
+
+			</div>
+		</div>
+s	</body>
+</html>

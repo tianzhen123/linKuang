@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="HuoDongTongZhiXiangQing.css">	
+		
+		<link rel="stylesheet" href="../../css/base.css" />
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="../../js/knockout.js"></script>
+		<script src="../../js/hp/hp_function.js"></script>
+		<script src="../../js/hp/hp_slide.js"></script>
+		<script src="HuoDongTongZhiXiangQing.js" ></script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-header" >
+				<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            		<h3 id="pageTitle">活动通知</h3>
+			</div>
+
+			<div class="um-content" name="hp_slide">
+				<div id="title" class="f20 fb tc" data-bind="text:title"> 某某活动</div>
+				<div style="width: 100%;height: 40px;">
+					<div id="time" class="f16 tr" style="float: right; " data-bind="text:def3">待定</div>
+					<span style="float: right;">截止报名时间：</span>
+				</div>
+					<ul style="width: 100%;height: 100px">
+						<li id="imgg">
+
+						</li>
+						<li id="cont" style="width: 100%;text-indent: 35px;padding: 0 25px"></li>
+					</ul>
+
+			<!-- <div style="width: 100%;text-indent: 35px;padding: 0 15px">
+						
+				                	<div style="word-wrap:break-word;" height=200; width=100; data-bind:"text:def1">
+				                	</div>
+			                </div> -->
+
+			</div>
+
+			<div class="um-footer " style="background: #fff">
+				
+                <button id="submit" class="btn " style="margin-bottom:3px; border-radius: 20px;">请您查看活动信息  ^_^</button>
+
+			</div>
+		</div>
+	</body>
+</html>

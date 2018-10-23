@@ -1,0 +1,65 @@
+summerready=function(){
+	getUserInfo();
+}
+
+//党的宣传
+function xuanChuan(){
+	summer.openWin({
+        "id" : "newsPropaganda",
+        "url" : "html/newsPropaganda/newsPropaganda.html",
+       "isKeep" : true,
+        "pageParam" : {
+            "count" : "01010101",
+            "pageTitle":"党的宣传",
+        },
+    });
+}
+
+// 履职履责评分
+function lvZhiLvZeClick(){
+  summer.openWin({
+	  id:'lvZhiLvZe2',
+	  url:'html/lvZhiLvZe/lvZhiLvZe.html',
+	  isKeep : true,
+	});
+    
+}
+
+//专题管理
+function zhuanTiGuanLi(){
+	   summer.openWin({
+        "id" : "newsPropaganda",
+        "url" : "html/newsPropaganda/newsPropaganda.html",
+       "isKeep" : true,
+        "pageParam" : {
+            "count" : "01010102",
+            "pageTitle":"专题管理",
+        },
+        
+    });
+}
+
+//统一战线
+function tongYiZhanXian(){
+	summer.openWin({
+        "id" : "newsPropaganda",
+        "url" : "html/newsPropaganda/newsPropaganda.html",
+       "isKeep" : true,
+        "pageParam" : {
+            "count" : "01010103",
+            "pageTitle":"统一战线",
+        },
+    });
+}
+//先锋队伍
+function xianFengTeam(){
+	summer.openWin({
+        "id" : "xianFengTeam",
+        "url" : "html/xianFengTeam/xianFengTeam.html",
+       "isKeep" : true,
+    });
+}
+function backClick(){
+	summer.closeWin({});
+}
+

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">
+		<link rel="stylesheet" href="../../css/lv_wait.css">
+		
+	</head>
+	<body>
+		<div class="um-frame" id="index">
+		<div class="um-input-group">
+                	<span class="ti-search"></span>
+                	<input  type="search" class="form-control" id="sear" onsearch="searchClick()" placeholder="姓名/岗位" >
+                </div>
+			<div class="um-content">
+					<div class="addressList" id="addressList">
+					</div>
+			</div>
+		</div>
+	</body>
+	<script src="../../js/summer.js" ></script>
+    <script src="../../js/jquery.min.js" ></script>
+    <script src="../../js/public/doT.min.js"></script>
+    <script src="../../js/lv_wait.js" ></script>
+    <script src="../../js/font.js" ></script>
+    <script id="domTemp" type="text/x-dot-template">
+    <div class="um-listview">
+    <ul class="um-list">
+		{{for(var i=0;i<it.length;i++){ }}
+			<li class="um-listview-row" onclick="openWin('{{=i}}')" >
+		 	<a href="#" class="um-list-item"> 
+		 	<div class="um-list-item-media">
+				<div class="name f12 um-box-center" >
+					{{=it[i].name}}
+				</div>
+				</div>
+				
+				<div class="um-list-item-inner">
+					<div class="um-list-item-body" >
+						<div>
+							{{=it[i].name}}
+						</div>
+						<div>
+							{{=it[i].post}}
+						</div>
+					</div>
+					<div class="um-list-item-right">
+						<span class="um-gray mr15 f14" >待处理 </span>
+					</div>
+				</div>
+				
+			</a>
+			</li>
+		{{}}}
+	</ul>
+	</div>
+</script>
+<script>
+    var _pageNum=0;  
+    var jsonArray;
+summerready = function(){
+	//$summer.fixStatusBar($summer.byId('header'));
+	 getData(0,false);
+	 summer.window.setRefreshHeaderInfo({
+            visible: true,
+            textColor: '#4d4d4d',
+            textDown: '放手啊，不想刷新别拉我(｡•ˇ‸ˇ•｡)',
+            textUp: '够了啊，我赶着刷新呢(｡•ˇ‸ˇ•｡)',
+            textDo: '别急，马上就好(｡•ˇ‸ˇ•｡)',
+            showTime: false,
+            style: "moli"                                                                                                                                                                                                                                                                                                                                                                
+    }, function (ret, err) {
+                //从服务器加载数据，加载完成后调用api.refreshHeaderLoadDone()方法恢复组件到默认状态
+               getData(0,true);
+               _pageNum=0; 
+			  summer.refreshFooterLoadDone();
+ 	});
+ 	    /*上拉加载*/
+    summer.setRefreshFooterInfo({
+        visible: true,
+	    textColor: '#4d4d4d',
+	    textDown: '放手啊，不想刷新别拉我(｡•ˇ‸ˇ•｡)',
+	    textUp: '够了啊，我赶着刷新呢(｡•ˇ‸ˇ•｡)',
+	     textDo: '别急，马上就好(｡•ˇ‸ˇ•｡)',
+	    showTime: false,
+	    style: "moli"
+    }, function (ret, err) {
+    		_pageNum++;
+        	 getData(_pageNum,false);
+            summer.refreshFooterLoadDone();
+    })
+	 
+};
+function openWin(type){
+	$summer.alert(type);
+	summer.openWin({
+		id : "lvZhiLvZePingFen",
+		url : "html/lvZhiLvZePingFen/lvZhiLvZePingFen.html",
+		create: "false",
+        type: "actionBar",
+        actionBar: {
+            title: "履职履责评分",
+	      titleColor: "#ffffff", //注意必须是6位数的颜色值。（3位数颜色值会不正常）
+	      backgroundColor: "#FF0000",
+	      leftItem:{
+	          image: "img/back.png",
+	          method:"", //返回按钮自定义事件，不传方法时默认点击返回后关闭当前页面，也可在打开的window中自定义事件
+	          text:"返回",
+	          textColor:"#ffffff"  //返回文字颜色，注意必须是6位数的颜色值。（3位数颜色值会不正常）
+	      },
+	      rightItems:[{
+	          type:"text",
+	          text:"保存",
+	          textColor:"#ffffff", //文字颜色，注意必须是6位数的颜色值。（3位数颜色值会不正常）
+	          method:"saveClick()" //在打开的window中自定义事件
+      		}]
+        },
+        
+        pageParam :{
+            count : type
+        }
+	});
+};
+function getData(num,flag){
+	
+	summer.showProgress();
+	var requestid = "http://dj.lykyjt.com:8899/partyconstrutproject/performdutyMobile/list";
+	var json = {
+		"performstatus" : 0,
+		"pageIndex":num,
+		"pageSize":10,
+	}
+	summer.post(requestid, json , //可选参数，方便开发者设置请求的header
+	{
+		"Content-Type" : "application/x-www-form-urlencoded", //可选参数，post请求的要写入的条件数据，须为json对象
+	}, function(response) {//成功回调
+		summer.hideProgress();
+		
+		var data = $summer.strToJson(response.data);
+		
+		jsonArray = data.detailMsg;
+		$summer.alert(jsonArray);
+		if (!flag) {
+			if(_pageNum==0){
+                if(isEmpty(jsonArray.data.content)){
+                	createNull('addressList');
+                	return;
+                }
+             }
+                renderList(jsonArray.data.content);
+	            if(_pageNum>0){
+	                summer.refreshFooterLoadDone();
+	            }
+          }else{
+                /*刷新以后_pageNum值回复成0*/
+                _pageNum=0;
+                if(isEmpty(jsonArray.data.content)){
+                	createNull('addressList');
+                	return;
+                }
+                renderFresh(jsonArray.data.content);
+                summer.refreshHeaderLoadDone();
+            }
+		
+	}, function(response) {//失败回调
+		console.log(response);
+	   	 summer.hideProgress();
+	});
+		  
+};
+/*渲染列表*/
+function renderList(data) {
+   var dataText = doT.template($("#domTemp").text());
+		$(".addressList").append(dataText(data));
+
+}
+/*刷新替换原有列表*/
+function renderFresh(data) {
+       var dataText = doT.template($("#domTemp").text());
+		$(".addressList").html(dataText(data));
+}
+function searchClick(){
+	
+}
+//判断是否为空
+function isEmpty(data) {
+	if (data == undefined || data == null || data == "" || data=='NULL' || data==false || data=='false') {
+		return true;
+	}
+	return false;
+}
+
+        
+        
+    </script>
+</html>

@@ -1,0 +1,57 @@
+body{
+	background: #fff;
+}
+.um-content{
+	position: relative;
+	background: #fff;
+}
+.li-content{
+	display: flex;
+	flex-direction:row;
+}
+.news-list{
+	width: 100%;
+}
+.left-img{
+	width:50px;
+	height:50px;
+}
+.list-li{
+	padding: 0px 10px;
+	width:100%;
+	border-bottom: 1px solid #b2b2b2;
+}
+.li-right{
+	flex:1;
+}
+.li-left{
+	margin-right:20px;
+}
+.line{
+	background-color: #c2c2c2;
+	height:1px;
+}
+.li-right{
+	overflow: hidden;
+}
+.li-right p{
+	color:#6c6c6c;
+	overflow: hidden;
+	text-overflow:ellipsis;/*文字隐藏以后添加省略号*/
+	white-space:nowrap;/*强制不换行*/
+}
+.li-right p:first-child{
+	color:#595959;
+}
+.li-right p:last-child{
+	text-align: right;
+}
+.mescroll{
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		height: auto;/*如设置bottom:51px,则需height:auto才能生效*/
+	}
+#detail #frame{
+	padding:15px;
+}

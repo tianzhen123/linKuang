@@ -1,0 +1,67 @@
+<!DOCTYPE html><!---宣传发布界面--->
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="../../css/base.css" />	
+		<link rel="stylesheet" href="xuanChuanFaBu.css" />
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="../../js/knockout.js"></script>
+		<script src="../../js/base.js"></script>
+		<script src="xuanChuanFaBu.js"></script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-header" >
+				<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            	<h3 id="pageTitle">宣传发布</h3>
+            	<a href="#" class="addBtn" onclick="addClick()">新增</a>
+			</div>
+
+			<div class="um-content">
+				
+				<div>
+					<div class="ulTitle" data-bind="foreach:cgx">
+						<div data-bind="click:$root.turnClick2.bind($data)">
+							<p class="ulTitle-left" data-bind="text:name"></p>
+							<p class="ulTitle-right" data-bind="text:count"></p>
+						</div>
+					</div>
+					<div class="line"></div>
+				</div>
+				<div>
+					<div class="ulTitle" data-bind="foreach:dsp">
+						<div data-bind="click:$root.turnClick2.bind($data)">
+							<p class="ulTitle-left" data-bind="text:name"></p>
+							<p class="ulTitle-right" data-bind="text:count"></p>
+						</div>
+					</div>
+					<div class="line"></div>
+					
+				</div>
+				<div>
+					<div class="ulTitle alCommit">
+						<div>
+							<p class="ulTitle-left">已审批</p>
+							<div id="topTurn"></div>
+						</div>
+					</div>
+					<div class="line"></div>
+					<ul class="commitUl" data-bind="foreach:ysp">
+						<li data-bind="click:$root.turnClick.bind($data)">
+							<p class="ulTitle-left" data-bind="text:name">临矿党建</p>
+							<p class="ulTitle-right" data-bind="text:count">12</p>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			
+		</div>
+	</body>
+</html>

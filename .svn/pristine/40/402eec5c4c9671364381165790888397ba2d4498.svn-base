@@ -1,0 +1,53 @@
+
+summerready=function(){
+	//getUserInfo();
+}
+
+//警示教育
+function jingShiClick(){
+	summer.openWin({
+        "id" : "newsPropaganda",
+        "url" : "html/newsPropaganda/newsPropaganda.html",
+       "isKeep" : true,
+        "pageParam" : {
+            "count" : "01010201",
+            "pageTitle":"警示教育",
+        }
+    });
+}
+//曝光台
+function baoGuangClick(){
+	summer.openWin({
+        "id" : "newsPropaganda",
+        "url" : "html/newsPropaganda/newsPropaganda.html",
+       "isKeep" : true,
+        "pageParam" : {
+            "count" : "01010202",
+            "pageTitle":"曝光台",
+        }
+    });
+	
+}
+
+//纪检信箱
+function jiJianXinXiang(){
+	summer.openWin({
+        "id" : "checkMailbox",
+        "url" : "html/mailbox/checkMailbox.html",
+       "isKeep" : true,
+    });
+}
+
+//留言板
+function liuYanBan(){
+	summer.openWin({
+        "id" : "liuYanBan",
+        "url" : "html/liuYanBan/liuYanBan.html",
+       "isKeep" : true,
+    });
+}
+
+function backClick(){
+	summer.closeWin({});
+}
+

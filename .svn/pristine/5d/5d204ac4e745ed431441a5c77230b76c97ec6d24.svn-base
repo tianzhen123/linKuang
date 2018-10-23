@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">
+		<link rel="stylesheet" href="../../css/base.css" />	
+		<link rel="stylesheet" href="lvZhiLvZe.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iuapmobile.um.listview.css">
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="../../js/knockout.js"></script>
+		<script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+		<script src="../../js/hp/hp_scroll.js"></script>
+		<script src="../../js/hp/hp_slide.js"></script>
+		<script type="text/javascript" src="lvZhiLvZe.js"></script>
+		
+	</head>
+	<body>
+		<div class="um-win" id="index" name="hp_slide">
+			<div class="um-header">
+				<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            		<h3>履职履责</h3>
+			</div>
+			<ul class="um-tabbar um-tabbar-underline pt10 pb10 um-tabbar-switch">
+	                	<li class="active" data-tar='.news'><a>待处理</a></li>
+	                	<li data-tar='.product'><a>已处理</a></li>
+                </ul>
+                
+                <div class="um-input-group">
+                	<form style="width: 100%"  action="javascript:searchClick();">
+                		<span class="ti-search" onclick="searchClick();"></span>
+                		<input  type="search" class="form-control" id="sear"  placeholder="姓名/岗位" >
+                	</form>
+                </div>
+			<div class="um-content" name = "hp_scroll_content">
+					<!--下拉加载 start-->
+					<div id="pullDown" style="display: none">
+					</div>
+					<!--下拉加载 end-->
+                <div class="Artical">     
+                	<div class="news active">
+                		<div name="hp_scroll" class="um-listview" id="listview">
+	                		<ul class="um-list" data-bind="foreach:data"> 
+		                		<li class="um-listview-row">
+							    <a href="#" class="um-list-item"> 
+							        <div class="um-list-item-media"> 
+							            <div class="name f12 um-box-center"  data-bind="text:name_name"></div>
+							        </div> 
+							        <div class="um-list-item-inner"> 
+							            <div class="um-list-item-body" > 
+							            			<div data-bind="text:name_name"></div> 
+							            			<div data-bind="text:post"></div>
+							            </div> 
+							            <div class="um-list-item-right"> 
+							                <span class="um-gray mr15 f14" ></span> 
+							            </div> 
+							        </div> 
+							    </a>
+							  </li>
+						</ul>
+					</div>
+					
+                	</div>
+                	<div class="product">
+                		
+                		<div class="um-listview" id="listview2">
+	                		<ul name="hp_scroll" class="um-list" data-bind="foreach:data2"> 
+		                		<li class="um-listview-row">
+							    <a href="#" class="um-list-item"> 
+							        <div class="um-list-item-media"> 
+							            <div class="name f12 um-box-center"  data-bind="text:name_name"></div>
+							        </div> 
+							        <div class="um-list-item-inner"> 
+							            <div class="um-list-item-body" > 
+							            			<div data-bind="text:name_name"></div> 
+							            			<div data-bind="text:post"></div>
+							            </div>  
+							            <div class="um-list-item-right"> 
+							                <span class="um-gray mr15 f14">已处理
+							                 </span> 
+							            </div> 
+							        </div> 
+							    </a>
+							  </li>
+						</ul>
+					</div>
+                	
+                	</div>
+                </div>
+                
+				<!--上拉加载 start-->
+		        <div id="pullUp" style="display: none">
+				</div>  
+				<!--上拉加载 end-->   
+			</div>
+		</div>
+	</body>
+
+	
+</html>

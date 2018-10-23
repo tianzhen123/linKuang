@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">
+		<link rel="stylesheet" href="../../html/wangShangZhiDaiHui/tiAnList.css">
+		<script src="../../js/summer.js" ></script>
+		<script src="../../js/base.js" ></script>
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/knockout.js"></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+		<script src="../../html/wangShangZhiDaiHui/tiAnList.js" ></script>
+	</head>
+	<body>
+		<div class="um-frame" id="index">
+			<div class="um-content">
+			
+<!-- 				<div class="um-header" id="header" style="background-color: red" data-index = "0">
+							    <a href="#"  class="um-back" onclick="backClick()">返回</a>
+							       <h3>提案</h3>
+							    </div>
+							    
+							    <div class="um-input-group">
+				                    <span class="ti-search"></span>                 
+				                	<input type="search" class="form-control" id="sear" placeholder="搜索">              	              	
+				                    <button class="btn-inline " style="background-color: #1E90FF;color:white; height: 40px;width: 40px" onclick="searchClick()">搜索</button>
+				                </div> -->
+                
+				<div class="um-listview-wrap" id="listview">
+				            	<ul class="um-list um-no-active" data-bind="foreach:data">
+				            		<li class="um-listview-row" style="background-color: #FFFFFF">
+				            			<a href="#" class="um-list-item um-swipe-action um-no-icon">
+				            				<div class="um-list-item-inner" > 
+									            <div class="um-list-item-body" >
+									            		<div class="um-row" style="">
+									            				<!-- <img   style="float:left;padding-right: 10px;max-width: 50%;"   data-bind="attr:{src: fimage}"/> -->
+									            				<p class="f18 fb um-row" data-bind="text:proposalsub"> </p>
+									            		</div>
+									            		<!-- <div id="time" class="f14" data-bind="text:ts" >2017-10-10</div> -->
+									            </div> 
+									        </div> 
+				            			</a>
+				            		</li>
+				            	</ul>
+			            </div>
+			</div>
+		</div>
+	</body>
+</html>

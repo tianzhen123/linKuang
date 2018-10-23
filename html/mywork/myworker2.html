@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">		
+		<link rel="stylesheet" href="../../css/account2.css">	
+		<link rel="stylesheet" href="../../css/base.css" />
+		<link rel="stylesheet" href="./myworker.css" />
+		<link rel="stylesheet" href="../../css/commons.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iuapmobile.um.listview.css">
+		<link rel="stylesheet" href="../../css/iscroll.css"/>
+		<script src="../../js/commons.js" ></script> 
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/summer.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="../../js/swipe.js" ></script>
+		<script src="../../js/swipeTab.js" ></script>
+		<script type="text/javascript" src="../../js/knockout.js"></script>
+    	<script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+    	<script src="../../js/iscroll.js"></script>
+		
+		
+		<script>
+			
+			$isWeb = true;
+			function $pageReady() {
+				alert("webview ready");
+			}
+
+			$(function() {
+
+			});
+		</script>
+		
+	</head>
+	<body>
+		<div class="um-page active" id="index">
+            <div id="header" class="um-header">
+                <a  onclick="backClick()"  class="um-back"></a>
+                <h3>我的工作</h3>
+            </div>
+
+			<div class="um-content" style="background-color: #FFF;">
+
+			
+				<ul class="um-tabbar um-tabbar-underline" style="background-color: #fff;">
+					<li name="approvalPending" id="approvalPending">
+						<a href="javascript:;">待审批</a>
+					</li>
+					<li name="approvaled" id="approvaled" class="active">
+						<a href="javascript:;">已审批</a>
+					</li>
+				</ul>
+				
+	
+							
+			<div style="border-top: 1px solid #E6E6E6;border-bottom: 1px solid #E6E6E6;">
+				<ul class="filterContainer">
+					<li class="scroller-container" style="width: 30%;">
+						<select id='select1' class="um-scroller-select" style="float: left;width: 20px;">
+							<option selected="BUSI_TYPE_ALL" value="">全部</option>
+                            <option value="BUSI_TYPE_GE">先进劳模</option>
+                            <option value="BUSI_TYPE_SA">金秋助学</option>
+                            <option value="BUSI_TYPE_HW">职工帮扶</option>
+                            <option value="BUSI_TYPE_MS">群众安全</option>
+                            <option value="BUSI_TYPE_WA">职工诉求</option>
+                            <option value="BUSI_TYPE_SP">青安岗工作</option>
+	                    </select> 
+	                    <img src="../../img/ico_xl.png" />
+					</li>
+					
+					<li style="text-align: right;width: 60%;">
+						<input id="name" type="text" placeholder="点击此处，按姓名模糊查询"/>
+					</li>
+					<li id="searchBtn" style="text-align: right;width: 10%;padding-left: 0px;padding-bottom: 0px;">
+						<img src="../../img/ico_search.png" style="width: 18px;"/>
+					</li>
+				</ul>
+			</div>
+						
+							
+			<div class="um-listview-wrap" id="listview" style="s">
+	            <ul class="um-list um-no-active" data-bind="foreach:data">
+	            	
+	                <li class="um-listview-row">
+						<div class="um-row approval-item ge-model um-list-items um-swipe-action um-no-icon">
+						    <div class="um-xs-3 um-sm-3 um-md-3 contsyl" >
+								<div class="iconSyl">
+									<img src="" data-bind="attr:{src:ico}"/>
+								</div>
+								<div class="textsyl">
+									<p data-bind="text:busiType"></p>
+								</div>
+							</div>
+							<div class="um-xs-4 um-sm-4 um-md-4" style="padding-left: 0px">
+								<div class="middSyl1">
+									<p data-bind="text:lastUserName"></p>
+								</div>
+								<div class="middSyl2">
+									<p class="ge_orgname" data-bind="text:orgName">菏泽煤矿中心</p>
+								</div>
+							</div>
+							<div class="um-xs-5 um-sm-5 um-md-5" style="padding-left: 0px" >
+								<div class="timesyl">
+									<p data-bind="text:lastUpdateTime"></p>
+								</div>
+								<div class="rightsyl">
+									<img src="../../img/right.png" />
+								</div>
+							</div>
+						</div>					      
+	                </li>
+	            </ul>
+	        </div>
+		</div>
+		
+	<script src="./myworker2.js" ></script>
+	<script src="./mywork.approvalHandleList.js" ></script>
+	<script>
+	</script>	
+	</body>
+</html>

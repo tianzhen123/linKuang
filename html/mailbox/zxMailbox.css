@@ -1,0 +1,36 @@
+.um-list {
+    background:rgba(0,0,0,0);
+    overflow: hidden;
+    position: relative;
+    border-bottom: 1px solid #d8d8d8;
+    border-top: 1px solid #d8d8d8;
+    /* border-width: 1px 0 1px 0; */
+}
+
+.um-list .um-list-item {
+    position: relative;
+    display: -webkit-box;
+    display: box;
+    -webkit-box-align: center;
+    box-align: center;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    padding: 0;
+    /* padding-left: 15px; */
+    color: #252222;
+    transition: all ease .3s;
+}
+.um-list .um-list-item-right {
+   	padding-left: 0; 
+   	min-width:50%;
+    padding-right: 20px;
+    text-align: right;
+    -webkit-box-flex: 1;
+    box-flex: 0;
+    -webkit-flex: 0;
+    flex: 0; 
+    -webkit-flex-shrink: 1;
+    flex-shrink: 1;
+}

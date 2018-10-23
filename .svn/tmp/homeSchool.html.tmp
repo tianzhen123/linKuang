@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../../css/font-icons.css">	
+		<link rel="stylesheet" href="../../../css/base.css" />	
+		<script src="../../../js/summer.js" ></script>		
+		<script src="../../../js/jquery.min.js" ></script>
+		<script src="../../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="../../../js/knockout.js"></script>		
+		<script src="homeSchool.js"></script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-header" >
+				<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            	<h3 id="pageTitle">在线学习</h3>
+			</div>
+
+			<div class="um-content">
+<<<<<<< .mine
+				<button onclick="turnPage()" style="width: 100%;height: 50px;">123</button>
+=======
+				
+                <button class="btn" onclick="test1()">党校概况</button>
+				<button class="btn" onclick="test2()">教学科研</button>
+				<button class="btn" onclick="test3()">要论摘编</button>
+				<button class="btn" onclick="test4()">学习成果</button>
+				<button class="btn" onclick="test5()">教师风采</button>
+				<button class="btn" onclick="test6()">在线学习</button>
+				<button class="btn" onclick="test7()">组织机构</button>
+>>>>>>> .r1788
+			</div>
+
+		</div>
+		<script src="homeSchool.js"></script>
+	</body>
+
+	<script>
+		
+	</script>
+</html>

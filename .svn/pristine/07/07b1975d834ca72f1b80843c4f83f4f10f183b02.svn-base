@@ -1,0 +1,77 @@
+﻿
+var appid = "";
+summerready = function(){
+	var param = summer.pageParam;
+	var code = summer.pageParam.code;
+	appid = param.ens_appid;
+	
+	summer.setStorage("host", "dj.lykyjt.com:8899/");
+	
+	var requestip = "http://"+summer.getStorage("host")+"partyconstrutproject/friendspaceadaptorcontroller/getUserinfo";
+	summer.post(requestip,{"paramsinfo":code},//可选参数，方便开发者设置请求的header
+        {
+        "Content-Type" : "application/x-www-form-urlencoded", //可选参数，post请求的要写入的条件数据，须为json对象
+        }, 
+    	function(response){//成功回调
+        	var data = $summer.strToJson(response.data);
+        	data = data.data;
+			summer.setStorage("userInfo", data);
+			turnPage();
+        },
+    	function(response){ //失败回调
+        	$summer.alert("网络错误");
+    	});
+	
+
+}
+
+function turnPage(){
+	var param = "1";
+	
+	var id = "";
+	var url = "";
+	
+	switch(parseInt(appid)){
+		case 125402:{//工会
+			id = "gongHui";
+			url = "html/gongHui/gongHui.html";
+		}break;
+		case 125408:{//共青团工作
+			id = "gongQingTuan";
+			url = "html/gongQingTuan/gongQingTuan.html";
+		}break;
+		case 125409:{//纪检监察
+			id = "jiJian";
+			url = "html/jiJian/jiJian.html";
+		}break;
+		case 125410:{//和谐临矿
+			id = "heXieLinKuang";
+			url = "html/heXieLinKuang/heXieLinKuang.html";
+		}break;
+		case 126790:{//新闻宣传
+			id = "news";
+			url = "html/news/news.html";
+		}break;
+		case 125382:{//党务工作
+			id = "dangJianGuanLi";
+			url = "html/dangJianGuanLi/dangJianGuanLi.html";
+		}break;
+		default :{
+			id = "news";
+			url = "html/news/news.html";
+		}
+		
+	}
+	
+	
+	summer.openWin({
+        "id" : id,
+        "url" : url,
+        "isKeep":false,
+        "pageParam" : {
+            "param" : param,
+        },
+    });
+
+}
+

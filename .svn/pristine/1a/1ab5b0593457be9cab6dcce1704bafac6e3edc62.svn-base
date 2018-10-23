@@ -1,0 +1,12 @@
+var arr = [
+	{name:'组织机构1'},
+	{name:'组织机构2'}
+];
+var viewModel;
+summerready = function(){
+	
+	viewModel = {
+		organ : ko.observableArray(arr),
+	}
+	ko.applyBindings(viewModel);
+}

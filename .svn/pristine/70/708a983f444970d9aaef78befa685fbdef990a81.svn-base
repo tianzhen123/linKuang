@@ -1,0 +1,25 @@
+
+summerready = function() {
+    var ViewModel = function () {            
+            };	
+    var jsonArray = [
+    {         
+        "img": "../../img/1.jpg",
+        "title": "我的名字",
+        "time":"取得时间",
+        "detail": "我的党支部",
+        "comments": 2300,
+        "neirong":"1949年毕业于上海交通大学造船系船舶制造专业，先后从事过民用船舶和军用舰艇的研究设计工作。1958年开始参与并领导我国核潜艇的研究设计，历任中国船舶工业总公司第七一九所副总工程师、副所长、所长兼代理党委书记，受国防科工委任命为核潜艇副总设计师、总设计师。现为研究员级高级工程师、中国工程院院士。他从事核潜艇研制工作30多年，为我国核潜艇事业的发展做出了重要贡献。"
+     },                    
+                    ];
+                        
+	var viewModel = new ViewModel();
+	viewModel.data = ko.observableArray(jsonArray);
+	ko.applyBindings(viewModel); 
+    }
+
+function backClick(){
+summer.closeWin({});
+}
+
+

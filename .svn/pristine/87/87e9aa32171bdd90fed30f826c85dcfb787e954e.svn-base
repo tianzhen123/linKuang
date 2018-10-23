@@ -1,0 +1,43 @@
+<!DOCTYPE html><!--组织机构-->
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../../css/font-icons.css">
+		<link rel="stylesheet" href="../../../css/base.css" />	
+		<link rel="stylesheet" href="organization.css" />	
+		<link rel="stylesheet" href="../../../css/mescroll.min.css" />
+		<script src="../../../js/summer.js" ></script>		
+		<script src="../../../js/jquery.min.js" ></script>
+		<script src="../../../js/mescroll.min.js"></script>
+		<script src="../../../js/knockout.js"></script>
+		<script src="../../../js/base.js" ></script>
+		<script src="../../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-header" >
+				<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            	<h3 id="pageTitle">组织机构</h3>
+			</div>
+
+			<div id="um-content" class="um-content">
+				<div id="mescroll" class="mescroll">
+					<ul id="dataList" class="list" data-bind="foreach:data">
+						<li class="list-li" data-bind="click:$root.openWin.bind($data)">
+							<div class="li-content">
+								<img style="width: 35px;height: 35px;margin-right: 20px;" class="li-img" src="../../../img/organiz.png"/>
+								<p data-bind="text:name"></p>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+		
+		<script src="organization.js"></script>
+	</body>
+</html>

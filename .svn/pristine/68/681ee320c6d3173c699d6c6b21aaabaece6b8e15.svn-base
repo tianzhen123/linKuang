@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="../../css/base.css" />
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="armedDefense.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script type="text/javascript" src="../../js/knockout-2.2.0.js"></script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-header">
+            	<a href="#"  class="um-back"  data-bind="click:backClick">返回</a>
+            	<h3>武装保卫</h3>
+            </div>
+			
+
+			<div class="um-content">
+				
+                <div class="um-grid um-row">
+                	<div class="um-grid-row h30 pl10 um-box-vc">
+                		<span class="f14 fb vm um-gray">平安临矿建设</span>
+                	</div>
+                	<div class="um-grid-row tc um-border-bottom um-bgc-white">
+                		<div class="um-border-right">
+                			<div class="um-circle um-black" data-bind="click:openCrimePrevention">
+                				<img src="../../img/mt_food.png" width=50 class="um-img-responsive" alt="">
+                				<div class="f12 mt5 um-gray">治安防控体系</div>
+                			</div>
+                		</div>
+                		<div class="um-border-right">
+                			<div class="um-circle um-black"  data-bind="click:openExaminationResult">
+                				<img src="../../img/mt_mv.png" width=50 class="um-img-responsive" alt="">
+                				<div  class="f12 mt5 um-gray">考核结果公示</div>
+                			</div>
+                		</div>
+                		<div class="um-border-right" style="opacity:0" >
+                		</div>
+                		
+                	</div>
+                	<div class="um-grid-row h30 pl10 um-box-vc">
+                		<span class="f14 fb vm um-gray">消防安全</span>
+                	</div>
+                	<div class="um-grid-row tc um-border-bottom um-bgc-white">
+                		<div  class="um-border-right">
+                			<a href="#" class="um-circle um-black">
+                				<img src="../../img/mt_ktv.png" width=50 class="um-img-responsive" alt="">
+                				<div  class="f12 mt5 um-gray">相关消防政策信息</div>
+                			</a>
+                		</div>
+                		<div class="um-border-right">
+                			<a href="#" class="um-circle um-black">
+                				<img src="../../img/mt_new.png" width=50 class="um-img-responsive" alt="">
+                				<div class="f12 mt5 um-gray">四个能力建设情况</div>
+                			</a>
+                		</div>
+                		<div class="um-border-right" style="opacity:0" >
+                		</div>
+                		
+                	</div>
+                	<div class="um-grid-row h30 pl10 um-box-vc">
+                		<span class="f14 fb vm um-gray">工作动态</span>
+                	</div>
+                	<div class="um-grid-row tc um-border-bottom um-bgc-white">
+                		<div  class="um-border-right">
+                			<a href="#" class="um-circle um-black">
+                				<img src="../../img/mt_ktv.png" width=50 class="um-img-responsive" alt="">
+                				<div  class="f12 mt5 um-gray">队伍建设</div>
+                			</a>
+                		</div>
+                		<div  class="um-border-right">
+                			<a href="#" class="um-circle um-black">
+                				<img src="../../img/mt_ktv.png" width=50 class="um-img-responsive" alt="">
+                				<div  class="f12 mt5 um-gray">队容风纪</div>
+                			</a>
+                		</div>
+                		<div  class="um-border-right">
+                			<a href="#" class="um-circle um-black">
+                				<img src="../../img/mt_ktv.png" width=50 class="um-img-responsive" alt="">
+                				<div  class="f12 mt5 um-gray">活动信息</div>
+                			</a>
+                		</div>
+                		
+                	</div>
+                </div>
+
+			</div>
+
+		</div>
+	</body>
+</html>

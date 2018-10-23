@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="../../css/base.css" />
+		<link rel="stylesheet" href="xianJinLaoMoXiangQing.css" />
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script type="text/javascript" src="../../js/knockout.js"></script>
+		<script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+		<script src="../../js/hp/hp_slide.js"></script>
+		<script src="xianJinLaoMoXiangQing.js" ></script>
+	</head>
+	<body>
+		<div class="um-win" id="index" name="hp_slide">
+			<div class="um-header" >
+				<a href="#"  class="um-back" onclick="backClick()">返回</a>
+				<h3>先进劳模</h3>
+			</div>
+			<div class="um-content" data-bind="foreach:data">
+				<div style="float: left;">
+					<img id="peoPho" alt="" class="wdzp" data-bind="attr:{src:tupian}">
+				</div>
+				<div id="ziduan">
+					<div id="yincang">
+						<div class="um-box-vc">
+							<span class="f16">姓名：</span>
+							<div data-bind="text:x_name" class="f16 um-gray xingming" style="width: 160px;"></div>
+						</div>
+						<div class="um-box-vc">
+							<span class="f16">性别：</span>
+							<div data-bind="text:x_sex" class="f16 um-gray xingming" style="width: 160px;"></div>
+						</div>
+						<div class="um-box-vc">
+							<span class="f16">职称：</span>
+							<div data-bind="text:xzc" class="f16 um-gray xingming" style="width: 160px;"></div>
+						</div>
+					</div>
+					<div id="yincang2"></div>
+					<div >
+						<span class="f16" style="height: 20px; ">政治面貌：</span>
+						<span data-bind="text:zzmm" class="f16 um-gray" style="width:160px;"></span>
+					</div>
+					<div id="yincang1" style=""></div>
+					<div>
+						<span class="f16">工作单位：</span>
+						<span data-bind="text:gzdw" class="f16 um-gray dangzuzhi" style="width: 160px;"></span>
+					</div>
+				</div>
+				<div class="sj">
+					<div class="f16" style="height: 20px;margin-bottom: 10px; ">
+						简要事迹：
+					</div>
+					<div class="f16" id="guangrongshiji" style="text-indent: 32px;word-break: break-all">
+						滴答滴答滴答滴答滴答滴答滴答滴答滴答滴答滴答滴答滴答滴答滴答滴答滴答滴答滴答
+					</div>
+				</div>
+			</div>
+			</div>
+	</body>
+</html>

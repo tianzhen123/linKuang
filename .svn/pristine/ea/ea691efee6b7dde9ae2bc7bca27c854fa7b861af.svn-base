@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="gongHui.css" />
+		<link rel="stylesheet" href="../../css/base.css" />
+        <link rel="stylesheet" type="text/css" href="../../css/islider.css">
+        <style>
+        	.iSlider-wrapper {
+        		height: 100%;
+        	}
+        </style>
+
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="../../js/base.js"></script>
+		<script src="gongHui.js"></script>
+        <script type="text/javascript" src="../../js/islider.js"></script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-header">
+            	<a href="#"  class="um-back" onclick="backClick()">返回</a>
+            	<h3>工会</h3>
+            </div>
+
+			<div class="um-content" style="height: 100%">
+				
+				
+                <div class="um-row" style="width: 100%;height: 28%"><div id="iSlider-wrapper" class="iSlider-wrapper"></div></div>
+
+				
+				<div class="um-grid um-row">
+	                	<div class="um-grid-row tc um-border-bottom">
+	                		<div class="um-border-right um-bgc-white" onclick="jiCengActive()">
+	                			<a href="#" class="um-circle um-black">
+	                				<img src="../../img/jicengdongtai.png" width=50 class="um-img-responsive" alt="">
+	                				<div  class="f12 mt5">基层动态</div>
+	                			</a>
+	                		</div>
+	                		<div class="um-border-right um-bgc-white" onclick="puHuiFuWu()">
+	                			<a href="#" class="um-circle um-black">
+	                				<img src="../../img/huipu.png" width=50 class="um-img-responsive" alt="">
+	                				<div  class="f12 mt5">普惠服务</div>
+	                			</a>
+	                		</div>
+	                		
+	                		<div  class="um-border-right um-bgc-white " onclick="zhuXiMail()">
+	                			<a href="#" class="um-circle um-black">
+	                				<img src="../../img/zhuximail.png" width=50 class="um-img-responsive" alt="">
+	                				<div  class="f12 mt5">主席信箱</div>
+	                			</a>
+	                		</div>
+	                		
+	                	</div>
+	                	<div class="um-grid-row tc um-border-bottom">
+	                		<div class="um-border-right um-bgc-white" onclick="zhiDaiHui()">
+	                			<a href="#" class="um-circle um-black">
+	                				<img src="../../img/wangShangZhiDaiHui.png" width=50 class="um-img-responsive" alt="">
+	                				<div  class="f12 mt5">网上职代会</div>
+	                			</a>
+	                		</div>
+	                		<div class="um-border-right um-bgc-white">
+	                			<a href="#" class="um-circle um-black">
+	                			</a>
+	                		</div>
+	                		
+	                		<div  class="um-border-right um-bgc-white ">
+	                			<a href="#" class="um-circle um-black">
+	                			</a>
+	                		</div>
+	                		
+	                	</div>
+                	</div>
+			</div>
+
+		</div>
+	</body>
+</html>

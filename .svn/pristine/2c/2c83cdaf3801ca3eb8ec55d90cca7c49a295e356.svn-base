@@ -1,0 +1,21 @@
+.um-content{
+	background-color: #FFFFFF;
+}
+
+#title{
+	padding:10px;
+}
+
+#time{
+	margin-right:20px;
+}
+
+#img{
+	padding: 20px;
+	width: 100%;
+}
+
+#detail{
+	padding: 20px;
+}
+p{ text-indent:2em;}

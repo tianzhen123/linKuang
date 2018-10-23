@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+		.um-content{
+			background-color: #FFFFFF;
+		}
+		
+		#title{
+			padding:10px;
+		}
+		
+		#time{
+			margin-right:20px;
+		}
+		
+		#img{
+			width: 100%;
+		}
+		
+		#detail{
+			padding: 0 10px;
+		}
+		p{ text-indent:2em;}
+		
+		</style>
+	</head>
+	<body>
+		<div >
+			<div class="um-content">
+				<div style="margin: 20px;">
+					<img id="img"  src="dongshizhang.jpg"  />
+				</div>
+				<div id="detail">
+					<p>
+						全面从严治党永远在路上。多年来，集团公司党委始终将管党治党责任扛在肩上、抓在手中，坚持思想建党和制度治党同向发力，继承弘扬红色基因，坚守“姓党”本色，积极构建“发展是硬道理、挣钱是真本事、党建是大动力”工作格局，突出发挥党的领导核心和政治核心作用，经过几代临矿人的奋斗和拼搏，实现了由站起来到富起来再到强起来的历史变革。当前，集团公司实施建设的“五大共享平台”大数据工程是落实国家大数据战略的具体举措，也是实现集团公司真正强起来的重大步骤和关键一环。“智慧党建”平台充分发挥了“互联网+”的积极作用，涵盖了党建工作全部专业，具备了学习、管理、查询、考核、评比等一站式网上服务功能，夯实了党建工作基础，丰富了党的建设的内容，活跃了党员群众队伍，使落实全面从严治党，推进“两学一做”学习教育常态化制度化有了很好的平台和抓手。各级党组织和广大党员要积极参与其中，充分利用好和发挥好党建共享平台的重要作用，进而不断将集团公司“领先性”发展战略推向深入。
+					</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,61 @@
+var viewModel;
+summerready = function(){
+	$('.username').val(summer.getStorage("lk_username"));
+    $('.pwd').val(summer.getStorage("lk_pwd"));
+    setBtnLogin(summer.getStorage("lk_username"),summer.getStorage("lk_pwd"));
+    var autoLogin = summer.getStorage("lk_autoLogin")==='false'?false:true;
+    $("[name = um-checkbox-inline]:checkbox").attr("checked", autoLogin);
+    
+    $('.clear').on('click',function(){
+    	$(".btn_login").css("background-color","#b1b1b1");
+		$(".btn_login").attr('disabled',true);
+    })
+    
+    $('#changePassType').on('click',function(){
+        var $this = $(this);
+        var type = $('.pwd').attr('type')=='text'?'password':'text';
+        $('.pwd').attr('type',type);
+        $this.toggleClass('show-pass');
+    })
+    
+    //登录点击事件
+    $('.btn_login').on('click',function(){
+    	var username = $('.username').val().trim();
+    	var pwd = $('.pwd').val().trim();
+    	if(isNull(username)||isNull(pwd)){
+    		$summer.alert("信息填写不完整");
+    		return;
+    	}
+    	summer.setStorage("lk_username", username);
+    	var check = $("input[type='checkbox']").is(':checked');
+    	if(check){
+    		summer.setStorage("lk_pwd", pwd);
+    	}else{
+    		summer.setStorage("lk_pwd", "");
+    	}
+    	summer.setStorage("lk_autoLogin", check);
+    	alert("login");
+    })
+    
+}
+function confirmInputChange() {
+	var pwd = $('.pwd').val();
+	var username = $('.username').val();
+	setBtnLogin(username,pwd);
+}
+function setBtnLogin(username,pwd){
+	if (isNull(pwd)||isNull(username)) {
+		$(".btn_login").css("background-color","#b1b1b1");
+		$(".btn_login").attr('disabled',true);
+	} else {
+		$(".btn_login").css("background-color","#cc3535");
+		$(".btn_login").attr('disabled',false);
+	}
+}
+
+function isNull(args){
+	return args == null || args=="null" || args == undefined || args == "undefined" || args == "";
+}
+function trim(str){
+     return str.replace(/(^\s*)|(\s*$)/g,""); 
+} 

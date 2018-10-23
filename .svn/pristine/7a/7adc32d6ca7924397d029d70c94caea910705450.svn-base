@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="../../css/base.css" />
+		<link rel="stylesheet" href="tuanYuanTuiYouXiangQing.css" />
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script type="text/javascript" src="../../js/knockout.js"></script>
+		<script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+		<script src="../../js/hp/hp_slide.js"></script>
+		<script src="tuanYuanTuiYouXiangQing.js" ></script>
+	</head>
+	<body>
+		<div class="um-win" id="index" name="hp_slide">
+			<div class="um-header" >
+				<a href="#"  class="um-back" onclick="backClick()">返回</a>
+				<h3>团员推优</h3>
+			</div>
+			<div class="um-content" data-bind="foreach:data">
+				<div style="float: left;">
+					<img id="peoPho" alt="" class="wdzp" data-bind="attr:{src:photo}">
+				</div>
+				<div id="ziduan" style="min-height: 16%;">
+					<div id="yincang" style=" margin-top: 20%;">
+						<div class="um-box-vc">
+							<span class="f16" style=" min-width: 30%;">姓名：</span>
+							<div data-bind="text:name_name" class="f16 um-gray xingming" ></div>
+						</div>
+					</div>
+				</div>
+				<div class="sj">
+					<div class="f16 fb" style="height: 20px;margin-bottom: 10px; ">
+						所在团组织：
+					</div>
+					<div style="margin-bottom: 10px;">
+						<div data-bind="text:excellent_org_name" class="f16 " ></div>
+					</div>
+					<div class="f16 fb" style="height: 20px;margin-bottom: 10px; ">
+						所在单位：
+					</div>
+					<div style="margin-bottom: 10px;">
+						<div data-bind="text:pk_org_name" class="f16 " ></div>
+					
+					</div>
+					<div class="f16 fb" style="height: 20px;margin-bottom: 10px; ">
+						口号：
+					</div>
+					<div style="margin-bottom: 10px;">
+						<div data-bind="text:watchword" class="f16 " ></div>
+					</div>
+					<div class="f16 fb" style="height: 20px;margin-bottom: 10px; ">
+						主要事迹：
+					</div>
+					<div class="f16" id="guangrongshiji" style="text-indent: 32px;word-break: break-all">
+						
+					</div>
+				</div>
+			</div>
+			</div>
+	</body>
+</html>

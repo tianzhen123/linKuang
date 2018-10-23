@@ -1,0 +1,41 @@
+ul li{
+	border-bottom: 1px solid #c3c3c3;
+	position: relative;
+}
+.li-content{
+	display:flex;
+	padding:20px;
+}
+.li-right{
+	display:flex;
+	flex-direction:column;
+	justify-content:space-around;
+	padding-left:20px;
+}
+.li-right p{
+	color: #b2b2b2;
+}
+.li-right .name{
+	font-size: 18px;
+}
+.li-left img{
+	width: 70px;
+    height: 70px;
+	border-radius: 50px;
+}
+ul li:after{
+	content: "";
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid #9c9a9a;
+    border-top: 2px solid #9c9a9a;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    margin: 10px 10px 0px 0px;
+    line-height: 30px;
+    position: absolute;
+    right:10px;
+    top:50%;
+    margin-top:-5px;
+}

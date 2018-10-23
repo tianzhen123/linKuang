@@ -1,0 +1,146 @@
+.um-content {
+	font-size:14px;
+	background-color: #fff;
+}
+.btn-parent {
+	margin-left:5px;
+	display:inline-block;
+    height: 40px;
+    line-height: 40px;
+    background-color:#55cebd;
+    font-size: 20px;
+    padding:0 12px;
+    border-radius:6px;
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    -webkit-transform-origin: 100% 100%;
+    transform-origin: 0% 50%;
+    color:#fff;
+    margin-bottom:-10px;
+}
+.val-text {
+	padding-left:30px;
+}
+.header {
+	background-color:#fff;
+	padding: 4px 0 8px;
+}
+.code {
+	padding:0 3.6%;
+	font-size:12px;
+	color:#666;
+}
+.cname {
+	font-size:18px;
+	padding:0 3.6%;
+	color:#333;
+}
+.ccode {
+	color:#666;
+}
+.outer {
+	position:relative;
+	background-color:#55cebd;
+	width:32%;
+	border-radius: 100%;
+	margin: 10px auto 0;
+}
+.outer::before{
+	content: "";
+	padding-top: 100%;
+	display: block;
+}
+.inner {
+	position:absolute;
+	top: 50%;
+    left: 50%;
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+	background-color:#fff;
+	width:97%;
+	border-radius: 100%;
+	margin: 0 auto;
+}
+.inner::before{
+	content: "";
+	padding-top: 100%;
+	display: block;
+}
+.contract-num {
+	position:absolute;
+	top: 50%;
+    left: 50%;
+    -moz-transform: translate(-50%, -54%);
+    -ms-transform: translate(-50%, -54%);
+    -webkit-transform: translate(-50%, -54%);
+    transform: translate(-50%, -54%);
+   	font-size: 20px;
+    color: #f46b22;
+}
+.unit {
+	position:absolute;
+	left: 50%;
+	-moz-transform: translate(-50%, 0);
+    -ms-transform: translate(-50%, 0);
+    -webkit-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
+	bottom:6px;
+	font-size:16px;
+	color:#f46b22;
+	
+}
+.arrow-down {
+	display:inline-block;
+	position:absolute;
+	bottom:-8px;
+	left:50%;
+	-moz-transform: translate(-50%, 0);
+    -ms-transform: translate(-50%, 0%);
+    -webkit-transform: translate(-50%, 0%);
+    transform: translate(-50%, 0%);
+	width:0;
+	height:0;
+	border-style: solid;
+	border-width: 8px 6px 0 6px;
+	border-color:#ff761c transparent transparent transparent;
+}
+.mid {
+	color:#666;
+	text-align:center;
+	margin-top:12px;
+	margin-bottom:10px;
+}
+
+.contract-detail {
+	padding:0 2%;
+	line-height:34px;
+	background-color:#fff;
+	margin-top:6px;
+}
+.um-add {
+	position: absolute;
+	line-height: 46px;
+	top: 0;
+	right: 10px;
+	font-weight: 500;
+	color: #ffffff;
+}
+.contract-detail li {
+	border:1px solid transparent;
+	line-height: 40px;
+    text-align: left;
+    color: rgb(40, 40, 40);
+    -webkit-border-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAECAYAAABP2FU6AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAB5JREFUeNpiPnH8zH/G////MzAxAAHTyRNn/wMEGABpvQm9g9TJ1QAAAABJRU5ErkJggg==) 2 0 fill stretch;
+    border-style: solid;
+    padding: 0px 2%;
+    transition: all 0.3s ease;
+    border-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAECAYAAABP2FU6AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAB5JREFUeNpiPnH8zH/G////MzAxAAHTyRNn/wMEGABpvQm9g9TJ1QAAAABJRU5ErkJggg==) 2 0 stretch;
+    border-width: 0px 0px 1px;
+    border-color: transparent;
+    border-radius: 0px;
+}
+.label {
+	color:#666;
+}

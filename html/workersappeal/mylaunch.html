@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<!--
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">		
+		<link rel="stylesheet" href="../../css/account2.css">	
+		<link rel="stylesheet" href="../../css/base.css" />
+		<link rel="stylesheet" href="../../css/commons.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iuapmobile.um.listview.css">
+		<link rel="stylesheet" href="../../css/public.css" />
+		<link rel="stylesheet" href="../../css/new_page1.css">
+		<link rel="stylesheet" href="../massessecurity/approvalPendingList.css" />
+		<script src="../../js/commons.js" ></script> 
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/summer.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+		<script type="text/javascript" src="../../js/knockout.js"></script>
+		<script src="../../js/swipe.js" ></script>
+		<script src="../../js/swipeTab.js" ></script>
+		<script src="../../js/iscroll.js"></script>
+		<script src="../../js/new_page1.js" ></script>
+		<script src="./mylaunch.js" ></script>
+		-->
+		
+		
+		<link rel="stylesheet" href="./../mywork/listview.css">
+	    <link rel="stylesheet" href="../../js/ydui/ydui.px.css">
+		<link rel="stylesheet" href="https://unpkg.com/cube-ui/lib/cube.min.css">
+	
+		<script src="../../js/commons.js" ></script> 
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/summer.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+		<style>
+		    .yd-navbar{
+		    	padding-top: 10px;
+		    }
+		    .yd-navbar-item{
+		    	padding-top: 15px;
+		    }
+		    .geList{
+		    	display:flex;
+		    	flex-wrap:wrap;
+		    	padding-top:42px;
+		    }
+		    .geObj{
+		    	width:33.33%;
+		    	padding-left:5px;
+		    	padding-right:5px;
+		    	padding-bottom: 5px;
+		    }
+		    .geObj-img{
+		    	width:100%;
+		    	height: 120px;
+		    }
+		    .geObj-img img{
+		    	width:100%;
+		    	height: 100%;
+		    }
+		    .geObj-type{
+		    	width: 100%;
+		    	padding: 10px;
+		    	background-color: #d72424;
+		    	text-align: center;
+		    	color: #ffffff;
+		    }
+		   .geObj-name {
+		    	text-overflow: ellipsis;
+		     	white-space: nowrap;
+		   	 	overflow: hidden;
+		   	 	font-weight: 800;
+		   	 	text-align: center;
+		   	 	background-color: #FFFFFF;
+		   	 	padding: 5px;
+		   	 	padding-bottom: 0px;
+		   	 	font-size:15px;
+		   }
+		   .geObj-companyName {
+		    	text-overflow: ellipsis;
+		     	white-space: nowrap;
+		   	 	overflow: hidden;
+		   	 	text-align: center;
+		   	 	background-color: #FFFFFF;
+		   	 	padding:5px;
+		   }
+		   .yd-tab-box{
+		   		position: fixed;
+		   		width: 100%;
+		   		z-index: 9999;
+		   }
+		   .headerBar{
+		   		position:fixed;
+		   		background-color: red;
+		   		height: 64px;
+		   		top: 0px;
+		   		z-index: 99999;
+		   		width: 100%;
+		   		padding-top: 20px;
+		   }
+		   .yd-back-icon{
+		   	    font-size: 10px;
+		   }
+    </style>
+	</head>
+<body>
+	<div id="app">
+		<template>
+		    <yd-navbar title="我发起的" bgcolor="#d72424" height="64px" color="#FFFFFF" fixed="true">
+		        <router-link to="#" slot="left" @click="backFunc">
+		            <yd-navbar-back-icon color="#ffffff">&nbsp;返回</yd-navbar-back-icon>
+		        </router-link>
+		        <router-link to="#" slot="right">
+		        	<!--<div @click="showActive">申请</div>-->
+		        </router-link>
+		    </yd-navbar>
+		    <yd-pullrefresh :callback="pullLoadList" ref="pullrefresh">
+		    <yd-infinitescroll :callback="loadList" ref="infinitescroll" style="margin-top: 20px;">
+	    		<div slot="list" class="geList">
+					<ul class="um-list um-no-active" v-for="item, key in list" :key="key" class="geObj"  @click="toDetails(item)">
+		                <li class="um-listview-row">
+							<div class="um-row approval-item ge-model um-list-items um-swipe-action um-no-icon">
+							    <div class="um-xs-3 um-sm-3 um-md-3 contsyl" >
+									<div class="iconSyl">
+										<img src="../../img/dl.png"/>
+									</div>
+									<div class="textsyl">
+										<p>{{item.stateName}}</p>
+									</div>
+								</div>
+								<div class="um-xs-6 um-sm-6 um-md-6" style="padding-left: 0px">
+									<div class="middSyl1">
+										<p>{{item.appealUserName}}</p>
+									</div>
+									<div class="middSyl2">
+										<p class="ge_orgname">{{item.orgName}}</p>
+									</div>
+								</div>
+								<div class="um-xs-3 um-sm-3 um-md-3" style="padding-left: 0px" >
+									<div class="timesyl">
+										<p>{{item.approvalTime}}</p>
+									</div>
+									<div class="rightsyl">
+										<img src="../../img/right.png" />
+									</div>
+								</div>
+							</div>					      
+		                </li>
+		            </ul>
+	    		</div>
+		
+		        <span slot="doneTip">已加载全部数据</span>
+		        <img slot="loadingTip" src="http://static.ydcss.com/uploads/ydui/loading/loading10.svg"/>
+		    </yd-infinitescroll>
+		</yd-pullrefresh>
+		</template>
+	</div>
+	<script src="../../js/ydui/vue.min.js"></script>
+	<script src="../../js/ydui/ydui.px.js"></script>
+	<script src="https://unpkg.com/cube-ui/lib/cube.min.js"></script>
+	<script>
+		//const actionList = [{text:"申请",value:"approval"},{text:"我发起的",value:"launched"}];
+		var userId = localStorage.userid;
+		//var userId = '606aca3d-22fb-47c8-98fd-4480b6344eae';
+	    new Vue({
+	        el: '#app',
+	        data:{
+	        	page: 0, 
+	            pageSize: 15, 
+	            list: [] 
+	        },
+	        created: function () {
+				this.loadList();    
+	  		},
+	        methods: {
+	        	pullLoadList:function(){
+	        		this.page = 0;
+		    		this.list = [];
+		    		this.loadList();
+	        		this.$refs.pullrefresh.$emit('ydui.pullrefresh.finishLoad');
+	        	},
+	        	/**
+	        	 * 标题栏返回方法 
+	        	 */
+	            backFunc:function(){
+	            	summer.closeWin({});
+	            },
+	            toDetails:function(item){
+			    	localStorage.approvalId = item.approvalId;
+       				forword("approval","html/workersappeal/handleDetail.html"); 
+			    },
+	            /**
+			    showActive() {
+			      this.$createActionSheet({
+			        //title: '',
+			        active: 0,
+			        data: [
+			          {
+			            content: '申请'
+			          },
+			          {
+			            content: '我发起的'
+			          }
+			        ],
+			        onSelect: (item, index) => {
+			      		if(index == 0){
+			      			this.apply();
+			      		}else if(index == 1){
+			      			this.launched();
+			      		}
+			        },
+			        onCancel: () => {
+			          this.$createToast({
+			            txt: ``,
+			            type: 'warn',
+			            time: 1000
+			          })
+			        }
+			      }).show()
+			    },
+			    
+			    apply:function(){
+			    	localStorage.title = '申请金秋助学';
+					localStorage.addOrUpdate = 'add';
+					summer.openWin({
+					    "id" : "drafes",
+					    "url" : "html/studyaid/drafes.html",
+					    "create" : false
+					});
+			    },
+			    launched:function(){
+			    	summer.openWin({
+					    "id" : "launched",
+					    "url" : "html/studyaid/launched.html",
+					    "create" : false
+					});
+			    },
+			    */
+			    /**
+			     * 获取数据 
+			     */
+	            loadList:function(){
+	            	console.log("method >> loadList");
+					this.getDataList();
+					
+	            },
+	            /**
+	             * 调用后台接口获取数据 
+	             */
+	            getDataList:function(){
+	            	var _this = this;
+		            $.ajax({
+						type:'get',
+						url:serviceUrl+'/workersAppeal/myDrafesList?userId='+userId+'&pageIndex='+this.page+'&pageSize='+this.pageSize,
+						success:function(res){
+							if(res.sCode != 200){
+								return;
+							}
+							var list = res.rsMap.workersAppealList;
+							for(var i = 0 ; i < list.length; i++){
+								var examplejsondata = {};
+								examplejsondata.approvalId = list[i].approvalId;
+								examplejsondata.approvalTime = list[i].approvalTime;					
+								examplejsondata.title = list[i].title;					
+								//examplejsondata.type = "诉求类别："+list[i].type;
+								examplejsondata.state = list[i].state;
+								examplejsondata.stateName = list[i].stateName;
+								examplejsondata.orgName = list[i].orgName;
+								examplejsondata.appealUserName = list[i].appealUserName;
+								
+								
+								_this.list.push(examplejsondata);
+							}
+							
+							var rsMap = res.rsMap;
+							
+							if(rsMap.totalPage <= _this.page1){
+								_this.$refs.infinitescroll.$emit('ydui.infinitescroll.loadedDone');
+								return;
+							}
+							
+							_this.$refs.infinitescroll.$emit('ydui.infinitescroll.finishLoad');
+							_this.page++;
+						},
+						error:function(er){
+	
+						}
+					});	
+	            }
+	       }    
+	    })
+	</script>
+</body>
+</html>

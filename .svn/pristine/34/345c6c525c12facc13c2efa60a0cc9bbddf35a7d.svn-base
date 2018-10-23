@@ -1,0 +1,27 @@
+summerready=function (){
+	hp_slide();//滑动事件，放在最前面
+	var count = summer.pageParam.count;
+	var param = summer.pageParam.param;
+	var exammode = summer.pageParam.exammode;//1 打分; 2 满意度
+	var pk_psexamsub = param;
+	var pk_org = count;
+	var url = "";
+	if( parseInt(exammode) == 1 || exammode == "1"){
+		url = ""+getHttpPro()+"pages/psexamdict/lingDaoBanZiCePing.html";
+	}else{
+		url = ""+getHttpPro()+"pages/psexamdict/satisfactionOfLingDaoBanZiCePing.html";
+	}
+	url = url + "?pk_psexamsub="+pk_psexamsub+"&pk_org="+pk_org;
+	var text = encodeURIComponent(url);
+	document.getElementById("imageId").src = ""+getHttpPro()+"qrcode/get?text="+text;
+			
+}
+/**
+ * 右滑执行的方法
+ */
+function function_rightSlide(){
+	summer.closeWin();
+}
+function backClick(){
+	summer.closeWin();
+}

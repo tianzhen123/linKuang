@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">
+		<link rel="stylesheet" href="reference.css">	
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="../../js/knockout-2.2.0.js" ></script>
+		<script src="reference.js"></script>
+	</head>
+	<body>
+		<div class="um-page" id="index">
+		<div class="um-header">
+			<a href="#" class="um-back" id="edite_list" onclick="backClick()">返回</a>
+			<h3>参照</h3>
+		</div>
+			<div class="um-content">
+				<ul class="um-list" id="shopContent"  data-bind="foreach: listData">
+					<li class="list-item">
+						<div class="um-list-item-inner" data-bind="click: $parent.lineClick">
+							<div class="um-list-item-left">
+								<p data-bind="text: result"></p>
+							</div>
+							<div class="um-list-item-right">
+								<img style="float: right" height="20px;" data-bind="attr:{'src': img}" />
+							</div>
+						</div>
+						
+					</li>
+				</ul>
+			</div>
+
+	</body>
+</html>

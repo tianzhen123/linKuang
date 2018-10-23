@@ -1,0 +1,46 @@
+.um-list .um-list-item-body {
+    padding: 10px 10px;
+   }
+
+.um-input-group{
+	margin:5px;
+}
+.um-list-item-body{
+	display:flex;
+	flex-direction:column;
+}
+.desc{
+	flex:1;
+	max-height:84px;
+	overflow:hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 3;
+}
+.msg-info{
+	max-width:40%;
+	margin: 0;
+}
+.image{
+	float:left;
+	padding-right: 10px;
+	max-height:95px;
+}
+
+.list-content{
+	display: flex;
+	flex-direction:row;
+	padding: 10px 10px 10px 10px;
+	max-height: 120px;
+	width: 100%;
+}
+.content-left{
+	flex:5;
+}
+.content-right{
+	flex:6;
+	max-height:120px;
+	display:flex;
+	flex-direction:column;
+}
