@@ -6,7 +6,7 @@
     <title>金秋助学</title>
 	<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">   
     <link rel="stylesheet" href="../../js/ydui/ydui.px.css">
-	<link rel="stylesheet" href="https://unpkg.com/cube-ui/lib/cube.min.css">
+	<link rel="stylesheet" href="../../css/cube.min.css">
 
 	<script src="../../js/commons.js" ></script> 
 	<script src="../../js/jquery.min.js" ></script>
@@ -95,9 +95,9 @@
 <body>
 <div id="app">
 	<template>
-	    <yd-navbar title="金秋助学" bgcolor="#d72424" height="64px" color="#FFFFFF" fixed="true">
+	    <yd-navbar title="金秋助学" bgcolor="#d72424" height="64px" fontsize="16px" color="#FFFFFF" fixed="true">
 	        <router-link to="#" slot="left" @click="backFunc">
-	            <yd-navbar-back-icon color="#ffffff">&nbsp;返回</yd-navbar-back-icon>
+	            <yd-navbar-back-icon color="#ffffff">返回</yd-navbar-back-icon>
 	        </router-link>
 	        <router-link to="#" slot="right">
 	        	<div @click="showActive">申请</div>
@@ -116,14 +116,14 @@
     		</div>
 	
 	        <span slot="doneTip">已加载全部数据</span>
-	        <img slot="loadingTip" src="http://static.ydcss.com/uploads/ydui/loading/loading10.svg"/>
+	        <img slot="loadingTip" src="../../img/loading10.svg"/>
 	    </yd-infinitescroll>
 	</yd-pullrefresh>
 	</template>
 </div>
 <script src="../../js/ydui/vue.min.js"></script>
 <script src="../../js/ydui/ydui.px.js"></script>
-<script src="https://unpkg.com/cube-ui/lib/cube.min.js"></script>
+<script src="../../js/cube.min.js"></script>
 <script>
 	const actionList = [{text:"申请",value:"approval"},{text:"我发起的",value:"launched"}];
 
@@ -198,7 +198,6 @@
 		     * 获取数据 
 		     */
             loadList:function(){
-            	console.log("method >> loadList");
   				var jsonData = {};
 				jsonData.userId = localStorage.userid;
 				jsonData.pageIndex = this.page+"";
@@ -219,8 +218,6 @@
 					data:JSON.stringify(jsonData),
 					contentType: 'application/json;charset=utf-8',  
 					success:function(res){
-						console.log(res);
-						
 						if(res.sCode != 200){
 							return;
 						}

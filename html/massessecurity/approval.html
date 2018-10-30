@@ -10,6 +10,7 @@
 		<link rel="stylesheet" href="../../css/base.css" />
 		<link rel="stylesheet" href="../../css/public.css">
 		<link rel="stylesheet" href="../../css/commons.css"/>
+		<link rel="stylesheet" href="../../css/scale.css" type="text/css" />
 		<script src="../../js/commons.js" ></script> 
 		<script src="../../js/jquery.min.js" ></script>
 		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
@@ -33,7 +34,7 @@
 	    <div class="um-win" id="index">
 			<div id="header" class="um-header">
 				<div id="backContainer" style="width: 30%">
-					<a href="#"  class="headerText backup" onclick="backClick()">&nbsp;返回</a>
+					<a href="#"  class="headerText backup" onclick="backClick()">返回</a>
 				</div>
 				<div id="titleContainer" style="width:40%">
 					<h3>问题处理</h3>
@@ -123,7 +124,12 @@
             <!-- panel-info-container end -->
             
 	    </div>
-	    
+	    <section class="imgzoom_pack">
+	        <div class="imgzoom_x"></div>
+	        <div class="imgzoom_img">
+		        <img src="" />
+	        </div>
+	    </section>
 	    <script>
 	    	$(function(){
 	    		//var approvalId='MA1537859357117';
@@ -172,7 +178,7 @@
 	                contentType: 'application/json;charset=utf-8',
 	                dataType: 'json',
 	                success: function (res) {
-	                	console.log(res);
+	                	
 	                	if(res.sCode==200){
                         	var opinionList=res.rsMap.opinionList;
                         	var opinionHtml = '';
@@ -230,23 +236,10 @@
 								
 						           }
 						           
-						           var auIDName=opinionList[i].auIDName;
 					           	   var orgName=opinionList[i].orgName;
-					           	   if(auIDName==null){
-					           	   auIDName=='';
-					           	   }
 					           	   if(orgName==null){
 					           	   orgName=='';
 					           	   }
-					           	   
-						          	opinionHtml+='	<div class="um-row content-container">'+
-					                '        <div class="um-xs-6 um-sm-6 um-md-6 content-key" >'+
-					                '        	审批人:'+
-					                '        </div>'+
-					                '        <div class="um-xs-6 um-sm-6 um-md-6 content-value" >'+
-					                '             <span id="userName">'+auIDName+'</span>'+
-					                '        </div>'+
-					                '    </div>';
 					                opinionHtml+='    <div class="um-row content-container">'+
 					                '        <div class="um-xs-6 um-sm-6 um-md-6 content-key" >'+
 					                '        	审批人所属组织:'+
@@ -358,6 +351,7 @@
                     data:JSON.stringify(obj),
                     contentType: 'application/json;charset=utf-8',
                     dataType: 'json',
+                    async:false,
                     success: function (res) {
                     	if(res.sCode==200){
                     		var fileList=res.rsMap.fileList;
@@ -366,9 +360,9 @@
                     			for(var i=0;i<fileList.length;i++){
                     				var url=fileList[i].url;
                     				if(i == 0){
-	                    				html+='<div class="lookimg" num="0"><img src="'+url+'"></div>';
+	                    				html+='<div class="lookimg" num="0"><div id="list"><img src="'+url+'"></div></div>';
                     				}else{
-	                    				html+='<div class="lookimg" num="0" style="margin-top:10px;"><img src="'+url+'"></div>';
+	                    				html+='<div class="lookimg" num="0" style="margin-top:10px;"><div id="list"><img src="'+url+'"></div></div>';
                     				}
                     			}
                     			$('#files').html(html);
@@ -377,6 +371,15 @@
                     }
                 });
 	    	});
+	    </script>
+	    
+	    <script src="../../js/scale.js"></script>
+	    <script>
+	        document.addEventListener("DOMContentLoaded", function(event){
+	            ImagesZoom.init({
+	                "elem": "#list"
+	            });
+	        }, false);
 	    </script>
     </body>
 </html>

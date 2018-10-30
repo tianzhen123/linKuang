@@ -66,7 +66,6 @@ function getDataList(busiType, modelIndex){
 		contentType: 'application/json;charset=utf-8',  
 		async : false,
 		success:function(res){
-			console.log(res);
 			
 			if(res.sCode != 200){
 				return;
@@ -93,7 +92,6 @@ function getDataList(busiType, modelIndex){
 			
 		},
 		error:function(er){
-			console.log(er)
 		}
 	});
 }
@@ -115,7 +113,6 @@ function getDataListPush(busiType, modelIndex){
 		contentType: 'application/json;charset=utf-8',  
 		async : false,
 		success:function(res){
-			console.log(res);
 			
 			if(res.sCode != 200){
 				return;
@@ -147,7 +144,6 @@ function getDataListPush(busiType, modelIndex){
 			
 		},
 		error:function(er){
-			console.log(er)
 		}
 	});
 }

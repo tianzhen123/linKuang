@@ -142,7 +142,7 @@ function initEssentialInformation(){
         //contentType: 'application/json;charset=utf-8',
         //dataType: 'json',
         success: function (res) {
-        	console.log(res);
+        	 
         	if(res.sCode==200){
         		var list=res.rsMap.workersList;
         		for(var i = 0; i < list.length; i++){

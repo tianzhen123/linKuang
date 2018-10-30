@@ -50,7 +50,6 @@ $.ajax({
 		}
 	},
 	error:function(er){
-		console.log(er)
 	}
 });
 function initViewModel(){
@@ -129,7 +128,6 @@ function initViewModel(){
 				}
 			},
 			error:function(er){
-				console.log(er)
 			}
 		});
         

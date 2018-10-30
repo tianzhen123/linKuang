@@ -40,7 +40,7 @@ function rectification(){
 			dataType: 'json',
 			success: function (res) {
 				if(res.sCode == 200){
-					forword("geApproval","html/mywork/myworker.html"); 
+					forword("geApprovalq"+localStorage.approvalId,"html/mywork/myworker.html"); 
 				}else{
 					alert(res.msg);
 				}

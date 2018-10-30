@@ -32,7 +32,7 @@ summerready = function(){
 		localStorage.addOrUpdate = 'update';
 		if(item.approvalState == 'DRAFT'){
 	        localStorage.title = '编辑';
-	        forword("update","html/securityproblem/drafes.html"); 
+	        forword("updateSp","html/securityproblem/drafes.html"); 
         }else{
         	localStorage.xuanze = "busitypesp";
 	        localStorage.title = '详情';
@@ -73,7 +73,6 @@ function getDataList(){
 		url:serviceUrl+'/securityProblem/myDrafesList?userId='+userId+'&pageIndex='+pageIndex+'&pageSize='+pageSize,
 		//url:serviceUrl+'/massesSecurity/myDrafesList?userId='+userId+'&pageIndex='+pageIndex+'&pageSize='+pageSize,
 		success:function(res){
-			console.log(res);
 			var draftFlag = res.rsMap.draftFlag;
 			if(draftFlag){
 				$("#addSecurity").show();
@@ -105,7 +104,6 @@ function getDataList(){
 			viewModel.data(gejsonArray);
 		},
 		error:function(er){
-			console.log(er)
 		}
 	});
 }
@@ -120,7 +118,6 @@ function getDataListPush(){
 		//url:serviceUrl+'/massesSecurity/myDrafesList?userId='+userId+'&pageIndex='+pageIndex+'&pageSize='+pageSize,
 	    async : false,
 		success:function(res){
-			console.log(res);
 			var draftFlag = res.rsMap.draftFlag;
 			if(draftFlag){
 				$("#addSecurity").show();
@@ -160,7 +157,6 @@ function getDataListPush(){
 			
 		},
 		error:function(er){
-			console.log(er)
 		}
 	});
 }

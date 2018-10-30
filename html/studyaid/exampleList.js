@@ -84,8 +84,6 @@ function getDataList(){
 	    contentType: 'application/json;charset=utf-8',
 	    dataType: 'json',
 		success:function(res){
-			console.log(res);
-			
 			if(res.sCode != 200){
 				return;
 			}
@@ -120,7 +118,6 @@ function getDataList(){
 			
 		},
 		error:function(er){
-			console.log(er)
 		}
 	});
 }
@@ -140,8 +137,6 @@ function getDataListPush(){
 	    contentType: 'application/json;charset=utf-8',
 	    dataType: 'json',
 		success:function(res){
-			console.log(res);
-			
 			if(res.sCode != 200){
 				return;
 			}
@@ -173,7 +168,6 @@ function getDataListPush(){
 			
 		},
 		error:function(er){
-			console.log(er)
 		}
 	});
 }

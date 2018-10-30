@@ -6,7 +6,7 @@
     <title>职工帮困</title>
 	<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">   
     <link rel="stylesheet" href="../../js/ydui/ydui.px.css">
-	<link rel="stylesheet" href="https://unpkg.com/cube-ui/lib/cube.min.css">
+	<link rel="stylesheet" href="../../css/cube.min.css">
 
 	<script src="../../js/commons.js" ></script> 
 	<script src="../../js/jquery.min.js" ></script>
@@ -99,9 +99,9 @@
 <body>
 <div id="app">
 	<template>
-	    <yd-navbar title="职工帮困" bgcolor="#d72424" height="64px" color="#FFFFFF" fixed="true">
+	    <yd-navbar title="职工帮困" bgcolor="#d72424" height="64px"  fontsize="16px" color="#FFFFFF" fixed="true">
 	        <router-link to="#" slot="left" @click="backFunc">
-	            <yd-navbar-back-icon color="#ffffff">&nbsp;返回</yd-navbar-back-icon>
+	            <yd-navbar-back-icon color="#ffffff">返回</yd-navbar-back-icon>
 	        </router-link>
 	        <router-link to="#" slot="right">
 	        </router-link>
@@ -123,7 +123,7 @@
 	        		</div>
 			
 			        <span slot="doneTip">已加载全部数据</span>
-			        <img slot="loadingTip" src="http://static.ydcss.com/uploads/ydui/loading/loading10.svg"/>
+			        <img slot="loadingTip" src="../../img/loading10.svg"/>
 			
 			    </yd-infinitescroll>
 	        </yd-tab-panel>
@@ -141,7 +141,7 @@
 	        		</div>
 				
 			        <span slot="doneTip">已加载全部数据</span>
-			        <img slot="loadingTip" src="http://static.ydcss.com/uploads/ydui/loading/loading10.svg"/>
+			        <img slot="loadingTip" src="../../img/loading10.svg"/>
 				</yd-infinitescroll>
 	        </yd-tab-panel>
 	    </yd-tab>
@@ -150,7 +150,7 @@
 </div>
 <script src="../../js/ydui/vue.min.js"></script>
 <script src="../../js/ydui/ydui.px.js"></script>
-<script src="https://unpkg.com/cube-ui/lib/cube.min.js"></script>
+<script src="../../js/cube.min.js"></script>
 <script>
 
     new Vue({
@@ -188,7 +188,6 @@
             	summer.closeWin({});
             },
 		    toDetails:function(item){
-		    	console.log(item);
 		    	localStorage.approvalId = item.approvalId;
         		//forword("details","html/goodexample/details.html");
 		    },
@@ -203,11 +202,9 @@
 		     * 获取劳动模范数据 
 		     */
             loadList:function(){
-            	console.log("method >> loadList");
   				var jsonData = {};
 				jsonData.userId = localStorage.userid;
 				jsonData.busiType = "BUSI_TYPE_HW";
-				console.log("AAA THIS.PAGE:::" + this.page);
 				jsonData.currentPage = this.page+"";
 				jsonData.pageSize = this.pageSize+"";
 				this.getDataList(jsonData,1);
@@ -240,8 +237,6 @@
 					data:JSON.stringify(jsonData),
 					contentType: 'application/json;charset=utf-8',  
 					success:function(res){
-						console.log(res);
-						console.log("_this.page::::" + _this.page);
 						var goodExampleList = res.rsMap.goodExampleList;
 						for(var i=0; i<goodExampleList.length;i++){
 							var geObj = goodExampleList[i];
@@ -263,13 +258,11 @@
 						var pageModel = res.rsMap.pageModel;
 						
 						if(tabIndex == 1){
-							console.log("_this.page::::" + _this.page);
 							if(pageModel.totalPage <= _this.page){
 								_this.$refs.modelInfinitescroll.$emit('ydui.infinitescroll.loadedDone');
 								return;
 							}
 						}else if(tabIndex == 2){
-							console.log("_this.page::::" + _this.page1);
 							if(pageModel.totalPage <= _this.page1){
 								_this.$refs.advancedInfinitescroll.$emit('ydui.infinitescroll.loadedDone');
 								return;

@@ -67,7 +67,6 @@ function getPendingDataList(){
 	    contentType: 'application/json;charset=utf-8',
 	    dataType: 'json', 
 		success:function(res){
-			console.log(res);
 			if(res.sCode == 200){
 				var list = res.rsMap.approvalList;
 				for(var i = 0 ; i < list.length; i++){
@@ -91,7 +90,6 @@ function getPendingDataList(){
 			}
 		},
 		error:function(er){
-			console.log(er)
 		}
 	});
 }
@@ -145,7 +143,6 @@ function getPendingDataListPush(){
 			}
 		},
 		error:function(er){
-			console.log(er)
 		}
 	});
 }
@@ -168,7 +165,6 @@ function getAlreadyDataList(){
 	    contentType: 'application/json;charset=utf-8',
 	    dataType: 'json', 
 		success:function(res){
-			console.log(res);
 			if(res.sCode == 200){
 				var list = res.rsMap.approvalList;
 				for(var i = 0 ; i < list.length; i++){
@@ -188,7 +184,6 @@ function getAlreadyDataList(){
 			}
 		},
 		error:function(er){
-			console.log(er)
 		}
 	});
 }
@@ -241,7 +236,6 @@ function getAlreadyDataListPush(){
 			}
 		},
 		error:function(er){
-			console.log(er)
 		}
 	});
 }

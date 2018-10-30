@@ -95,7 +95,6 @@ function getDataList(busiType, modelIndex){
 	
 	var jsonData = {};
 	
-	console.log(gejsonArray0);
 	
 	jsonData.userId = localStorage.userid;
 	jsonData.publicityType = busiType;
@@ -113,8 +112,6 @@ function getDataList(busiType, modelIndex){
 		data:JSON.stringify(jsonData),
 		contentType: 'application/json;charset=utf-8',  
 		success:function(res){
-			console.log("------------------");
-			console.log(res);
 			
 			if(res.sCode != 200){
 				return;
@@ -149,7 +146,6 @@ function getDataList(busiType, modelIndex){
 			
 		},
 		error:function(er){
-			console.log(er)
 		}
 	});
 }
@@ -170,7 +166,6 @@ function getDataListPush(busiType, modelIndex){
 		data:JSON.stringify(jsonData),
 		contentType: 'application/json;charset=utf-8',  
 		success:function(res){
-			console.log(res);
 			
 			if(res.sCode != 200){
 				return;
@@ -212,7 +207,6 @@ function getDataListPush(busiType, modelIndex){
 			
 		},
 		error:function(er){
-			console.log(er)
 		}
 	});
 }

@@ -64,8 +64,6 @@ function getDataList(){
 		type:'GET',
 		url:serviceUrl+'/studyAid/myDrafesList?userId='+userId+'&pageIndex='+pageIndex+'&pageSize='+pageSize,
 		success:function(res){
-			console.log(res);
-			
 			if(res.sCode != 200){
 				return;
 			}
@@ -86,7 +84,6 @@ function getDataList(){
 			
 		},
 		error:function(er){
-			console.log(er)
 		}
 	});
 }
@@ -100,8 +97,6 @@ function getDataListPush(){
 		url:serviceUrl+'/studyAid/myDrafesList?userId='+userId+'&pageIndex='+pageIndex+'&pageSize='+pageSize,
 	    async : false,
 		success:function(res){
-			console.log(res);
-			
 			if(res.sCode != 200){
 				return;
 			}
@@ -127,7 +122,6 @@ function getDataListPush(){
 			
 		},
 		error:function(er){
-			console.log(er)
 		}
 	});
 }

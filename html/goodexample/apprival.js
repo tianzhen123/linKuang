@@ -7,10 +7,12 @@ function shareCancle() {
 }
 
 $(function () {
+/**
 var orgLevelObj = getOrgLevel();
 if(orgLevelObj.orgLevel == 1 || orgLevelObj.orgLevel == 2){
 	$("#fillReportBtn").show();
 }
+*/
 var xuanze = localStorage.xuanze;
 //控制是从我的工作进入的详情页还是公司列表进入的详情页
 if("myWork" == xuanze){
@@ -19,30 +21,52 @@ if("myWork" == xuanze){
 	$("#fillReportBtn").hide()
 }
 
-    $('.phone').on('click', function () {
-        UM.actionsheet({
-            title: '',  
-            items: ['结束','驳回','通过'],
-            callbacks: [function () {
-            	localStorage.opinionState = 'FINISH';
-                summer.openWin({ 
-				    "id" : "opinion",
-				    "url" : "html/goodexample/opinion.html"
-				});
-            }, function () {
-            	localStorage.opinionState = 'DISAGREE';
-				summer.openWin({ 
-				    "id" : "opinion",
-				    "url" : "html/goodexample/opinion.html"
-				});
-            }, function () {
-            	localStorage.opinionState = 'AGREE';
-				summer.openWin({ 
-				    "id" : "opinion",
-				    "url" : "html/goodexample/opinion.html"
-				});
-            }]
-        });
-
-    })
+	var flowId = localStorage.flowId;
+	if(activiti.ge_group_approval == flowId){
+		$('.phone').on('click', function () {
+	        UM.actionsheet({
+	            title: '',  
+	            items: ['驳回','通过'],
+	            callbacks: [function () {
+	            	localStorage.opinionState = 'DISAGREE';
+					summer.openWin({ 
+					    "id" : "opinion"+localStorage.approvalId,
+					    "url" : "html/goodexample/opinion.html"
+					});
+	            }, function () {
+	            	localStorage.opinionState = 'AGREE';
+					summer.openWin({ 
+					    "id" : "opinion"+localStorage.approvalId,
+					    "url" : "html/goodexample/opinion.html"
+					});
+	            }]
+	        });
+	    })
+	}else{
+		 $('.phone').on('click', function () {
+	        UM.actionsheet({
+	            title: '',  
+	            items: ['结束','驳回','通过'],
+	            callbacks: [function () {
+	            	localStorage.opinionState = 'FINISH';
+	                summer.openWin({ 
+					    "id" : "opinion"+localStorage.approvalId,
+					    "url" : "html/goodexample/opinion.html"
+					});
+	            }, function () {
+	            	localStorage.opinionState = 'DISAGREE';
+					summer.openWin({ 
+					    "id" : "opinion"+localStorage.approvalId,
+					    "url" : "html/goodexample/opinion.html"
+					});
+	            }, function () {
+	            	localStorage.opinionState = 'AGREE';
+					summer.openWin({ 
+					    "id" : "opinion"+localStorage.approvalId,
+					    "url" : "html/goodexample/opinion.html"
+					});
+	            }]
+	        });
+	    })
+	}
 });

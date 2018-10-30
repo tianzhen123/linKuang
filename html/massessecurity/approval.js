@@ -40,7 +40,7 @@ function workAreaBtn(){
 	        	localStorage.operateType = '4';
 	        	localStorage.title = '问题上报';
 				summer.openWin({ 
-				    "id" : "rectification",
+				    "id" : "rectification"+localStorage.approvalId,
 				    "url" : "html/massessecurity/report.html"
 				});
 	        }, function () {
@@ -48,14 +48,14 @@ function workAreaBtn(){
 	        	localStorage.operateType = '5';
 	        	localStorage.title = '结束';
 				summer.openWin({ 
-				    "id" : "rectification",
+				    "id" : "rectification"+localStorage.approvalId,
 				    "url" : "html/massessecurity/report.html"
 				});
 	        }, function () {
 	        	localStorage.agreeOrDisagree = 'RECTIFY';//整改
 	        	localStorage.operateType = '1';//管理员整改发布
 				summer.openWin({ 
-				    "id" : "rectification",
+				    "id" : "rectification"+localStorage.approvalId,
 				    "url" : "html/massessecurity/rectification.html"
 				});
 	        }]
@@ -76,7 +76,7 @@ function safetySupervision(){
 	        	localStorage.operateType = '5';
 				localStorage.title = '结束';
 				summer.openWin({ 
-				    "id" : "rectification",
+				    "id" : "rectification"+localStorage.approvalId,
 				    "url" : "html/massessecurity/report.html"
 				});
 	        }, function () {
@@ -84,7 +84,7 @@ function safetySupervision(){
 	        	localStorage.operateType = '7';//管理员整改发布
 	        	localStorage.removeItem('rectifyUserName');
 				summer.openWin({ 
-				    "id" : "rectification",
+				    "id" : "rectification"+localStorage.approvalId,
 				    "url" : "html/massessecurity/safetySupervision.html"
 				});
 	        }]
@@ -108,7 +108,7 @@ function handleBtn(){
 	        	localStorage.agreeOrDisagree = 'AGREE';
 	        	localStorage.operateType = '2';//整改
 				summer.openWin({ 
-				    "id" : "rectification",
+				    "id" : "rectification"+localStorage.approvalId,
 				    "url" : "html/massessecurity/reorganizerHandle.html"
 				});
 	        }, function () {
@@ -128,14 +128,14 @@ function reviewBtn(){
 				localStorage.operateType = '6';
 				localStorage.title = '驳回';
 				summer.openWin({ 
-				    "id" : "rectification",
+				    "id" : "rectification"+localStorage.approvalId,
 				    "url" : "html/massessecurity/report.html"
 				});
 	        }, function () {
 	        	localStorage.agreeOrDisagree = 'AGREE';
 	        	localStorage.operateType = '4';
 				summer.openWin({ 
-				    "id" : "rectification",
+				    "id" : "rectification"+localStorage.approvalId,
 				    "url" : "html/massessecurity/reexaminationHandle.html"
 				});
 	        }]

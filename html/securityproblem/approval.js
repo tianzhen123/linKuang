@@ -53,7 +53,7 @@ function groupLeader(){
 	        	localStorage.operateType = '4'; //上报
 	        	localStorage.title = '问题上报';
 	            summer.openWin({  
-				    "id" : "problemModification",
+				    "id" : "problemModification"+localStorage.approvalId,
 				    "url" : "html/securityproblem/report.html"
 				});
 	        }, function () {
@@ -61,14 +61,14 @@ function groupLeader(){
 	        	localStorage.operateType = '5';
 	        	localStorage.title = '结束';
 	            summer.openWin({  
-				    "id" : "problemModification",
+				    "id" : "problemModification"+localStorage.approvalId,
 				    "url" : "html/securityproblem/report.html"
 				});
 	        }, function () {
 	        	localStorage.agreeOrDisagree = 'RECTIFY';//整改
 	        	localStorage.operateType = '9';//管理员整改发布
 	           summer.openWin({  
-				    "id" : "problemModification",
+				    "id" : "problemModification"+localStorage.approvalId,
 				    "url" : "html/securityproblem/groupLeader.html"
 				});
 	        }]
@@ -91,7 +91,7 @@ function workArea(){
 	        	localStorage.operateType = '4'; //上报
 	        	localStorage.title = '问题上报';
 	            summer.openWin({  
-				    "id" : "problemModification",
+				    "id" : "problemModification"+localStorage.approvalId,
 				    "url" : "html/securityproblem/report.html"
 				});
 	        }, function () {
@@ -99,14 +99,14 @@ function workArea(){
 	        	localStorage.operateType = '5';
 	        	localStorage.title = '结束';
 	            summer.openWin({  
-				    "id" : "problemModification",
+				    "id" : "problemModification"+localStorage.approvalId,
 				    "url" : "html/securityproblem/report.html"
 				});
 	        }, function () {
 	        	localStorage.agreeOrDisagree = 'RECTIFY';//整改
 	        	localStorage.operateType = '1';//管理员整改发布
 	           summer.openWin({  
-				    "id" : "problemModification",
+				    "id" : "problemModification"+localStorage.approvalId,
 				    "url" : "html/securityproblem/workArea.html"
 				});
 	        }]
@@ -125,7 +125,7 @@ function safetySupervision(){
 	        	localStorage.operateType = '5';
 				localStorage.title = '结束';
 	            summer.openWin({  
-				    "id" : "rectification",
+				    "id" : "rectification"+localStorage.approvalId,
 				    "url" : "html/securityproblem/report.html"
 				});
 	        }, function () {
@@ -135,7 +135,7 @@ function safetySupervision(){
 				localStorage.removeItem('supervisenNameFc');
 				localStorage.removeItem('supervisenNames');
 				summer.openWin({ 
-				    "id" : "rectification",
+				    "id" : "rectification"+localStorage.approvalId,
 				    "url" : "html/securityproblem/modification.html"
 				});
 	        }]
@@ -159,7 +159,7 @@ function handleBtn(){
 	        	localStorage.agreeOrDisagree = 'AGREE';
 	        	localStorage.operateType = '2';//整改
 				summer.openWin({ 
-				    "id" : "rectification",
+				    "id" : "rectification"+localStorage.approvalId,
 				    "url" : "html/securityproblem/opinion.html"
 				});
 	        }, function () {
@@ -179,14 +179,14 @@ function reviewBtn(){
 				localStorage.operateType = '6';
 				localStorage.title = '驳回';
 				summer.openWin({ 
-				    "id" : "rectification",
+				    "id" : "rectification"+localStorage.approvalId,
 				    "url" : "html/securityproblem/report.html"
 				});
 	        }, function () {
 	        	localStorage.agreeOrDisagree = 'AGREE';
 	        	localStorage.operateType = '4';
 				summer.openWin({ 
-				    "id" : "rectification",
+				    "id" : "rectification"+localStorage.approvalId,
 				    "url" : "html/securityproblem/reviewOpinion.html"
 				});
 	        }]

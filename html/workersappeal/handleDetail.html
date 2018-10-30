@@ -13,6 +13,7 @@
 		<link rel="stylesheet" type="text/css" href="../../css/iuapmobile.um.listview.css">
 		<link rel="stylesheet" href="../../css/public.css" />
 		<link rel="stylesheet" href="../../css/new_page1.css">
+		<link rel="stylesheet" href="../../css/scale.css" type="text/css" />
 		<script src="../../js/commons.js" ></script> 
 		<script src="../../js/jquery.min.js" ></script>
 		<script src="../../js/summer.js" ></script>
@@ -32,7 +33,7 @@
 		<div class="um-win" id="index">
 			<div id="header" class="um-header">
 				<div id="backContainer" style="width: 30%">
-					<a href="#"  class="headerText backup" onclick="backClick()">&nbsp;返回</a>
+					<a href="#"  class="headerText backup" onclick="backClick()">返回</a>
 				</div>
 				<div id="titleContainer" style="width:40%">
 					<h3><span id="titleId">职工诉求</span></h3>
@@ -132,5 +133,19 @@
 			</div>
 			-->
 		</div>
+		<section class="imgzoom_pack">
+	        <div class="imgzoom_x"></div>
+	        <div class="imgzoom_img">
+		        <img src="" />
+	        </div>
+	    </section>
+	    <script src="../../js/scale.js"></script>
+	    <script>
+	        document.addEventListener("DOMContentLoaded", function(event){
+	            ImagesZoom.init({
+	                "elem": "#list"
+	            });
+	        }, false);
+	    </script>
 	</body>
 </html>

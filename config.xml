@@ -9,8 +9,8 @@
   <theme>red</theme>  
   <icon relativePath="css/themes/default/app">app</icon>  
   <versionCode>3</versionCode>  
-  <versionBuild>3.2</versionBuild>  
-  <versionName>3.2</versionName>  
+  <versionBuild>3.4</versionBuild>  
+  <versionName>3.4</versionName>  
   <orientation>portrait</orientation>  
   <permission id="android.permission.INTERNET"/>  
   <statusBarStyle>dark</statusBarStyle>  

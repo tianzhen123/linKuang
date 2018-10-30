@@ -27,6 +27,7 @@ var BUSI_TYPE_WA = "BUSI_TYPE_WA";
  */
 var BUSI_TYPE_SP = "BUSI_TYPE_SP"; 
 
+/**
 function forwordApproval(busiType,approvalId){
 	localStorage.approvalId = approvalId;
 	if(busiType == BUSI_TYPE_GE){
@@ -44,4 +45,4 @@ function forwordApproval(busiType,approvalId){
 	}
 	
 }
-
+*/

@@ -45,7 +45,7 @@ function submitGeData(){
 	    dataType: 'json',
 	    success: function (res) {
 	        if (res.sCode==200){
-	        	forword("mywork","html/mywork/myworker.html");
+	        	forword("mywork"+localStorage.approvalId,"html/mywork/myworker.html");
 	        } else {
 	        	alert(res.msg);
 	        }

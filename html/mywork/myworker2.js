@@ -66,7 +66,6 @@ $(function () {
 				}
 			},
 			error:function(er){
-				console.log(er)
 			}
 		});
 	});

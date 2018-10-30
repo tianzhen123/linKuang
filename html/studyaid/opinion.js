@@ -6,7 +6,7 @@ $(function () {
 
 	//var obj = getOrgLevel();
 	var flowId = localStorage.flowId;
-	if(flowId == activiti.sa_group_approval){
+	if(flowId == activiti.sa_group_approval && 'AGREE' == localStorage.studyaidState){
 		$("#money").show();
 		
 	//驳回时不展示帮扶金额
@@ -27,7 +27,7 @@ $(function () {
             items: ['确认'], 
             callbacks: [function () {
             	var hlepAmount = $("#hlepAmount").val()
-            	if(flowId == activiti.sa_group_approval){
+            	if(flowId == activiti.sa_group_approval && 'AGREE' == localStorage.studyaidState){
                 	if('' == hlepAmount){
 		                alert("请您输入帮扶金额");
 		                return false;
@@ -48,7 +48,7 @@ $(function () {
 					dataType: 'json',
 					success: function (res) {
 						if(res.sCode == 200){
-							forword("mywork","html/mywork/myworker.html");
+							forword("myworky"+localStorage.approvalId,"html/mywork/myworker.html");
 						}else{
 							alert(res.msg);
 						}

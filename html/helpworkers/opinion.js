@@ -18,7 +18,8 @@ $(function() {
 			alert("请输入审批意见");
 		 	return;
 	}
-	if("_4" == flowId && 2 == type){
+	
+	if(activiti.hs_union_approval == flowId && 2 == type && 'AGREE' == localStorage.opinionState){
 		if(!$('#unionHelpAmount').val()){
 			alert("请输入基层工会帮扶金额");
 		 	return;
@@ -32,14 +33,18 @@ $(function() {
 		}
 	}
 	*/
-	if("_6" == flowId && 1 == type){
+	if(activiti.hs_group_approval == flowId && 1 == type && 'AGREE' == localStorage.opinionState){
+		if(!$('#unionHelpAmount').val()){
+			alert("请输入基层工会帮扶金额");
+		 	return;
+		}
 		if(!$('#topUnionHelpAmount').val()){
 			alert("请输入集团公会帮扶金额");
 		 	return;
 		}
 	}
 	
-	if("_5" == flowId && 2 == type){
+	if(activiti.hw_group_approval == flowId && 2 == type && 'AGREE' == localStorage.opinionState){
 		if(!$('#helpAmount').val()){
 			alert("请输入集团工会帮扶金额");
 		 	return;
@@ -75,7 +80,7 @@ $(function() {
 					dataType: 'json',
 					success: function (res) {
 						if(res.sCode == 200){
-							forword("geApproval","html/mywork/myworker.html"); 
+							forword("geApprovals"+localStorage.approvalId,"html/mywork/myworker.html"); 
 						}else{
 							alert(res.msg);
 						}

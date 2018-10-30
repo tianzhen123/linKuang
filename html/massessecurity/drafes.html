@@ -50,7 +50,7 @@
         <div class="um-page active" id="index">
             <div id="header" class="um-header">
                 <div id="backContainer" style="width: 30%">
-					<a href="#"  class="headerText backup" onclick="backClick()">&nbsp;返回</a>
+					<a href="#"  class="headerText backup" onclick="backClick()">返回</a>
 				</div>
 				<div id="titleContainer" style="width:40%">
 					<h3 id="title"></h3>
@@ -197,7 +197,7 @@
 	                    contentType: 'application/json;charset=utf-8',
 	                    dataType: 'json',
 	                    success: function (res) {
-	                    	console.log(res);
+	                    	
 		                	if(res.sCode==200){
 		                		var fileList=res.rsMap.fileList;
 		                		if(fileList!=null&&fileList.length > 0){

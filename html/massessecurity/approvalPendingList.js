@@ -72,7 +72,6 @@ function getDataList(){
 		type:'get',
 		url:serviceUrl+'/massesSecurity/myDrafesList?userId='+userId+'&pageIndex='+pageIndex+'&pageSize='+pageSize,
 		success:function(res){
-			console.log(res);
 			var draftFlag = res.rsMap.draftFlag;
 			if(draftFlag){
 				$("#addsupervisionProblemBtn").show();
@@ -103,7 +102,6 @@ function getDataList(){
 			viewModel.data(gejsonArray);
 		},
 		error:function(er){
-			console.log(er)
 		}
 	});
 }
@@ -117,7 +115,6 @@ function getDataListPush(){
 		url:serviceUrl+'/massesSecurity/myDrafesList?userId='+userId+'&pageIndex='+pageIndex+'&pageSize='+pageSize,
 	    async : false,
 		success:function(res){
-			console.log(res);
 			var draftFlag = res.rsMap.draftFlag;
 			if(draftFlag){
 				$("#addsupervisionProblemBtn").show();
@@ -157,7 +154,6 @@ function getDataListPush(){
 			
 		},
 		error:function(er){
-			console.log(er)
 		}
 	});
 }

@@ -25,7 +25,7 @@ $(function () {
 
     })
     
-	//var approvalId='WA1539860265682';
+	//var approvalId='WA1539146684034';
 	var approvalId=localStorage.approvalId;
 	
 	var jsonData={"approvalId":approvalId}
@@ -40,7 +40,6 @@ $(function () {
         contentType: 'application/json;charset=utf-8',
         dataType: 'json',
 		success:function(res){
-			console.log(res);
 			
 			if(res.sCode != 200){
 				return;
@@ -70,7 +69,6 @@ $(function () {
 			
 		},
 		error:function(er){
-			console.log(er)
 		}
 	});
 	
@@ -81,15 +79,16 @@ $(function () {
         data:JSON.stringify(obj),
         contentType: 'application/json;charset=utf-8',
         dataType: 'json',
+        async:false,
         success: function (res) {
-        	console.log(res);
+        	 
         	if(res.sCode==200){
         		var fileList=res.rsMap.fileList;
         		if(fileList!=null&&fileList.length){
         			var html='';
         			for(var i=0;i<fileList.length;i++){
         				var url=fileList[i].url;
-        				html+='<img src="'+url+'" style="width: 24%;height: 84px;margin-left: 1%;margin-top: 1%;">';
+        				html+='<div id="list"><img src="'+url+'" style="width: 24%;height: 84px;margin-left: 1%;margin-top: 1%;"></div>';
         			}
         			//删除之前回显的图片
         			$('#div_imgfile').html(html);
@@ -193,7 +192,7 @@ function submitGeData(opeType){
 	    dataType: 'json',
 	    success: function (res) {
 	        if (res.sCode==200){
-	        	forword("mywork","html/workersappeal/mylaunch.html");
+	        	forword("myworki"+localStorage.approvalId,"html/workersappeal/mylaunch.html");
 	        } else {
 	        	alert("评价失败");
 	        }

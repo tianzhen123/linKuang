@@ -102,7 +102,6 @@ function getDataList(){
 		type:'get',
 		url:serviceUrl+'/workersController/superviseList?pageIndex='+pageIndex+'&pageSize='+pageSize+'&userId='+localStorage.userid+"&queryType="+localStorage.queryType+"&search_searchParam="+name,
 		success:function(res){
-			console.log(res);
 			if(res.sCode != 200){
 				return;
 			}
@@ -120,7 +119,6 @@ function getDataList(){
 			
 		},
 		error:function(er){
-			console.log(er)
 		}
 	});
 }
@@ -136,7 +134,6 @@ function getDataListPush(){
 		type:'get',
 		url:serviceUrl+'/workersController/superviseList?pageIndex='+pageIndex+'&pageSize='+pageSize+'&userId='+localStorage.userid+'&userId='+localStorage.userid+"&queryType="+localStorage.queryType+"&search_searchParam="+name,
 		success:function(res){
-			console.log(res);
 			if(res.sCode != 200){
 				return;
 			}
@@ -159,7 +156,6 @@ function getDataListPush(){
 			
 		},
 		error:function(er){
-			console.log(er)
 		}
 	});
 }

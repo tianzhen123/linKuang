@@ -18,7 +18,7 @@ $(function() {
 		$("#fillReportBtn").hide();
 	}
 	
-	if("_6" == flowId){
+	if(activiti.hw_group_approval == flowId || activiti.hs_group_approval == flowId){
 		groupApproval();
 	}else{
 		$('.phone').on('click', function() {
@@ -29,19 +29,19 @@ $(function() {
 	            callbacks: [ function () {
 	            	localStorage.opinionState = 'DISAGREE';
 					summer.openWin({ 
-					    "id" : "opinion",
+					    "id" : "opinion"+localStorage.approvalId,
 					    "url" : "html/helpworkers/opinion.html?type="+type
 					});
 	            }, function () {
 	            	localStorage.opinionState = 'AGREE';
 					summer.openWin({ 
-					    "id" : "opinion",
+					    "id" : "opinion"+localStorage.approvalId,
 					    "url" : "html/helpworkers/opinion.html?type="+type
 					});
 	            }, function () {
 	            	localStorage.opinionState = 'FINISH';
 					summer.openWin({ 
-					    "id" : "opinion",
+					    "id" : "opinion"+localStorage.approvalId,
 					    "url" : "html/helpworkers/opinion.html?type="+type
 					});
 	            }]
@@ -62,13 +62,13 @@ function groupApproval(){
             callbacks: [ function () {
             	localStorage.opinionState = 'DISAGREE';
 				summer.openWin({ 
-				    "id" : "opinion",
+				    "id" : "opinion"+localStorage.approvalId,
 				    "url" : "html/helpworkers/opinion.html?type="+type
 				});
             }, function () {
             	localStorage.opinionState = 'AGREE';
 				summer.openWin({ 
-				    "id" : "opinion",
+				    "id" : "opinion"+localStorage.approvalId,
 				    "url" : "html/helpworkers/opinion.html?type="+type
 				});
             }, function () {
@@ -114,7 +114,6 @@ function init() {
 		contentType : 'application/json;charset=utf-8',
 		dataType : 'json',
 		success : function(res) {
-			console.log(res);
 			if (res.sCode == 200) {
                     var node;
                     	if(2 ==type){//职工帮困
@@ -165,7 +164,6 @@ function init() {
                     var daysList=node.inHospitalTimeList;
                     if(daysList!=null&&daysList.length){
                     var html='';
-                    console.log(daysList);
                       for(var i=0;i<daysList.length;i++){
 	                        var startTime=daysList[i].startTime;
 	                        var endTime=daysList[i].endTime;
@@ -189,6 +187,7 @@ function init() {
                 data:JSON.stringify(obj),
                 contentType: 'application/json;charset=utf-8',
                 dataType: 'json',
+                async:false,
                 success: function (res) {
                     if(res.sCode==200){
                         var fileList=res.rsMap.fileList;
@@ -198,9 +197,9 @@ function init() {
                                 var url=fileList[i].url;
                                 if(url!=null&&url!=''){
                                     if(i == 0){
-	                    				html+='<div class="lookimg" num="0"><img src="'+url+'"></div>';
+	                    				html+='<div class="lookimg" num="0"><div id="list"><img src="'+url+'"></div></div>';
                     				}else{
-	                    				html+='<div class="lookimg" num="0" style="margin-top:10px;"><img src="'+url+'"></div>';
+	                    				html+='<div class="lookimg" num="0" style="margin-top:10px;"><div id="list"><img src="'+url+'"></div></div>';
                     				}
                                 }
                             }
@@ -228,8 +227,6 @@ function init() {
                         contentType: 'application/json;charset=utf-8',
                         dataType: 'json',
                         success: function (res) {
-                        	console.log("----------------");
-                        	console.log(res);
                             if(res.sCode==200){
                                 var opinionList=res.rsMap.opinionList;
                                 var html="";

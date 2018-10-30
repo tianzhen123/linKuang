@@ -4,7 +4,6 @@
 var serviceUrl = "https://dj.lykyjt.com:8898/pctservice";
 var webserver = "https://dj.lykyjt.com:8898/approveupload";
 
-
 function backClick(){
   	summer.closeWin({});
 }
@@ -12,7 +11,8 @@ function backClick(){
 function forword(id, url){
 	summer.openWin({
 	    "id" : id,
-	    "url" : url
+	    "url" : url,
+	    "isKeep" : true
 	});
 }
 
@@ -30,7 +30,6 @@ function getOrgLevel(){
 		dataType: 'json',
 		async : false,  
 		success: function (res) {
-			console.log(res);
 			if(res.sCode == 200){
 				obj.orgLevel = res.rsMap.orgLevel;
 			}else if(res.sCode == 401){
@@ -141,7 +140,7 @@ function busiTypeSpApproval(submitId,flowId,agreeOrDisagree){
 			dataType: 'json',
 			success: function (res) {
 				if(res.sCode == 200){
-					forword("geApproval","html/mywork/myworker.html"); 
+					forword("geApprovalt"+localStorage.approvalId,"html/mywork/myworker.html"); 
 				}else{
 					alert(res.msg);
 				}
@@ -184,23 +183,23 @@ function forwordApproval(busiType,approvalId,taskId){
 	localStorage.approvalId = approvalId;
 	localStorage.taskId = taskId;
 	if(busiType == BUSI_TYPE_GE){
-		forword("geApproval","html/goodexample/approval.html");
+		forword("geApproval"+approvalId,"html/goodexample/approval.html");
 	}else if(busiType == BUSI_TYPE_SA){
-		forword("saApproval","html/studyaid/approval.html");
+		forword("saApproval"+approvalId,"html/studyaid/approval.html");
 	}else if(busiType == BUSI_TYPE_HW){//职工帮困
-		forword("hwApproval","html/helpworkers/approcal.html?type=2");
+		forword("hwApproval"+approvalId,"html/helpworkers/approcal.html?type=2");
 	}else if(busiType == BUSI_TYPE_MS){
-		forword("msApproval","html/massessecurity/approval.html");
+		forword("msApproval"+approvalId,"html/massessecurity/approval.html");
 	}else if(busiType == BUSI_TYPE_WA){
-		forword("waApproval","html/workersappeal/approval.html");
+		forword("waApproval"+approvalId,"html/workersappeal/approval.html");
 	}else if(busiType == BUSI_TYPE_SP){ 
-		forword("spApproval","html/securityproblem/approval.html");
+		forword("spApproval"+approvalId,"html/securityproblem/approval.html");
 	}else if(busiType == BUSI_TYPE_HS){// 大病帮扶
-		forword("hwApproval","html/helpworkers/approcal.html?type=1");
+		forword("hwApproval"+approvalId,"html/helpworkers/approcal.html?type=1");
 	}
 }
 function getOpinionStateName(opinionState){
-                  var opinionStateName='通过';
+                  var opinionStateName='已处理';
 		         if(opinionState=='FINISH'){
 		        	 opinionStateName='结束';
 		         }
@@ -266,5 +265,7 @@ activiti.wa_apply="_3";//职工提报
 activiti.wa_union_approval_1="_4";//二级工会回复
 activiti.wa_group_approval="_5";//集团工会回复
 activiti.wa_union_approval_2="_6";//二级工会回复
+
+
 
 

@@ -16,7 +16,7 @@ $(function () {
 
 	var xuanze = localStorage.xuanze;
 	var taskMode = localStorage.taskMode;  //待办or待阅
-
+	var flowId = localStorage.flowId;
     //控制是从我的工作进入的详情页还是公司列表进入的详情页
     if("myWork" == xuanze){
     	if("do"==taskMode){
@@ -31,19 +31,32 @@ $(function () {
 		$("#showOpinionId").hide();		
 	}
 
-    $("#fillReportBtn").on('click', function () {
-        UM.actionsheet({
-            title: '',  
-            items: ['确认','结束'],
-            callbacks: [function () {
-                submitGeData('');
-            }, function () {
-                submitGeData('FINISH');
-            }, function () {
-               
-            }]
-        });
-    })
+	if(flowId == activiti.wa_group_approval){
+		$("#fillReportBtn").on('click', function () {
+	        UM.actionsheet({
+	            title: '',  
+	            items: ['确认'],
+	            callbacks: [function () {
+	                submitGeData('');
+	            }]
+	        });
+	    })
+	}else{
+		$("#fillReportBtn").on('click', function () {
+	        UM.actionsheet({
+	            title: '',  
+	            items: ['确认','结束'],
+	            callbacks: [function () {
+	                submitGeData('');
+	            }, function () {
+	                submitGeData('FINISH');
+	            }, function () {
+	               
+	            }]
+	        });
+	    })
+	}
+
     
     $("#unionFeedbackBtn").on('click', function () {
     	forword("mywork","html/workersappeal/replyGroup.html");
@@ -63,7 +76,6 @@ $(function () {
 		contentType: 'application/json;charset=utf-8',
 	    dataType: 'json', 
 		success:function(res){
-			console.log(res);
 			
 			if(res.sCode != 200){
 				return;
@@ -97,7 +109,6 @@ $(function () {
 		
 		},
 		error:function(er){
-			console.log(er)
 		}
 	});
 	
@@ -108,6 +119,7 @@ $(function () {
         data:JSON.stringify(obj),
         contentType: 'application/json;charset=utf-8',
         dataType: 'json',
+        async:false,
         success: function (res) {
         	if(res.sCode==200){
         		var fileList=res.rsMap.fileList;
@@ -115,7 +127,7 @@ $(function () {
         			var html='';
         			for(var i=0;i<fileList.length;i++){
         				var url=fileList[i].url;
-        				html+='<img src="'+url+'" style="width: 24%;">';
+        				html+='<div id="list"><img src="'+url+'" style="width: 24%;"></div>';
         				//html+='<div class="lookimg" num="0"><img src="'+url+'"></div>';
         			}
         			//删除之前回显的图片
@@ -161,9 +173,13 @@ $(function () {
 								'</div>'+
 								
 								'<div class="um-row pt15 f14">'+
-							   '	<div class="um-xs-12 f12">'+
-								'	审批人：'+auIDName+''+
-					    		'   </div>'+
+							   '	<div class="um-xs-12 f12">';
+						  		if(undefined == auIDName){
+							html+='	审批人：';
+							   }else{
+							html+='	审批人：'+auIDName+'';
+							   }
+					    	html+=	'   </div>'+
 								'</div>'+
 								'<div class="um-row pt15 f14">'+
 							   '	<div class="um-xs-12 f12">'+
@@ -231,7 +247,7 @@ function submitGeData(opeType){
 	    dataType: 'json',
 	    success: function (res) {
 	        if (res.sCode==200){
-	        	forword("mywork","html/mywork/myworker.html");
+	        	forword("myworku"+localStorage.approvalId,"html/mywork/myworker.html");
 	        } else {
 	        	alert(res.msg);
 	        }

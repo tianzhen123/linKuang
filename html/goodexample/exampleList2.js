@@ -53,7 +53,6 @@ function getAdvancedExampleList(subBusiType){
 		contentType: 'application/json;charset=utf-8',  
 		async : false,
 		success:function(res){
-			console.log(res);
 			
 			if(res.sCode != 200){
 				return;
@@ -74,7 +73,6 @@ function getAdvancedExampleList(subBusiType){
 			initModelView("advancedExampleView");
 		},
 		error:function(er){
-			console.log(er)
 		}
 	});
 }

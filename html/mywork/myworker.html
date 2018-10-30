@@ -25,7 +25,7 @@
 		-->
 	    <link rel="stylesheet" href="./listview.css">
 	    <link rel="stylesheet" href="../../js/ydui/ydui.px.css">
-		<link rel="stylesheet" href="https://unpkg.com/cube-ui/lib/cube.min.css">
+		<link rel="stylesheet" href="../../css/cube.min.css">
 	
 		<script src="../../js/commons.js" ></script> 
 		<script src="../../js/jquery.min.js" ></script>
@@ -135,9 +135,9 @@
 		</div>
 		-->
 	<template>
-	    <yd-navbar title="我的工作" bgcolor="#d72424" height="64px" color="#FFFFFF" fixed="true">
+	    <yd-navbar title="我的工作" bgcolor="#d72424" height="64px"  fontsize="16px" color="#FFFFFF" fixed="true">
 	        <router-link to="#" slot="left" @click="backFunc">
-	            <yd-navbar-back-icon color="#ffffff">&nbsp;返回</yd-navbar-back-icon>
+	            <yd-navbar-back-icon color="#ffffff">返回</yd-navbar-back-icon>
 	        </router-link>
 	        <!--
 	        <router-link to="#" slot="right">
@@ -145,6 +145,11 @@
 	        </router-link>
 	        -->
 	    </yd-navbar>
+	    <!--
+	    <div style="background-color: #FFFFFF;margin-top: 64px;">
+			在此处写增加时间及状态控件
+		</div>
+		-->
 	    <yd-pullrefresh :callback="pullLoadList" ref="pullrefresh">
 	    <yd-tab :callback="switchCallBack"  style="margin-top: 64px;">
 	        <yd-tab-panel label="待审批" tabkey="0">
@@ -193,7 +198,7 @@
 	        		</div>
 			
 			        <span slot="doneTip">已加载全部数据</span>
-			        <img slot="loadingTip" src="http://static.ydcss.com/uploads/ydui/loading/loading10.svg"/>
+			        <img slot="loadingTip" src="../../img/loading10.svg"/>
 			
 			    </yd-infinitescroll>
 	        </yd-tab-panel>
@@ -246,7 +251,7 @@
 	        		</div>
 				
 			        <span slot="doneTip">已加载全部数据</span>
-			        <img slot="loadingTip" src="http://static.ydcss.com/uploads/ydui/loading/loading10.svg"/>
+			        <img slot="loadingTip" src="../../img/loading10.svg"/>
 				</yd-infinitescroll>
 	        </yd-tab-panel>
 	    </yd-tab>
@@ -255,7 +260,7 @@
 </div>
 <script src="../../js/ydui/vue.min.js"></script>
 <script src="../../js/ydui/ydui.px.js"></script>
-<script src="https://unpkg.com/cube-ui/lib/cube.min.js"></script>
+<script src="../../js/cube.min.js"></script>
 <script>
 	//const yearList = [{text:"全部年份",value:"全部年份"}];
 	        
@@ -273,7 +278,7 @@
             publicityYear:"全部年份" 
         },
         created: function () {
-        	//localStorage.userid = '6e4026fc-d606-4198-96a0-5c1e8533e084';
+        	//localStorage.userid = '0019bc12-ae09-4872-9c1f-83e5566ddea0';
         
 			this.loadList();    
 			this.loadList1(); 		
@@ -307,10 +312,11 @@
         	 * 标题栏返回方法 
         	 */
             backFunc:function(){
+            	
             	/**
             	summer.openWin({
 				    "id" : "in",
-				    "url" : "html/tmp/in.html"
+				    "url" : "html/index/index.html"
 				});
 				*/
 				summer.closeWin({});
@@ -330,7 +336,6 @@
 		      this.picker.show()
 		    },
 		    toDetails:function(item){
-		    	console.log(item);
 		    	localStorage.approvalId = item.approvalId;
         		localStorage.xuanze = 'myWork';
 		        localStorage.flowId = item.flowId;
@@ -340,7 +345,6 @@
 		        forwordApproval(item.busiTypeVlue,item.approvalId,item.taskId);
 		    },
 		    toDetails1:function(item){
-		    	console.log(item);
 		    	localStorage.xuanze = 'handle';
 		        localStorage.title = '审批';
 		        forwordApproval(item.busiTypeVlue,item.approvalId,item.taskId);
@@ -380,11 +384,9 @@
 		     * 获取劳动模范数据 
 		     */
             loadList:function(){
-            	console.log("method >> loadList");
   				var jsonData = {};
 				jsonData.userId = localStorage.userid;
 				//jsonData.publicityType = "SUB_BUSI_TYPE_GE_MODEL";
-				console.log("AAA THIS.PAGE:::" + this.page);
 				jsonData.pageIndex = this.page+"";
 				jsonData.pageSize = this.pageSize+"";
 				this.getDataList(jsonData,1);
@@ -425,8 +427,6 @@
 				    contentType: 'application/json;charset=utf-8',
 				    dataType: 'json', 
 					success:function(res){
-						console.log(res);
-						console.log("_this.page::::" + _this.page);
 						if(res.sCode == 200){
 							var list = res.rsMap.approvalList;
 							for(var i = 0 ; i < list.length; i++){
@@ -458,13 +458,11 @@
 						var rsMap = res.rsMap;
 						
 						if(tabIndex == 1){
-							console.log("_this.page::::" + _this.page);
 							if(rsMap.totalPage <= _this.page){
 								_this.$refs.modelInfinitescroll.$emit('ydui.infinitescroll.loadedDone');
 								return;
 							}
 						}else if(tabIndex == 2){
-							console.log("_this.page::::" + _this.page1);
 							if(rsMap.totalPage <= _this.page1){
 								_this.$refs.advancedInfinitescroll.$emit('ydui.infinitescroll.loadedDone');
 								return;
