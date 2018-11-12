@@ -29,6 +29,7 @@ summerready = function(){
 		summer.openWin({
             "id" : "editNews",
             "url" : "html/xuanChuanFaBu/editNews.html",
+            "addBackListener":"true",
             "pageParam" : {
                 "type" : "add"
             }

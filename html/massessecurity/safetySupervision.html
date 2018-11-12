@@ -129,8 +129,11 @@
         	$(function(){
         		$.date('#requestTime');
         		$.date('#finishTime');
-        		
-        		$("#rectifyUserName").val(localStorage.rectifyUserName);
+        		var rectifyUserName = localStorage.rectifyUserName;
+        		if(undefined == rectifyUserName){
+        			rectifyUserName = '';
+        		}
+        		$("#rectifyUserName").val(rectifyUserName);
         	});
         </script>
     </body>

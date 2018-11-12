@@ -2,13 +2,13 @@
 	font-size: 14px;
 }
 .content-key{
-	font-size: 15px;
+	font-size: 14px;
 	//color: #151515;
 	color:1b1b1b;
 	padding-left: 0px;
 }
 .content-value{
-	font-size: 15px;
+	font-size: 13px;
 	color:#5A5A5A;
 	text-align: right;
 	padding-right: 0px;
@@ -82,4 +82,10 @@
 .panel-info-text{
 	width:100%;
 	font-size:14px;
+}
+span{
+	font-size:13px;
+}
+input{
+	font-size:13px;
 }

@@ -59,6 +59,7 @@ function submitMsData(){
 	    dataType: 'json',
 	    success: function (res) {
 	        if (res.sCode==200){
+	        	summer.closeWin({});
 	        	forword("submitSp","html/securityproblem/approvalPendingList.html");
 	        } else {
 	        	alert(res.msg);
@@ -98,6 +99,7 @@ function updateMsData(){
 	    dataType: 'json',
 	    success: function (res) {
 	        if (res.sCode==200){
+	        	summer.closeWin({});
 	        	forword("submitSp","html/securityproblem/approvalPendingList.html");
 	        } else {
 	        	alert(res.msg);

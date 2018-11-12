@@ -34,6 +34,7 @@ summerready = function(){
 							"id" : "editNews",
 							"url" : "html/xuanChuanFaBu/editNews.html",
 							"isKeep" : true,
+							"addBackListener":"true",
 							"pageParam" : {
 								"type" : "edit",
 								"content" : data,

@@ -61,24 +61,22 @@ summerready = function(){
 		console.log(error);
 	}
 	
-	document.addEventListener("backbutton", backClick, false);
-	
 }
 function uploadImgs(){
-UM.showLoadingBar({
-    "text" : "上传中",
-    "icons" : "ti-loading"
-});
- summer.multiUpload({
-  fileArray : imageArray,
-  params : {
-   para1 : "1",
-   para2 : 2
-  },
-  headers : {},
-  SERVER : getHttpPro()+"infoMobile/uploadcreatebillimgs",
-  timeout : 10
- }, "multiUploadCallback()", "multiUploadErrCallback()");
+	UM.showLoadingBar({
+	    "text" : "上传中",
+	    "icons" : "ti-loading"
+	});
+	 summer.multiUpload({
+	  fileArray : imageArray,
+	  params : {
+	   para1 : "1",
+	   para2 : 2
+	  },
+	  headers : {},
+	  SERVER : getHttpPro()+"infoMobile/uploadcreatebillimgs",
+	  timeout : 10
+	 }, "multiUploadCallback()", "multiUploadErrCallback()");
  
 }
 function multiUploadCallback(ret) {
@@ -135,7 +133,7 @@ function saveFun(billstatus,infostatus,ret){
 				});
             }
             summer.closeWin({});
-	    },error: function(error){ //失败回调
+	    },error: function(error){//失败回调
 	    	UM.hideLoadingBar();
 	        summer.toast({
                  "msg" : "保存失败,请重试" 
@@ -220,12 +218,12 @@ function imgCenter(){
 }
 //初始化
 function loadSelectFileButtion(){
-var html='<div class="preview">'
-+'<ul class = "preview_img_list clearfix" style="line-height: 100px;">'
-+' <li id="selectFileButtion" onclick="selectFileType()">'
-+' <label><img id="button" src="../../img/fujian.png" style="height: 84px;"/></label>'
-+'</li></ul></div>';
-$('#uploadFileList').html(html);
+	var html='<div class="preview">'
+	+'<ul class = "preview_img_list clearfix" style="line-height: 100px;">'
+	+' <li id="selectFileButtion" onclick="selectFileType()">'
+	+' <label><img id="button" src="../../img/fujian.png" style="height: 84px;"/></label>'
+	+'</li></ul></div>';
+	$('#uploadFileList').html(html);
 
 }
 /**
@@ -278,7 +276,10 @@ function initPic(sender, args){
 //移除选择图片
 function removeImg(obj){
 	if(confirm("确定移除图片")){
-		delete imageArray[$(obj).parent().index()];
+		var n = $(obj).parent().index();
+		imageArray=$.grep(imageArray,function(n,i){
+			return i!=1;
+		});
 		$(obj).parent().remove();
 	}else{
 		
@@ -313,4 +314,7 @@ function fileArray(){
      // }
   });
   return fileArray;
+}
+function keyBack(){
+    backClick();
 }

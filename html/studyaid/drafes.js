@@ -74,6 +74,7 @@ function submitGeData(){
 	    dataType: 'json',
 	    success: function (res) {
 	        if (res.sCode==200){
+	        	summer.closeWin({});
 	        	forword("geStudyaid","html/studyaid/exampleList.html");
 	        } else {
 	        	alert(res.msg);
@@ -123,6 +124,7 @@ function updateGeData(){
 	    dataType: 'json',
 	    success: function (res) {
 	        if (res.sCode==200){
+	        	summer.closeWin({});
 	        	forword("geStudyaid","html/studyaid/exampleList.html");
 	        } else {
 	        	alert(res.msg);
