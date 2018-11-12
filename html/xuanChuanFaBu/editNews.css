@@ -68,3 +68,11 @@ input{
 	outline:none;
 	padding:10px;
 }
+.preview_img_list li{
+	width: 94px;
+    float: left;
+}
+.preview_img_list li img{
+	width:84px;
+	height:84px;
+}
