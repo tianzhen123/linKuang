@@ -7,7 +7,7 @@ summerready = function(){
 //返回
 function backClick(){
 		if(flag){
-			var jsfun = 'getListData2();';
+			var jsfun = 'getListData("'+0+'");';
 			summer.execScript({
 			    winId: 'html/examine/examine.html',
 			    script: jsfun

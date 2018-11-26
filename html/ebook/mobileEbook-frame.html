@@ -26,6 +26,9 @@
 			var sign=$.md5(userName+timestamp.toString()+accountKey);
 			var urlString="https://wk.bookan.com.cn/index.php?op=Authentication.redirect&authType=1&id=21518&userName="+userName+
 						"&time="+timestamp+"&sign="+sign;
+			console.log(urlString);
+			$summer.alert(urlString);
+			
 			window.location=urlString;
 			$("head").append('<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">');
 			UM.hideLoadingBar();

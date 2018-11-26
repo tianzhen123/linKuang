@@ -181,8 +181,8 @@ function getListData(pageIndex){
 	}
 	//联网加载数据
 	var dataIndex=curNavIndex; //记录当前联网的nav下标,防止快速切换时,联网回来curNavIndex已经改变的情况;
-	
-	var url = jsonArray_menu[dataIndex].url;
+	var usercode = summer.getStorage("usercode");
+	var url = jsonArray_menu[dataIndex].url+"?userCode="+usercode+"";
 	var requestid = ""+getHttpPro()+url;
 	
 	var json = {

@@ -1,6 +1,6 @@
 
 function getHttpPro(){
-	//var http = "http://172.28.151.20:8080/partyconstrutproject/";
+	//var http = "http://10.145.11.70:8080/partyconstrutproject/";
 	var http = "https://dj.lykyjt.com:8898/partyconstrutproject/";
 	return http;
 }

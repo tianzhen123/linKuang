@@ -21,7 +21,7 @@ summerready = function(){
 	            hidden: false
 	        }, {
 	            id: 'ebook',
-	            url: 'html/ebook/mobileEbook-frame.html',
+	            url: 'html/ebook/mobileEbook.html',
 	            bgColor: '#ffffff',
 	            hidden: true
 	        }, {

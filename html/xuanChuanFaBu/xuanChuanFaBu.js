@@ -66,7 +66,8 @@ summerready = function(){
 	netWork();
 }
 function netWork(){
-	var url = getHttpPro()+"infoMobile/list";
+	var usercode = summer.getStorage("usercode");
+	var url = getHttpPro()+"infoMobile/list?userCode="+usercode+"";
 	UM.showLoadingBar({
         "text" : "加载中",
         "icons" : "ti-loading"

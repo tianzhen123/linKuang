@@ -64,9 +64,10 @@ summerready = function(){
 }
 function uploadImgs(){
 	UM.showLoadingBar({
-	    "text" : "上传中",
+	    "text" : "保存中",
 	    "icons" : "ti-loading"
 	});
+	var userCode = summer.getStorage("usercode");
 	 summer.multiUpload({
 	  fileArray : imageArray,
 	  params : {
@@ -74,7 +75,7 @@ function uploadImgs(){
 	   para2 : 2
 	  },
 	  headers : {},
-	  SERVER : getHttpPro()+"infoMobile/uploadcreatebillimgs",
+	  SERVER : getHttpPro()+"infoMobile/uploadcreatebillimgs?userCode="+userCode+"",
 	  timeout : 10
 	 }, "multiUploadCallback()", "multiUploadErrCallback()");
  
@@ -88,8 +89,8 @@ function multiUploadErrCallback(err) {
 
 //提交
 function saveFun(billstatus,infostatus,ret){
-
-	var url = getHttpPro()+'infoMobile/save';
+	var usercode = summer.getStorage("usercode");
+	var url = getHttpPro()+'infoMobile/save?userCode='+usercode+'';
 	
 	var jsonData = [{
 		title : document.querySelector('.title').value,

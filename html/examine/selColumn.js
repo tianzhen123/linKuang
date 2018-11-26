@@ -22,7 +22,8 @@ function loading(){
                 "text" : "加载中",
                 "icons" : "ti-loading"
             });
-			var url = getHttpPro()+'infoMobile/loadEnum';
+            var userCode = summer.getStorage("usercode");
+			var url = getHttpPro()+'infoMobile/loadEnum?userCode='+userCode+'';
 		    summer.ajax({
                 "header":{Authorization: "OAuth2: token"},
                 "type":"get",

@@ -118,11 +118,12 @@ function function_pullUp(){
 
 //网络请求
 function netService(){
+	var usercode = summer.getStorage("usercode");
 	var url;
 	if(type*1 == 1){
-		url = getHttpPro()+"infoMobile/ylist?infocolumn="+param.infocolumn+"&pageIndex="+pageIndex+"&pageSize=10&sortField=ts&sortDirection=desc";
+		url = getHttpPro()+"infoMobile/ylist?userCode="+usercode+"&infocolumn="+param.infocolumn+"&pageIndex="+pageIndex+"&pageSize=10&sortField=ts&sortDirection=desc";
 	}else{
-		url = getHttpPro()+"infoMobile/mlist?tag="+param.tag+"&pageIndex="+pageIndex+"&pageSize=10&sortField=ts&sortDirection=desc";
+		url = getHttpPro()+"infoMobile/mlist?userCode="+usercode+"&tag="+param.tag+"&pageIndex="+pageIndex+"&pageSize=10&sortField=ts&sortDirection=desc";
 	}
 				summer.get(url, {}, {
 							    "Content-Type" : "application/x-www-form-urlencoded", 

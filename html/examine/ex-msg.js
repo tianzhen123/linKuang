@@ -18,13 +18,14 @@ function backClick(){
 	summer.closeWin({});
 }
 function commitClick(){
+	var userCode = summer.getStorage("usercode");
 	if(flag)setBillStatus(window.chooseData);
 	setBillStatusName(window.content);
 	var url;
 	if(window.content.billstatus*1 == 5){
-		url = getHttpPro()+'infoMobile/toapprove';//发布
+		url = getHttpPro()+'infoMobile/toapprove?userCode='+userCode+'';//发布
 	}else{
-		url = getHttpPro()+'infoMobile/save';//除发布外的状态更新
+		url = getHttpPro()+'infoMobile/save?userCode='+userCode+'';//除发布外的状态更新
 	}
 	var jsonArr = [];
 	jsonArr[0] = window.content;
@@ -49,7 +50,7 @@ function commitClick(){
             
             summer.execScript({
 				winId : 'html/examine/examine.html',
-				script : 'getListData2();'//运行时script：'mycall(13810012233)'
+				script : 'getListData("'+0+'");'//运行时script：'mycall(13810012233)'
 			});
 			summer.closeWin({});
 	    },error: function(error){ //失败回调
